@@ -99,18 +99,19 @@ public class TamTruDAOImpl implements ITamTruDAO{
 
     @Override
     public boolean update(TamTruModel model) {
-        String query = "update CongDan set HoTen=?, NcCccd=?, NgcCccd=?, MaKS=?, SDT=?, Email=?, TrangThai=? where CCCD=?";
+        String query = "update Tamtru set ID=?, MaTT=?, Ngaydk=?, Noidk=?, Ngayden=?, Ngaydi=?, Lydo =?, TrangThai=? where CCCD=?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, model.getHoTen());
-            ps.setString(2, model.getNcCccd());
-            ps.setDate(3, (Date) model.getNgcCccd());
-            ps.setString(4, model.getMaKS());
-            ps.setString(5, model.getSDT());
-            ps.setString(6, model.getEmail());
-            ps.setInt(7, model.getTrangThai());
-            ps.setString(8, model.getCCCD());
+            ps.setInt(1, model.getID());
+            ps.setString(2, model.getMaTT());
+            ps.setDate(3, (Date) model.getNgaydk());
+            ps.setString(4, model.getNoidk());
+            ps.setDate(5, (Date) model.getNgayden());
+            ps.setDate(6,(Date) model.getNgaydi());
+            ps.setString(7, model.getLydo());
+            ps.setInt(8, model.getTrangThai());
+            ps.setString(9, model.getCCCD());
             ps.executeUpdate();
             conn.close();
         }catch(Exception e){
@@ -121,6 +122,7 @@ public class TamTruDAOImpl implements ITamTruDAO{
 
     @Override
     public boolean delete(String maTT) {
+        return true;
     }
     
 }
