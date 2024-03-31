@@ -5,7 +5,6 @@
 package DAOImplement;
 
 import InterfaceDAO.DBConnection;
-import InterfaceDAO.IChungNhanKetHon;
 import Models.ChungNhanKetHonModel;
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,12 +12,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import InterfaceDAO.IChungNhanKetHonDAO;
 
 /**
  *
  * @author TUAN
  */
-public class ChungNhanKetHonDAOImpl implements IChungNhanKetHon{
+public class ChungNhanKetHonDAOImpl implements IChungNhanKetHonDAO{
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -52,7 +52,7 @@ public class ChungNhanKetHonDAOImpl implements IChungNhanKetHon{
     @Override
     public ChungNhanKetHonModel findOneByMaKH(String MaKH) {
         ChungNhanKetHonModel chungNhanKetHon = new ChungNhanKetHonModel();
-        String query = "select * from TamTru where MaCnkh=?";
+        String query = "select * from Cnkh where MaCnkh=?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
