@@ -57,9 +57,9 @@ public class GiayChungTuDAOImpl implements IGiayChungTuDAO{
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
+            ps.setString(1, MaCT);
             rs = ps.executeQuery();
             while(rs.next()){
-                
                 giayChungTu.setID(rs.getInt(1));
                 giayChungTu.setMaCT(rs.getString(2));
                 giayChungTu.setCCCD(rs.getString(3));
