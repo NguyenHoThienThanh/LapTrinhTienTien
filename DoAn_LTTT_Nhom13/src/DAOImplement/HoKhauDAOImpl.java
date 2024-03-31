@@ -6,7 +6,6 @@ package DAOImplement;
 
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.IHoKhauDAO;
-import Models.ChungNhanKetHonModel;
 import Models.HoKhauModel;
 import java.sql.Connection;
 import java.sql.Date;
@@ -57,14 +56,12 @@ public class HoKhauDAOImpl implements IHoKhauDAO{
             ps = conn.prepareStatement(query);
             ps.setString(1, MaHK);
             rs = ps.executeQuery();
-            
             while (rs.next()) {
                 hoKhau.setID(rs.getInt(1));
                 hoKhau.setMaHK(rs.getString(2));
                 hoKhau.setDiaChi(rs.getString(3));
                 hoKhau.setKhaiSinhChuHo(rs.getString(4));
                 hoKhau.setTrangThai(rs.getInt(5));
-                
             }
             conn.close();
         } catch (Exception e) {
