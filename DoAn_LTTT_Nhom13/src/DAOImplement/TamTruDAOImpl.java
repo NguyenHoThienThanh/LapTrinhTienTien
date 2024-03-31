@@ -21,7 +21,7 @@ public class TamTruDAOImpl implements ITamTruDAO{
 
     @Override
     public List<TamTruModel> findAll() {
-        String query = "select * from TamTru where TrangThai = 1";
+        String query = "SELECT * FROM Tamtru WHERE TrangThai = 1";
         List<TamTruModel> listTamTru = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -75,20 +75,18 @@ public class TamTruDAOImpl implements ITamTruDAO{
     }
 
     @Override
-    public boolean insert(TamTruModel model) {
-        String query = "insert into Tamtru(ID, MaTT, Cccd, Ngaydk, Noidk, Ngayden, Ngaydi, Lydo, TrangThai) values(?,?,?,?,?,?,?,?,?)";
+    public boolean insert(TamTruModel tamTru) {
+        String query = "INSERT INTO Tamtru(Cccd, Ngaydk, Noidk, Ngayden, Ngaydi, Lydo, TrangThai) VALUES(?,?,?,?,?,?,?)";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setInt(1, model.getID());
-            ps.setString(2, model.getMaTT());
-            ps.setString(3, model.getCCCD());
-            ps.setDate(4,(Date) model.getNgaydk());
-            ps.setString(5, model.getNoidk());
-            ps.setDate(6, (Date) model.getNgayden());
-            ps.setDate(7, (Date) model.getNgaydi());
-            ps.setString(8, model.getLydo());
-            ps.setInt(9, model.getTrangThai());
+            ps.setString(1, tamTru.getCCCD());
+            ps.setDate(2,(Date) tamTru.getNgaydk());
+            ps.setString(3, tamTru.getNoidk());
+            ps.setDate(4, (Date) tamTru.getNgayden());
+            ps.setDate(5, (Date) tamTru.getNgaydi());
+            ps.setString(6, tamTru.getLydo());
+            ps.setInt(7, tamTru.getTrangThai());
             ps.executeUpdate();
             conn.close();
         }catch (Exception e) {
@@ -98,20 +96,19 @@ public class TamTruDAOImpl implements ITamTruDAO{
     }
 
     @Override
-    public boolean update(TamTruModel model) {
-        String query = "update Tamtru set ID=?, MaTT=?, Ngaydk=?, Noidk=?, Ngayden=?, Ngaydi=?, Lydo =?, TrangThai=? where CCCD=?";
+    public boolean update(TamTruModel tamTru) {
+        String query = "UPDATE Tamtru SET Ngaydk=?, Noidk=?, Ngayden=?, Ngaydi=?, Lydo =?, TrangThai=? WHERE MaTT=?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setInt(1, model.getID());
-            ps.setString(2, model.getMaTT());
-            ps.setDate(3, (Date) model.getNgaydk());
-            ps.setString(4, model.getNoidk());
-            ps.setDate(5, (Date) model.getNgayden());
-            ps.setDate(6,(Date) model.getNgaydi());
-            ps.setString(7, model.getLydo());
-            ps.setInt(8, model.getTrangThai());
-            ps.setString(9, model.getCCCD());
+            ps.setDate(1, (Date) tamTru.getNgaydk());
+            ps.setString(2, tamTru.getNoidk());
+            ps.setDate(3, (Date) tamTru.getNgayden());
+            ps.setDate(4,(Date) tamTru.getNgaydi());
+            ps.setString(5, tamTru.getLydo());
+            ps.setInt(6, tamTru.getTrangThai());
+            ps.setString(7, tamTru.getCCCD());
+            ps.setString(8, tamTru.getMaTT());
             ps.executeUpdate();
             conn.close();
         }catch(Exception e){
@@ -122,6 +119,15 @@ public class TamTruDAOImpl implements ITamTruDAO{
 
     @Override
     public boolean delete(String maTT) {
+        String query = "DELETE Tamtru WHERE MaTT = ?";
+        try{
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maTT);
+            ps.executeUpdate();
+        }catch(Exception e){
+            return false;
+        }
         return true;
     }
     
