@@ -7,7 +7,6 @@ package DAOImplement;
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.IDanhGiaDAO;
 import Models.DanhGiaModel;
-import Models.GiayChungTuModel;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
