@@ -46,7 +46,7 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
 
     @Override
     public DangNhapModel findOne(String userName) {
-        String query = "SELECT * FROM DangNhap";
+        String query = "SELECT * FROM DangNhap WHERE TenDangNhap =?";
         DangNhapModel dangNhap = new DangNhapModel();
         try {
             conn = DBConnection.getConnection();
