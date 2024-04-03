@@ -330,7 +330,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
                 }
                 action = false;
             }
-            if (dangNhapService.isPasswordExists(tf_username.getText(), String.valueOf(tf_password.getPassword()).trim())) {
+            if (action && dangNhapService.isPasswordExists(tf_username.getText(), String.valueOf(tf_password.getPassword()).trim())) {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công", "Thông báo",
                         JOptionPane.INFORMATION_MESSAGE);
                 HomeController homeController = new HomeController();
@@ -370,6 +370,9 @@ public class LoginandRegisterController extends javax.swing.JFrame {
             String registerusername = tf_registerusername.getText().trim();
             String registerpassword = String.valueOf(tf_registerpassword.getPassword()).trim();
             String registerconfirmpassword = String.valueOf(tf_registerconfirmpassword.getPassword()).trim();
+            System.out.println(registerpassword);
+            System.out.println(registerconfirmpassword);
+            
             boolean action = true;
 
             // Kiểm tra xem các trường dữ liệu có trống không
@@ -407,7 +410,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
                 tf_registerconfirmpassword.grabFocus();
                 action = false;
             }
-            if (dangNhapService.isUsernameExists(tf_registerusername.getText()) == false) {
+            if (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == false) {
                 model.setQuyen("user");
                 model.setTenDangNhap(tf_registerusername.getText());
                 model.setMatKhau(tf_registerpassword.getText());
@@ -420,7 +423,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
                 signIn = false;
                 animatorRegister.start();
 
-            } else if (dangNhapService.isUsernameExists(tf_registerusername.getText()) == true) {
+            } else if (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == true) {
                 JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!!! Vui lòng nhập tên khác", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE);
                 return;
