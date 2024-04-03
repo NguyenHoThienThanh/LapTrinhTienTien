@@ -235,14 +235,14 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
     private void tbl_thongTinCongDanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinCongDanMouseClicked
         model = (DefaultTableModel) tbl_thongTinCongDan.getModel();
-        tf_soCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 0).toString());
-        tf_hoTen.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 1).toString());
-        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 2).toString());
-        tf_gioiTinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 3).toString());
-        tf_noiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 4).toString());
-        tf_noiCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 5).toString());
-        tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 6).toString());
-        tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 7).toString());
+        tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 0).toString());
+        tf_soCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 1).toString());
+        tf_hoTen.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 2).toString());
+        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 3).toString());
+        tf_gioiTinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 4).toString());
+        tf_noiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 5).toString());
+        tf_noiCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 6).toString());
+        tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 7).toString());
         tf_soDienThoai.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 8).toString());
         tf_email.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 9).toString());
     }//GEN-LAST:event_tbl_thongTinCongDanMouseClicked
