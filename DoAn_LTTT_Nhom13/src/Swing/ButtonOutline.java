@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Swing;
 
 import java.awt.Color;
@@ -30,5 +27,6 @@ public class ButtonOutline extends JButton{
         g2.drawRoundRect(0, 0, width - 1, height - 1, height, height);
         super.paintComponent(grphcs);
     }
-    
+   
 }
+
