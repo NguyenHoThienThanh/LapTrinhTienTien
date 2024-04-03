@@ -51,4 +51,10 @@ public class DangNhapModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    @Override
+    public String toString() {
+        return "DangNhapModel{" + "Quyen=" + Quyen + ", TenDangNhap=" + TenDangNhap + ", MatKhau=" + MatKhau + ", TrangThai=" + TrangThai + '}';
+    }
+    
 }
