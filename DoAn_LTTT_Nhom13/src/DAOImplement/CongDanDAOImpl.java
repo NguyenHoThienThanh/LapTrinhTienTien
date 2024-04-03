@@ -23,7 +23,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     @Override
     public List<CongDanModel> findAll() {
-        String query = "select * from CongDan where TrangThai = 1";
+        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS";
         List<CongDanModel> listCongDan = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -33,17 +33,21 @@ public class CongDanDAOImpl implements ICongDanDAO {
                 CongDanModel congDan = new CongDanModel();
                 congDan.setCCCD(rs.getString(1));
                 congDan.setHoTen(rs.getString(2));
-                congDan.setNcCccd(rs.getString(3));
-                congDan.setNgcCccd(rs.getDate(4));
-                congDan.setMaKS(rs.getString(5));
-                congDan.setSDT(rs.getString(6));
-                congDan.setEmail(rs.getString(7));
-                congDan.setTrangThai(rs.getInt(8));
+                congDan.setNgaySinh(rs.getDate(3));
+                congDan.setGioiTinh(rs.getString(4));
+                congDan.setNoiSinh(rs.getString(5));
+                congDan.setNcCccd(rs.getString(6));
+                congDan.setNgcCccd(rs.getDate(7));
+                congDan.setMaKS(rs.getString(8));
+                congDan.setSDT(rs.getString(9));
+                congDan.setEmail(rs.getString(10));
+                congDan.setTrangThai(rs.getInt(11));
+                
                 listCongDan.add(congDan);
             }
             conn.close();
         } catch (Exception e) {
-
+e.printStackTrace();
         }
         return listCongDan;
     }

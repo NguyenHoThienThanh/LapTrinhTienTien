@@ -19,12 +19,15 @@ public class CongDanModel {
     private String SDT;
     private String Email;
     private int TrangThai;
+    private Date NgaySinh;
+    private String GioiTinh;
+    private String NoiSinh;
 
     // Constructor
     public CongDanModel() {
     }
 
-    public CongDanModel(String CCCD, String HoTen, String NcCccd, Date NgcCccd, String MaKS, String SDT, String Email, int TrangThai) {
+    public CongDanModel(String CCCD, String HoTen, String NcCccd, Date NgcCccd, String MaKS, String SDT, String Email, int TrangThai, Date NgaySinh, String GioiTinh, String NoiSinh) {
         this.CCCD = CCCD;
         this.HoTen = HoTen;
         this.NcCccd = NcCccd;
@@ -33,7 +36,14 @@ public class CongDanModel {
         this.SDT = SDT;
         this.Email = Email;
         this.TrangThai = TrangThai;
+        this.NgaySinh = NgaySinh;
+        this.GioiTinh = GioiTinh;
+        this.NoiSinh = NoiSinh;
     }
+
+    
+
+    
     
     // Getters and setters
     public String getCCCD() {
@@ -99,6 +109,34 @@ public class CongDanModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
+
+    public String getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(String GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public String getNoiSinh() {
+        return NoiSinh;
+    }
+
+    public void setNoiSinh(String NoiSinh) {
+        this.NoiSinh = NoiSinh;
+    }
+
+    
+    
+    
 }
  
 
