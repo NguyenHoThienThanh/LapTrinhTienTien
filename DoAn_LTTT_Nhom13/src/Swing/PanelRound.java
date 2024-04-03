@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Swing;
 
 import java.awt.Color;
@@ -28,9 +25,5 @@ public class PanelRound extends JPanel{
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
-    
-    
-    
-    
 }
+
