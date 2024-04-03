@@ -4,9 +4,10 @@
  */
 package Controller;
 
+
 import InterfaceService.IDangNhapService;
 import Models.DangNhapModel;
-import ServiceImplement.DangNhapServiceImpl;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
@@ -20,7 +21,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
 
     private Animator animatorLogin;
     private Animator animatorRegister;
-    IDangNhapService dangNhapService = new DangNhapServiceImpl();
+    IDangNhapService dangNhapService = new ServiceImplement.DangNhapServiceImpl();
     private boolean signIn = true;
 
     public LoginandRegisterController() {
@@ -90,7 +91,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         background1 = new Swing.Background();
@@ -309,9 +310,9 @@ public class LoginandRegisterController extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {                                          
 
         if (!animatorLogin.isRunning()) {
             String username = tf_username.getText().trim();
@@ -338,7 +339,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
                 enableLogin(false);
             }
         }
-    }//GEN-LAST:event_btn_loginActionPerformed
+    }                                         
 
     private void enableLogin(boolean action) {
         tf_username.setEditable(action);
@@ -362,7 +363,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
         tf_registerconfirmpassword.setHelperText("");
 
     }
-    private void btn_signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_signupActionPerformed
+    private void btn_signupActionPerformed(java.awt.event.ActionEvent evt) {                                           
         boolean check = true;
         DangNhapModel model = new DangNhapModel();
         if (!animatorRegister.isRunning()) {
@@ -426,9 +427,9 @@ public class LoginandRegisterController extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_btn_signupActionPerformed
+    }                                          
 
-    private void lbl_taotaikhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_taotaikhoanMouseClicked
+    private void lbl_taotaikhoanMouseClicked(java.awt.event.MouseEvent evt) {                                             
         // TODO add your handling code here:
         if (!animatorLogin.isRunning()) {
             signIn = true;
@@ -439,11 +440,11 @@ public class LoginandRegisterController extends javax.swing.JFrame {
             panelRegister.setVisible(true);
         }
 
-    }//GEN-LAST:event_lbl_taotaikhoanMouseClicked
+    }                                            
 
-    private void tf_registerconfirmpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_registerconfirmpasswordActionPerformed
+    private void tf_registerconfirmpasswordActionPerformed(java.awt.event.ActionEvent evt) {                                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_registerconfirmpasswordActionPerformed
+    }                                                          
 
     public static void main(String args[]) {
 
@@ -454,7 +455,7 @@ public class LoginandRegisterController extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private Swing.Background background1;
     private Swing.Button btn_login;
     private Swing.Button btn_signup;
@@ -472,5 +473,5 @@ public class LoginandRegisterController extends javax.swing.JFrame {
     private Swing.PasswordField tf_registerpassword;
     private Swing.TextField tf_registerusername;
     private Swing.TextField tf_username;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
