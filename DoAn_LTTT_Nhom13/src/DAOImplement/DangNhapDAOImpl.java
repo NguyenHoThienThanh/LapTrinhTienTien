@@ -86,7 +86,7 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
 
     @Override
     public boolean update(DangNhapModel dangNhap) {
-        String query = "UPDATE DangNhap SET Quyen = ?, TenDangNhap=?, MatKhau=?, TrangThai=?";
+        String query = "UPDATE DangNhap SET Quyen = ?, TenDangNhap=?, MatKhau=?, TrangThai=? WHERE TenDangNhap =?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -94,6 +94,7 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
             ps.setString(2, dangNhap.getTenDangNhap());
             ps.setString(3, dangNhap.getMatKhau());
             ps.setInt(4, dangNhap.getTrangThai());
+            ps.setString(5, dangNhap.getTenDangNhap());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
