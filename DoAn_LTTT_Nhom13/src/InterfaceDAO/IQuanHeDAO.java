@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IQuanHeDAO {
     List<QuanHeModel> findAll();
-    QuanHeModel findOneByMaHK (String MaHK);
+    QuanHeModel findOneByMaHK (String MaHK, String KhaiSinhNguoiThamGia);
     boolean insert (QuanHeModel quanHe);
     boolean update (QuanHeModel quanHe);
     boolean delete (String MaHK);

@@ -25,7 +25,8 @@ public class HoKhauDAOImpl implements IHoKhauDAO{
     
     @Override
     public List<HoKhauModel> findAll() {
-        String query = "SELECT * FROM HoKhau WHERE TrangThai = 1";
+        String query = "SELECT hk.ID, hk.MaHK, ks.MaKS, cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh,  hk.DiaChi, cd.SDT, cd.Email, hk.TrangThai FROM CongDan cd INNER JOIN KhaiSinh ks ON cd.MaKS = ks.MaKS " 
+                + "INNER JOIN HoKhau hk ON (ks.MaKS = hk.KhaiSinhChuHo)";
         List<HoKhauModel> listHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -35,14 +36,20 @@ public class HoKhauDAOImpl implements IHoKhauDAO{
                 HoKhauModel hoKhau = new HoKhauModel();
                 hoKhau.setID(rs.getInt(1));
                 hoKhau.setMaHK(rs.getString(2));
-                hoKhau.setDiaChi(rs.getString(3));
-                hoKhau.setKhaiSinhChuHo(rs.getString(4));
-                hoKhau.setTrangThai(rs.getInt(5));
+                hoKhau.setKhaiSinhChuHo(rs.getString(3));
+                hoKhau.setSoCCCD(rs.getString(4));
+                hoKhau.setHoTen(rs.getString(5));
+                hoKhau.setNgaySinh(rs.getDate(6));
+                hoKhau.setGioiTinh(rs.getString(7));
+                hoKhau.setDiaChi(rs.getString(8));
+                hoKhau.setSDT(rs.getString(9));
+                hoKhau.setEmail(rs.getString(10));
+                hoKhau.setTrangThai(rs.getInt(11));
                 listHoKhau.add(hoKhau);
             }
             conn.close();
         } catch (Exception e) {
-
+e.printStackTrace();
         }
         return listHoKhau;
     }
