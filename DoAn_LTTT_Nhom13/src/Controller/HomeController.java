@@ -26,8 +26,8 @@ public class HomeController extends javax.swing.JFrame {
                 if(index == 1 && subIndex == 1){
                     showForm(new ThongTinCongDanController());
                 }
-                else {
-                    System.out.println(index + " " + subIndex);
+                else if(index == 1 && subIndex == 5){
+                    showForm(new HoKhauController());
                 }
                 
                 

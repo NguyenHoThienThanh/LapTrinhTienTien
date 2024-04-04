@@ -45,11 +45,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        tf_hoTen1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        tf_hoTen2 = new javax.swing.JTextField();
-        textField4 = new Swing.TextField();
         tf_hoTen = new Swing.TextField();
         tf_gioiTinh = new Swing.TextField();
         tf_noiCapCCCD = new Swing.TextField();
@@ -67,12 +62,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         btn_xoa = new Swing.Button();
         jLabel1 = new javax.swing.JLabel();
         btn_xoaDuLieu = new Swing.Button();
-
-        jLabel3.setText("Họ và tên:");
-
-        jLabel5.setText("Giới tính:");
-
-        textField4.setLabelText("Số CCCD");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -147,7 +136,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         btn_xoaDuLieu.setBackground(new java.awt.Color(18, 99, 63));
         btn_xoaDuLieu.setForeground(new java.awt.Color(255, 255, 255));
         btn_xoaDuLieu.setText("Xóa dữ liệu");
-        btn_xoaDuLieu.setActionCommand("Xóa dữ liệu");
         btn_xoaDuLieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xoaDuLieuActionPerformed(evt);
@@ -214,11 +202,12 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_noiSinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(9, 9, 9)
                 .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -269,16 +258,11 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_thongTinCongDan;
-    private Swing.TextField textField4;
     private Swing.TextField tf_email;
     private Swing.TextField tf_gioiTinh;
     private Swing.TextField tf_hoTen;
-    private javax.swing.JTextField tf_hoTen1;
-    private javax.swing.JTextField tf_hoTen2;
     private Swing.TextField tf_maKhaiSinh;
     private Swing.TextField tf_ngayCapCCCD;
     private Swing.TextField tf_ngaySinh;
