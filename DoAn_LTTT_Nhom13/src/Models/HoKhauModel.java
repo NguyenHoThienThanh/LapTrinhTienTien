@@ -4,6 +4,8 @@
  */
 package Models;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
@@ -14,19 +16,33 @@ public class HoKhauModel {
     private String DiaChi;
     private String KhaiSinhChuHo;
     private int TrangThai;
+    private String HoTen;
+    private String SoCCCD;
+    private String GioiTinh;
+    private Date NgaySinh;
+    private String SDT;
+    private String Email;
 
     // Constructor
     public HoKhauModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public HoKhauModel(int ID, String MaHK, String DiaChi, String KhaiSinhChuHo, int TrangThai) {
+    public HoKhauModel(int ID, String MaHK, String DiaChi, String KhaiSinhChuHo, int TrangThai, String HoTen, String SoCCCD, String GioiTinh, Date NgaySinh, String SDT, String Email) {
         this.ID = ID;
         this.MaHK = MaHK;
         this.DiaChi = DiaChi;
         this.KhaiSinhChuHo = KhaiSinhChuHo;
         this.TrangThai = TrangThai;
+        this.HoTen = HoTen;
+        this.SoCCCD = SoCCCD;
+        this.GioiTinh = GioiTinh;
+        this.NgaySinh = NgaySinh;
+        this.SDT = SDT;
+        this.Email = Email;
     }
+
+    
     
     
     // Getters and setters
@@ -69,4 +85,54 @@ public class HoKhauModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+    public String getSoCCCD() {
+        return SoCCCD;
+    }
+
+    public void setSoCCCD(String SoCCCD) {
+        this.SoCCCD = SoCCCD;
+    }
+
+    public String getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(String GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
+
+    public String getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+    
+    
 }
