@@ -24,7 +24,7 @@ Connection conn = null;
     
     @Override
     public List<QuanHeModel> findAll() {
-        String query = "SELECT * FROM DangNhap WHERE TrangThai = 1 " ;
+        String query = "SELECT * FROM QuanHe WHERE TrangThai = 1 " ;
         List<QuanHeModel> listQuanHe = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -46,13 +46,14 @@ Connection conn = null;
     }
 
     @Override
-    public QuanHeModel findOneByMaHK(String MaHK) {
-        String query = "SELECT * FROM DangNhap WHERE MaHK =? " ;
+    public QuanHeModel findOneByMaHK(String MaHK, String KhaiSinhNguoiThamGia) {
+        String query = "SELECT * FROM QuanHe WHERE MaHK =? " ;
         QuanHeModel quanHe = new QuanHeModel();
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, MaHK);
+            ps.setString(2, KhaiSinhNguoiThamGia);
             rs = ps.executeQuery();
             while (rs.next()) {
                 quanHe.setMaHK(rs.getString(1));
@@ -87,14 +88,14 @@ Connection conn = null;
 
     @Override
     public boolean update(QuanHeModel quanHe) {
-        String query = "UPDATE QuanHe SET MaHK =?, KhaiSinhNguoiThamGia=?, QuanHeVoiChuHo=?, TrangThai=?";
+        String query = "UPDATE QuanHe SET QuanHeVoiChuHo=?, TrangThai=? WHERE MaHK =? AND KhaiSinhNguoiThamGia=?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, quanHe.getMaHK());
-            ps.setString(2, quanHe.getKhaiSinhNguoiThamGia());
-            ps.setString(3, quanHe.getQuanHeVoiChuHo());
-            ps.setInt(4, quanHe.getTrangThai());
+            ps.setString(1, quanHe.getQuanHeVoiChuHo());
+            ps.setInt(2, quanHe.getTrangThai());
+            ps.setString(3, quanHe.getMaHK());
+            ps.setString(4, quanHe.getKhaiSinhNguoiThamGia());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
