@@ -23,7 +23,13 @@ public class HomeController extends javax.swing.JFrame {
             @Override
             public void selected(int index, int subIndex) {
                 //Này test hoi chưa xong đâu nha
-                if(index == 1 && subIndex == 1){
+//                if(index == 0 && subIndex == 1 ){
+//                    showForm(new ChartKhaiSinhController());
+//                }else if(index == 0 && subIndex == 2){
+//                    showForm(new ChartChungTuController());
+//                }
+//                else 
+if(index == 1 && subIndex == 1){
                     showForm(new ThongTinCongDanController());
                 }
                 else if(index == 1 && subIndex == 5){
@@ -55,12 +61,16 @@ public class HomeController extends javax.swing.JFrame {
         scrollPaneWin111 = new Swing.ScrollPaneWin11();
         menu2 = new Menu.Menu();
         panel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        chartChungTuController1 = new Controller.ChartChungTuController();
+        chartKhaiSinhController1 = new Controller.ChartKhaiSinhController();
+        chartChungTuController2 = new Controller.ChartChungTuController();
+        chartKhaiSinhController2 = new Controller.ChartKhaiSinhController();
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1050, 600));
         setResizable(false);
 
         scrollPaneWin111.setBackground(new java.awt.Color(255, 255, 255));
@@ -69,6 +79,39 @@ public class HomeController extends javax.swing.JFrame {
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chartKhaiSinhController1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chartChungTuController2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chartChungTuController1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chartKhaiSinhController2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(chartChungTuController2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(chartKhaiSinhController1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(chartChungTuController1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(chartKhaiSinhController2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         header.setBackground(new java.awt.Color(21, 110, 71));
 
@@ -100,7 +143,7 @@ public class HomeController extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(scrollPaneWin111, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE))
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -110,8 +153,8 @@ public class HomeController extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                    .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -154,8 +197,13 @@ public class HomeController extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Controller.ChartChungTuController chartChungTuController1;
+    private Controller.ChartChungTuController chartChungTuController2;
+    private Controller.ChartKhaiSinhController chartKhaiSinhController1;
+    private Controller.ChartKhaiSinhController chartKhaiSinhController2;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private Menu.Menu menu2;
     private javax.swing.JPanel panel;
     private Swing.ScrollPaneWin11 scrollPaneWin111;
