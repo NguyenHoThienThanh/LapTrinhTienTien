@@ -82,4 +82,27 @@ public class CongDanServiceImpl implements ICongDanService{
         return ttcn;
     }
     
+    //Check tồn tại số CCCD nào chưa
+    @Override
+    public boolean isCCCDIssued(String CCCD) {
+        String query = "SELECT TrangThai FROM CongDan WHERE MaKS = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int trangThai = rs.getInt("TrangThai");
+                if(trangThai ==1 ){
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            
+        }
+        return true;
+    }
+    
 }
