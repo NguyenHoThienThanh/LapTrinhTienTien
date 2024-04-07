@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/TryProject/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/TraCuuDonController.java</file>
             <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/TryProject/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Swing/TabbedPaneCustomUI.java</file>
             <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/TryProject/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Swing/Combobox.java</file>
@@ -14,6 +15,13 @@
             <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/TryProject/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Swing/ShadowRenderer.java</file>
             <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/TryProject/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/TraCuuTTCD.java</file>
             <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/TryProject/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/Login_RegisterController.java</file>
+=======
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/Admin/Login_RegisterController.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/ServiceImplement/DangNhapServiceImpl.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/DAOImplement/DangNhapDAOImpl.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/Admin/HomeControllerAdmin.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Models/DangNhapModel.java</file>
+>>>>>>> a0c4e4d05c6403aef2a77ccb6127b08c7454b0c0
         </group>
     </open-files>
 </project-private>

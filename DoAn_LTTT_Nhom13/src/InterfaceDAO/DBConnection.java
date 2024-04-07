@@ -12,12 +12,12 @@ import java.sql.DriverManager;
  * @author Admin
  */
 public class DBConnection {
-    private final static String serverName = "DESKTOP-5LUVMA2";
+    private final static String serverName = "DESKTOP-ALI9PMN";
     private final static String dbName = "QuanLyDanCuDoThi";
     private final static String portNumber = "1433";
     private final static String instance = "";
-    private final static String userID = "GiaThuanSenpai";
-    private final static String password = "giathuan123";
+    private final static String userID = "sa";
+    private final static String password = "01092003";
 
     public static Connection getConnection() throws Exception {
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" 
