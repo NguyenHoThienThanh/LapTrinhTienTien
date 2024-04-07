@@ -17,4 +17,6 @@ public interface ICongDanService {
     boolean insert(CongDanModel model);
     boolean update(CongDanModel model);
     boolean delete(String CCCD);
+    boolean updateStatus(String CCCD);
+    boolean isCCCDIssued(String CCCD);
 }
