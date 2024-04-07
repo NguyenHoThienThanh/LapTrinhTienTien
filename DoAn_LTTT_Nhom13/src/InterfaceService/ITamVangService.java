@@ -4,6 +4,7 @@
  */
 package InterfaceService;
 
+import Models.DonTamVang;
 import Models.TamVangModel;
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface ITamVangService {
     boolean insert (TamVangModel tamVang);
     boolean update (TamVangModel tamVang);
     boolean delete (String MaTV);
+    List<DonTamVang> findAllTV(String CCCD);
+    
 }

@@ -18,6 +18,114 @@ public class ChungNhanKetHonModel {
     private String Noidk;
     private Date Ngaydk;
     private int TrangThai;
+    private String HoTenVo;
+    private String HoTenChong;
+    private Date NgaySinhVo;
+    private Date NgaySinhChong;
+    private String QuocTichVo;
+    private String QuocTichChong;
+    private String DanTocVo;
+    private String DanTocChong;
+    private String NoiCuTruVo;
+    private String NoiCuTruChong;
+
+    public ChungNhanKetHonModel(String MaCnkh, String CCCDVo, String CCCDChong, String Noidk, Date Ngaydk, int TrangThai, String HoTenVo, String HoTenChong, Date NgaySinhVo, Date NgaySinhChong, String QuocTichVo, String QuocTichChong, String DanTocVo, String NoiCuTruVo, String NoiCuTruChong) {
+        this.MaCnkh = MaCnkh;
+        this.CCCDVo = CCCDVo;
+        this.CCCDChong = CCCDChong;
+        this.Noidk = Noidk;
+        this.Ngaydk = Ngaydk;
+        this.TrangThai = TrangThai;
+        this.HoTenVo = HoTenVo;
+        this.HoTenChong = HoTenChong;
+        this.NgaySinhVo = NgaySinhVo;
+        this.NgaySinhChong = NgaySinhChong;
+        this.QuocTichVo = QuocTichVo;
+        this.QuocTichChong = QuocTichChong;
+        this.DanTocVo = DanTocVo;
+        this.NoiCuTruVo = NoiCuTruVo;
+        this.NoiCuTruChong = NoiCuTruChong;
+    }
+
+    public String getHoTenVo() {
+        return HoTenVo;
+    }
+
+    public void setHoTenVo(String HoTenVo) {
+        this.HoTenVo = HoTenVo;
+    }
+
+    public String getHoTenChong() {
+        return HoTenChong;
+    }
+
+    public void setHoTenChong(String HoTenChong) {
+        this.HoTenChong = HoTenChong;
+    }
+
+    public Date getNgaySinhVo() {
+        return NgaySinhVo;
+    }
+
+    public void setNgaySinhVo(Date NgaySinhVo) {
+        this.NgaySinhVo = NgaySinhVo;
+    }
+
+    public Date getNgaySinhChong() {
+        return NgaySinhChong;
+    }
+
+    public void setNgaySinhChong(Date NgaySinhChong) {
+        this.NgaySinhChong = NgaySinhChong;
+    }
+
+    public String getQuocTichVo() {
+        return QuocTichVo;
+    }
+
+    public void setQuocTichVo(String QuocTichVo) {
+        this.QuocTichVo = QuocTichVo;
+    }
+
+    public String getQuocTichChong() {
+        return QuocTichChong;
+    }
+
+    public void setQuocTichChong(String QuocTichChong) {
+        this.QuocTichChong = QuocTichChong;
+    }
+
+    public String getDanTocVo() {
+        return DanTocVo;
+    }
+
+    public void setDanTocVo(String DanTocVo) {
+        this.DanTocVo = DanTocVo;
+    }
+
+    public String getDanTocChong() {
+        return DanTocChong;
+    }
+
+    public void setDanTocChong(String DanTocChong) {
+        this.DanTocChong = DanTocChong;
+    }
+
+    public String getNoiCuTruVo() {
+        return NoiCuTruVo;
+    }
+
+    public void setNoiCuTruVo(String NoiCuTruVo) {
+        this.NoiCuTruVo = NoiCuTruVo;
+    }
+
+    public String getNoiCuTruChong() {
+        return NoiCuTruChong;
+    }
+
+    public void setNoiCuTruChong(String NoiCuTruChong) {
+        this.NoiCuTruChong = NoiCuTruChong;
+    }
 
     // Constructor
     public ChungNhanKetHonModel() {

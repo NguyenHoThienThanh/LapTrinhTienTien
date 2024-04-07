@@ -17,14 +17,15 @@ import java.util.List;
  *
  * @author TUAN
  */
-public class QuanHeDAOImpl implements IQuanHeDAO{
-Connection conn = null;
+public class QuanHeDAOImpl implements IQuanHeDAO {
+
+    Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     @Override
     public List<QuanHeModel> findAll() {
-        String query = "SELECT * FROM QuanHe WHERE TrangThai = 1 " ;
+        String query = "SELECT * FROM QuanHe WHERE TrangThai = 1 ";
         List<QuanHeModel> listQuanHe = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -47,7 +48,7 @@ Connection conn = null;
 
     @Override
     public QuanHeModel findOneByMaHK(String MaHK, String KhaiSinhNguoiThamGia) {
-        String query = "SELECT * FROM QuanHe WHERE MaHK =? " ;
+        String query = "SELECT * FROM QuanHe WHERE MaHK =? ";
         QuanHeModel quanHe = new QuanHeModel();
         try {
             conn = DBConnection.getConnection();
@@ -117,5 +118,5 @@ Connection conn = null;
         }
         return true;
     }
-    
+
 }

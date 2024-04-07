@@ -17,4 +17,5 @@ public interface IKhaiSinhService {
     boolean insert(KhaiSinhModel model);
     boolean update(KhaiSinhModel model);
     boolean delete(String maKS);
+    KhaiSinhModel findByCCCD(String CCCD);
 }

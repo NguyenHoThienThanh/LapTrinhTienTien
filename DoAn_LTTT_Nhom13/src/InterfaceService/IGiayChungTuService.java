@@ -17,5 +17,6 @@ public interface IGiayChungTuService {
     boolean insert(GiayChungTuModel model);
     boolean update(GiayChungTuModel model);
     boolean delete(String MaCT);
+    GiayChungTuModel findAllGCT(String CCCD);
     
 }
