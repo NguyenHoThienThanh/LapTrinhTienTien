@@ -825,26 +825,26 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="tf_machungtu" min="-2" pref="163" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Component id="tf_cccd1" min="-2" pref="173" max="-2" attributes="0"/>
+                                  <Component id="tf_cccdgct" min="-2" pref="173" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="tf_hoten1" min="-2" pref="279" max="-2" attributes="0"/>
+                                  <Component id="tf_hotengct" min="-2" pref="279" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tf_ngaysinh1" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                                      <Component id="tf_ngaysinhgct" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                                       <Component id="tf_noimat" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="55" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="tf_ngaymat" alignment="0" pref="310" max="32767" attributes="0"/>
-                                      <Component id="tf_lydo1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tf_lydogct" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="myButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_backFromGCTToDon" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="169" max="32767" attributes="0"/>
@@ -855,22 +855,22 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                  <Component id="myButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_backFromGCTToDon" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tf_machungtu" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_cccd1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_hoten1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_cccdgct" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hotengct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tf_ngaysinh1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngaysinhgct" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_ngaymat" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tf_noimat" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_lydo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_lydogct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="586" max="32767" attributes="0"/>
               </Group>
@@ -883,17 +883,17 @@
             <Property name="labelText" type="java.lang.String" value="M&#xe3; ch&#x1ee9;ng t&#x1eed;"/>
           </Properties>
         </Component>
-        <Component class="Swing.TextField" name="tf_cccd1">
+        <Component class="Swing.TextField" name="tf_cccdgct">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="CCCD"/>
           </Properties>
         </Component>
-        <Component class="Swing.TextField" name="tf_hoten1">
+        <Component class="Swing.TextField" name="tf_hotengct">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n"/>
           </Properties>
         </Component>
-        <Component class="Swing.TextField" name="tf_ngaysinh1">
+        <Component class="Swing.TextField" name="tf_ngaysinhgct">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
           </Properties>
@@ -908,15 +908,18 @@
             <Property name="labelText" type="java.lang.String" value="N&#x1a1;i m&#x1ea5;t"/>
           </Properties>
         </Component>
-        <Component class="Swing.TextField" name="tf_lydo1">
+        <Component class="Swing.TextField" name="tf_lydogct">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="L&#xfd; do"/>
           </Properties>
         </Component>
-        <Component class="button.MyButton" name="myButton1">
+        <Component class="button.MyButton" name="btn_backFromGCTToDon">
           <Properties>
             <Property name="text" type="java.lang.String" value="myButton1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backFromGCTToDonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1114,222 +1117,95 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="btn_backFromTVToDon" min="-2" pref="92" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_backFromTVToDon" min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" min="-2" pref="820" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                              <Component id="tf_matamvang" min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="tf_hotentv" min="-2" pref="167" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_ngaysinhtv" min="-2" pref="142" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_cccdtv" min="-2" pref="177" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="tf_noicaptv" min="-2" pref="181" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="tf_ngayditv" min="-2" pref="186" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="tf_ngayve" min="-2" pref="188" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="tf_noichuyendi" alignment="0" min="-2" pref="232" max="-2" attributes="0"/>
+                                          <Component id="tf_ngaydangkytv" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="tf_lydotv" min="-2" pref="244" max="-2" attributes="0"/>
+                                          <Component id="tf_noichuyenden" min="-2" pref="247" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Component id="btn_backFromTVToDon" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_matamvang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hotentv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngaysinhtv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_cccdtv" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_noicaptv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngayditv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngayve" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_noichuyendi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_noichuyenden" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_ngaydangkytv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_lydotv" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" min="-2" pref="330" max="-2" attributes="0"/>
+                  <EmptySpace pref="116" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-          </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="tf_ngayditv" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                  <Component id="tf_ngayve" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <EmptySpace pref="85" max="32767" attributes="0"/>
-                                  <Component id="tf_lydotv" min="-2" pref="244" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tf_ngaysinhtv" min="-2" pref="142" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="tf_noicaptv" min="-2" pref="181" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tf_hotentv" min="-2" pref="167" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="tf_matamvang" min="-2" pref="116" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tf_noichuyendi" alignment="0" pref="177" max="32767" attributes="0"/>
-                                      <Component id="tf_cccdtv" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tf_noichuyenden" alignment="0" pref="195" max="32767" attributes="0"/>
-                                      <Component id="tf_ngaydangkytv" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="752" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tf_hotentv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_matamvang" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_noichuyendi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_noichuyenden" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tf_ngaysinhtv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_noicaptv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_cccdtv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_ngaydangkytv" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tf_ngayditv" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_ngayve" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_lydotv" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="Swing.TextField" name="tf_hotentv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="H&#x1ecd; t&#xea;n"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_matamvang">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="M&#xe3; t&#x1ea1;m v&#x1eaf;ng"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_noichuyendi">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="N&#x1a1;i chuy&#x1ec3;n &#x111;i"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_noichuyenden">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="N&#x1a1;i chuy&#x1ec3;n &#x111;&#x1ebf;n"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_ngaysinhtv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_noicaptv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="N&#x1a1;i c&#x1ea5;p"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_cccdtv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="CCCD"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_ngaydangkytv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_ngayditv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y &#x111;i"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_ngayve">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y v&#x1ec1;"/>
-              </Properties>
-            </Component>
-            <Component class="Swing.TextField" name="tf_lydotv">
-              <Properties>
-                <Property name="labelText" type="java.lang.String" value="L&#xfd; do"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; &#x111;&#x1a1;n"/>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="tbl_tamvang">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                    </Property>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder/>
-                      </Border>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="11" rowCount="0">
-                        <Column editable="true" title="M&#xe3; t&#x1ea1;m v&#x1eaf;ng" type="java.lang.Object"/>
-                        <Column editable="true" title="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;" type="java.lang.Object"/>
-                        <Column editable="true" title="N&#x1a1;i chuy&#x1ec3;n &#x111;i" type="java.lang.Object"/>
-                        <Column editable="true" title="N&#x1edb;i chuy&#x1ec3;n &#x111;&#x1ebf;n" type="java.lang.Object"/>
-                        <Column editable="true" title="H&#x1ecd; t&#xea;n" type="java.lang.Object"/>
-                        <Column editable="true" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
-                        <Column editable="true" title="CCCD" type="java.lang.Object"/>
-                        <Column editable="true" title="N&#x1a1;i c&#x1ea5;p CCCD" type="java.lang.Object"/>
-                        <Column editable="true" title="Ng&#xe0;y &#x111;i" type="java.lang.Object"/>
-                        <Column editable="true" title="Ng&#xe0;y v&#x1ec1;" type="java.lang.Object"/>
-                        <Column editable="true" title="L&#xed; do" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_tamvangMouseClicked"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
-          </SubComponents>
-        </Container>
         <Component class="button.MyButton" name="btn_backFromTVToDon">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1346,6 +1222,463 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backFromTVToDonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="Swing.TextField" name="tf_hotentv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="H&#x1ecd; t&#xea;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_matamvang">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="M&#xe3; t&#x1ea1;m v&#x1eaf;ng"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_noichuyendi">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="N&#x1a1;i chuy&#x1ec3;n &#x111;i"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_noichuyenden">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="N&#x1a1;i chuy&#x1ec3;n &#x111;&#x1ebf;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_ngaysinhtv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_noicaptv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="N&#x1a1;i c&#x1ea5;p"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_cccdtv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="CCCD"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_ngaydangkytv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_ngayditv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y &#x111;i"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_ngayve">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y v&#x1ec1;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; &#x111;&#x1a1;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_lydotv">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="L&#xfd; do"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="tbl_tamvang">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="11" rowCount="0">
+                    <Column editable="true" title="M&#xe3; t&#x1ea1;m v&#x1eaf;ng" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;" type="java.lang.Object"/>
+                    <Column editable="true" title="N&#x1a1;i chuy&#x1ec3;n &#x111;i" type="java.lang.Object"/>
+                    <Column editable="true" title="N&#x1edb;i chuy&#x1ec3;n &#x111;&#x1ebf;n" type="java.lang.Object"/>
+                    <Column editable="true" title="H&#x1ecd; t&#xea;n" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
+                    <Column editable="true" title="CCCD" type="java.lang.Object"/>
+                    <Column editable="true" title="N&#x1a1;i c&#x1ea5;p CCCD" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y &#x111;i" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y v&#x1ec1;" type="java.lang.Object"/>
+                    <Column editable="true" title="L&#xed; do" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_tamvangMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panelTTCD">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[883, 832]"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="card8"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tf_ngaysinhcd" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tf_noisinhcd" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tf_quoctichcd" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="tf_dantoccd" min="-2" pref="144" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tf_hotencd" min="-2" pref="226" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="tf_gioitinhcd" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="tf_cccdcd" min="-2" pref="247" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tf_quequancd" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tf_diachi" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tf_sodienthoai" min="-2" pref="279" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="tf_email" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="btn_backFromTTCDToDon" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="164" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="btn_backFromTTCDToDon" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_hotencd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_gioitinhcd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_cccdcd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_ngaysinhcd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_noisinhcd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_quoctichcd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_dantoccd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_quequancd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_diachi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_sodienthoai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="495" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="Swing.TextField" name="tf_hotencd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_gioitinhcd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_cccdcd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="CCCD"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_ngaysinhcd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_noisinhcd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="N&#x1a1;i sinh"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_quoctichcd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Qu&#x1ed1;c t&#x1ecb;ch"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_dantoccd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="D&#xe2;n t&#x1ed9;c"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_quequancd">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Qu&#xea; qu&#xe1;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_diachi">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_sodienthoai">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_email">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Email"/>
+          </Properties>
+        </Component>
+        <Component class="button.MyButton" name="btn_backFromTTCDToDon">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="myButton2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backFromTTCDToDonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panelLH">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="card9"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tf_malyhon" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tf_macnkhlh" min="-2" pref="155" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tf_hotennguoinopdon" min="-2" pref="203" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tf_cccdnguoinopdon" min="-2" pref="178" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tf_hotenvolh" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="tf_cccdvo" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="49" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tf_hotenchonglh" alignment="0" pref="332" max="32767" attributes="0"/>
+                                      <Component id="tf_cccdchong" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tf_noidangkylh" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="tf_ngaydangkylh" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="tf_lydolh" min="-2" pref="271" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="0" min="-2" pref="732" max="-2" attributes="0"/>
+                              <Component id="btn_backFromLHToDon" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Component id="btn_backFromLHToDon" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_malyhon" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_macnkhlh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hotennguoinopdon" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_cccdnguoinopdon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_hotenvolh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hotenchonglh" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_cccdvo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_cccdchong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_noidangkylh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngaydangkylh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_lydolh" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="Swing.TextField" name="tf_malyhon">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="M&#xe3; ly h&#xf4;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_macnkhlh">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="M&#xe3; CNKH"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_hotennguoinopdon">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="H&#x1ecd; t&#xea;n ng&#x1b0;&#x1edd;i n&#x1ed9;p &#x111;&#x1a1;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_cccdnguoinopdon">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="CCCD ng&#x1b0;&#x1edd;i n&#x1ed9;p &#x111;&#x1a1;n"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_hotenvolh">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="H&#x1ecd; t&#xea;n v&#x1ee3;"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_hotenchonglh">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="H&#x1ecd; t&#xea;n ch&#x1ed3;ng"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_cccdvo">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="CCCD v&#x1ee3;"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_cccdchong">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="CCCD ch&#x1ed3;ng"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_noidangkylh">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="N&#x1a1;i &#x111;&#x103;ng k&#xfd;"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_ngaydangkylh">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;"/>
+          </Properties>
+        </Component>
+        <Component class="Swing.TextField" name="tf_lydolh">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value="L&#xfd; do"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; &#x111;&#x1a1;n"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="tbl_lyhon">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="11" rowCount="0">
+                    <Column editable="true" title="M&#xe3; ly h&#xf4;n" type="java.lang.Object"/>
+                    <Column editable="true" title="M&#xe3; CNKH" type="java.lang.Object"/>
+                    <Column editable="true" title="H&#x1ecd; t&#xea;n ng&#x1b0;&#x1edd;i n&#x1ed9;p &#x111;&#x1a1;n" type="java.lang.Object"/>
+                    <Column editable="true" title="CCCD ng&#x1b0;&#x1edd;i n&#x1ed9;p &#x111;&#x1a1;n" type="java.lang.Object"/>
+                    <Column editable="true" title="H&#x1ecd; t&#xea;n v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="true" title="CCCD V&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="true" title="H&#x1ecd; t&#xea;n ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="true" title="CCCD Ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="true" title="N&#x1a1;i &#x111;&#x103;ng k&#xfd;" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;" type="java.lang.Object"/>
+                    <Column editable="true" title="L&#xfd; do" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_lyhonMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="button.MyButton" name="btn_backFromLHToDon">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="myButton2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backFromLHToDonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
