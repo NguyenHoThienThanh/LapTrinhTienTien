@@ -20,13 +20,20 @@ public class TamTruModel {
     private Date Ngaydi;
     private String Lydo;
     private int TrangThai;
+    private String HoTen;
+    private Date NgaySinh;
+    private String GioiTinh;
+    private String NcCccd;
+    private Date NgcCccd;
+    private String SDT;
+    private String Email;
 
     // Constructor
     public TamTruModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public TamTruModel(int ID, String MaTT, String CCCD, Date Ngaydk, String Noidk, Date Ngayden, Date Ngaydi, String Lydo, int TrangThai) {
+    public TamTruModel(int ID, String MaTT, String CCCD, Date Ngaydk, String Noidk, Date Ngayden, Date Ngaydi, String Lydo, int TrangThai, String HoTen, Date NgaySinh, String GioiTinh, String NcCccd, Date NgcCccd, String SDT, String Email) {
         this.ID = ID;
         this.MaTT = MaTT;
         this.CCCD = CCCD;
@@ -36,7 +43,16 @@ public class TamTruModel {
         this.Ngaydi = Ngaydi;
         this.Lydo = Lydo;
         this.TrangThai = TrangThai;
+        this.HoTen = HoTen;
+        this.NgaySinh = NgaySinh;
+        this.GioiTinh = GioiTinh;
+        this.NcCccd = NcCccd;
+        this.NgcCccd = NgcCccd;
+        this.SDT = SDT;
+        this.Email = Email;
     }
+
+    
 
     
     // Getters and setters
@@ -111,4 +127,62 @@ public class TamTruModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
+
+    public String getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(String GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public String getNcCccd() {
+        return NcCccd;
+    }
+
+    public void setNcCccd(String NcCccd) {
+        this.NcCccd = NcCccd;
+    }
+
+    public Date getNgcCccd() {
+        return NgcCccd;
+    }
+
+    public void setNgcCccd(Date NgcCccd) {
+        this.NgcCccd = NgcCccd;
+    }
+
+    public String getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+    
+    
 }
