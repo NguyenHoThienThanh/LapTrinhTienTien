@@ -5,6 +5,7 @@
 package InterfaceService;
 
 import Models.CongDanModel;
+import Models.ThongTinCaNhan;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public interface ICongDanService {
     boolean insert(CongDanModel model);
     boolean update(CongDanModel model);
     boolean delete(String CCCD);
+    ThongTinCaNhan findTTCN(String CCCD);
 }
