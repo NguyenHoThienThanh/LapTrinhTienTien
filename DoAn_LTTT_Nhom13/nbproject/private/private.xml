@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/ServiceImplement/KhaiSinhServiceImpl.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/InterfaceDAO/IKhaiSinhDAO.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/InterfaceService/ICongDanService.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/ServiceImplement/CongDanServiceImpl.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/InterfaceDAO/DBConnection.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/DAOImplement/TamTruDAOImpl.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/DAOImplement/CongDanDAOImpl.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Models/KhaiSinhModel.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Models/CongDanModel.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/InterfaceService/IKhaiSinhService.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/InterfaceDAO/ICongDanDAO.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/InterfaceDAO/ITamTruDAO.java</file>
-            <file>file:/D:/HOCTAP/Nam3Ki2/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/DAOImplement/KhaiSinhDAOImpl.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/Admin/Login_RegisterController.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/ServiceImplement/DangNhapServiceImpl.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/DAOImplement/DangNhapDAOImpl.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Controller/Admin/HomeControllerAdmin.java</file>
+            <file>file:/D:/N3.2/NNLTTT/LapTrinhTienTien/DoAn_LTTT_Nhom13/src/Models/DangNhapModel.java</file>
         </group>
     </open-files>
 </project-private>

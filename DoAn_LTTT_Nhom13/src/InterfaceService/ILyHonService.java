@@ -17,4 +17,5 @@ public interface ILyHonService {
     boolean insert(LyHonModel lyHon);
     boolean update(LyHonModel lyHon);
     boolean delete(String MaLH);
+    List<LyHonModel> findAllLH(String CCCDVo, String CCCDChong);
 }

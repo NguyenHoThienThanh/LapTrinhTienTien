@@ -25,7 +25,7 @@ public class Menu extends JComponent {
     private String[][] menuItems = new String[][]{
         {"Trang Chủ"},
         {"Công Dân", "Thông Tin Công Dân", "Khai Sinh", "Chứng Tử", "Thuế", "Hộ Khẩu", "Tạm Trú", "Tạm Vắng", "Giấy Chứng Nhận Kết Hôn", "Đơn Ly Hôn"},
-        {"Quản Lý Đơn", "Kết Hôn", "Ly Hôn", "Khai Sinh", "Chứng Tử", "Tạm Trú", "Tạm Vắng", "Hộ Khẩu", "Thuế"},
+        {"Quản Lý Đơn"},
         {"Đánh Giá"}
     };
 

@@ -4,6 +4,7 @@
  */
 package InterfaceService;
 
+import Models.DonTamTru;
 import Models.TamTruModel;
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface ITamTruService {
     boolean insert(TamTruModel model);
     boolean update(TamTruModel model);
     boolean delete(String maTT);
+    List<DonTamTru> findAllTT(String CCCD);
 }

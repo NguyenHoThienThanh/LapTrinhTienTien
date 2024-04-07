@@ -19,6 +19,11 @@ public class LyHonModel {
     private Date Ngaydk;
     private String Lydo;
     private int TrangThai;
+    private String HoTenNguoiNopDon;
+    private String CCCDVO;
+    private String CCCDChong;
+    private String HoTenVo;
+    private String HoTenChong;
 
     // Constructor
     public LyHonModel() {
@@ -36,7 +41,46 @@ public class LyHonModel {
         this.TrangThai = TrangThai;
     }
 
-    
+    public String getHoTenNguoiNopDon() {
+        return HoTenNguoiNopDon;
+    }
+
+    public void setHoTenNguoiNopDon(String HoTenNguoiNopDon) {
+        this.HoTenNguoiNopDon = HoTenNguoiNopDon;
+    }
+
+    public String getCCCDVO() {
+        return CCCDVO;
+    }
+
+    public void setCCCDVO(String CCCDVO) {
+        this.CCCDVO = CCCDVO;
+    }
+
+    public String getCCCDChong() {
+        return CCCDChong;
+    }
+
+    public void setCCCDChong(String CCCDChong) {
+        this.CCCDChong = CCCDChong;
+    }
+
+    public String getHoTenVo() {
+        return HoTenVo;
+    }
+
+    public void setHoTenVo(String HoTenVo) {
+        this.HoTenVo = HoTenVo;
+    }
+
+    public String getHoTenChong() {
+        return HoTenChong;
+    }
+
+    public void setHoTenChong(String HoTenChong) {
+        this.HoTenChong = HoTenChong;
+    }
+
     // Getters and setters
     public int getID() {
         return ID;

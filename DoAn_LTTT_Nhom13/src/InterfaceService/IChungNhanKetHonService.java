@@ -5,6 +5,7 @@
 package InterfaceService;
 
 import Models.ChungNhanKetHonModel;
+import Models.DonChungNhanKetHon;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public interface IChungNhanKetHonService {
     boolean insert (ChungNhanKetHonModel chungNhanKetHon);
     boolean update (ChungNhanKetHonModel chungNhanKetHonModel);
     boolean delete (String MaKH);
+    List<DonChungNhanKetHon> findAllCNKH(String CCCDVo, String CCCDChong);
 }

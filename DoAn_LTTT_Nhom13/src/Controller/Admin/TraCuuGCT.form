@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="button1" min="-2" pref="74" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="tf_machungtu" min="-2" pref="163" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="tf_cccd" min="-2" pref="173" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="tf_hoten" min="-2" pref="279" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tf_ngaysinh" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                                  <Component id="tf_noimat" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="55" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tf_ngaymat" pref="310" max="32767" attributes="0"/>
+                                  <Component id="tf_lydo" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="button1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_machungtu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_cccd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_hoten" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_ngaysinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_ngaymat" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_noimat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_lydo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="Swing.Button" name="button1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="button1"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_machungtu">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="M&#xe3; ch&#x1ee9;ng t&#x1eed;"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_cccd">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="CCCD"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_hoten">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_ngaysinh">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_ngaymat">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y m&#x1ea5;t"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_noimat">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="N&#x1a1;i m&#x1ea5;t"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_lydo">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="L&#xfd; do"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

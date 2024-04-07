@@ -1,7 +1,6 @@
 
 package Swing;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,9 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 public class ButtonOutline extends JButton{
     public ButtonOutline() {
-        setContentAreaFilled(false);
         setBorder(new EmptyBorder(5, 0, 5, 0));
-        setBackground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
@@ -24,7 +21,7 @@ public class ButtonOutline extends JButton{
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getBackground());
-        g2.drawRoundRect(0, 0, width - 1, height - 1, height, height);
+        g2.fillRoundRect(0, 0, width - 1, height - 1, height, height);
         super.paintComponent(grphcs);
     }
    

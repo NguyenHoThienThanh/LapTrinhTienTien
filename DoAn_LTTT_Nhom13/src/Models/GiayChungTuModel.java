@@ -18,6 +18,26 @@ public class GiayChungTuModel {
     private String NoiMat;
     private String NguyenNhan;
     private int TrangThai;
+    private String HoTen;
+    private Date NgaySinh;
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
+
+   
 
     // Constructor
     public GiayChungTuModel() {

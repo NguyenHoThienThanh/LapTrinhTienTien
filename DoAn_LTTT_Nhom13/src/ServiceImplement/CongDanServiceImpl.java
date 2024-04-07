@@ -1,3 +1,4 @@
+
 package ServiceImplement;
 
 import DAOImplement.CongDanDAOImpl;
@@ -6,21 +7,19 @@ import InterfaceDAO.ICongDanDAO;
 import InterfaceService.ICongDanService;
 import Models.CongDanModel;
 import Models.ThongTinCaNhan;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 import java.util.List;
 
-public class CongDanServiceImpl implements ICongDanService {
-
+public class CongDanServiceImpl implements ICongDanService{
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    
 
     ICongDanDAO congDanDao = new CongDanDAOImpl();
-
     @Override
     public List<CongDanModel> findAll() {
         return congDanDao.findAll();
@@ -82,28 +81,5 @@ public class CongDanServiceImpl implements ICongDanService {
         }
         return ttcn;
     }
-
-    //Check tồn tại số CCCD nào chưa
-    @Override
-    public boolean isCCCDIssued(String MaKS) {
-        String query = "SELECT TrangThai FROM CongDan WHERE MaKS = ?";
-        try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, MaKS);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                int trangThai = rs.getInt("TrangThai");
-                if (trangThai == 1) {
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-
-        }
-        return false;
-
-    }
+    
 }

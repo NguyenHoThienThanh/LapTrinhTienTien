@@ -5,16 +5,24 @@
 package ServiceImplement;
 
 import DAOImplement.TamVangDAOImpl;
+import InterfaceDAO.DBConnection;
 import InterfaceDAO.ITamVangDAO;
 import InterfaceService.ITamVangService;
+import Models.DonTamVang;
 import Models.TamVangModel;
 import java.util.List;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
 public class TamVangServiceImpl implements ITamVangService{
+    
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
     
     ITamVangDAO tamVangDAO = new TamVangDAOImpl();
 
@@ -52,6 +60,40 @@ public class TamVangServiceImpl implements ITamVangService{
     @Override
     public boolean delete(String MaTV) {
         return tamVangDAO.delete(MaTV);
+    }
+
+    @Override
+    public List<DonTamVang> findAllTV(String CCCD) {
+         String query = "select * from Tamvang join CongDan on Tamvang.CCCD = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS Where TamVang.TrangThai = 1 and Tamvang.CCCD = ?";
+        List<DonTamVang> listDonTamVang = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                DonTamVang dtv = new DonTamVang();
+                dtv.setMaTV(rs.getString("MaTV"));
+                dtv.setHoTen(rs.getString("HoTen"));
+                dtv.setNoiChuyenDi(rs.getString("Ncdi"));
+                dtv.setNoiChuyenDen(rs.getString("Ncden"));
+                dtv.setNgaySinh(rs.getDate("NgaySinh"));
+                dtv.setNoiCapCCCD(rs.getString("NcCccd"));
+                dtv.setCCCD(rs.getString("CCCD"));
+                dtv.setNgayDangKy(rs.getDate("Ngaydk"));
+                dtv.setNgayDi(rs.getDate("Ngaydi"));
+                dtv.setNgayVe(rs.getDate("Ngayve"));
+                dtv.setLyDo(rs.getString("Lydo"));
+
+                
+                listDonTamVang.add(dtv);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return listDonTamVang;
     }
     
 }
