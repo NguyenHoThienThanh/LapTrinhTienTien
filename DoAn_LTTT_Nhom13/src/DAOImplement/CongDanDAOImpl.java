@@ -23,7 +23,8 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     @Override
     public List<CongDanModel> findAll() {
-        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS";
+        String query = "select cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai from KhaiSinh ks join CongDan cd on ks.MaKS = cd.MaKS  where ks.TrangThai = 1 and cd.TrangThai = 1 "
+                + "order by cd.MaKS ASC";
         List<CongDanModel> listCongDan = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -42,12 +43,12 @@ public class CongDanDAOImpl implements ICongDanDAO {
                 congDan.setSDT(rs.getString(9));
                 congDan.setEmail(rs.getString(10));
                 congDan.setTrangThai(rs.getInt(11));
-                
+
                 listCongDan.add(congDan);
             }
             conn.close();
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
         return listCongDan;
     }
@@ -56,12 +57,12 @@ e.printStackTrace();
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
         String query = "select * from CongDan where CCCD=?";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, CCCD);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 congDan.setCCCD(rs.getString(1));
                 congDan.setHoTen(rs.getString(2));
                 congDan.setNcCccd(rs.getString(3));
@@ -72,11 +73,11 @@ e.printStackTrace();
                 congDan.setTrangThai(rs.getInt(8));
             }
             conn.close();
-        }catch(Exception ex){
-            
-        } 
+        } catch (Exception ex) {
+
+        }
         return congDan;
-        
+
     }
 
     @Override
@@ -95,7 +96,7 @@ e.printStackTrace();
             ps.setInt(8, model.getTrangThai());
             ps.executeUpdate();
             conn.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
         return true;
@@ -104,7 +105,7 @@ e.printStackTrace();
     @Override
     public boolean update(CongDanModel model) {
         String query = "update CongDan set HoTen=?, NcCccd=?, NgcCccd=?, MaKS=?, SDT=?, Email=?, TrangThai=? where CCCD=?";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, model.getHoTen());
@@ -117,7 +118,7 @@ e.printStackTrace();
             ps.setString(8, model.getCCCD());
             ps.executeUpdate();
             conn.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;
@@ -126,12 +127,12 @@ e.printStackTrace();
     @Override
     public boolean delete(String CCCD) {
         String query = "Delete CongDan where CCCD = ?";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, CCCD);
             ps.executeUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;

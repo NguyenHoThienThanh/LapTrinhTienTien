@@ -19,4 +19,5 @@ public interface ICongDanService {
     boolean update(CongDanModel model);
     boolean delete(String CCCD);
     ThongTinCaNhan findTTCN(String CCCD);
+    boolean isCCCDIssued(String CCCD);
 }

@@ -1,7 +1,6 @@
 package Swing;
 
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,7 +14,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class ModernScrollBarUI extends BasicScrollBarUI {
 
-    private final int THUMB_SIZE = 40;
+    private final int THUMB_SIZE = 80;
 
     @Override
     protected Dimension getMaximumThumbSize() {
@@ -68,7 +67,7 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
             width = rctngl.width;
             height = size;
         }
-        g2.setColor(new Color(240, 240, 240));
+        g2.setColor(scrollbar.getBackground());
         g2.fillRect(x, y, width, height);
     }
 
