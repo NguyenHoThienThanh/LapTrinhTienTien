@@ -104,5 +104,17 @@ public class CongDanServiceImpl implements ICongDanService{
         }
         return true;
     }
+
+    @Override
+    public boolean checkCCCDExist(String CCCD) {
+        CongDanModel cd = congDanDao.findOne(CCCD);
+        if (CCCD.equals(cd.getCCCD()) && cd.getTrangThai() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
     
 }

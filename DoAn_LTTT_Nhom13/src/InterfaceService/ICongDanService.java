@@ -20,4 +20,5 @@ public interface ICongDanService {
     boolean delete(String CCCD);
     ThongTinCaNhan findTTCN(String CCCD);
     public boolean isCCCDIssued(String CCCD);
+    boolean checkCCCDExist(String CCCD);
 }
