@@ -155,6 +155,13 @@ public class CongDanServiceImpl implements ICongDanService {
         } else {
             return false;
         }
+    } 
+    
+    public static void main(String[] args) {
+        ICongDanDAO dn = new CongDanDAOImpl();
+        CongDanModel model = dn.findOne("083303008061");
+        System.out.println(model.getHoTen());
     }
-
 }
+
+

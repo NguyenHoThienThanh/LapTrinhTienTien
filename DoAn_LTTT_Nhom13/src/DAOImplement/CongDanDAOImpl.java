@@ -136,5 +136,4 @@ public class CongDanDAOImpl implements ICongDanDAO {
         }
         return true;
     }
-
 }
