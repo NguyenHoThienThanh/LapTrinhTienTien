@@ -55,7 +55,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "select * from CongDan where CCCD=? where TrangThai =1";
+        String query = "select * from CongDan where CCCD=? and TrangThai =1";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -136,5 +136,4 @@ public class CongDanDAOImpl implements ICongDanDAO {
         }
         return true;
     }
-
 }
