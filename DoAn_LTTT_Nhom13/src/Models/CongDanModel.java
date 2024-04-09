@@ -40,10 +40,6 @@ public class CongDanModel {
         this.GioiTinh = GioiTinh;
         this.NoiSinh = NoiSinh;
     }
-
-    
-
-    
     
     // Getters and setters
     public String getCCCD() {
