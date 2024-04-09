@@ -35,6 +35,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         listCongDan = congDanService.findAll();
         model = (DefaultTableModel) tbl_thongTinCongDan.getModel();
         showTable();
+        disableTextField();
 
     }
 
@@ -63,7 +64,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_ngayCapCCCD = new Swing.TextField();
         tf_soDienThoai = new Swing.TextField();
         tf_ngaySinh = new Swing.TextField();
-        btn_them = new Swing.Button();
         btn_sua = new Swing.Button();
         btn_xoa = new Swing.Button();
         jLabel1 = new javax.swing.JLabel();
@@ -95,15 +95,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_soDienThoai.setLabelText("Số điện thoại");
 
         tf_ngaySinh.setLabelText("Ngày sinh");
-
-        btn_them.setBackground(new java.awt.Color(18, 99, 63));
-        btn_them.setForeground(new java.awt.Color(255, 255, 255));
-        btn_them.setText("Thêm thông tin");
-        btn_them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_themActionPerformed(evt);
-            }
-        });
 
         btn_sua.setBackground(new java.awt.Color(18, 99, 63));
         btn_sua.setForeground(new java.awt.Color(255, 255, 255));
@@ -164,7 +155,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
         btn_luuThem.setBackground(new java.awt.Color(18, 99, 63));
         btn_luuThem.setForeground(new java.awt.Color(255, 255, 255));
-        btn_luuThem.setText("Lưu thêm");
+        btn_luuThem.setText("Thêm Thông Tin");
         btn_luuThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_luuThemActionPerformed(evt);
@@ -222,11 +213,9 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                         .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addGap(199, 199, 199)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,7 +254,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,16 +265,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
-
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        tf_maKhaiSinh.setEditable(true);
-        tf_hoTen.setEditable(true);
-        tf_ngayCapCCCD.setEditable(true);
-        tf_noiCapCCCD.setEditable(true);
-        tf_soCCCD.setEditable(true);
-        tf_soDienThoai.setEditable(true);
-        tf_email.setEditable(true);
-    }//GEN-LAST:event_btn_themActionPerformed
 
     private void tbl_thongTinCongDanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinCongDanMouseClicked
         model = (DefaultTableModel) tbl_thongTinCongDan.getModel();
@@ -477,13 +455,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }
 
     private void disableTextField() {
-        tf_maKhaiSinh.setEditable(false);
         tf_hoTen.setEditable(false);
-        tf_ngayCapCCCD.setEditable(false);
-        tf_noiCapCCCD.setEditable(false);
-        tf_soCCCD.setEditable(false);
-        tf_soDienThoai.setEditable(false);
-        tf_email.setEditable(false);
         tf_gioiTinh.setEditable(false);
         tf_ngaySinh.setEditable(false);
         tf_noiSinh.setEditable(false);
@@ -517,7 +489,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private Swing.Button btn_luuSua;
     private Swing.Button btn_luuThem;
     private Swing.Button btn_sua;
-    private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
     private javax.swing.JLabel jLabel1;
