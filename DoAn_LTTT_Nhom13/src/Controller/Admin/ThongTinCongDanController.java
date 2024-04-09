@@ -12,6 +12,7 @@ import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JDialog;
@@ -89,7 +90,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
         tf_maKhaiSinh.setLabelText("Mã khai sinh");
 
-        tf_ngayCapCCCD.setLabelText("Ngày cấp CCCD");
+        tf_ngayCapCCCD.setLabelText("Ngày cấp CCCD (yyyy-MM-dd)");
 
         tf_soDienThoai.setLabelText("Số điện thoại");
 
@@ -192,24 +193,26 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(tf_noiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
-                                .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(1, 1, 1)
+                                .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tf_noiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
                                 .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)))
-                        .addGap(36, 36, 36)
+                                .addGap(53, 53, 53))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -243,23 +246,22 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
+                            .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -347,14 +349,36 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
-        if(congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 1){
+        if (congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 1) {
             JOptionPane dialog = new JOptionPane("Mỗi người chỉ có duy nhất 1 số CCCD!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
             return;
         }
+        if (!isValidCCCD(tf_soCCCD.getText().trim())) {
+            JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        if (!isValidPhoneNumber(tf_soDienThoai.getText().trim())) {
+            JOptionPane dialog = new JOptionPane("Số điện thoại không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        if(!isValidEmail(tf_email.getText().trim())){
+            JOptionPane dialog = new JOptionPane("Email không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
         
+
         CongDanModel congDan = new CongDanModel();
         congDan.setCCCD(tf_soCCCD.getText().trim());
         congDan.setHoTen(tf_hoTen.getText());
@@ -407,7 +431,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 tf_ngaySinh.setText(ngaySinh);
                 tf_gioiTinh.setText(congDan.getGioiTinh());
                 tf_noiSinh.setText(congDan.getNoiSinh());
-            }else if(congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 0){
+            } else if (congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 0) {
                 IKhaiSinhService khaiSinhService = new KhaiSinhServiceImpl();
                 KhaiSinhModel khaiSinh = new KhaiSinhModel();
                 khaiSinh = khaiSinhService.findOne(tf_maKhaiSinh.getText().trim());
@@ -464,6 +488,30 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_ngaySinh.setEditable(false);
         tf_noiSinh.setEditable(false);
     }
+
+    private static boolean isValidCCCD(String cccd) {
+        String regex = "^[0-9]{12}$";
+        if (!cccd.matches(regex)) {
+            return false;
+        }
+        return cccd.charAt(0) == '0';
+    }
+
+    private static boolean isValidPhoneNumber(String phoneNum) {
+        String regex = "[0-9]{10}$";
+        if (!phoneNum.matches(regex)) {
+            return false;
+        }
+        return phoneNum.charAt(0) == '0';
+    }
+
+    private static boolean isValidEmail(String email) {
+        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return email.matches(regex);
+    }
+
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.MyButton btn_loadData;
     private Swing.Button btn_luuSua;
