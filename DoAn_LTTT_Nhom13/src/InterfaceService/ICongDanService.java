@@ -20,4 +20,6 @@ public interface ICongDanService {
     boolean delete(String CCCD);
     ThongTinCaNhan findTTCN(String CCCD);
     public boolean isCCCDIssued(String CCCD);
+    CongDanModel findOneByMaKS(String MaKS);
+    public int countCCCD(String MaKS);
 }

@@ -1,4 +1,3 @@
-
 package ServiceImplement;
 
 import DAOImplement.CongDanDAOImpl;
@@ -13,13 +12,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CongDanServiceImpl implements ICongDanService{
+public class CongDanServiceImpl implements ICongDanService {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
 
     ICongDanDAO congDanDao = new CongDanDAOImpl();
+
     @Override
     public List<CongDanModel> findAll() {
         return congDanDao.findAll();
@@ -81,28 +81,70 @@ public class CongDanServiceImpl implements ICongDanService{
         }
         return ttcn;
     }
-    
+
     //Check tồn tại số CCCD nào chưa
     @Override
     public boolean isCCCDIssued(String CCCD) {
-        String query = "SELECT TrangThai FROM CongDan WHERE MaKS = ?";
+        String query = "SELECT CCCD FROM CongDan WHERE CCCD = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, CCCD);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public CongDanModel findOneByMaKS(String MaKS) {
+        CongDanModel congDan = new CongDanModel();
+        String query = "Select CongDan.HoTen, CCCD, NcCccd, NgcCccd, KhaiSinh.MaKS, SDT, Email, CongDan.TrangThai, GioiTinh, NgaySinh, NoiSinh from CongDan, KhaiSinh where CongDan.MaKS = KhaiSinh.MaKS and KhaiSinh.TrangThai = 1 and KhaiSinh.MaKS=?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, CCCD);
+            ps.setString(1, MaKS);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                int trangThai = rs.getInt("TrangThai");
-                if(trangThai ==1 ){
-                    return true;
+            while (rs.next()) {
+                congDan.setHoTen(rs.getString(1));
+                congDan.setCCCD(rs.getString(2));
+                congDan.setNcCccd(rs.getString(3));
+                congDan.setNgcCccd(rs.getDate(4));
+                congDan.setMaKS(rs.getString(5));
+                congDan.setSDT(rs.getString(6));
+                congDan.setEmail(rs.getString(7));
+                congDan.setTrangThai(rs.getInt(8));
+                congDan.setGioiTinh(rs.getString(9));
+                congDan.setNgaySinh(rs.getDate(10));
+                congDan.setNoiSinh(rs.getString(11));
+            }
+            conn.close();
+        } catch (Exception ex) {
+
+        }
+        return congDan;
+    }
+
+    @Override
+    public int countCCCD(String MaKS) {
+        String query = "SELECT COUNT(CCCD) AS SoLuong "
+                + "FROM CongDan "
+                + "INNER JOIN KhaiSinh ON CongDan.MaKS = KhaiSinh.MaKS "
+                + "WHERE CongDan.TrangThai = 1 AND KhaiSinh.TrangThai = 1 AND CongDan.MaKS = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, MaKS);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
                 }
-            } else {
-                return false;
             }
         } catch (Exception e) {
-            
+            e.printStackTrace(); 
+            return -1;  
         }
-        return true;
     }
-    
+
 }
