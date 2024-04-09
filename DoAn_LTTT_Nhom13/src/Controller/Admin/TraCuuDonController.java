@@ -7,6 +7,7 @@ package Controller.Admin;
 import InterfaceService.IChungNhanKetHonService;
 import InterfaceService.ICongDanService;
 import InterfaceService.IGiayChungTuService;
+import InterfaceService.IHoKhauService;
 import InterfaceService.IKhaiSinhService;
 import InterfaceService.ILyHonService;
 import InterfaceService.ITamTruService;
@@ -18,9 +19,11 @@ import Models.GiayChungTuModel;
 import Models.KhaiSinhModel;
 import Models.LyHonModel;
 import Models.ThongTinCaNhan;
+import Models.ThongTinHoKhau;
 import ServiceImplement.ChungNhanKetHonServiceImpl;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.GiayChungTuServiceImpl;
+import ServiceImplement.HoKhauServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
 import ServiceImplement.LyHonServiceImpl;
 import ServiceImplement.TamTruServiceImpl;
@@ -84,6 +87,15 @@ public class TraCuuDonController extends javax.swing.JPanel {
         btn_giaychungtu = new button.MyButton();
         btn_donkethon = new button.MyButton();
         panelHoKhau = new javax.swing.JPanel();
+        tf_mahokhau = new Swing.TextField();
+        tf_cccdchuho = new Swing.TextField();
+        tf_hotenchuho = new Swing.TextField();
+        tf_cccdthanhvien = new Swing.TextField();
+        tf_hotenthanhvien = new Swing.TextField();
+        tf_quanhevoichuho = new Swing.TextField();
+        tf_diachihk = new Swing.TextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tbl_hokhau = new Swing.TableDark();
         panelThue = new javax.swing.JPanel();
         btn_timkiem = new button.MyButton();
         panelGCNKH = new javax.swing.JPanel();
@@ -311,15 +323,74 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelHoKhau.setBackground(new java.awt.Color(255, 255, 255));
         panelHoKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
 
+        tf_mahokhau.setLabelText("Mã hộ khẩu");
+
+        tf_cccdchuho.setLabelText("CCCD Chủ hộ");
+
+        tf_hotenchuho.setLabelText("Họ tên chủ hộ");
+
+        tf_cccdthanhvien.setLabelText("CCCD thành viên");
+
+        tf_hotenthanhvien.setLabelText("Họ tên thành viên");
+
+        tf_quanhevoichuho.setLabelText("Quan hệ với chủ hộ");
+
+        tf_diachihk.setLabelText("Địa chỉ");
+
+        tbl_hokhau.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CCCD Người thân", "Họ tên người thân", "Ngày sinh", "Quan hệ với chủ hộ"
+            }
+        ));
+        jScrollPane5.setViewportView(tbl_hokhau);
+
         javax.swing.GroupLayout panelHoKhauLayout = new javax.swing.GroupLayout(panelHoKhau);
         panelHoKhau.setLayout(panelHoKhauLayout);
         panelHoKhauLayout.setHorizontalGroup(
             panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 875, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHoKhauLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tf_diachihk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelHoKhauLayout.createSequentialGroup()
+                        .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_mahokhau, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_cccdthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_cccdchuho, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_hotenthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tf_hotenchuho, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_quanhevoichuho, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(61, 61, 61))
+            .addGroup(panelHoKhauLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelHoKhauLayout.setVerticalGroup(
             panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGroup(panelHoKhauLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_mahokhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_cccdchuho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_hotenchuho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_cccdthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_hotenthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_quanhevoichuho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(tf_diachihk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(330, Short.MAX_VALUE))
         );
 
         tabbedPaneCustom1.addTab("Hộ khẩu", panelHoKhau);
@@ -540,8 +611,8 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253))
         );
 
         add(panelGCNKH, "card3");
@@ -1347,8 +1418,44 @@ public class TraCuuDonController extends javax.swing.JPanel {
         // TODO add your handling code here:
         setSearch(tf_timkiem.getText());
         getSearch();
+        
+        loadHoKhau(search);
+        loadListHoKhau(search);
+        
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
+    private void loadHoKhau(String search){
+        IHoKhauService hoKhauService = new HoKhauServiceImpl();
+        ThongTinHoKhau tthk;
+
+        tthk = hoKhauService.findOneByCCCD(search);
+        
+        tf_mahokhau.setText(tthk.getMaHoKhau());
+        tf_cccdchuho.setText(tthk.getCCCDChuHo());
+        tf_hotenchuho.setText(tthk.getHoTenChuHo());
+        tf_cccdthanhvien.setText(tthk.getCCCDNguoiDangNhap());
+        tf_hotenthanhvien.setText(tthk.getHoTenNguoiDangNhap());
+        tf_quanhevoichuho.setText(tthk.getQuanHeVoiChuHo());
+        tf_diachihk.setText(tthk.getDiaChi());
+        
+    }
+    
+    private void loadListHoKhau(String search){
+        List<ThongTinHoKhau> list;
+        IHoKhauService hoKhauService = new HoKhauServiceImpl();
+
+        list = hoKhauService.findAllHoKhau(search);
+        
+        tbl_hokhau.fixTable(jScrollPane5);
+        model = (DefaultTableModel) tbl_hokhau.getModel();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        for (ThongTinHoKhau tthk : list) {
+            model.addRow(new Object[]{tthk.getCCCDNguoiThan(), tthk.getHoTenNguoiThan(), tthk.getNgaySinh(), tthk.getQuanHeVoiChuHo()});
+        }
+    }
     private void tbl_cnkhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_cnkhMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tbl_cnkh.getModel();
@@ -1494,6 +1601,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel panelDon;
     private javax.swing.JPanel panelGCNKH;
     private javax.swing.JPanel panelGCT;
@@ -1507,6 +1615,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private javax.swing.JPanel panelXemDon;
     private Swing.TabbedPaneCustom tabbedPaneCustom1;
     private javax.swing.JTable tbl_cnkh;
+    private Swing.TableDark tbl_hokhau;
     private javax.swing.JTable tbl_lyhon;
     private javax.swing.JTable tbl_tamtru;
     private javax.swing.JTable tbl_tamvang;
@@ -1514,10 +1623,12 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_cccdcd;
     private Swing.TextField tf_cccdcha;
     private Swing.TextField tf_cccdchong;
+    private Swing.TextField tf_cccdchuho;
     private Swing.TextField tf_cccdgct;
     private Swing.TextField tf_cccdme;
     private Swing.TextField tf_cccdnguoikhaisinh;
     private Swing.TextField tf_cccdnguoinopdon;
+    private Swing.TextField tf_cccdthanhvien;
     private Swing.TextField tf_cccdtv;
     private Swing.TextField tf_cccdvo;
     private Swing.TextField tf_dantoc;
@@ -1525,6 +1636,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_dantocchong;
     private Swing.TextField tf_dantocvo;
     private Swing.TextField tf_diachi;
+    private Swing.TextField tf_diachihk;
     private Swing.TextField tf_email;
     private Swing.TextField tf_giaytotuythanchong;
     private Swing.TextField tf_giaytotuythanvo;
@@ -1534,9 +1646,11 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_hotencd;
     private Swing.TextField tf_hotenchong;
     private Swing.TextField tf_hotenchonglh;
+    private Swing.TextField tf_hotenchuho;
     private Swing.TextField tf_hotengct;
     private Swing.TextField tf_hotenks;
     private Swing.TextField tf_hotennguoinopdon;
+    private Swing.TextField tf_hotenthanhvien;
     private Swing.TextField tf_hotentv;
     private Swing.TextField tf_hotenvo;
     private Swing.TextField tf_hotenvolh;
@@ -1547,6 +1661,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_machungtu;
     private Swing.TextField tf_macnkh;
     private Swing.TextField tf_macnkhlh;
+    private Swing.TextField tf_mahokhau;
     private Swing.TextField tf_maks;
     private Swing.TextField tf_malyhon;
     private Swing.TextField tf_matamtru;
@@ -1583,6 +1698,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_noisinh;
     private Swing.TextField tf_noisinhcd;
     private Swing.TextField tf_quanhe;
+    private Swing.TextField tf_quanhevoichuho;
     private Swing.TextField tf_quequan;
     private Swing.TextField tf_quequancd;
     private Swing.TextField tf_quoctich;

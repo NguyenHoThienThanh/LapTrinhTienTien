@@ -5,6 +5,7 @@
 package InterfaceService;
 
 import Models.HoKhauModel;
+import Models.ThongTinHoKhau;
 import java.util.List;
 
 /**
@@ -17,5 +18,6 @@ public interface IHoKhauService {
     boolean insert (HoKhauModel hoKhau);
     boolean update (HoKhauModel hoKhau);
     boolean delete (String MaHK);
-    
+    List<ThongTinHoKhau> findAllHoKhau (String CCCD);
+    ThongTinHoKhau findOneByCCCD(String CCCD);
 }
