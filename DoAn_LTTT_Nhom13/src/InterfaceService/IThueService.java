@@ -17,4 +17,5 @@ public interface IThueService {
     boolean insert (ThueModel thue);
     boolean update (ThueModel thue);
     boolean delete (String MaSoThue);
+    ThueModel findOneByCCCD (String CCCD1, String CCCD2);
 }

@@ -59,7 +59,7 @@ public class HoKhauServiceImpl implements IHoKhauService{
 
     @Override
     public List<ThongTinHoKhau> findAllHoKhau(String CCCD) {
-        String query = "  select CCCD as CCCDNguoiThan, HoTen as HoTenNguoiThan, SDT, NgaySinh, QuanHeVoiChuHo, MaHK from CongDan join (select MaKS, HoTenKS, GioiTinh, NgaySinh, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from KhaiSinh join (select T.MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from QuanHe join (select MaHK, DiaChi, KhaiSinhChuHo from HoKhau where MaHK in (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and CCCD = ?)) T on QuanHe.MaHK = T.MaHK) Q on Q.KhaiSinhNguoiThamGia = KhaiSinh.MaKS) C on C.KhaiSinhNguoiThamGia = CongDan.MaKS";
+        String query = "select CCCD as CCCDNguoiThan, HoTen as HoTenNguoiThan, SDT, NgaySinh, QuanHeVoiChuHo, MaHK from CongDan join (select MaKS, HoTenKS, GioiTinh, NgaySinh, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from KhaiSinh join (select T.MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from QuanHe join (select MaHK, DiaChi, KhaiSinhChuHo from HoKhau where MaHK in (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and CCCD = ?)) T on QuanHe.MaHK = T.MaHK) Q on Q.KhaiSinhNguoiThamGia = KhaiSinh.MaKS) C on C.KhaiSinhNguoiThamGia = CongDan.MaKS";
         List<ThongTinHoKhau> listThongTinHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -86,7 +86,7 @@ public class HoKhauServiceImpl implements IHoKhauService{
 
     @Override
     public ThongTinHoKhau findOneByCCCD(String CCCD) {
-        String query = "  select CCCD as CCCDChuHo, HoTen as HoTenChuHo, MaHK, DiaChi, HoTenNguoiThan as HoTenNguoiDangNhap, CCCDNguoiDangNhap, QuanHeVoiChuHo from CongDan join (select P.MaHK, DiaChi, KhaiSinhChuHo, TrangThai, HoTenKS as HoTenNguoiThan, GioiTinh, CCCD as CCCDNguoiDangNhap, QuanHeVoiChuHo from  HoKhau join (select MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, HoTenKS, GioiTinh, CCCD from QuanHe join (select T.MaKS, HoTenKS, GioiTinh, CCCD from KhaiSinh join (select * from CongDan where CCCD = ? and TrangThai = 1) T on KhaiSinh.MaKS = T.MaKS) Q on Q.MaKS = QuanHe.KhaiSinhNguoiThamGia)P on P.MaHK = HoKhau.MaHK) R on R.KhaiSinhChuHo = CongDan.MaKS and R.TrangThai = 1";
+        String query = "select CCCD as CCCDChuHo, HoTen as HoTenChuHo, MaHK, DiaChi, HoTenNguoiThan as HoTenNguoiDangNhap, CCCDNguoiDangNhap, QuanHeVoiChuHo from CongDan join (select P.MaHK, DiaChi, KhaiSinhChuHo, TrangThai, HoTenKS as HoTenNguoiThan, GioiTinh, CCCD as CCCDNguoiDangNhap, QuanHeVoiChuHo from  HoKhau join (select MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, HoTenKS, GioiTinh, CCCD from QuanHe join (select T.MaKS, HoTenKS, GioiTinh, CCCD from KhaiSinh join (select * from CongDan where CCCD = ? and TrangThai = 1) T on KhaiSinh.MaKS = T.MaKS) Q on Q.MaKS = QuanHe.KhaiSinhNguoiThamGia)P on P.MaHK = HoKhau.MaHK) R on R.KhaiSinhChuHo = CongDan.MaKS and R.TrangThai = 1";
         ThongTinHoKhau tthk = new ThongTinHoKhau();
         try {
             conn = DBConnection.getConnection();

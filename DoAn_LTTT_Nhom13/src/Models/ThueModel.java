@@ -17,6 +17,15 @@ public class ThueModel {
     private String SoCMT_CCCD;
     private Date Ngaythaydoithongtingannhat;
     private int TrangThai;
+    private String Hoten;
+
+    public String getHoten() {
+        return Hoten;
+    }
+
+    public void setHoten(String Hoten) {
+        this.Hoten = Hoten;
+    }
 
     // Constructor
     public ThueModel() {
