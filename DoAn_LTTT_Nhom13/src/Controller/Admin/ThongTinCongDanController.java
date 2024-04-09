@@ -347,6 +347,14 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
+        if(congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 1){
+            JOptionPane dialog = new JOptionPane("Mỗi người chỉ có duy nhất 1 số CCCD!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
         CongDanModel congDan = new CongDanModel();
         congDan.setCCCD(tf_soCCCD.getText().trim());
         congDan.setHoTen(tf_hoTen.getText());
@@ -395,6 +403,10 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 String ngayCapCCCD = dateFormat.format(congDan.getNgcCccd());
                 tf_ngayCapCCCD.setText(ngayCapCCCD);
                 tf_noiCapCCCD.setText(congDan.getNcCccd());
+                String ngaySinh = dateFormat.format(congDan.getNgaySinh());
+                tf_ngaySinh.setText(ngaySinh);
+                tf_gioiTinh.setText(congDan.getGioiTinh());
+                tf_noiSinh.setText(congDan.getNoiSinh());
             }else if(congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 0){
                 IKhaiSinhService khaiSinhService = new KhaiSinhServiceImpl();
                 KhaiSinhModel khaiSinh = new KhaiSinhModel();
