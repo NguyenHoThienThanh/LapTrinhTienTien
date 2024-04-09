@@ -59,7 +59,7 @@ public class KhaiSinhDAOImpl implements IKhaiSinhDAO{
     @Override
     public KhaiSinhModel findOne(String maKS) {
         KhaiSinhModel khaiSinh = new KhaiSinhModel();
-        String query = "select * from KhaiSinh where MaKS=?";
+        String query = "select * from KhaiSinh where MaKS=? and TrangThai = 1";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -85,7 +85,7 @@ public class KhaiSinhDAOImpl implements IKhaiSinhDAO{
             }
             conn.close();
         }catch(Exception ex){
-            
+           
         } 
         return khaiSinh;
         
