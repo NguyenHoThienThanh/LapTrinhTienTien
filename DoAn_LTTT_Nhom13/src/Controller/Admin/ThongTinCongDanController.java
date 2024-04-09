@@ -392,6 +392,16 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         } catch (ParseException ex) {
             return;
         }
+        congDan.setGioiTinh(tf_gioiTinh.getText());
+        try {
+            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText());
+            java.sql.Date sqlDate;
+            sqlDate = new java.sql.Date(utilDate.getTime());
+            congDan.setNgaySinh(sqlDate);
+        } catch (ParseException ex) {
+            return;
+        }
+        congDan.setNoiSinh(tf_noiSinh.getText());
         congDan.setMaKS(tf_maKhaiSinh.getText().trim());
         congDan.setSDT(tf_soDienThoai.getText());
         congDan.setEmail(tf_email.getText());
@@ -540,12 +550,12 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             return;
         }
        clear();
-        tf_soCCCD.setEditable(true);
-        tf_hoTen.setEditable(true);
-        tf_gioiTinh.setEditable(true);
-        tf_ngaySinh.setEditable(true);
-        tf_noiSinh.setEditable(true);
-        tf_maKhaiSinh.setEditable(true);
+//        tf_soCCCD.setEditable(true);
+//        tf_hoTen.setEditable(true);
+//        tf_gioiTinh.setEditable(true);
+//        tf_ngaySinh.setEditable(true);
+//        tf_noiSinh.setEditable(true);
+//        tf_maKhaiSinh.setEditable(true);
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
@@ -556,7 +566,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_soDienThoai.setEditable(true);
     }//GEN-LAST:event_btn_themActionPerformed
     public void showResult() {
-        listCongDan = congDanService.findAll();
+        //listCongDan = congDanService.findAll();
         CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
         model.fireTableDataChanged();
         model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
