@@ -55,7 +55,8 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "select * from CongDan where CCCD=? and TrangThai =1";
+        String query = "select CCCD, CongDan.HoTen, NcCccd, NgcCccd, CongDan.MaKS, SDT, Email, CongDan.TrangThai, GioiTinh, NgaySinh from CongDan "
+                + "inner join KhaiSinh On CongDan.MaKS = KhaiSinh.MaKS and CongDan.TrangThai =1 and CongDan.CCCD = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -70,6 +71,9 @@ public class CongDanDAOImpl implements ICongDanDAO {
                 congDan.setSDT(rs.getString(6));
                 congDan.setEmail(rs.getString(7));
                 congDan.setTrangThai(rs.getInt(8));
+                congDan.setGioiTinh(rs.getString(9));
+                congDan.setNgaySinh(rs.getDate(10));
+
             }
             conn.close();
         } catch (Exception ex) {

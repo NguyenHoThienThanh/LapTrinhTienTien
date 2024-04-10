@@ -18,15 +18,19 @@ import java.util.List;
  *
  * @author TUAN
  */
-public class HoKhauDAOImpl implements IHoKhauDAO{
+public class HoKhauDAOImpl implements IHoKhauDAO {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     @Override
     public List<HoKhauModel> findAll() {
-        String query = "SELECT hk.ID, hk.MaHK, ks.MaKS, cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh,  hk.DiaChi, cd.SDT, cd.Email, hk.TrangThai FROM CongDan cd INNER JOIN KhaiSinh ks ON cd.MaKS = ks.MaKS " 
-                + "INNER JOIN HoKhau hk ON (ks.MaKS = hk.KhaiSinhChuHo)";
+        String query = "select HoKhau.ID, HoKhau.MaHK, KhaiSinh.MaKS,CCCD, HoTen,NgaySinh,  GioiTinh,  DiaChi, SDT, Email, HoKhau.TrangThai  from QuanHe "
+                + "inner join KhaiSinh on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia "
+                + "inner join CongDan on KhaiSinh.MaKS = CongDan.MaKS "
+                + "inner join HoKhau on HoKhau.MaHK = QuanHe.MaHK and HoKhau.TrangThai =1 "
+                + "order by MaHK ASC";
         List<HoKhauModel> listHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -49,7 +53,7 @@ public class HoKhauDAOImpl implements IHoKhauDAO{
             }
             conn.close();
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
         return listHoKhau;
     }
@@ -79,7 +83,7 @@ e.printStackTrace();
 
     @Override
     public boolean insert(HoKhauModel hoKhau) {
-         String query = "INSERT INTO HoKhau (DiaChi, KhaiSinhChuHo, TrangThai) VALUES (?,?,?) ";
+        String query = "INSERT INTO HoKhau (DiaChi, KhaiSinhChuHo, TrangThai) VALUES (?,?,?) ";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -87,7 +91,7 @@ e.printStackTrace();
             ps.setString(2, hoKhau.getKhaiSinhChuHo());
             ps.setInt(3, hoKhau.getTrangThai());
             ps.executeUpdate();
-        
+
             conn.close();
         } catch (Exception e) {
             return false;
@@ -106,7 +110,7 @@ e.printStackTrace();
             ps.setInt(3, hoKhau.getTrangThai());
             ps.setString(4, hoKhau.getMaHK());
             ps.executeUpdate();
-        
+
             conn.close();
         } catch (Exception e) {
             return false;
@@ -117,15 +121,15 @@ e.printStackTrace();
     @Override
     public boolean delete(String MaHK) {
         String query = "DELETE HoKhau WHERE MaHK = ?";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, MaHK);
             ps.executeUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;
     }
-    
+
 }

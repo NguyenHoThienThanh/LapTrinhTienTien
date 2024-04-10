@@ -20,4 +20,6 @@ public interface IHoKhauService {
     boolean delete (String MaHK);
     List<ThongTinHoKhau> findAllHoKhau (String CCCD);
     ThongTinHoKhau findOneByCCCD(String CCCD);
+    int existsHoKhauOrNot(String CCCD);
+    HoKhauModel findOneByMaKS(String MaKS);
 }

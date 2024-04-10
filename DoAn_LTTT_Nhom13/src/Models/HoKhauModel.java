@@ -22,13 +22,14 @@ public class HoKhauModel {
     private Date NgaySinh;
     private String SDT;
     private String Email;
+    private String MaKS;
 
     // Constructor
     public HoKhauModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public HoKhauModel(int ID, String MaHK, String DiaChi, String KhaiSinhChuHo, int TrangThai, String HoTen, String SoCCCD, String GioiTinh, Date NgaySinh, String SDT, String Email) {
+    public HoKhauModel(int ID, String MaHK, String DiaChi, String KhaiSinhChuHo, int TrangThai, String HoTen, String SoCCCD, String GioiTinh, Date NgaySinh, String SDT, String Email, String MaKS) {
         this.ID = ID;
         this.MaHK = MaHK;
         this.DiaChi = DiaChi;
@@ -40,7 +41,10 @@ public class HoKhauModel {
         this.NgaySinh = NgaySinh;
         this.SDT = SDT;
         this.Email = Email;
+        this.MaKS = MaKS;
     }
+
+    
 
     
     
@@ -133,6 +137,15 @@ public class HoKhauModel {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
+    public String getMaKS() {
+        return MaKS;
+    }
+
+    public void setMaKS(String MaKS) {
+        this.MaKS = MaKS;
+    }
+    
     
     
 }

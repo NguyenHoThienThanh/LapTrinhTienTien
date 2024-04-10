@@ -18,13 +18,14 @@ import java.sql.*;
  *
  * @author Admin
  */
-public class HoKhauServiceImpl implements IHoKhauService{
+public class HoKhauServiceImpl implements IHoKhauService {
 
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     IHoKhauDAO hoKhauDAO = new HoKhauDAOImpl();
+
     @Override
     public List<HoKhauModel> findAll() {
         return hoKhauDAO.findAll();
@@ -36,8 +37,8 @@ public class HoKhauServiceImpl implements IHoKhauService{
     }
 
     @Override
-        public boolean insert(HoKhauModel hoKhau) {
-            return hoKhauDAO.insert(hoKhau);
+    public boolean insert(HoKhauModel hoKhau) {
+        return hoKhauDAO.insert(hoKhau);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class HoKhauServiceImpl implements IHoKhauService{
         hk.setKhaiSinhChuHo(hoKhau.getKhaiSinhChuHo());
         hk.setTrangThai(hoKhau.getTrangThai());
         return hoKhauDAO.update(hk);
-        
+
     }
 
     @Override
@@ -81,7 +82,7 @@ public class HoKhauServiceImpl implements IHoKhauService{
 
         }
         return listThongTinHoKhau;
-        
+
     }
 
     @Override
@@ -107,7 +108,62 @@ public class HoKhauServiceImpl implements IHoKhauService{
             e.printStackTrace();
         }
         return tthk;
-        
+
+    }
+
+    @Override
+    public int existsHoKhauOrNot(String MaKS) {
+        String query = "SELECT count(*) SoLuong "
+                + "    FROM HoKhau hk "
+                + "    INNER JOIN QuanHe qh ON hk.MaHK = qh.MaHK "
+                + "    INNER JOIN CongDan cd ON qh.KhaiSinhNguoiThamGia = cd.MaKS "
+                + "    WHERE cd.MaKS = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, MaKS);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
     
+    @Override
+    public HoKhauModel findOneByMaKS(String MaKS) {
+        String query = "select HoKhau.ID, HoKhau.MaHK, KhaiSinh.MaKS, CCCD, HoTen,NgaySinh,  GioiTinh,  DiaChi, SDT, Email, HoKhau.TrangThai   from QuanHe  "
+                + "inner join KhaiSinh on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia  "
+                + "inner join CongDan on KhaiSinh.MaKS = CongDan.MaKS "
+                + "inner join HoKhau on HoKhau.MaHK = QuanHe.MaHK and HoKhau.TrangThai =1 "
+                + "and KhaiSinh.MaKS = ?";
+        HoKhauModel hoKhau = new HoKhauModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MaKS);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                hoKhau.setID(rs.getInt(1));
+                hoKhau.setMaHK(rs.getString(2));
+                hoKhau.setMaKS(rs.getString(3));
+                hoKhau.setSoCCCD(rs.getString(4));
+                hoKhau.setHoTen(rs.getString(5));
+                hoKhau.setNgaySinh(rs.getDate(6));
+                hoKhau.setGioiTinh(rs.getString(7));
+                hoKhau.setDiaChi(rs.getString(8));
+                hoKhau.setSDT(rs.getString(9));
+                hoKhau.setEmail(rs.getString(10));
+                hoKhau.setTrangThai(rs.getInt(11));
+            }
+            conn.close();
+        } catch (Exception e) {
+
+        }
+        return hoKhau;
+    }
+
 }
