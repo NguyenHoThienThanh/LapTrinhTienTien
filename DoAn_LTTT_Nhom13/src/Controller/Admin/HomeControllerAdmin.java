@@ -31,7 +31,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                 if (index == 1 && subIndex == 1) {
                     showForm(new ThongTinCongDanController());
                 } else if (index == 1 && subIndex == 5) {
-                    showForm(new HoKhauController());
+                    showForm(new ThongTinHoKhauController());
                 }else if(index == 1 && subIndex == 6){
                     showForm(new TamTruController());
                 }else if(index == 2){
