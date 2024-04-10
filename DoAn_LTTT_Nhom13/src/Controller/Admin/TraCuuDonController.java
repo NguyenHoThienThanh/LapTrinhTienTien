@@ -85,6 +85,8 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
     public TraCuuDonController() {
         initComponents();
+        tabbedPaneCustom1.setEnabledAt(2, false);
+        tabbedPaneCustom1.setEnabledAt(1, false);
     }
 
     @SuppressWarnings("unchecked")
@@ -241,58 +243,98 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelXemDon.setBackground(new java.awt.Color(255, 255, 255));
         panelXemDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
 
+        btn_donkhaisinh.setBackground(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setForeground(new java.awt.Color(255, 255, 255));
         btn_donkhaisinh.setText("Đơn khai sinh");
-        btn_donkhaisinh.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_donkhaisinh.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setColor(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setEnabled(false);
         btn_donkhaisinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_donkhaisinhActionPerformed(evt);
             }
         });
 
+        btn_dontamtru.setBackground(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setForeground(new java.awt.Color(255, 255, 255));
         btn_dontamtru.setText("Đơn tạm trú");
-        btn_dontamtru.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_dontamtru.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setColor(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setEnabled(false);
         btn_dontamtru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_dontamtruActionPerformed(evt);
             }
         });
 
+        btn_dontamvang.setBackground(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setForeground(new java.awt.Color(255, 255, 255));
         btn_dontamvang.setText("Đơn tạm vắng");
-        btn_dontamvang.setBorderColor(new java.awt.Color(255, 0, 0));
-        btn_dontamvang.setColorClick(new java.awt.Color(255, 255, 255));
-        btn_dontamvang.setColorOver(new java.awt.Color(255, 102, 102));
+        btn_dontamvang.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setColor(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setEnabled(false);
         btn_dontamvang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_dontamvangActionPerformed(evt);
             }
         });
 
+        btn_thongtincongdan.setBackground(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setForeground(new java.awt.Color(255, 255, 255));
         btn_thongtincongdan.setText("Thông tin công dân");
-        btn_thongtincongdan.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_thongtincongdan.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setColor(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setEnabled(false);
         btn_thongtincongdan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_thongtincongdanActionPerformed(evt);
             }
         });
 
+        btn_donlyhon.setBackground(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setForeground(new java.awt.Color(255, 255, 255));
         btn_donlyhon.setText("Đơn ly hôn");
-        btn_donlyhon.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_donlyhon.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setColor(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setEnabled(false);
         btn_donlyhon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_donlyhonActionPerformed(evt);
             }
         });
 
+        btn_giaychungtu.setBackground(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setForeground(new java.awt.Color(255, 255, 255));
         btn_giaychungtu.setText("Giấy chứng tử");
-        btn_giaychungtu.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_giaychungtu.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setColor(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setEnabled(false);
         btn_giaychungtu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_giaychungtuActionPerformed(evt);
             }
         });
 
+        btn_donkethon.setBackground(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setForeground(new java.awt.Color(255, 255, 255));
         btn_donkethon.setText("Đơn kết hôn");
-        btn_donkethon.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_donkethon.setBorderColor(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setColor(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setColorClick(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setEnabled(false);
         btn_donkethon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_donkethonActionPerformed(evt);
@@ -462,6 +504,9 @@ public class TraCuuDonController extends javax.swing.JPanel {
         btn_timkiem.setForeground(new java.awt.Color(255, 255, 255));
         btn_timkiem.setText("Search");
         btn_timkiem.setBorderColor(new java.awt.Color(255, 0, 0));
+        btn_timkiem.setColor(new java.awt.Color(255, 0, 0));
+        btn_timkiem.setColorClick(new java.awt.Color(255, 0, 0));
+        btn_timkiem.setColorOver(new java.awt.Color(255, 0, 0));
         btn_timkiem.setRadius(15);
         btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1317,7 +1362,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(false);
         panelGCNKH.setVisible(true);
 
-        listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(search, search);
+        listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
         model = (DefaultTableModel) tbl_cnkh.getModel();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -1351,7 +1396,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(false);
         panelKS.setVisible(true);
 
-        khaiSinhModel = khaiSinhService.findByCCCD(search);
+        khaiSinhModel = khaiSinhService.findByCCCD(tf_timkiem.getText().trim());
 
         tf_hotenks.setText(khaiSinhModel.getHoTenKS());
         tf_maks.setText(khaiSinhModel.getMaKS());
@@ -1392,7 +1437,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
         DefaultTableModel model;
 
-        listDonTamTru = tamTruService.findAllTT(search);
+        listDonTamTru = tamTruService.findAllTT(tf_timkiem.getText().trim());
         model = (DefaultTableModel) tbl_tamtru.getModel();
 
         while (model.getRowCount() > 0) {
@@ -1421,7 +1466,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(false);
         panelTV.setVisible(true);
 
-        listDonTamVang = tamVangService.findAllTV(search);
+        listDonTamVang = tamVangService.findAllTV(tf_timkiem.getText().trim());
         model = (DefaultTableModel) tbl_tamvang.getModel();
 
         while (model.getRowCount() > 0) {
@@ -1450,7 +1495,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(false);
         panelTTCD.setVisible(true);
 
-        thongTinCaNhan = congDanService.findTTCN(search);
+        thongTinCaNhan = congDanService.findTTCN(tf_timkiem.getText().trim());
 
         tf_hotencd.setText(thongTinCaNhan.getHoTen());
         tf_gioitinhcd.setText(thongTinCaNhan.getGioiTinh());
@@ -1482,7 +1527,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(false);
         panelLH.setVisible(true);
 
-        listLyHon = lyHonService.findAllLH(search, search);
+        listLyHon = lyHonService.findAllLH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
         model = (DefaultTableModel) tbl_lyhon.getModel();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -1512,7 +1557,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(false);
         panelGCT.setVisible(true);
 
-        giayChungTuModel = chungTuService.findAllGCT(search);
+        giayChungTuModel = chungTuService.findAllGCT(tf_timkiem.getText().trim());
 
         tf_machungtu.setText(giayChungTuModel.getMaCT());
         tf_cccdgct.setText(giayChungTuModel.getCCCD());
@@ -1551,6 +1596,8 @@ public class TraCuuDonController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
     private void loadThue(String search1, String search2) {
+        search1 = tf_timkiem.getText().trim();
+        search2 = tf_timkiem.getText().trim();
         thue = thueService.findOneByCCCD(search1, search2);
 
         tf_masothue.setText(thue.getMasothue());
@@ -1566,6 +1613,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     }
 
     private void loadHoKhau(String search) {
+        search = tf_timkiem.getText().trim();
         tthk = hoKhauService.findOneByCCCD(search);
 
         tf_mahokhau.setText(tthk.getMaHoKhau());
@@ -1587,7 +1635,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     }
 
     private void loadListHoKhau(String search) {
-
+        search = tf_timkiem.getText().trim();
         listHoKhau = hoKhauService.findAllHoKhau(search);
 
         tbl_hokhau.fixTable(jScrollPane5);
@@ -1720,86 +1768,144 @@ public class TraCuuDonController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_backFromGCTToDonActionPerformed
 
     private void setEnabledButton() {
+        tabbedPaneCustom1.setEnabledAt(1, false);
+        tabbedPaneCustom1.setEnabledAt(2, false);
 
         thongTinCaNhan = congDanService.findTTCN(tf_timkiem.getText().trim());
         if (thongTinCaNhan.getCCCD() == null) {
             btn_thongtincongdan.setEnabled(false);
+            btn_thongtincongdan.setColor(new Color(176, 176, 176));
             btn_thongtincongdan.setBackground(new Color(176, 176, 176));
             btn_thongtincongdan.setBorderColor(new Color(176, 176, 176));
             btn_thongtincongdan.setColorClick(new Color(176, 176, 176));
             btn_thongtincongdan.setColorOver(new Color(176, 176, 176));
         }
-        else{
+        else if(thongTinCaNhan.getCCCD() != null){
             btn_thongtincongdan.setEnabled(true);
-            btn_thongtincongdan.setBackground(new Color(176, 176, 176));
-            btn_thongtincongdan.setBorderColor(new Color(176, 176, 176));
-            btn_thongtincongdan.setColorClick(new Color(176, 176, 176));
-            btn_thongtincongdan.setColorOver(new Color(176, 176, 176));
+            btn_thongtincongdan.setColor(new Color(255,0,0));
+            btn_thongtincongdan.setBackground(new Color(255,0,0));
+            btn_thongtincongdan.setBorderColor(new Color(255,0,0));
+            btn_thongtincongdan.setColorClick(new Color(255,204,204));
+            btn_thongtincongdan.setColorOver(new Color(255,153,153));
         }
-        listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(search, search);
+        
+        listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
         if (listDonChungNhanKetHon.isEmpty()) {
             btn_donkethon.setEnabled(false);
             btn_donkethon.setBackground(new Color(176, 176, 176));
+            btn_donkethon.setColor(new Color(176, 176, 176));
             btn_donkethon.setBorderColor(new Color(176, 176, 176));
             btn_donkethon.setColorClick(new Color(176, 176, 176));
             btn_donkethon.setColorOver(new Color(176, 176, 176));
+        }else if(!listDonChungNhanKetHon.isEmpty()){
+            btn_donkethon.setEnabled(true);
+            btn_donkethon.setColor(new Color(255,0,0));
+            btn_donkethon.setBackground(new Color(255,0,0));
+            btn_donkethon.setBorderColor(new Color(255,0,0));
+            btn_donkethon.setColorClick(new Color(255,204,204));
+            btn_donkethon.setColorOver(new Color(255,153,153));
         }
-        khaiSinhModel = khaiSinhService.findByCCCD(search);
+        
+        khaiSinhModel = khaiSinhService.findByCCCD(tf_timkiem.getText().trim());
         if (khaiSinhModel.getMaKS() == null) {
             btn_donkhaisinh.setEnabled(false);
+            btn_donkhaisinh.setColor(new Color(176, 176, 176));
             btn_donkhaisinh.setBackground(new Color(176, 176, 176));
             btn_donkhaisinh.setBorderColor(new Color(176, 176, 176));
             btn_donkhaisinh.setColorClick(new Color(176, 176, 176));
             btn_donkhaisinh.setColorOver(new Color(176, 176, 176));
         }
-        listDonTamTru = tamTruService.findAllTT(search);
+        else if(khaiSinhModel.getMaKS() != null){
+            btn_donkhaisinh.setEnabled(true);
+            btn_donkhaisinh.setColor(new Color(255,0,0));
+            btn_donkhaisinh.setBackground(new Color(255,0,0));
+            btn_donkhaisinh.setBorderColor(new Color(255,0,0));
+            btn_donkhaisinh.setColorClick(new Color(255,204,204));
+            btn_donkhaisinh.setColorOver(new Color(255,153,153));
+        }
+        listDonTamTru = tamTruService.findAllTT(tf_timkiem.getText().trim());
         if (listDonTamTru.isEmpty()) {
             btn_dontamtru.setEnabled(false);
+            btn_dontamtru.setColor(new Color(176, 176, 176));
             btn_dontamtru.setBackground(new Color(176, 176, 176));
             btn_dontamtru.setBorderColor(new Color(176, 176, 176));
             btn_dontamtru.setColorClick(new Color(176, 176, 176));
             btn_dontamtru.setColorOver(new Color(176, 176, 176));
         }
-        listDonTamVang = tamVangService.findAllTV(search);
+        else if(!listDonTamTru.isEmpty()){
+            btn_dontamtru.setEnabled(true);
+            btn_dontamtru.setColor(new Color(255,0,0));
+            btn_dontamtru.setBackground(new Color(255,0,0));
+            btn_dontamtru.setBorderColor(new Color(255,0,0));
+            btn_dontamtru.setColorClick(new Color(255,204,204));
+            btn_dontamtru.setColorOver(new Color(255,153,153));
+        }
+        listDonTamVang = tamVangService.findAllTV(tf_timkiem.getText().trim());
         if (listDonTamVang.isEmpty()) {
             btn_dontamvang.setEnabled(false);
+            btn_dontamvang.setColor(new Color(176, 176, 176));
             btn_dontamvang.setBackground(new Color(176, 176, 176));
             btn_dontamvang.setBorderColor(new Color(176, 176, 176));
             btn_dontamvang.setColorClick(new Color(176, 176, 176));
             btn_dontamvang.setColorOver(new Color(176, 176, 176));
         }
-        listLyHon = lyHonService.findAllLH(search, search);
+        else if(!listDonTamVang.isEmpty()){
+            btn_dontamvang.setEnabled(true);
+            btn_dontamvang.setColor(new Color(255,0,0));
+            btn_dontamvang.setBackground(new Color(255,0,0));
+            btn_dontamvang.setBorderColor(new Color(255,0,0));
+            btn_dontamvang.setColorClick(new Color(255,204,204));
+            btn_dontamvang.setColorOver(new Color(255,153,153));
+        }
+        listLyHon = lyHonService.findAllLH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
         if (listLyHon.isEmpty()) {
             btn_donlyhon.setEnabled(false);
+            btn_donlyhon.setColor(new Color(176, 176, 176));
             btn_donlyhon.setBackground(new Color(176, 176, 176));
             btn_donlyhon.setBorderColor(new Color(176, 176, 176));
             btn_donlyhon.setColorClick(new Color(176, 176, 176));
             btn_donlyhon.setColorOver(new Color(176, 176, 176));
         }
-        giayChungTuModel = chungTuService.findAllGCT(search);
+        else if(!listLyHon.isEmpty()){
+            btn_donlyhon.setEnabled(true);
+            btn_donlyhon.setColor(new Color(255,0,0));
+            btn_donlyhon.setBackground(new Color(255,0,0));
+            btn_donlyhon.setBorderColor(new Color(255,0,0));
+            btn_donlyhon.setColorClick(new Color(255,204,204));
+            btn_donlyhon.setColorOver(new Color(255,153,153));
+        }
+        giayChungTuModel = chungTuService.findAllGCT(tf_timkiem.getText().trim());
         if (giayChungTuModel.getCCCD() == null) {
             btn_giaychungtu.setEnabled(false);
+            btn_giaychungtu.setColor(new Color(176, 176, 176));
             btn_giaychungtu.setBackground(new Color(176, 176, 176));
             btn_giaychungtu.setBorderColor(new Color(176, 176, 176));
             btn_giaychungtu.setColorClick(new Color(176, 176, 176));
             btn_giaychungtu.setColorOver(new Color(176, 176, 176));
         }
-        thue = thueService.findOneByCCCD(search, search);
-        if (thue.getSoCMT_CCCD() == null) {
-            tabbedPaneCustom1.setEnabledAt(2, false);
-        } else if (thue.getSoCMT_CCCD() != null) {
-            tabbedPaneCustom1.setEnabledAt(2, true);
-            loadThue(search, search);
+        else if(giayChungTuModel.getCCCD() != null){
+            btn_giaychungtu.setEnabled(true);
+            btn_giaychungtu.setColor(new Color(255,0,0));
+            btn_giaychungtu.setBackground(new Color(255,0,0));
+            btn_giaychungtu.setBorderColor(new Color(255,0,0));
+            btn_giaychungtu.setColorClick(new Color(255,204,204));
+            btn_giaychungtu.setColorOver(new Color(255,153,153));
         }
-        tthk = hoKhauService.findOneByCCCD(search);
-        listHoKhau = hoKhauService.findAllHoKhau(search);
+        thue = thueService.findOneByCCCD(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
+        if (thue.getHoten() == null) {
+            tabbedPaneCustom1.setEnabledAt(2, false);
+        } else if (thue.getHoten() != null) {
+            tabbedPaneCustom1.setEnabledAt(2, true);
+            loadThue(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
+        }
+        tthk = hoKhauService.findOneByCCCD(tf_timkiem.getText().trim());
+        listHoKhau = hoKhauService.findAllHoKhau(tf_timkiem.getText().trim());
         if (tthk.getCCCDNguoiDangNhap() == null) {
             tabbedPaneCustom1.setEnabledAt(1, false);
         } else if (tthk.getCCCDNguoiDangNhap() != null) {
             tabbedPaneCustom1.setEnabledAt(1, true);
-            tabbedPaneCustom1.setEnabledAt(2, true);
-            loadHoKhau(search);
-            loadListHoKhau(search);
+            loadHoKhau(tf_timkiem.getText().trim());
+            loadListHoKhau(tf_timkiem.getText().trim());
         }
     }
 

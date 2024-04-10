@@ -16,6 +16,17 @@ public class DanhGiaModel {
     private int DeDang;
     private int ChinhXac;
     private int TrucQuan;
+    private String HoTen;
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+
 
     // Constructor
     public DanhGiaModel() {

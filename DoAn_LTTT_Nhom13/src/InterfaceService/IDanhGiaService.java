@@ -17,5 +17,6 @@ public interface IDanhGiaService {
     boolean insert (DanhGiaModel danhGia);
     boolean update (DanhGiaModel danhGia);
     boolean delete (String CCCD);
+    List<DanhGiaModel> findAllDG();
     
 }

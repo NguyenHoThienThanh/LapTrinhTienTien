@@ -36,6 +36,8 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                     showForm(new TamTruController());
                 }else if(index == 2){
                     showForm(new TraCuuDonController());
+                }else if(index == 3){
+                    showForm(new DanhGiaController());
                 }
             }
         });
