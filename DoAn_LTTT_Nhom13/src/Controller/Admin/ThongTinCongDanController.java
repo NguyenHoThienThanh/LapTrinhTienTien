@@ -10,11 +10,15 @@ import Models.CongDanModel;
 import Models.KhaiSinhModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
+import Swing.TextField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -385,10 +389,19 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         congDan.setHoTen(tf_hoTen.getText());
         congDan.setNcCccd(tf_noiCapCCCD.getText());
         try {
-            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText());
-            java.sql.Date sqlDate;
-            sqlDate = new java.sql.Date(utilDate.getTime());
-            congDan.setNgcCccd(sqlDate);
+            if (isDateValid(tf_ngayCapCCCD.getText().trim())) {
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText().trim());
+                java.sql.Date sqlDate;
+                sqlDate = new java.sql.Date(utilDate.getTime());
+                congDan.setNgcCccd(sqlDate);
+            } else {
+                JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+
         } catch (ParseException ex) {
             return;
         }
@@ -444,6 +457,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 tf_gioiTinh.setText(congDan.getGioiTinh());
                 tf_noiSinh.setText(congDan.getNoiSinh());
             } else if (congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 0) {
+
                 IKhaiSinhService khaiSinhService = new KhaiSinhServiceImpl();
                 KhaiSinhModel khaiSinh = new KhaiSinhModel();
                 khaiSinh = khaiSinhService.findOne(tf_maKhaiSinh.getText().trim());
@@ -458,6 +472,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 tf_soCCCD.setText("");
                 tf_noiCapCCCD.setText("");
                 tf_ngayCapCCCD.setText("");
+
             }
 
         } catch (Exception e) {
@@ -474,10 +489,11 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_ngayCapCCCD.setEditable(true);
         tf_email.setEditable(true);
         tf_soDienThoai.setEditable(true);
+        tf_maKhaiSinh.setEditable(false);
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
-       try {
+        try {
             int selectedRow = tbl_thongTinCongDan.getSelectedRow();
             if (tbl_thongTinCongDan.getRowCount() <= 0) {
                 JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
@@ -495,34 +511,45 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 CongDanModel congDan = congDanService.findOne(tf_soCCCD.getText());
                 congDan.setHoTen(tf_hoTen.getText());
 
-                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText());
-                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                congDan.setNgcCccd(sqlDate);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String dateStr = sdf.format(utilDate);
+                if (isDateValid(tf_ngayCapCCCD.getText().trim())) {
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText());
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    congDan.setNgcCccd(sqlDate);
 
-                congDan.setNcCccd(tf_noiCapCCCD.getText());
-                if(!isValidPhoneNumber(tf_soDienThoai.getText())){
-                     JOptionPane dialog = new JOptionPane("Invalid phone number!", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
-                }else{
+                }
+
+                congDan.setNcCccd(tf_noiCapCCCD.getText());
+                if (!isValidPhoneNumber(tf_soDienThoai.getText())) {
+                    JOptionPane dialog = new JOptionPane("Invalid phone number!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                } else {
                     congDan.setSDT(tf_soDienThoai.getText());
                 }
-                
-                if(!isValidEmail(tf_email.getText())){
+
+                if (!isValidEmail(tf_email.getText())) {
                     JOptionPane dialog = new JOptionPane("Invalid email!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
-                }else{
+                } else {
                     congDan.setEmail(tf_email.getText());
                 }
-                
 
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText());
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                congDan.setNgcCccd(sqlDate);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String dateStr = sdf.format(utilDate);
                 if (new CongDanServiceImpl().update(congDan)) {
                     JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
@@ -549,7 +576,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
-       clear();
+        clear();
 //        tf_soCCCD.setEditable(true);
 //        tf_hoTen.setEditable(true);
 //        tf_gioiTinh.setEditable(true);
@@ -559,11 +586,21 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        tf_soCCCD.setEditable(true);
-        tf_ngayCapCCCD.setEditable(true);
-        tf_noiCapCCCD.setEditable(true);
-        tf_email.setEditable(true);
-        tf_soDienThoai.setEditable(true);
+        if (!isEligibleForCCCD(tf_ngaySinh)) {
+            JOptionPane dialog = new JOptionPane("This citizen is not old enough to be granted an identification number!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+            tf_soCCCD.setEditable(true);
+            tf_ngayCapCCCD.setEditable(true);
+            tf_noiCapCCCD.setEditable(true);
+            tf_email.setEditable(true);
+            tf_soDienThoai.setEditable(true);
+        }
+
+
     }//GEN-LAST:event_btn_themActionPerformed
     public void showResult() {
         //listCongDan = congDanService.findAll();
@@ -616,6 +653,118 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private static boolean isValidEmail(String email) {
         String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         return email.matches(regex);
+    }
+
+    private static boolean isEligibleForCCCD(TextField tf_ngaySinh) {
+        // Lấy ngày sinh từ text field
+        String ngaySinhStr = tf_ngaySinh.getText().trim();
+
+        // Khởi tạo định dạng ngày tháng năm
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate ngaySinh;
+
+        ngaySinh = LocalDate.parse(ngaySinhStr, formatter);
+
+        // Lấy ngày hiện tại
+        LocalDate today = LocalDate.now();
+
+        // Tính toán số năm
+        int years = today.getYear() - ngaySinh.getYear();
+
+        // Xử lý trường hợp sinh vào ngày 29 tháng 2
+        if (ngaySinh.getMonth() == Month.FEBRUARY && ngaySinh.getDayOfMonth() == 29) {
+            // Nếu ngày hiện tại không phải 29 tháng 2, trừ 1 năm
+            if (!today.getMonth().equals(Month.FEBRUARY) || today.getDayOfMonth() != 29) {
+                years--;
+            }
+        }
+
+        // Kiểm tra tuổi và ngày sinh
+        if (years >= 16) {
+            return true;
+        } else if (years == 15 && today.getMonthValue() > ngaySinh.getMonthValue()) {
+            return true;
+        } else if (years == 15 && today.getMonthValue() == ngaySinh.getMonthValue() && today.getDayOfMonth() >= ngaySinh.getDayOfMonth()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isDateValid_1(String ngayStr) {
+        // Kiểm tra định dạng
+        if (!ngayStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return false;
+        }
+
+        // Kiểm tra ngày tháng năm hợp lệ
+        int year = Integer.parseInt(ngayStr.substring(0, 4));
+        int month = Integer.parseInt(ngayStr.substring(5, 7));
+        int day = Integer.parseInt(ngayStr.substring(8, 10));
+
+        if (month < 1 || month
+                > 12) {
+            return false;
+        }
+
+        if (day < 1 || day
+                > 31) {
+            return false;
+        }
+
+        // Kiểm tra ngày hợp lệ cho từng tháng
+        switch (month) {
+            case 2:
+                if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+                    if (day > 29) {
+                        return false;
+                    }
+                } else {
+                    if (day > 28) {
+                        return false;
+                    }
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (day > 30) {
+                    return false;
+                }
+                break;
+        }
+
+        return true;
+    }
+
+    private static boolean isDateValid(String ngayCapCCCD) {
+
+        if (!ngayCapCCCD.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return false;
+        }
+
+        if (!isDateValid_1(ngayCapCCCD)) {
+            return false;
+        }
+        Optional<LocalDate> ngayCapCCCDOptional = Optional.ofNullable(LocalDate.parse(ngayCapCCCD));
+
+        if (ngayCapCCCDOptional.isEmpty()) {
+            return false;
+        }
+
+        LocalDate ngayCapCCCDDate = ngayCapCCCDOptional.get();
+        LocalDate today = LocalDate.now();
+        if (ngayCapCCCDDate.isAfter(today)) {
+            return false;
+        }
+
+        LocalDate threeYearsAgo = today.minusYears(10);
+        if (ngayCapCCCDDate.isBefore(threeYearsAgo)) {
+            return false;
+        }
+        return true;
     }
 
 
