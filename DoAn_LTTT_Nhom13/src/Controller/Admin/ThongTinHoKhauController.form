@@ -21,7 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -38,38 +38,30 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btn_xoaDuLieu" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="tf_maHoKhau" min="-2" pref="152" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" min="-2" pref="908" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="tf_soCCCD" min="-2" pref="158" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="tf_diaChi" min="-2" pref="356" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="tf_soDienThoai" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tf_email" min="-2" pref="138" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="289" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="tf_maHoKhau" min="-2" pref="170" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="tf_hoTen" min="-2" pref="188" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tf_gioiTinh" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="tf_ngaySinh" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tf_maKhaiSinh" min="-2" pref="140" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="tf_hoTen" min="-2" pref="332" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="tf_maKhaiSinh" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tf_diaChi" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane2" alignment="0" min="-2" pref="908" max="-2" attributes="0"/>
+                  <Component id="tf_soCCCD" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -78,42 +70,24 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_maHoKhau" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_maKhaiSinh" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_maHoKhau" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_maKhaiSinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tf_diaChi" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="tf_soDienThoai" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="tf_soCCCD" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
+                  <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Component id="jScrollPane2" min="-2" pref="280" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="tf_soCCCD" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_diaChi" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="305" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_sua" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -134,24 +108,9 @@
         <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_gioiTinh">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
-      </Properties>
-    </Component>
     <Component class="Swing.TextField" name="tf_maHoKhau">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="M&#xe3; h&#x1ed9; kh&#x1ea9;u"/>
-      </Properties>
-    </Component>
-    <Component class="Swing.TextField" name="tf_soCCCD">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD"/>
-      </Properties>
-    </Component>
-    <Component class="Swing.TextField" name="tf_email">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Email"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_diaChi">
@@ -162,16 +121,6 @@
     <Component class="Swing.TextField" name="tf_maKhaiSinh">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="M&#xe3; khai sinh"/>
-      </Properties>
-    </Component>
-    <Component class="Swing.TextField" name="tf_soDienThoai">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i"/>
-      </Properties>
-    </Component>
-    <Component class="Swing.TextField" name="tf_ngaySinh">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
       </Properties>
     </Component>
     <Component class="Swing.Button" name="btn_sua">
@@ -210,7 +159,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN C&#xd4;NG D&#xc2;N"/>
+        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN H&#x1ed8; KH&#x1ea8;U"/>
       </Properties>
     </Component>
     <Component class="Swing.Button" name="btn_xoaDuLieu">
@@ -237,16 +186,12 @@
         <Component class="Swing.TableDark" name="tbl_thongTinHoKhau">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="0">
+              <Table columnCount="5" rowCount="0">
                 <Column editable="false" title="M&#xe3; H&#x1ed9; Kh&#x1ea9;u" type="java.lang.Object"/>
                 <Column editable="false" title="M&#xe3; Khai Sinh" type="java.lang.Object"/>
                 <Column editable="false" title="S&#x1ed1; CCCD" type="java.lang.Object"/>
                 <Column editable="false" title="H&#x1ecd; T&#xea;n" type="java.lang.Object"/>
-                <Column editable="false" title="Ng&#xe0;y Sinh" type="java.lang.Object"/>
-                <Column editable="false" title="Gi&#x1edb;i T&#xed;nh" type="java.lang.Object"/>
                 <Column editable="false" title="&#x110;&#x1ecb;a Ch&#x1ec9;" type="java.lang.Object"/>
-                <Column editable="false" title="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i" type="java.lang.Object"/>
-                <Column editable="false" title="Email" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -271,27 +216,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -299,7 +224,7 @@
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
           <Events>
@@ -363,6 +288,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="Swing.TextField" name="tf_soCCCD">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

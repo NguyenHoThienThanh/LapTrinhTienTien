@@ -29,8 +29,7 @@ public class HoKhauDAOImpl implements IHoKhauDAO {
         String query = "select HoKhau.ID, HoKhau.MaHK, KhaiSinh.MaKS,CCCD, HoTen,NgaySinh,  GioiTinh,  DiaChi, SDT, Email, HoKhau.TrangThai  from QuanHe "
                 + "inner join KhaiSinh on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia "
                 + "inner join CongDan on KhaiSinh.MaKS = CongDan.MaKS "
-                + "inner join HoKhau on HoKhau.MaHK = QuanHe.MaHK and HoKhau.TrangThai =1 "
-                + "order by MaHK ASC";
+                + "inner join HoKhau on HoKhau.MaHK = QuanHe.MaHK and HoKhau.TrangThai =1 order by HoKhau.ID";
         List<HoKhauModel> listHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();

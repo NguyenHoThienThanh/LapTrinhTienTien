@@ -132,10 +132,10 @@ public class HoKhauServiceImpl implements IHoKhauService {
             return -1;
         }
     }
-    
+
     @Override
     public HoKhauModel findOneByMaKS(String MaKS) {
-        String query = "select HoKhau.ID, HoKhau.MaHK, KhaiSinh.MaKS, CCCD, HoTen,NgaySinh,  GioiTinh,  DiaChi, SDT, Email, HoKhau.TrangThai   from QuanHe  "
+        String query = "select HoKhau.ID, HoKhau.MaHK, KhaiSinh.MaKS, CCCD, HoTen,NgaySinh,  GioiTinh,  DiaChi, SDT, Email, HoKhau.TrangThai, QuanHeVoiChuHo   from QuanHe  "
                 + "inner join KhaiSinh on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia  "
                 + "inner join CongDan on KhaiSinh.MaKS = CongDan.MaKS "
                 + "inner join HoKhau on HoKhau.MaHK = QuanHe.MaHK and HoKhau.TrangThai =1 "
@@ -164,6 +164,55 @@ public class HoKhauServiceImpl implements IHoKhauService {
 
         }
         return hoKhau;
+    }
+
+    @Override
+    public List<HoKhauModel> findAllHK() {
+        String query = "  select HoKhau.ID, MaHK, HoTenKS, CCCD, DiaChi, KhaiSinhChuHo, HoKhau.TrangThai from HoKhau "
+                + "  inner join KhaiSinh on HoKhau.KhaiSinhChuHo = KhaiSinh.MaKS "
+                + "  inner join CongDan on KhaiSinh.MaKS = CongDan.MaKS"
+                + "  and HoKhau.TrangThai = 1 order by HoKhau.ID ASC";
+        List<HoKhauModel> listHoKhau = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                HoKhauModel tthk = new HoKhauModel();
+                tthk.setID(rs.getInt(1));
+                tthk.setMaHK(rs.getString(2));
+                tthk.setHoTen(rs.getString(3));
+                tthk.setSoCCCD(rs.getString(4));
+                tthk.setDiaChi(rs.getString(5));
+                tthk.setKhaiSinhChuHo(rs.getString(6));
+                tthk.setTrangThai(rs.getInt(7));
+                listHoKhau.add(tthk);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return listHoKhau;
+    }
+
+    @Override
+    public int ifExists(String MaHK) {
+        String query = "  select count(*) SoLuong from HoKhau "
+                + "  Where MaHK = ? ";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, MaHK);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 }
