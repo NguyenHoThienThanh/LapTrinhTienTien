@@ -23,7 +23,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     @Override
     public List<CongDanModel> findAll() {
-        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS order by cd.MaKS ASC";
+        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS";
         List<CongDanModel> listCongDan = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -42,12 +42,12 @@ public class CongDanDAOImpl implements ICongDanDAO {
                 congDan.setSDT(rs.getString(9));
                 congDan.setEmail(rs.getString(10));
                 congDan.setTrangThai(rs.getInt(11));
-
+                
                 listCongDan.add(congDan);
             }
             conn.close();
         } catch (Exception e) {
-            e.printStackTrace();
+e.printStackTrace();
         }
         return listCongDan;
     }
@@ -55,32 +55,32 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "select CCCD, CongDan.HoTen, NcCccd, NgcCccd, CongDan.MaKS, SDT, Email, CongDan.TrangThai, GioiTinh, NgaySinh from CongDan "
-                + "inner join KhaiSinh On CongDan.MaKS = KhaiSinh.MaKS and CongDan.TrangThai =1 and CongDan.CCCD = ?";
-        try {
+        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS where cd.CCCD=?";
+        try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, CCCD);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            while(rs.next()){
                 congDan.setCCCD(rs.getString(1));
                 congDan.setHoTen(rs.getString(2));
-                congDan.setNcCccd(rs.getString(3));
-                congDan.setNgcCccd(rs.getDate(4));
-                congDan.setMaKS(rs.getString(5));
-                congDan.setSDT(rs.getString(6));
-                congDan.setEmail(rs.getString(7));
-                congDan.setTrangThai(rs.getInt(8));
-                congDan.setGioiTinh(rs.getString(9));
-                congDan.setNgaySinh(rs.getDate(10));
-
+                congDan.setNgaySinh(rs.getDate(3));
+                congDan.setGioiTinh(rs.getString(4));
+                congDan.setNoiSinh(rs.getString(5));
+                congDan.setNcCccd(rs.getString(6));
+                congDan.setNgcCccd(rs.getDate(7));
+                congDan.setMaKS(rs.getString(8));
+                congDan.setSDT(rs.getString(9));
+                congDan.setEmail(rs.getString(10));
+                congDan.setTrangThai(rs.getInt(11));
+                
             }
             conn.close();
-        } catch (Exception ex) {
-
-        }
+        }catch(Exception ex){
+            
+        } 
         return congDan;
-
+        
     }
 
     @Override
@@ -99,7 +99,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
             ps.setInt(8, model.getTrangThai());
             ps.executeUpdate();
             conn.close();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return false;
         }
         return true;
@@ -108,7 +108,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public boolean update(CongDanModel model) {
         String query = "update CongDan set HoTen=?, NcCccd=?, NgcCccd=?, MaKS=?, SDT=?, Email=?, TrangThai=? where CCCD=?";
-        try {
+        try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, model.getHoTen());
@@ -121,7 +121,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
             ps.setString(8, model.getCCCD());
             ps.executeUpdate();
             conn.close();
-        } catch (Exception e) {
+        }catch(Exception e){
             return false;
         }
         return true;
@@ -129,15 +129,16 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     @Override
     public boolean delete(String CCCD) {
-        String query = "Update CongDan set TrangThai = 0 where CCCD = ?";
-        try {
+        String query = "Delete CongDan where CCCD = ?";
+        try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, CCCD);
             ps.executeUpdate();
-        } catch (Exception e) {
+        }catch(Exception e){
             return false;
         }
         return true;
     }
+
 }
