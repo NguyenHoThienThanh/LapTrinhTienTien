@@ -1,20 +1,43 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Controller.User;
 
-/**
- *
- * @author Acer
- */
+import Controller.Admin.*;
+import Controller.Admin.Login_RegisterController.AppContext;
+import InterfaceService.ICongDanService;
+import InterfaceService.IDangNhapService;
+import Menu.MenuEvent;
+import Models.CongDanModel;
+import Models.DangNhapModel;
+import ServiceImplement.CongDanServiceImpl;
+import ServiceImplement.DangNhapServiceImpl;
+import java.awt.Component;
+
+
 public class HomeControllerUser extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomeControllerUser
-     */
     public HomeControllerUser() {
         initComponents();
+        showForm(new ThongTinCongDanControllerUser());
+        menuUser.setMenuEvent(new MenuEvent() {
+            @Override
+            public void selected(int index, int subIndex) {
+           
+               if (index == 0 && subIndex == 1) {
+                    return;
+                } else  
+               if (index == 1 && subIndex == 1) {
+                    showForm(new HoKhauControllerUser());
+                } else if(index == 2){
+                    showForm(new TraCuuDonController());
+                }
+            }
+        });
+    }
+
+    private void showForm(Component com) {
+        panel.removeAll();
+        panel.add(com);
+        panel.repaint();
+        panel.revalidate();
     }
 
     /**
@@ -26,20 +49,68 @@ public class HomeControllerUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scrollPaneWin111 = new Swing.ScrollPaneWin11();
+        menuUser = new Menu.MenuUser();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        panel = new Swing.PanelRound();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
+
+        scrollPaneWin111.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPaneWin111.setBorder(null);
+        scrollPaneWin111.setViewportView(menuUser);
+
+        header.setBackground(new java.awt.Color(21, 110, 71));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("THÔNG TIN CÔNG DÂN");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addGap(0, 875, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+
+        panel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -68,6 +139,13 @@ public class HomeControllerUser extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HomeControllerUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -78,5 +156,10 @@ public class HomeControllerUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
+    private Menu.MenuUser menuUser;
+    private Swing.PanelRound panel;
+    private Swing.ScrollPaneWin11 scrollPaneWin111;
     // End of variables declaration//GEN-END:variables
 }
