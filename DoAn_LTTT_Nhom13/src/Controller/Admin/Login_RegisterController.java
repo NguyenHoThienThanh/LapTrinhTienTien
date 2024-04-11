@@ -314,21 +314,23 @@ public class Login_RegisterController extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public class AppContext {
+        public static String userName;
+        public static String password;
+    }
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
-        DangNhapModel model = dangNhapService.findOne(tf_username.getText());
-        System.out.println(model.getQuyen());        
+        DangNhapModel model = dangNhapService.findOne(tf_username.getText());       
         if (!animatorLogin.isRunning()) {
-            String username = tf_username.getText().trim();
-            String password = String.valueOf(tf_password.getPassword());
+            AppContext.userName = tf_username.getText().trim();
+            AppContext.password = String.valueOf(tf_password.getPassword());
             boolean action = true;
-            if (username.equals("")) {
+            if (AppContext.userName.equals("")) {
                 tf_username.setHelperText("Please input user name");
                 tf_username.grabFocus();
                 action = false;
             }
-            if (password.equals("")) {
+            if (AppContext.password.equals("")) {
                 tf_password.setHelperText("Please input password");
                 if (action) {
                     tf_password.grabFocus();
