@@ -16,7 +16,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,123,0,0,3,120"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,51,0,0,3,-106"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
@@ -157,13 +157,13 @@
                               <Component id="btn_dontamtru" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="btn_dontamvang" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_thongtincongdan" alignment="3" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="btn_donlyhon" alignment="3" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="btn_giaychungtu" alignment="3" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="407" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -334,7 +334,7 @@
                       <Color blue="b0" green="b0" red="b0" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Image/email-heart-outline-custom (1).png"/>
+                      <Image iconType="3" name="/Image/email-heart-outline-custom.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n k&#x1ebf;t h&#xf4;n"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -431,7 +431,7 @@
                           <Component id="tf_diachihk" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="122" max="-2" attributes="0"/>
-                          <EmptySpace pref="372" max="32767" attributes="0"/>
+                          <EmptySpace pref="300" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -547,7 +547,7 @@
                               <Component id="tf_coquanthue" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tf_ngaythaydoithongtin" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="567" max="32767" attributes="0"/>
+                          <EmptySpace pref="495" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -608,6 +608,14 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelGCNKH">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[918, 539]"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card3"/>
@@ -617,63 +625,56 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="tf_noicutrucuachong" pref="164" max="32767" attributes="0"/>
+                      <Component id="tf_hotenchong" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tf_hotenvo" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="tf_macnkh" min="-2" pref="152" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="tf_ngaydangky" min="-2" pref="191" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="tf_noidangky" min="-2" pref="334" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tf_hotenchong" min="-2" pref="345" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="tf_ngaysinhchong" min="-2" pref="159" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="tf_quoctichchong" min="-2" pref="149" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tf_giaytotuythanchong" min="-2" pref="168" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="tf_dantocchong" min="-2" pref="159" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="tf_noicutrucuachong" alignment="0" min="-2" pref="333" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tf_noicutrucuavo" min="-2" pref="363" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tf_giaytotuythanvo" min="-2" pref="152" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="tf_dantocvo" min="-2" pref="185" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="tf_hotenvo" min="-2" pref="363" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tf_ngaysinhvo" min="-2" pref="185" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="tf_quoctichvo" min="-2" pref="152" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tf_giaytotuythanvo" pref="143" max="32767" attributes="0"/>
+                              <Component id="tf_giaytotuythanchong" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tf_ngaysinhchong" pref="156" max="32767" attributes="0"/>
+                              <Component id="tf_ngaysinhvo" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tf_quoctichchong" pref="139" max="32767" attributes="0"/>
+                              <Component id="tf_quoctichvo" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tf_dantocchong" pref="159" max="32767" attributes="0"/>
+                              <Component id="tf_dantocvo" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_backFromGCNKHToDon" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="777" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="tf_noicutrucuavo" min="-2" pref="163" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tf_macnkh" pref="101" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tf_ngaydangky" min="-2" pref="131" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tf_noidangky" min="-2" pref="206" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="93" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane6" min="-2" pref="876" max="-2" attributes="0"/>
+                      <Component id="btn_backFromGCNKHToDon" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -682,81 +683,40 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="btn_backFromGCNKHToDon" min="-2" pref="29" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tf_hotenchong" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_hotenvo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tf_ngaysinhchong" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_quoctichchong" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_ngaysinhvo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_quoctichvo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tf_giaytotuythanchong" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_dantocchong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tf_giaytotuythanvo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hotenvo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngaysinhvo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_quoctichvo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_dantocvo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tf_noicutrucuavo" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_noicutrucuachong" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_noicutrucuachong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_noicutrucuavo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_macnkh" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_ngaydangky" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_noidangky" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="133" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane6" min="-2" pref="201" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="tbl_cnkh">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="15" rowCount="0">
-                    <Column editable="true" title="M&#xe3; CNKH" type="java.lang.Object"/>
-                    <Column editable="true" title="Gi&#x1ea5;y t&#x1edd; t&#xf9;y th&#xe2;n v&#x1ee3;" type="java.lang.Object"/>
-                    <Column editable="true" title="H&#x1ecd; t&#xea;n v&#x1ee3;" type="java.lang.Object"/>
-                    <Column editable="true" title="Ng&#xe0;y sinh v&#x1ee3;" type="java.lang.Object"/>
-                    <Column editable="true" title="D&#xe2;n t&#x1ed9;c v&#x1ee3;" type="java.lang.Object"/>
-                    <Column editable="true" title="Qu&#x1ed1;c t&#x1ecb;ch v&#x1ee3;" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#x1a1;i tr&#xfa; v&#x1ee3;" type="java.lang.Object"/>
-                    <Column editable="true" title="Gi&#x1ea5;y t&#x1edd; t&#xf9;y th&#xe2;n ch&#x1ed3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="H&#x1ecd; t&#xea;n ch&#x1ed3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="Ng&#xe0;y sinh ch&#x1ed3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="D&#xe2;n t&#x1ed9;c ch&#x1ed3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="Qu&#x1ed1;c t&#x1ecb;ch ch&#x1ed3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#x1a1;i c&#x1b0; tr&#xfa; ch&#x1ed3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="Ng&#xe0;y &#x111;&#x103;ng k&#xed; k&#x1ebf;t h&#xf4;n" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#x1a1;i &#x111;&#x103;ng k&#xfd; k&#x1ebf;t h&#xf4;n" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_cnkhMouseClicked"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="button.MyButton" name="btn_backFromGCNKHToDon">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -764,9 +724,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Image/previous.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Back"/>
             <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -825,6 +782,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; &#x111;&#x1a1;n"/>
           </Properties>
         </Component>
@@ -871,9 +834,58 @@
             <Property name="labelText" type="java.lang.String" value="M&#xe3; CNKH"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="Swing.TableDark" name="tbl_cnkh">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="15" rowCount="0">
+                    <Column editable="false" title="M&#xe3; CNKH" type="java.lang.Object"/>
+                    <Column editable="false" title="Gi&#x1ea5;y t&#x1edd; t&#xf9;y th&#xe2;n v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="false" title="H&#x1ecd; t&#xea;n v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="false" title="Ng&#xe0;y sinh v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="false" title="D&#xe2;n t&#x1ed9;c v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="false" title="Qu&#x1ed1;c t&#x1ecb;ch v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="false" title="N&#x1a1;i c&#x1b0; tr&#xfa; v&#x1ee3;" type="java.lang.Object"/>
+                    <Column editable="false" title="Gi&#x1ea5;y t&#x1edd; t&#xf9;y th&#xe2;n ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="H&#x1ecd; t&#xea;n ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="Ng&#xe0;y sinh ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="D&#xe2;n t&#x1ed9;c ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="Qu&#x1ed1;c t&#x1ecb;ch ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="N&#x1a1;i c&#x1b0; tr&#xfa; ch&#x1ed3;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="Ng&#xe0;y &#x111;&#x103;ng k&#xfd; k&#x1ebf;t h&#xf4;n" type="java.lang.Object"/>
+                    <Column editable="false" title="N&#x1a1;i &#x111;&#x103;ng k&#xfd; k&#x1ebf;t h&#xf4;n" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="preferredScrollableViewportSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[450, 100]"/>
+                </Property>
+                <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_cnkhMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelTT">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card4"/>
@@ -927,12 +939,12 @@
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" alignment="0" min="-2" pref="763" max="-2" attributes="0"/>
                               <Component id="btn_backFromTTToDon" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="777" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="101" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -967,8 +979,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1058,6 +1070,9 @@
                     <Column editable="true" title="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[450, 400]"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_tamtruMouseClicked"/>
@@ -1115,7 +1130,7 @@
                           <Component id="btn_backFromGCTToDon" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="169" max="32767" attributes="0"/>
+                  <EmptySpace pref="199" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1140,7 +1155,7 @@
                       <Component id="tf_noimat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_lydogct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="628" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1192,6 +1207,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelKS">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card6"/>
@@ -1243,7 +1263,7 @@
                                   <Component id="tf_ngaydangkyks" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                                  <EmptySpace pref="221" max="32767" attributes="0"/>
                                   <Component id="tf_noidangkyks" min="-2" pref="217" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1284,7 +1304,7 @@
                       <Component id="tf_quanhe" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_noidangkyks" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="544" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1432,7 +1452,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1468,7 +1488,7 @@
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="330" max="-2" attributes="0"/>
-                  <EmptySpace pref="158" max="32767" attributes="0"/>
+                  <EmptySpace pref="86" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1598,6 +1618,9 @@
     </Container>
     <Container class="javax.swing.JPanel" name="panelTTCD">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[883, 832]"/>
         </Property>
@@ -1649,7 +1672,7 @@
                           <Component id="btn_backFromTTCDToDon" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="164" max="32767" attributes="0"/>
+                  <EmptySpace pref="194" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1681,7 +1704,7 @@
                       <Component id="tf_sodienthoai" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="537" max="32767" attributes="0"/>
+                  <EmptySpace pref="465" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1753,6 +1776,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelLH">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card9"/>
@@ -1805,7 +1833,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="167" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1841,7 +1869,7 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="78" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
