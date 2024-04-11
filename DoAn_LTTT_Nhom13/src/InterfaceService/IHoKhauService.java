@@ -22,4 +22,6 @@ public interface IHoKhauService {
     ThongTinHoKhau findOneByCCCD(String CCCD);
     int existsHoKhauOrNot(String CCCD);
     HoKhauModel findOneByMaKS(String MaKS);
+    List<HoKhauModel> findAllHK();
+    int ifExists(String MaHK);
 }
