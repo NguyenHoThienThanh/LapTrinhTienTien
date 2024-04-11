@@ -234,107 +234,121 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setBackground(new java.awt.Color(255, 255, 255));
 
         tf_timkiem.setLabelText("Nhập CCCD");
-        tf_timkiem.setLineColor(new java.awt.Color(255, 0, 51));
+        tf_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_timkiemActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Quản lý đơn");
 
-        tabbedPaneCustom1.setSelectedColor(new java.awt.Color(153, 0, 255));
+        tabbedPaneCustom1.setSelectedColor(new java.awt.Color(21, 110, 71));
 
         panelXemDon.setBackground(new java.awt.Color(255, 255, 255));
         panelXemDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
 
-        btn_donkhaisinh.setBackground(new java.awt.Color(176, 176, 176));
-        btn_donkhaisinh.setForeground(new java.awt.Color(255, 255, 255));
+        btn_donkhaisinh.setForeground(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/baby-face-outline-custom.png"))); // NOI18N
         btn_donkhaisinh.setText("Đơn khai sinh");
         btn_donkhaisinh.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_donkhaisinh.setColor(new java.awt.Color(176, 176, 176));
-        btn_donkhaisinh.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_donkhaisinh.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_donkhaisinh.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_donkhaisinh.setColorOver(new java.awt.Color(255, 255, 255));
         btn_donkhaisinh.setEnabled(false);
+        btn_donkhaisinh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_donkhaisinh.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_donkhaisinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_donkhaisinhActionPerformed(evt);
             }
         });
 
-        btn_dontamtru.setBackground(new java.awt.Color(176, 176, 176));
-        btn_dontamtru.setForeground(new java.awt.Color(255, 255, 255));
+        btn_dontamtru.setForeground(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/home-plus-custom.png"))); // NOI18N
         btn_dontamtru.setText("Đơn tạm trú");
         btn_dontamtru.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_dontamtru.setColor(new java.awt.Color(176, 176, 176));
-        btn_dontamtru.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_dontamtru.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_dontamtru.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_dontamtru.setColorOver(new java.awt.Color(255, 255, 255));
         btn_dontamtru.setEnabled(false);
+        btn_dontamtru.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_dontamtru.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_dontamtru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_dontamtruActionPerformed(evt);
             }
         });
 
-        btn_dontamvang.setBackground(new java.awt.Color(176, 176, 176));
-        btn_dontamvang.setForeground(new java.awt.Color(255, 255, 255));
+        btn_dontamvang.setForeground(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/home-minus-custom.png"))); // NOI18N
         btn_dontamvang.setText("Đơn tạm vắng");
         btn_dontamvang.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_dontamvang.setColor(new java.awt.Color(176, 176, 176));
-        btn_dontamvang.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_dontamvang.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_dontamvang.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_dontamvang.setColorOver(new java.awt.Color(255, 255, 255));
         btn_dontamvang.setEnabled(false);
+        btn_dontamvang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_dontamvang.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_dontamvang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_dontamvangActionPerformed(evt);
             }
         });
 
-        btn_thongtincongdan.setBackground(new java.awt.Color(176, 176, 176));
-        btn_thongtincongdan.setForeground(new java.awt.Color(255, 255, 255));
+        btn_thongtincongdan.setForeground(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/account-circle-custom.png"))); // NOI18N
         btn_thongtincongdan.setText("Thông tin công dân");
         btn_thongtincongdan.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_thongtincongdan.setColor(new java.awt.Color(176, 176, 176));
-        btn_thongtincongdan.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_thongtincongdan.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_thongtincongdan.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_thongtincongdan.setColorOver(new java.awt.Color(255, 255, 255));
         btn_thongtincongdan.setEnabled(false);
+        btn_thongtincongdan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_thongtincongdan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_thongtincongdan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_thongtincongdanActionPerformed(evt);
             }
         });
 
-        btn_donlyhon.setBackground(new java.awt.Color(176, 176, 176));
-        btn_donlyhon.setForeground(new java.awt.Color(255, 255, 255));
+        btn_donlyhon.setForeground(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/heart-broken-custom.png"))); // NOI18N
         btn_donlyhon.setText("Đơn ly hôn");
         btn_donlyhon.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_donlyhon.setColor(new java.awt.Color(176, 176, 176));
-        btn_donlyhon.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_donlyhon.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_donlyhon.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_donlyhon.setColorOver(new java.awt.Color(255, 255, 255));
         btn_donlyhon.setEnabled(false);
+        btn_donlyhon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_donlyhon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_donlyhon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_donlyhonActionPerformed(evt);
             }
         });
 
-        btn_giaychungtu.setBackground(new java.awt.Color(176, 176, 176));
-        btn_giaychungtu.setForeground(new java.awt.Color(255, 255, 255));
+        btn_giaychungtu.setForeground(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/emoticon-dead-custom.png"))); // NOI18N
         btn_giaychungtu.setText("Giấy chứng tử");
         btn_giaychungtu.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_giaychungtu.setColor(new java.awt.Color(176, 176, 176));
-        btn_giaychungtu.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_giaychungtu.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_giaychungtu.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_giaychungtu.setColorOver(new java.awt.Color(255, 255, 255));
         btn_giaychungtu.setEnabled(false);
+        btn_giaychungtu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_giaychungtu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_giaychungtu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_giaychungtuActionPerformed(evt);
             }
         });
 
-        btn_donkethon.setBackground(new java.awt.Color(176, 176, 176));
-        btn_donkethon.setForeground(new java.awt.Color(255, 255, 255));
+        btn_donkethon.setBorder(null);
+        btn_donkethon.setForeground(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/email-heart-outline-custom (1).png"))); // NOI18N
         btn_donkethon.setText("Đơn kết hôn");
+        btn_donkethon.setToolTipText("");
         btn_donkethon.setBorderColor(new java.awt.Color(176, 176, 176));
-        btn_donkethon.setColor(new java.awt.Color(176, 176, 176));
-        btn_donkethon.setColorClick(new java.awt.Color(176, 176, 176));
-        btn_donkethon.setColorOver(new java.awt.Color(176, 176, 176));
+        btn_donkethon.setColorClick(new java.awt.Color(255, 255, 255));
+        btn_donkethon.setColorOver(new java.awt.Color(255, 255, 255));
         btn_donkethon.setEnabled(false);
+        btn_donkethon.setHideActionText(true);
+        btn_donkethon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_donkethon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btn_donkethon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_donkethonActionPerformed(evt);
@@ -348,15 +362,15 @@ public class TraCuuDonController extends javax.swing.JPanel {
             .addGroup(panelXemDonLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(btn_donkethon, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(51, 51, 51)
                 .addComponent(btn_donkhaisinh, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_dontamtru, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(42, 42, 42)
                 .addComponent(btn_dontamvang, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelXemDonLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(137, Short.MAX_VALUE)
                 .addComponent(btn_thongtincongdan, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(btn_donlyhon, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,17 +382,20 @@ public class TraCuuDonController extends javax.swing.JPanel {
             panelXemDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelXemDonLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(panelXemDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_donkhaisinh, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelXemDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelXemDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_donkethon, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelXemDonLayout.createSequentialGroup()
+                            .addComponent(btn_donkhaisinh, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(42, 42, 42)))
                     .addComponent(btn_dontamtru, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_dontamvang, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_donkethon, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                    .addComponent(btn_dontamvang, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addGroup(panelXemDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_thongtincongdan, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_donlyhon, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_giaychungtu, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         tabbedPaneCustom1.addTab("Xem đơn từ", panelXemDon);
@@ -453,7 +470,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(tf_diachihk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(330, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
         tabbedPaneCustom1.addTab("Hộ khẩu", panelHoKhau);
@@ -495,18 +512,19 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_coquanthue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_ngaythaydoithongtin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addContainerGap(567, Short.MAX_VALUE))
         );
 
         tabbedPaneCustom1.addTab("Thuế", panelThue);
 
-        btn_timkiem.setBackground(new java.awt.Color(255, 0, 0));
+        btn_timkiem.setBackground(new java.awt.Color(21, 110, 71));
         btn_timkiem.setForeground(new java.awt.Color(255, 255, 255));
         btn_timkiem.setText("Search");
-        btn_timkiem.setBorderColor(new java.awt.Color(255, 0, 0));
-        btn_timkiem.setColor(new java.awt.Color(255, 0, 0));
-        btn_timkiem.setColorClick(new java.awt.Color(255, 0, 0));
-        btn_timkiem.setColorOver(new java.awt.Color(255, 0, 0));
+        btn_timkiem.setBorderColor(new java.awt.Color(21, 110, 71));
+        btn_timkiem.setBorderPainted(false);
+        btn_timkiem.setColor(new java.awt.Color(21, 110, 71));
+        btn_timkiem.setColorClick(new java.awt.Color(141, 240, 197));
+        btn_timkiem.setColorOver(new java.awt.Color(61, 212, 146));
         btn_timkiem.setRadius(15);
         btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -665,10 +683,10 @@ public class TraCuuDonController extends javax.swing.JPanel {
                     .addGroup(panelGCNKHLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(panelGCNKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(btn_backFromGCNKHToDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                            .addComponent(btn_backFromGCNKHToDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         panelGCNKHLayout.setVerticalGroup(
             panelGCNKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +722,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(253, 253, 253))
+                .addGap(295, 295, 295))
         );
 
         add(panelGCNKH, "card3");
@@ -824,7 +842,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         add(panelTT, "card4");
@@ -896,7 +914,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_noimat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_lydogct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(586, Short.MAX_VALUE))
+                .addContainerGap(628, Short.MAX_VALUE))
         );
 
         add(panelGCT, "card5");
@@ -1007,7 +1025,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                     .addComponent(tf_cccdnguoikhaisinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_quanhe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_noidangkyks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addContainerGap(544, Short.MAX_VALUE))
         );
 
         add(panelKS, "card6");
@@ -1137,7 +1155,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         add(panelTV, "card7");
@@ -1233,7 +1251,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(495, Short.MAX_VALUE))
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         add(panelTTCD, "card8");
@@ -1351,7 +1369,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         add(panelLH, "card9");
@@ -1579,11 +1597,12 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         // TODO add your handling code here:
         if (tf_timkiem.getText().length() != 12) {
+            setEnabledButton();
             JOptionPane.showMessageDialog(null, "Vui lòng nhập CCCD có đủ 12 kí tự");
             return;
         }
         if (congDanService.checkCCCDExist(tf_timkiem.getText().trim()) == false) {
-            JOptionPane.showMessageDialog(null, congDanService.checkCCCDExist(tf_timkiem.getText().trim()));
+            setEnabledButton();
             JOptionPane.showMessageDialog(null, "Không thể tìm thấy CCCD trên!! Vui lòng nhập lại");
             return;
         }
@@ -1767,6 +1786,10 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelDon.setVisible(true);
     }//GEN-LAST:event_btn_backFromGCTToDonActionPerformed
 
+    private void tf_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_timkiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_timkiemActionPerformed
+
     private void setEnabledButton() {
         tabbedPaneCustom1.setEnabledAt(1, false);
         tabbedPaneCustom1.setEnabledAt(2, false);
@@ -1792,18 +1815,20 @@ public class TraCuuDonController extends javax.swing.JPanel {
         listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
         if (listDonChungNhanKetHon.isEmpty()) {
             btn_donkethon.setEnabled(false);
-            btn_donkethon.setBackground(new Color(176, 176, 176));
-            btn_donkethon.setColor(new Color(176, 176, 176));
+            btn_donkethon.setForeground(new Color(176, 176, 176));
+            btn_donkethon.setBackground(new Color(255,255,255));
+            btn_donkethon.setColor(new Color(255,255,255));
             btn_donkethon.setBorderColor(new Color(176, 176, 176));
-            btn_donkethon.setColorClick(new Color(176, 176, 176));
-            btn_donkethon.setColorOver(new Color(176, 176, 176));
+            btn_donkethon.setColorClick(new Color(255,255,255));
+            btn_donkethon.setColorOver(new Color(255,255,255));
         }else if(!listDonChungNhanKetHon.isEmpty()){
             btn_donkethon.setEnabled(true);
-            btn_donkethon.setColor(new Color(255,0,0));
-            btn_donkethon.setBackground(new Color(255,0,0));
-            btn_donkethon.setBorderColor(new Color(255,0,0));
-            btn_donkethon.setColorClick(new Color(255,204,204));
-            btn_donkethon.setColorOver(new Color(255,153,153));
+            btn_donkethon.setColor(new Color(255,255,255));
+            btn_donkethon.setForeground(new Color(21,110,71));
+            btn_donkethon.setBackground(new Color(255,255,255));
+            btn_donkethon.setBorderColor(new Color(21,110,71));
+            btn_donkethon.setColorClick(new Color(156, 247, 218));
+            btn_donkethon.setColorOver(new Color(188, 247, 228));
         }
         
         khaiSinhModel = khaiSinhService.findByCCCD(tf_timkiem.getText().trim());

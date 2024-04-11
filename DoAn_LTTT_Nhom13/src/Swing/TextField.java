@@ -53,7 +53,7 @@ public class TextField extends JTextField {
     private String labelText = "Label";
     private String helperText = "";
     private int spaceHelperText = 15;
-    private Color lineColor = new Color(3, 155, 216);
+    private Color lineColor = new Color(21, 110, 71);
 
     public TextField() {
         setBorder(new EmptyBorder(20, 3, 23, 3));

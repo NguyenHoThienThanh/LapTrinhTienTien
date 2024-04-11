@@ -89,16 +89,16 @@ public class TableDark extends JTable {
             Component com = super.getTableCellRendererComponent(jtable, o, bln, bln1, row, column);
             if (isCellSelected(row, column)) {
                 if (row % 2 == 0) {
-                    com.setBackground(new Color(33, 103, 153));
+                    com.setBackground(new Color(151, 207, 247));
                     com.setForeground(new Color(255, 255, 255));
                 } else {
-                    com.setBackground(new Color(29, 86, 127));
+                    com.setBackground(new Color(151, 207, 247));
                     com.setForeground(new Color(255, 255, 255));
                 }
             } else {
                 if (row % 2 == 0) {
-                    com.setBackground(new Color(105, 105, 105));
-                    com.setForeground(new Color(255, 255, 255));
+                    com.setBackground(new Color(213, 240, 221));
+                    com.setForeground(new Color(30, 30, 30));
                 } else {
                     com.setBackground(new Color(255, 255, 255));
                     com.setForeground(new Color(30, 30, 30));
