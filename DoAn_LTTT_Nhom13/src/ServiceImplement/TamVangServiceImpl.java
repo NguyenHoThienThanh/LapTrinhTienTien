@@ -96,4 +96,24 @@ public class TamVangServiceImpl implements ITamVangService{
         return listDonTamVang;
     }
     
+    @Override
+    public int ifExists(String CCCD) {
+        String query = "select count(*) as SoLuong  "
+                + "from Tamvang where Cccd = ?  "
+                + "and TrangThai = 1";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, CCCD);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    
 }

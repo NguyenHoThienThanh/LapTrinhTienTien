@@ -21,13 +21,17 @@ public class TamVangModel {
     private Date Ngayve;
     private String Lydo;
     private int TrangThai;
+    private String HoTen;
+    private Date NgaySinh;
+    private String NoiCapCCCD;
+    private Date NgayCapCCCD;
 
     // Constructor
     public TamVangModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public TamVangModel(int ID, String MaTV, String CCCD, Date Ngaydk, String Ncdi, String Ncden, Date Ngaydi, Date Ngayve, String Lydo, int TrangThai) {
+    public TamVangModel(int ID, String MaTV, String CCCD, Date Ngaydk, String Ncdi, String Ncden, Date Ngaydi, Date Ngayve, String Lydo, int TrangThai, String HoTen, Date NgaySinh, String NoiCapCCCD, Date NgayCapCCCD) {
         this.ID = ID;
         this.MaTV = MaTV;
         this.CCCD = CCCD;
@@ -38,7 +42,13 @@ public class TamVangModel {
         this.Ngayve = Ngayve;
         this.Lydo = Lydo;
         this.TrangThai = TrangThai;
+        this.HoTen = HoTen;
+        this.NgaySinh = NgaySinh;
+        this.NoiCapCCCD = NoiCapCCCD;
+        this.NgayCapCCCD = NgayCapCCCD;
     }
+
+    
 
     // Getters and setters
     public int getID() {
@@ -120,4 +130,38 @@ public class TamVangModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
+
+    public String getNoiCapCCCD() {
+        return NoiCapCCCD;
+    }
+
+    public void setNoiCapCCCD(String NoiCapCCCD) {
+        this.NoiCapCCCD = NoiCapCCCD;
+    }
+
+    public Date getNgayCapCCCD() {
+        return NgayCapCCCD;
+    }
+
+    public void setNgayCapCCCD(Date NgayCapCCCD) {
+        this.NgayCapCCCD = NgayCapCCCD;
+    }
+    
+    
 }
