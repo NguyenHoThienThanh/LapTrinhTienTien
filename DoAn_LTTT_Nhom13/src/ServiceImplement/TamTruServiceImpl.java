@@ -13,14 +13,15 @@ import Models.TamTruModel;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
+
 /**
  *
  * @author Admin
  */
-public class TamTruServiceImpl implements ITamTruService{
-    
+public class TamTruServiceImpl implements ITamTruService {
+
     ITamTruDAO tamTruDAO = new TamTruDAOImpl();
-    
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -62,7 +63,7 @@ public class TamTruServiceImpl implements ITamTruService{
 
     @Override
     public List<DonTamTru> findAllTT(String CCCD) {
-         String query = "select * from Tamtru join CongDan on Tamtru.Cccd = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS Where TamTru.TrangThai = 1 and Tamtru.Cccd = ?";
+        String query = "select * from Tamtru join CongDan on Tamtru.Cccd = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS Where TamTru.TrangThai = 1 and Tamtru.Cccd = ?";
         List<DonTamTru> listDonTamTru = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -91,5 +92,25 @@ public class TamTruServiceImpl implements ITamTruService{
         }
         return listDonTamTru;
     }
-    
+
+    @Override
+    public int ifExists(String CCCD) {
+        String query = "select count(*) as SoLuong  "
+                + "from Tamtru where Cccd = ?  "
+                + "and TrangThai = 1";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, CCCD);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }

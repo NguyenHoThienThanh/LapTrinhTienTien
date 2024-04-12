@@ -23,7 +23,7 @@ public class TamTruDAOImpl implements ITamTruDAO {
 
     @Override
     public List<TamTruModel> findAll() {
-        String query = "select Tamtru.ID, Tamtru.MaTT, Tamtru.CCCD, Tamtru.Ngaydk, Tamtru.Noidk, Tamtru.Ngayden, Tamtru.Ngaydi, Tamtru.Lydo, Tamtru.TrangThai, CongDan.HoTen, KhaiSinh.NgaySinh, KhaiSinh.GioiTinh, CongDan.NcCccd, CongDan.NgcCccd, CongDan.SDT, CongDan.Email from Tamtru  join CongDan  on Tamtru.Cccd = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS join (select datediff(day, Tamtru.Ngaydk, GETDATE()) as Han, MaTT as Ma from Tamtru)Q on Tamtru.MaTT = Q.Ma Where TamTru.TrangThai = 1 and Han <= 730";
+        String query = "select Tamtru.ID, Tamtru.MaTT, Tamtru.CCCD, Tamtru.Ngaydk, Tamtru.Noidk, Tamtru.Ngayden, Tamtru.Ngaydi, Tamtru.Lydo, Tamtru.TrangThai, CongDan.HoTen, KhaiSinh.NgaySinh, KhaiSinh.GioiTinh, CongDan.NcCccd, CongDan.NgcCccd, CongDan.SDT, CongDan.Email from Tamtru  join CongDan  on Tamtru.Cccd = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS join (select datediff(day, Tamtru.Ngaydk, GETDATE()) as Han, MaTT as Ma from Tamtru)Q on Tamtru.MaTT = Q.Ma Where TamTru.TrangThai = 1 and Han <= 730 order by Tamtru.ID ASC";
         List<TamTruModel> listTamTru = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -116,8 +116,7 @@ public class TamTruDAOImpl implements ITamTruDAO {
             ps.setDate(4, (Date) tamTru.getNgaydi());
             ps.setString(5, tamTru.getLydo());
             ps.setInt(6, tamTru.getTrangThai());
-            ps.setString(7, tamTru.getCCCD());
-            ps.setString(8, tamTru.getMaTT());
+            ps.setString(7, tamTru.getMaTT());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {

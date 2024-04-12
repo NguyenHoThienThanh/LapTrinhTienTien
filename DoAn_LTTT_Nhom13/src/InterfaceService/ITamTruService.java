@@ -19,4 +19,5 @@ public interface ITamTruService {
     boolean update(TamTruModel model);
     boolean delete(String maTT);
     List<DonTamTru> findAllTT(String CCCD);
+    int ifExists(String CCCD);
 }

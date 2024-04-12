@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-
 public class ThongTinCongDanController extends javax.swing.JPanel {
 
     DefaultTableModel model;
@@ -43,7 +42,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -325,14 +323,14 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                         jMsg.setModal(true);
                         jMsg.setVisible(true);
                     } else {
-                        JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsgFail = msgFail.createDialog(null);
                         jMsgFail.setModal(true);
                         jMsgFail.setVisible(true);
                     }
 
                 } catch (Exception e) {
-                    JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jMsgFail = msgFail.createDialog(null);
                     jMsgFail.setModal(true);
                     jMsgFail.setVisible(true);
@@ -487,11 +485,20 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        tf_noiCapCCCD.setEditable(true);
-        tf_ngayCapCCCD.setEditable(true);
-        tf_email.setEditable(true);
-        tf_soDienThoai.setEditable(true);
-        tf_maKhaiSinh.setEditable(false);
+        if (tbl_thongTinCongDan.getSelectedRow() < 0) {
+            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+            tf_noiCapCCCD.setEditable(true);
+            tf_ngayCapCCCD.setEditable(true);
+            tf_email.setEditable(true);
+            tf_soDienThoai.setEditable(true);
+            tf_maKhaiSinh.setEditable(false);
+        }
+
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
@@ -553,7 +560,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String dateStr = sdf.format(utilDate);
                 if (new CongDanServiceImpl().update(congDan)) {
-                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -564,7 +571,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     model.setValueAt(tf_email.getText(), selectedRow, 9);
                     model.fireTableDataChanged();
                 } else {
-                    JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -671,7 +678,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         int years = today.getYear() - ngaySinh.getYear();
 
         if (ngaySinh.getMonth() == Month.FEBRUARY && ngaySinh.getDayOfMonth() == 29) {
-            
+
             if (!today.getMonth().equals(Month.FEBRUARY) || today.getDayOfMonth() != 29) {
                 years--;
             }
@@ -689,7 +696,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }
 
     public static boolean isDateValid_1(String ngayStr) {
-       
+
         if (!ngayStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
             return false;
         }

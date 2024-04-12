@@ -4,16 +4,27 @@
  */
 package Controller.Admin;
 
+import InterfaceDAO.ICongDanDAO;
+import InterfaceService.ICongDanService;
 import InterfaceService.ITamTruService;
+import Models.CongDanModel;
 import Models.TamTruModel;
+import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.TamTruServiceImpl;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author TUAN
- */
 public class TamTruController extends javax.swing.JPanel {
 
     DefaultTableModel model;
@@ -24,14 +35,14 @@ public class TamTruController extends javax.swing.JPanel {
         initComponents();
         listTamTru = tamTruService.findAll();
         model = (DefaultTableModel) tbl_thongTinTamTru.getModel();
-        
+        tbl_thongTinTamTru.fixTable(jScrollPane2);
         showTable();
-
+        disableTextField();
     }
 
     private void showTable() {
         for (TamTruModel tamTru : listTamTru) {
-            model.addRow(new Object[]{tamTru.getMaTT(),tamTru.getNgaydk(), tamTru.getNgayden(), tamTru.getNgaydi(),tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getGioiTinh(), tamTru.getCCCD(),    tamTru.getNcCccd(), tamTru.getNgcCccd(), tamTru.getLydo(), tamTru.getSDT(), tamTru.getEmail()});
+            model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgaydk(), tamTru.getNoidk(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getCCCD(), tamTru.getNgcCccd(), tamTru.getNcCccd(), tamTru.getNgaydi(), tamTru.getNgayden(), tamTru.getLydo(), tamTru.getSDT(), tamTru.getEmail()});
         }
     }
 
@@ -45,7 +56,7 @@ public class TamTruController extends javax.swing.JPanel {
     private void initComponents() {
 
         tf_hoTen = new Swing.TextField();
-        tf_gioiTinh = new Swing.TextField();
+        tf_noiDangKy = new Swing.TextField();
         tf_noiCapCCCD = new Swing.TextField();
         tf_soCCCD = new Swing.TextField();
         tf_email = new Swing.TextField();
@@ -54,8 +65,6 @@ public class TamTruController extends javax.swing.JPanel {
         tf_ngayCapCCCD = new Swing.TextField();
         tf_soDienThoai = new Swing.TextField();
         tf_ngaySinh = new Swing.TextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_thongTinTamTru = new javax.swing.JTable();
         btn_them = new Swing.Button();
         btn_sua = new Swing.Button();
         btn_xoa = new Swing.Button();
@@ -64,12 +73,17 @@ public class TamTruController extends javax.swing.JPanel {
         tf_lyDo = new Swing.TextField();
         tf_ngayDi = new Swing.TextField();
         tf_ngayDen = new Swing.TextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_thongTinTamTru = new Swing.TableDark();
+        btn_loadData = new button.MyButton();
+        btn_luuThem = new Swing.Button();
+        btn_luuSua = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         tf_hoTen.setLabelText("Họ và tên");
 
-        tf_gioiTinh.setLabelText("Giới tính");
+        tf_noiDangKy.setLabelText("Nơi đăng ký");
 
         tf_noiCapCCCD.setLabelText("Nơi cấp CCCD");
 
@@ -87,49 +101,32 @@ public class TamTruController extends javax.swing.JPanel {
 
         tf_ngaySinh.setLabelText("Ngày sinh");
 
-        tbl_thongTinTamTru.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Mã Tạm Trú", "Ngày Đăng Ký", "Ngày Đến", "Ngày Đi", "Họ Tên", "Ngày Sinh", "Giới Tính", "Số CCCD", "Nơi Cấp CCCD", "Ngày Cấp CCCD", "Lý Do", "Số Điện Thoại", "Email"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbl_thongTinTamTru.setShowGrid(false);
-        tbl_thongTinTamTru.getTableHeader().setReorderingAllowed(false);
-        tbl_thongTinTamTru.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_thongTinTamTruMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbl_thongTinTamTru);
-
         btn_them.setBackground(new java.awt.Color(18, 99, 63));
         btn_them.setForeground(new java.awt.Color(255, 255, 255));
         btn_them.setText("Thêm thông tin");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
 
         btn_sua.setBackground(new java.awt.Color(18, 99, 63));
         btn_sua.setForeground(new java.awt.Color(255, 255, 255));
         btn_sua.setText("Sửa thông tin");
+        btn_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_suaActionPerformed(evt);
+            }
+        });
 
         btn_xoa.setBackground(new java.awt.Color(18, 99, 63));
         btn_xoa.setForeground(new java.awt.Color(255, 255, 255));
         btn_xoa.setText("Xóa thông tin");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
@@ -150,6 +147,57 @@ public class TamTruController extends javax.swing.JPanel {
 
         tf_ngayDen.setLabelText("Ngày đến");
 
+        tbl_thongTinTamTru.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã Tạm Trú", "Ngày Đăng Ký", "Nơi Đăng Ký", "Họ Tên", "Ngày Sinh", "Số CCCD", "Ngày Cấp CCCD", "Nơi Cấp CCCD", "Ngày Đi", "Ngày Đến", "Lý Do", "Số Điện Thoại", "Email"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_thongTinTamTru.getTableHeader().setReorderingAllowed(false);
+        tbl_thongTinTamTru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_thongTinTamTruMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_thongTinTamTru);
+
+        btn_loadData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/icons8-upload-10.png"))); // NOI18N
+        btn_loadData.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn_loadData.setRadius(50);
+        btn_loadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadDataActionPerformed(evt);
+            }
+        });
+
+        btn_luuThem.setBackground(new java.awt.Color(18, 99, 63));
+        btn_luuThem.setForeground(new java.awt.Color(255, 255, 255));
+        btn_luuThem.setText("Lưu thêm");
+        btn_luuThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_luuThemActionPerformed(evt);
+            }
+        });
+
+        btn_luuSua.setBackground(new java.awt.Color(18, 99, 63));
+        btn_luuSua.setForeground(new java.awt.Color(255, 255, 255));
+        btn_luuSua.setText("Lưu sửa");
+        btn_luuSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_luuSuaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,57 +206,67 @@ public class TamTruController extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(289, 289, 289)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2)
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_lyDo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(tf_maTamTru, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(58, 58, 58)))
-                                .addGap(1, 1, 1)
-                                .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(239, 239, 239)
-                                        .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tf_lyDo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(76, 76, 76)
+                                        .addGap(76, 76, 76)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_ngayDen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(24, 24, 24))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tf_ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(tf_ngayDen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(61, 61, 61)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                        .addComponent(tf_noiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(tf_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(25, 25, 25))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(345, 345, 345)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,80 +274,499 @@ public class TamTruController extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_maTamTru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_maTamTru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_lyDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_ngayDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_noiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_thongTinTamTruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinTamTruMouseClicked
         model = (DefaultTableModel) tbl_thongTinTamTru.getModel();
-       
-        tf_maTamTru.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 0).toString());
-        tf_ngayDangKy.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 1).toString());
-        tf_ngayDen.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 2).toString());
-        tf_ngayDi.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 3).toString());
-        tf_hoTen.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 4).toString());
-        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 5).toString());
-        tf_gioiTinh.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 6).toString());
-        tf_soCCCD.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 7).toString());
-        tf_noiCapCCCD.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 8).toString());
-        tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 9).toString());
-        tf_lyDo.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 10).toString());
-        tf_soDienThoai.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 11).toString());
-        tf_email.setText(model.getValueAt(tbl_thongTinTamTru.getSelectedRow(), 12).toString());
+        int selectedRow = tbl_thongTinTamTru.getSelectedRow();
+        tf_maTamTru.setText(model.getValueAt(selectedRow, 0).toString());
+        tf_ngayDangKy.setText(model.getValueAt(selectedRow, 1).toString());
+        tf_noiDangKy.setText(model.getValueAt(selectedRow, 2).toString());
+        tf_hoTen.setText(model.getValueAt(selectedRow, 3).toString());
+        tf_ngaySinh.setText(model.getValueAt(selectedRow, 4).toString());
+        tf_soCCCD.setText(model.getValueAt(selectedRow, 5).toString());
+        tf_ngayCapCCCD.setText(model.getValueAt(selectedRow, 6).toString());
+        tf_noiCapCCCD.setText(model.getValueAt(selectedRow, 7).toString());
+        tf_ngayDi.setText(model.getValueAt(selectedRow, 8).toString());
+        tf_ngayDen.setText(model.getValueAt(selectedRow, 9).toString());
+        tf_lyDo.setText(model.getValueAt(selectedRow, 10).toString());
+        tf_soDienThoai.setText(model.getValueAt(selectedRow, 11).toString());
+        tf_email.setText(model.getValueAt(selectedRow, 12).toString());
+
     }//GEN-LAST:event_tbl_thongTinTamTruMouseClicked
+
+    private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
+        ICongDanService congDanService = new CongDanServiceImpl();
+        try {
+
+            CongDanModel congDan = new CongDanModel();
+            congDan = congDanService.findOne(tf_soCCCD.getText().trim());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            tf_hoTen.setText(congDan.getHoTen());
+            tf_soDienThoai.setText(congDan.getSDT());
+            tf_email.setText(congDan.getEmail());
+            tf_soCCCD.setText(congDan.getCCCD());
+            String ngayCapCCCD = dateFormat.format(congDan.getNgcCccd());
+            tf_ngayCapCCCD.setText(ngayCapCCCD);
+            tf_noiCapCCCD.setText(congDan.getNcCccd());
+            String ngaySinh = dateFormat.format(congDan.getNgaySinh());
+            tf_ngaySinh.setText(ngaySinh);
+
+        } catch (Exception e) {
+            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+        }
+    }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
+
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        if (tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_email.getText().equals("") || tf_soDienThoai.getText().equals("")) {
+            JOptionPane dialog = new JOptionPane("Please enter identity number information and load the data!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+
+            tf_ngayDangKy.setEditable(true);
+            tf_ngayDen.setEditable(true);
+            tf_ngayDi.setEditable(false);
+            tf_lyDo.setEditable(true);
+            tf_noiDangKy.setEditable(true);
+            tf_soCCCD.setEditable(false);
+        }
+
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
+        if (tf_lyDo.getText().equals("") || tf_ngayDen.getText().equals("") || tf_noiDangKy.getText().equals("") || tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_noiCapCCCD.getText().equals("") || tf_ngayCapCCCD.getText().equals("") || tf_soDienThoai.getText().equals("") || tf_email.getText().equals("")) {
+            JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        if(tamTruService.ifExists(tf_soCCCD.getText().trim()) == 1){
+            JOptionPane dialog = new JOptionPane("Công dân này đã đăng ký tạm trú!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+
+        TamTruModel tamTru = new TamTruModel();
+        tamTru.setCCCD(tf_soCCCD.getText().trim());
+        tamTru.setHoTen(tf_hoTen.getText());
+        tamTru.setNcCccd(tf_noiCapCCCD.getText());
+        tamTru.setNoidk(tf_noiDangKy.getText());
+        try {
+            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
+            java.sql.Date sqlDate;
+            sqlDate = new java.sql.Date(utilDate.getTime());
+            tamTru.setNgaySinh(sqlDate);
+        } catch (ParseException ex) {
+            return;
+        }
+
+        try {
+            if (isDateValidPresent(tf_ngayDangKy.getText().trim())) {
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
+                java.sql.Date sqlDate;
+                sqlDate = new java.sql.Date(utilDate.getTime());
+                tamTru.setNgaydk(sqlDate);
+            } else {
+                JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đăng ký!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+
+        } catch (ParseException ex) {
+            return;
+        }
+
+        try {
+            if (isDateValidPresent(tf_ngayDen.getText().trim())) {
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDen.getText().trim());
+                java.sql.Date sqlDate;
+                sqlDate = new java.sql.Date(utilDate.getTime());
+                tamTru.setNgayden(sqlDate);
+            } else {
+                JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đến!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+        } catch (ParseException ex) {
+            return;
+        }
+
+        try {
+            String str = calculateDepartureDate(tf_ngayDen.getText().trim());
+            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(str);
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            tamTru.setNgaydi(sqlDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(TamTruController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        tamTru.setLydo(tf_lyDo.getText());
+        tamTru.setSDT(tf_soDienThoai.getText());
+        tamTru.setEmail(tf_email.getText());
+        tamTru.setTrangThai(1);
+        listTamTru.add(tamTru);
+
+        if (new TamTruServiceImpl().insert(tamTru)) {
+            JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+        } else {
+            JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        showResult();
+        clear();
+        disableTextField();
+    }//GEN-LAST:event_btn_luuThemActionPerformed
+
+    public void showResult() {
+        listTamTru = tamTruService.findAll();
+        TamTruModel tamTru = listTamTru.get(listTamTru.size() - 1);
+        model.fireTableDataChanged();
+        model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgaydk(), tamTru.getNoidk(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getCCCD(), tamTru.getNgcCccd(), tamTru.getNcCccd(), tamTru.getNgaydi(), tamTru.getNgayden(), tamTru.getLydo(), tamTru.getSDT(), tamTru.getEmail()});
+    }
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        if (tbl_thongTinTamTru.getSelectedRow() < 0) {
+            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+            tf_ngayDangKy.setEditable(true);
+            tf_ngayDen.setEditable(true);
+            tf_ngayDi.setEditable(false);
+            tf_lyDo.setEditable(true);
+            tf_noiDangKy.setEditable(true);
+        }
+    }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
+        try {
+            int selectedRow = tbl_thongTinTamTru.getSelectedRow();
+            if (tbl_thongTinTamTru.getRowCount() <= 0) {
+                JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            } else if (selectedRow < 0) {
+                JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            } else if (selectedRow >= 0) {
+                TamTruModel tamTru = tamTruService.findOne(tf_maTamTru.getText().trim());
+                tamTru.setLydo(tf_lyDo.getText());
+                tamTru.setNoidk(tf_noiDangKy.getText());
+                tamTru.setTrangThai(1);
+
+                if (isDateValidPresent(tf_ngayDen.getText().trim())) {
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDen.getText());
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    tamTru.setNgayden(sqlDate);
+
+                } else {
+                    JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                
+                if (isDateValidPresent(tf_ngayDangKy.getText().trim())) {
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText());
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    tamTru.setNgaydk(sqlDate);
+
+                } else {
+                    JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+
+                try {
+                    String strNgayDi = calculateDepartureDate(tf_ngayDen.getText().trim());
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(strNgayDi);
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    tamTru.setNgaydi(sqlDate);
+                } catch (ParseException ex) {
+                    Logger.getLogger(TamTruController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String strNgayDi = calculateDepartureDate(tf_ngayDen.getText().trim());
+                
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDen.getText());
+                Date uDNgayDangKy = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String dateStrNgayDen = sdf.format(utilDate);
+                String dateStrNgayDangKy = sdf.format(uDNgayDangKy);
+                if (new TamTruServiceImpl().update(tamTru)) {
+                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    model.setValueAt(tf_lyDo.getText(), selectedRow, 10);
+                    model.setValueAt(tf_noiDangKy.getText(), selectedRow, 2);
+                    model.setValueAt(strNgayDi, selectedRow, 8);
+                    model.setValueAt(dateStrNgayDen, selectedRow, 9);
+                    model.setValueAt(dateStrNgayDangKy, selectedRow, 1);
+                    model.fireTableDataChanged();
+                } else {
+                    JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+            }
+        } catch (ParseException ex) {
+            JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        clear();
+        disableTextField();
+    }//GEN-LAST:event_btn_luuSuaActionPerformed
+
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
+        
+        int selectedRow = tbl_thongTinTamTru.getSelectedRow();
+
+        if (tbl_thongTinTamTru.getRowCount() <= 0) {
+            JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+        } else if (selectedRow < 0) {
+            JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+        } else if (selectedRow >= 0) {
+            JPanel myPanel = new JPanel();
+            int confirm = JOptionPane.showConfirmDialog(myPanel, "Are you sure you want to delete this information?", "", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                try {
+                    String id = (String) tbl_thongTinTamTru.getValueAt(selectedRow, 0);
+                    model.removeRow(selectedRow);
+                    listTamTru.remove(selectedRow);
+                    if (new TamTruServiceImpl().delete(id)) {
+                        JOptionPane msg = new JOptionPane("Information deleted successfully!", JOptionPane.INFORMATION_MESSAGE);
+                        JDialog jMsg = msg.createDialog(null);
+                        jMsg.setModal(true);
+                        jMsg.setVisible(true);
+                    } else {
+                        JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                        JDialog jMsgFail = msgFail.createDialog(null);
+                        jMsgFail.setModal(true);
+                        jMsgFail.setVisible(true);
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                    JDialog jMsgFail = msgFail.createDialog(null);
+                    jMsgFail.setModal(true);
+                    jMsgFail.setVisible(true);
+                }
+            }
+
+            clear();
+        }
+    }//GEN-LAST:event_btn_xoaActionPerformed
+
     private void clear() {
         tf_soCCCD.setText("");
         tf_hoTen.setText("");
         tf_ngaySinh.setText("");
-        tf_gioiTinh.setText("");
+        tf_noiDangKy.setText("");
         tf_maTamTru.setText("");
         tf_ngayCapCCCD.setText("");
         tf_noiCapCCCD.setText("");
         tf_ngayDangKy.setText("");
         tf_soDienThoai.setText("");
         tf_email.setText("");
+        tf_lyDo.setText("");
+        tf_ngayDen.setText("");
+        tf_ngayDi.setText("");
+    }
+
+    private void disableTextField() {
+        tf_soCCCD.setEditable(true);
+        tf_hoTen.setEditable(false);
+        tf_ngaySinh.setEditable(false);
+        tf_ngayCapCCCD.setEditable(false);
+        tf_noiCapCCCD.setEditable(false);
+        tf_soDienThoai.setEditable(false);
+        tf_email.setEditable(false);
+        tf_maTamTru.setEditable(false);
+        tf_ngayDangKy.setEditable(false);
+        tf_ngayDen.setEditable(false);
+        tf_ngayDi.setEditable(false);
+        tf_lyDo.setEditable(false);
+        tf_noiDangKy.setEditable(false);
+    }
+
+    public static boolean isDateValid_1(String ngayStr) {
+
+        if (!ngayStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return false;
+        }
+
+        int year = Integer.parseInt(ngayStr.substring(0, 4));
+        int month = Integer.parseInt(ngayStr.substring(5, 7));
+        int day = Integer.parseInt(ngayStr.substring(8, 10));
+
+        if (month < 1 || month
+                > 12) {
+            return false;
+        }
+
+        if (day < 1 || day
+                > 31) {
+            return false;
+        }
+        switch (month) {
+            case 2:
+                if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+                    if (day > 29) {
+                        return false;
+                    }
+                } else {
+                    if (day > 28) {
+                        return false;
+                    }
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (day > 30) {
+                    return false;
+                }
+                break;
+        }
+
+        return true;
+    }
+
+    private static boolean isDateValidPresent(String ngayCapCCCD) {
+
+        if (!ngayCapCCCD.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return false;
+        }
+
+        if (!isDateValid_1(ngayCapCCCD)) {
+            return false;
+        }
+        Optional<LocalDate> ngayCapCCCDOptional = Optional.ofNullable(LocalDate.parse(ngayCapCCCD));
+
+        if (ngayCapCCCDOptional.isEmpty()) {
+            return false;
+        }
+
+        LocalDate ngayCapCCCDDate = ngayCapCCCDOptional.get();
+        LocalDate today = LocalDate.now();
+        if (ngayCapCCCDDate.isAfter(today)) {
+            return false;
+        }
+
+        LocalDate threeYearsAgo = today.minusYears(10);
+        if (ngayCapCCCDDate.isBefore(threeYearsAgo)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String calculateDepartureDate(String arrivalDateString) throws ParseException {
+        SimpleDateFormat arrivalDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date arrivalDate = arrivalDateFormat.parse(arrivalDateString);
+
+        Calendar departureDateCalendar = Calendar.getInstance();
+        departureDateCalendar.setTime(arrivalDate);
+        departureDateCalendar.add(Calendar.YEAR, 2);
+
+        Date departureDate = departureDateCalendar.getTime();
+
+        // Định dạng ngày khởi hành sang yyyy-MM-dd
+        SimpleDateFormat departureDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String departureDateString = departureDateFormat.format(departureDate);
+
+        return departureDateString;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private button.MyButton btn_loadData;
+    private Swing.Button btn_luuSua;
+    private Swing.Button btn_luuThem;
     private Swing.Button btn_sua;
     private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbl_thongTinTamTru;
+    private javax.swing.JScrollPane jScrollPane2;
+    private Swing.TableDark tbl_thongTinTamTru;
     private Swing.TextField tf_email;
-    private Swing.TextField tf_gioiTinh;
     private Swing.TextField tf_hoTen;
     private Swing.TextField tf_lyDo;
     private Swing.TextField tf_maTamTru;
@@ -299,6 +776,7 @@ public class TamTruController extends javax.swing.JPanel {
     private Swing.TextField tf_ngayDi;
     private Swing.TextField tf_ngaySinh;
     private Swing.TextField tf_noiCapCCCD;
+    private Swing.TextField tf_noiDangKy;
     private Swing.TextField tf_soCCCD;
     private Swing.TextField tf_soDienThoai;
     // End of variables declaration//GEN-END:variables

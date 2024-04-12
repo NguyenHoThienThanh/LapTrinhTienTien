@@ -332,7 +332,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             hoKhau.setQuanHeChuHo("Chủ hộ");
             hoKhau.setTrangThai(1);
             listHoKhau.add(hoKhau);
-            
+
             if (new HoKhauServiceImpl().insert(hoKhau)) {
                 JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -393,10 +393,19 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        tf_maHoKhau.setEditable(false);
-        tf_maKhaiSinh.setEditable(false);
-        tf_diaChi.setEditable(true);
-        tf_soCCCD.setEditable(false);
+        if (tbl_thongTinHoKhau.getSelectedRow() < 0) {
+            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+            tf_maHoKhau.setEditable(false);
+            tf_maKhaiSinh.setEditable(false);
+            tf_diaChi.setEditable(true);
+            tf_soCCCD.setEditable(false);
+        }
+
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
@@ -440,9 +449,17 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        tf_soCCCD.setEditable(false);
-        tf_maHoKhau.setEditable(false);
-        tf_diaChi.setEditable(true);
+        if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("")) {
+            JOptionPane dialog = new JOptionPane("Please enter birth certificate information and load the data!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+            tf_soCCCD.setEditable(false);
+            tf_maHoKhau.setEditable(false);
+            tf_diaChi.setEditable(true);
+        }
 
 
     }//GEN-LAST:event_btn_themActionPerformed
