@@ -197,11 +197,11 @@ public class HoKhauServiceImpl implements IHoKhauService {
     }
 
     @Override
-    public int ifExists(String MaHK) {
+    public int ifExists(String MaKS) {
         String query = "  select count(*) SoLuong from HoKhau "
-                + "  Where MaHK = ? ";
+                + "  Where KhaiSinhChuHo = ? ";
         try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setString(1, MaHK);
+            ps.setString(1, MaKS);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("SoLuong");

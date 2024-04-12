@@ -309,15 +309,15 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
-        if (hoKhauService.ifExists(tf_maHoKhau.getText().trim()) == 1) {
-            JOptionPane dialog = new JOptionPane("Mã hộ khẩu đã tồn tại!", JOptionPane.WARNING_MESSAGE);
+        if (hoKhauService.ifExists(tf_maKhaiSinh.getText().trim()) == 1) {
+            JOptionPane dialog = new JOptionPane("Công dân này đã có hộ khẩu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
             return;
         }
         if (hoKhauService.existsHoKhauOrNot(tf_maKhaiSinh.getText().trim()) == 1) {
-            JOptionPane dialog = new JOptionPane("Công dân này đã có hộ khẩu!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Mỗi công dân chỉ có 1 hộ khẩu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -396,6 +396,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
         tf_maHoKhau.setEditable(false);
         tf_maKhaiSinh.setEditable(false);
         tf_diaChi.setEditable(true);
+        tf_soCCCD.setEditable(false);
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
@@ -439,7 +440,6 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-       
         tf_soCCCD.setEditable(false);
         tf_maHoKhau.setEditable(false);
         tf_diaChi.setEditable(true);
