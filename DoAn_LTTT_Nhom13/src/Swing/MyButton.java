@@ -115,7 +115,7 @@ public class MyButton extends JButton {
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
         g2.setColor(getBackground());
         //  Border set 2 Pix
-        g2.fillRoundRect(4, 4, getWidth() - 8, getHeight() - 8, radius, radius);
+        g2.fillRoundRect(3, 3, getWidth() - 6, getHeight() - 6, radius, radius);
         super.paintComponent(grphcs);
     }
 }
