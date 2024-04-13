@@ -40,7 +40,16 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                     showForm(new TamVangController());
                 }else if(index == 2){
                     showForm(new TraCuuDonController());
-                }else if(index == 3){
+                }else if(index == 3 && subIndex == 1){
+                    showForm(new ChartKhaiSinhController());
+                }else if(index == 3 && subIndex == 2){
+                    showForm(new ChartChungTuController());
+                }else if(index == 3 && subIndex == 3){
+                    showForm(new ChartKetHonController());
+                }else if(index == 3 && subIndex == 4){
+                    showForm(new ChartLyHonController());
+                }
+                else if(index == 4){
                     showForm(new DanhGiaController());
                 }
             }

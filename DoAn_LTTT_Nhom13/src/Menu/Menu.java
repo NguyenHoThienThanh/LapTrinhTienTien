@@ -26,6 +26,7 @@ public class Menu extends JComponent {
         {"Trang Chủ"},
         {"Công Dân", "Thông Tin Công Dân", "Khai Sinh", "Chứng Tử", "Thuế", "Hộ Khẩu", "Tạm Trú", "Tạm Vắng", "Giấy Chứng Nhận Kết Hôn", "Đơn Ly Hôn"},
         {"Quản Lý Đơn"},
+        {"Thống Kê", "Khai Sinh", "Chứng Tử", "Kết Hôn", "Ly Hôn"},
         {"Đánh Giá"}
     };
 
