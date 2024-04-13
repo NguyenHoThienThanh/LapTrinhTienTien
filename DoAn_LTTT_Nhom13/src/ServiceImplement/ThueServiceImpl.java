@@ -42,10 +42,10 @@ public class ThueServiceImpl implements IThueService{
         ThueModel t = thueDao.findOneByMaSoThue(thue.getMasothue());
         t.setID(thue.getID());
         t.setMasothue(thue.getMasothue());
-        t.setCoquanthue(t.getMasothue());
-        t.setSoCMT_CCCD(t.getSoCMT_CCCD());
-        t.setNgaythaydoithongtingannhat(t.getNgaythaydoithongtingannhat());
-        t.setTrangThai(t.getTrangThai());
+        t.setCoquanthue(thue.getCoquanthue());
+        t.setSoCMT_CCCD(thue.getSoCMT_CCCD());
+        t.setNgaythaydoithongtingannhat(thue.getNgaythaydoithongtingannhat());
+        t.setTrangThai(thue.getTrangThai());
         return thueDao.update(t);
     }
 

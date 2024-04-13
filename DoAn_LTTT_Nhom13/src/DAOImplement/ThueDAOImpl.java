@@ -23,7 +23,10 @@ public class ThueDAOImpl implements IThueDAO {
 
     @Override
     public List<ThueModel> findAll() {
-        String query = "SELECT * FROM Thue WHERE TrangThai = 1";
+        String query = "select Thue.ID, Masothue, HoTen, Coquanthue, SoCMT_CCCD, Ngaythaydoithongtingannhat, Thue.TrangThai from Thue "
+                + "inner join CongDan on SoCMT_CCCD = CCCD "
+                + "and Thue.TrangThai = 1 "
+                + "order by Thue.ID ASC";
         List<ThueModel> listThue = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -33,10 +36,11 @@ public class ThueDAOImpl implements IThueDAO {
                 ThueModel thue = new ThueModel();
                 thue.setID(rs.getInt(1));
                 thue.setMasothue(rs.getString(2));
-                thue.setCoquanthue(rs.getString(3));
-                thue.setSoCMT_CCCD(rs.getString(4));
-                thue.setNgaythaydoithongtingannhat(rs.getDate(5));
-                thue.setTrangThai(rs.getInt(6));
+                thue.setHoten(rs.getString(3));
+                thue.setCoquanthue(rs.getString(4));
+                thue.setSoCMT_CCCD(rs.getString(5));
+                thue.setNgaythaydoithongtingannhat(rs.getDate(6));
+                thue.setTrangThai(rs.getInt(7));
                 listThue.add(thue);
             }
             conn.close();
@@ -90,7 +94,7 @@ public class ThueDAOImpl implements IThueDAO {
 
     @Override
     public boolean update(ThueModel thue) {
-        String query = "UPDATE Thue SET Coquanthue=?, SoCMT_CCCD=?, Ngaythaydoithongtingannhat =? , TrangThai =?";
+        String query = "UPDATE Thue SET Coquanthue=?, SoCMT_CCCD=?, Ngaythaydoithongtingannhat =? , TrangThai =? WHERE Masothue = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -98,6 +102,7 @@ public class ThueDAOImpl implements IThueDAO {
             ps.setString(2, thue.getSoCMT_CCCD());
             ps.setDate(3, (Date) thue.getNgaythaydoithongtingannhat());
             ps.setInt(4, thue.getTrangThai());
+            ps.setString(5, thue.getMasothue());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -109,12 +114,12 @@ public class ThueDAOImpl implements IThueDAO {
     @Override
     public boolean delete(String MaSoThue) {
         String query = "DELETE Thue WHERE Masothue = ?";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, MaSoThue);
             ps.executeUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;
