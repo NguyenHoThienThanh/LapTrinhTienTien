@@ -22,9 +22,12 @@ public class TamVangDAOImpl implements ITamVangDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    @Override
+   @Override
     public List<TamVangModel> findAll() {
-        String query = "SELECT * FROM Tamvang WHERE TrangThai = 1";
+        String query = "SELECT Tamvang.ID, MaTV, Tamvang.CCCD, Tamvang.Ngaydk, Ncdi, Ncden, Ngaydi, Ngayve, Lydo, Tamvang.TrangThai, HoTen, NgaySinh, CongDan.NgcCccd, CongDan.NcCccd FROM Tamvang "
+                + "INNER JOIN CongDan ON Tamvang.CCCD = CongDan.CCCD "
+                + "INNER JOIN KhaiSinh ON CongDan.MaKS = KhaiSinh.MaKS "
+                + "AND Tamvang.TrangThai = 1 ORDER BY Tamvang.ID ASC";
         List<TamVangModel> listTamVang = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -42,6 +45,10 @@ public class TamVangDAOImpl implements ITamVangDAO {
                 tamVang.setNgayve(rs.getDate(8));
                 tamVang.setLydo(rs.getString(9));
                 tamVang.setTrangThai(rs.getInt(10));
+                tamVang.setHoTen(rs.getString(11));
+                tamVang.setNgaySinh(rs.getDate(12));
+                tamVang.setNgayCapCCCD(rs.getDate(13));
+                tamVang.setNoiCapCCCD(rs.getString(14));
                 listTamVang.add(tamVang);
             }
             conn.close();
@@ -103,7 +110,7 @@ public class TamVangDAOImpl implements ITamVangDAO {
 
     @Override
     public boolean update(TamVangModel tamVang) {
-        String query = "UPDATE Tamvang SET CCCD =?, Ngaydk =?, Ncdi=?, Ncden=?, Ngaydi=?, Ngayve=?, Lydo=?, TrangThai=?";
+        String query = "UPDATE Tamvang SET CCCD =?, Ngaydk =?, Ncdi=?, Ncden=?, Ngaydi=?, Ngayve=?, Lydo=?, TrangThai=? WHERE MaTV = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -115,6 +122,7 @@ public class TamVangDAOImpl implements ITamVangDAO {
             ps.setDate(6, (Date) tamVang.getNgayve());
             ps.setString(7, tamVang.getLydo());
             ps.setInt(8, tamVang.getTrangThai());
+            ps.setString(9, tamVang.getMaTV());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
