@@ -55,7 +55,11 @@ e.printStackTrace();
     @Override
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS where cd.CCCD=?";
+        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, hk.DiaChi, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai\n" +
+"                FROM KhaiSinh ks\n" +
+"                INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS\n" +
+"                INNER JOIN HoKhau hk ON ks.ID = hk.ID\n" +
+"                WHERE cd.CCCD = ?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -65,14 +69,21 @@ e.printStackTrace();
                 congDan.setCCCD(rs.getString(1));
                 congDan.setHoTen(rs.getString(2));
                 congDan.setNgaySinh(rs.getDate(3));
-                congDan.setGioiTinh(rs.getString(4));
-                congDan.setNoiSinh(rs.getString(5));
-                congDan.setNcCccd(rs.getString(6));
-                congDan.setNgcCccd(rs.getDate(7));
-                congDan.setMaKS(rs.getString(8));
-                congDan.setSDT(rs.getString(9));
-                congDan.setEmail(rs.getString(10));
-                congDan.setTrangThai(rs.getInt(11));
+                congDan.setQuocTich(rs.getString(4));
+                congDan.setDanToc(rs.getString(5));
+                congDan.setQueQuan(rs.getString(6));
+                congDan.setDiaChi(rs.getString(7));
+                congDan.setGioiTinh(rs.getString(8));
+                congDan.setNoiSinh(rs.getString(9));
+                congDan.setNcCccd(rs.getString(10));
+                congDan.setNgcCccd(rs.getDate(11));
+                congDan.setMaKS(rs.getString(12));
+                congDan.setSDT(rs.getString(13));
+                congDan.setEmail(rs.getString(14));
+                congDan.setTrangThai(rs.getInt(15));
+                
+                
+                
                 
             }
             conn.close();

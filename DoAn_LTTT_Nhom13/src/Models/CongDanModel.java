@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
 import java.util.Date;
 
-/**
- *
- * @author Admin
- */
 public class CongDanModel {
     private String CCCD;
     private String HoTen;
@@ -22,12 +14,18 @@ public class CongDanModel {
     private Date NgaySinh;
     private String GioiTinh;
     private String NoiSinh;
-
+    
+    //Them
+    private String QuocTich;
+    private String DanToc;
+    private String QueQuan;
+    private String DiaChi;
+    
     // Constructor
     public CongDanModel() {
     }
 
-    public CongDanModel(String CCCD, String HoTen, String NcCccd, Date NgcCccd, String MaKS, String SDT, String Email, int TrangThai, Date NgaySinh, String GioiTinh, String NoiSinh) {
+    public CongDanModel(String CCCD, String HoTen, String NcCccd, Date NgcCccd, String MaKS, String SDT, String Email, int TrangThai, Date NgaySinh, String GioiTinh, String NoiSinh, String QuocTich, String DanToc, String QueQuan, String DiaChi) {
         this.CCCD = CCCD;
         this.HoTen = HoTen;
         this.NcCccd = NcCccd;
@@ -39,9 +37,12 @@ public class CongDanModel {
         this.NgaySinh = NgaySinh;
         this.GioiTinh = GioiTinh;
         this.NoiSinh = NoiSinh;
+        this.QuocTich = QuocTich;
+        this.DanToc = DanToc;
+        this.QueQuan = QueQuan;
+        this.DiaChi = DiaChi;
     }
-    
-    // Getters and setters
+
     public String getCCCD() {
         return CCCD;
     }
@@ -54,32 +55,32 @@ public class CongDanModel {
         return HoTen;
     }
 
-    public void setHoTen(String hoTen) {
-        HoTen = hoTen;
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
     }
 
     public String getNcCccd() {
         return NcCccd;
     }
 
-    public void setNcCccd(String ncCccd) {
-        NcCccd = ncCccd;
+    public void setNcCccd(String NcCccd) {
+        this.NcCccd = NcCccd;
     }
 
     public Date getNgcCccd() {
         return NgcCccd;
     }
 
-    public void setNgcCccd(Date ngcCccd) {
-        NgcCccd = ngcCccd;
+    public void setNgcCccd(Date NgcCccd) {
+        this.NgcCccd = NgcCccd;
     }
 
     public String getMaKS() {
         return MaKS;
     }
 
-    public void setMaKS(String maKS) {
-        MaKS = maKS;
+    public void setMaKS(String MaKS) {
+        this.MaKS = MaKS;
     }
 
     public String getSDT() {
@@ -94,16 +95,16 @@ public class CongDanModel {
         return Email;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public int getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(int trangThai) {
-        TrangThai = trangThai;
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
     }
 
     public Date getNgaySinh() {
@@ -130,9 +131,38 @@ public class CongDanModel {
         this.NoiSinh = NoiSinh;
     }
 
-    
-    
-    
+    public String getQuocTich() {
+        return QuocTich;
+    }
+
+    public void setQuocTich(String QuocTich) {
+        this.QuocTich = QuocTich;
+    }
+
+    public String getDanToc() {
+        return DanToc;
+    }
+
+    public void setDanToc(String DanToc) {
+        this.DanToc = DanToc;
+    }
+
+    public String getQueQuan() {
+        return QueQuan;
+    }
+
+    public void setQueQuan(String QueQuan) {
+        this.QueQuan = QueQuan;
+    }
+
+    public String getDiaChi() {
+        return DiaChi;
+    }
+
+    public void setDiaChi(String DiaChi) {
+        this.DiaChi = DiaChi;
+    }
+
 }
  
 
