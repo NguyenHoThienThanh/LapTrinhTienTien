@@ -5,6 +5,7 @@
 package InterfaceService;
 
 import Models.DonTamVang;
+import Models.DonTamVangUser;
 import Models.TamVangModel;
 import java.util.List;
 
@@ -16,9 +17,9 @@ public interface ITamVangService {
     List<TamVangModel> findAll();
     TamVangModel findOneByMaTV (String MaTV);
     boolean insert (TamVangModel tamVang);
+    boolean insertUser (DonTamVangUser tamVang);
     boolean update (TamVangModel tamVang);
     boolean delete (String MaTV);
     List<DonTamVang> findAllTV(String CCCD);
-    int ifExists(String CCCD);
-    
+    List<DonTamVangUser> findAllTVuser(String CCCD);    
 }

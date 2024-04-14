@@ -4,6 +4,7 @@
  */
 package InterfaceDAO;
 
+import Models.DonTamVangUser;
 import Models.TamVangModel;
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface ITamVangDAO {
     boolean insert (TamVangModel tamVang);
     boolean update (TamVangModel tamVang);
     boolean delete (String MaTV);
+    boolean insertUser (DonTamVangUser tamVang);
 }
