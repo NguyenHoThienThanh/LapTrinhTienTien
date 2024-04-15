@@ -21,13 +21,17 @@ public class HomeControllerUser extends javax.swing.JFrame {
             @Override
             public void selected(int index, int subIndex) {
            
-               if (index == 0 && subIndex == 1) {
-                    return;
+               if (index == 0) {
+                    showForm(new ThongTinCongDanControllerUser());
                 } else  
                if (index == 1 && subIndex == 1) {
                     showForm(new HoKhauControllerUser());
                 } else if(index == 2){
                     showForm(new TraCuuDonController());
+                } else if(index == 1 && subIndex == 5){
+                    showForm(new TamTruControllerUser());
+                } else if(index == 1 && subIndex == 6){
+                    showForm(new TamVangControllerUser());
                 }
             }
         });
