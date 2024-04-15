@@ -1,14 +1,5 @@
 package Controller.User;
-
-import Controller.Admin.*;
-import Controller.Admin.Login_RegisterController.AppContext;
-import InterfaceService.ICongDanService;
-import InterfaceService.IDangNhapService;
 import Menu.MenuEvent;
-import Models.CongDanModel;
-import Models.DangNhapModel;
-import ServiceImplement.CongDanServiceImpl;
-import ServiceImplement.DangNhapServiceImpl;
 import java.awt.Component;
 
 
@@ -25,9 +16,7 @@ public class HomeControllerUser extends javax.swing.JFrame {
                     showForm(new ThongTinCongDanControllerUser());
                 } else  
                if (index == 1 && subIndex == 1) {
-                    showForm(new HoKhauControllerUser());
-                } else if(index == 2){
-                    showForm(new TraCuuDonController());
+                    showForm(new ThongTinKhaiSinhControllerUser());
                 } else if(index == 1 && subIndex == 5){
                     showForm(new TamTruControllerUser());
                 } else if(index == 1 && subIndex == 6){
