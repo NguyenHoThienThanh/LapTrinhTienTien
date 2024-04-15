@@ -17,10 +17,22 @@ public class HomeControllerUser extends javax.swing.JFrame {
                 } else  
                if (index == 1 && subIndex == 1) {
                     showForm(new ThongTinKhaiSinhControllerUser());
+                } else if(index == 1 && subIndex == 2){
+                    showForm(new ThongTinChungTuControllerUser());
+                } else if(index == 1 && subIndex == 3){
+                    showForm(new ThongTinThueControllerUser());
+                } else if(index == 1 && subIndex == 4){
+                    showForm(new ThongTinHoKhauControllerUser());
                 } else if(index == 1 && subIndex == 5){
                     showForm(new TamTruControllerUser());
                 } else if(index == 1 && subIndex == 6){
                     showForm(new TamVangControllerUser());
+                } else if(index == 1 && subIndex == 7){
+                    showForm(new GiayChungNhanKetHonControllerUser());
+                } else if(index == 1 && subIndex == 8){
+                    showForm(new DonLyHonControllerUser());
+                } else if(index == 2){
+                    showForm(new DanhGiaControllerUser());
                 }
             }
         });

@@ -13,9 +13,7 @@ public class ThongTinKhaiSinhControllerUser extends javax.swing.JPanel {
         initComponents();
         IKhaiSinhService khaiSinhService = new KhaiSinhServiceImpl();
         String currentUser = Login_RegisterController.AppContext.userName;
-        KhaiSinhModel ks = khaiSinhService.findByCCCD(currentUser);
-        String CCCD = ks.getCCCD();
-        System.out.println(CCCD);
+        KhaiSinhModel ks = khaiSinhService.findByCCCD(currentUser);       
                 
         tf_ngaySinh.setText(ks.getNgaySinh().toString());
         tf_noiSinh.setText(ks.getNoiSinh());

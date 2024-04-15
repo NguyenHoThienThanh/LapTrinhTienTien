@@ -17,7 +17,8 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         ICongDanService congDanService = new CongDanServiceImpl();
         String currentUser = Login_RegisterController.AppContext.userName;
         CongDanModel cd = congDanService.findOne(currentUser);
-
+        String CCCD = cd.getCCCD();
+        System.out.println(CCCD);
         tf_soCCCD.setText(cd.getCCCD());
         tf_email.setText(cd.getEmail());
         tf_gioiTinh.setText(cd.getGioiTinh());
