@@ -17,4 +17,5 @@ public interface IChungNhanKetHonDAO {
     boolean insert (ChungNhanKetHonModel chungNhanKetHon);
     boolean update (ChungNhanKetHonModel chungNhanKetHonModel);
     boolean delete (String MaKH);
+    ChungNhanKetHonModel findOneCNKH (String Giaytotuythanvo, String Giaytotuythanchong);
 }
