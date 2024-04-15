@@ -21,5 +21,6 @@ public interface ITamVangService {
     boolean update (TamVangModel tamVang);
     boolean delete (String MaTV);
     List<DonTamVang> findAllTV(String CCCD);
+    int ifExists(String CCCD);
     List<DonTamVangUser> findAllTVuser(String CCCD);    
 }
