@@ -101,6 +101,26 @@ public class TamVangServiceImpl implements ITamVangService{
     }
 
     @Override
+    public int ifExists(String CCCD) {
+        String query = "select count(*) as SoLuong  "
+                + "from Tamvang where Cccd = ?  "
+                + "and TrangThai = 1";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, CCCD);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
     public List<DonTamVangUser> findAllTVuser(String CCCD) {
         String query = "select * from Tamvang join CongDan on Tamvang.CCCD = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS Where TamVang.TrangThai = 1 and Tamvang.CCCD = ?";
         List<DonTamVangUser> listDonTamVang = new ArrayList<>();
