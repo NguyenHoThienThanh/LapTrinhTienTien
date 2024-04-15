@@ -9,16 +9,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
-public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
+public class GiayChungNhanKetHonControllerUser extends javax.swing.JPanel {
 
 
-    public ThongTinCongDanControllerUser() {
+    public GiayChungNhanKetHonControllerUser() {
         initComponents();
         ICongDanService congDanService = new CongDanServiceImpl();
         String currentUser = Login_RegisterController.AppContext.userName;
         CongDanModel cd = congDanService.findOne(currentUser);
-        String CCCD = cd.getCCCD();
-        System.out.println(CCCD);
+
         tf_soCCCD.setText(cd.getCCCD());
         tf_email.setText(cd.getEmail());
         tf_gioiTinh.setText(cd.getGioiTinh());
