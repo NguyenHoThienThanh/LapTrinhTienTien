@@ -18,4 +18,6 @@ public interface IKhaiSinhService {
     boolean update(KhaiSinhModel model);
     boolean delete(String maKS);
     KhaiSinhModel findByCCCD(String CCCD);
+    List<KhaiSinhModel> findAllChuaDuyet();
+    KhaiSinhModel findOneChuaDuyet(String maKS);
 }

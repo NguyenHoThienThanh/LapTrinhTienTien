@@ -12,6 +12,8 @@ import Models.KhaiSinhModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -97,4 +99,74 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
         return khaiSinh;
     }
     
+    @Override
+    public List<KhaiSinhModel> findAllChuaDuyet() {
+        String query = "select * from KhaiSinh where TrangThai = 2 order by ID ASC";
+        List<KhaiSinhModel> listKhaiSinh = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                KhaiSinhModel khaiSinh = new KhaiSinhModel();
+                khaiSinh.setID(rs.getInt(1));
+                khaiSinh.setMaKS(rs.getString(2));
+                khaiSinh.setHoTenKS(rs.getString(3));
+                khaiSinh.setGioiTinh(rs.getString(4));
+                khaiSinh.setNgaySinh(rs.getDate(5));
+                khaiSinh.setNoiSinh(rs.getString(6));
+                khaiSinh.setDanToc(rs.getString(7));
+                khaiSinh.setQuocTich(rs.getString(8));
+                khaiSinh.setQueQuan(rs.getString(9));
+                khaiSinh.setCha(rs.getString(10));
+                khaiSinh.setMe(rs.getString(11));
+                khaiSinh.setNguoiKhaiSinh(rs.getString(12));
+                khaiSinh.setQuanHe(rs.getString(13));
+                khaiSinh.setNgayDk(rs.getDate(14));
+                khaiSinh.setNoiDk(rs.getString(15));
+                khaiSinh.setTrangThai(rs.getInt(16));
+                listKhaiSinh.add(khaiSinh);
+            }
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listKhaiSinh;
+    }
+    
+    
+    @Override
+    public KhaiSinhModel findOneChuaDuyet(String maKS) {
+        KhaiSinhModel khaiSinh = new KhaiSinhModel();
+        String query = "select * from KhaiSinh where MaKS=?";
+        try{
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maKS);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                khaiSinh.setID(rs.getInt(1));
+                khaiSinh.setMaKS(rs.getString(2));
+                khaiSinh.setHoTenKS(rs.getString(3));
+                khaiSinh.setGioiTinh(rs.getString(4));
+                khaiSinh.setNgaySinh(rs.getDate(5));
+                khaiSinh.setNoiSinh(rs.getString(6));
+                khaiSinh.setDanToc(rs.getString(7));
+                khaiSinh.setQuocTich(rs.getString(8));
+                khaiSinh.setQueQuan(rs.getString(9));
+                khaiSinh.setCha(rs.getString(10));
+                khaiSinh.setMe(rs.getString(11));
+                khaiSinh.setNguoiKhaiSinh(rs.getString(12));
+                khaiSinh.setQuanHe(rs.getString(13));
+                khaiSinh.setNgayDk(rs.getDate(14));
+                khaiSinh.setNoiDk(rs.getString(15));
+                khaiSinh.setTrangThai(rs.getInt(16));
+            }
+            conn.close();
+        }catch(Exception ex){
+           
+        } 
+        return khaiSinh;
+        
+    }
 }

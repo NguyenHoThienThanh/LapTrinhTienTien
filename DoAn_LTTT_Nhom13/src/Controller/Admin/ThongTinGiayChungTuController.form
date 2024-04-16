@@ -106,9 +106,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="tf_ngaySinh" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="tf_ngayMat" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                       <Component id="tf_nguyenNhan" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_noiMat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_noiMat" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>

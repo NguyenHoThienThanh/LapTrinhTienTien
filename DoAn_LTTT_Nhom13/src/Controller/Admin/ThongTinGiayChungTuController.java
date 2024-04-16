@@ -28,13 +28,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author TUAN
  */
-public class ThongTinGiayChungTu extends javax.swing.JPanel {
+public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     DefaultTableModel model;
     List<GiayChungTuModel> listGiayChungTu;
     IGiayChungTuService giayChungTuService = new GiayChungTuServiceImpl();
 
-    public ThongTinGiayChungTu() {
+    public ThongTinGiayChungTuController() {
         initComponents();
         tbl_thongTinThue.fixTable(jScrollPane2);
         listGiayChungTu = giayChungTuService.findAll();
@@ -257,7 +257,7 @@ public class ThongTinGiayChungTu extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_ngayMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(tf_nguyenNhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_noiMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -364,7 +364,7 @@ public class ThongTinGiayChungTu extends javax.swing.JPanel {
             java.sql.Date ngaySinh = new java.sql.Date(ngaySinhDate.getTime());
             giayChungTu.setNgaySinh(ngaySinh);
         } catch (ParseException ex) {
-            Logger.getLogger(ThongTinGiayChungTu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ThongTinGiayChungTuController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {

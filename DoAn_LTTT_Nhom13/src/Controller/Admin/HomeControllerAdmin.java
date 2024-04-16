@@ -30,7 +30,10 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
 //                else 
                 if (index == 1 && subIndex == 1) {
                     showForm(new ThongTinCongDanController());
-                }else if(index == 1 && subIndex == 4 ){
+                }else if(index == 1 && subIndex == 2){
+                    showForm(new ThongTinKhaiSinhController());
+                }
+                else if(index == 1 && subIndex == 4 ){
                     showForm(new ThongTinThueController());
                 }else if (index == 1 && subIndex == 5) {
                     showForm(new ThongTinHoKhauController());
@@ -167,7 +170,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
+                    .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
 
