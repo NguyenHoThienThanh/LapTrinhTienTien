@@ -1,6 +1,5 @@
 package Controller.Admin;
 
-import DAOImplement.KhaiSinhDAOImpl;
 import InterfaceService.IKhaiSinhService;
 import Models.KhaiSinhModel;
 import ServiceImplement.CongDanServiceImpl;
@@ -410,7 +409,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
         } else {
-            if (tbl_thongTinCongDan.getSelectedRow() >= 0) {
+            if (tbl_thongTinCongDan.getSelectedRow() > 0) {
                 if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
                     JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
@@ -441,7 +440,8 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                     return;
                 }
 
-                KhaiSinhModel khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
+                KhaiSinhModel khaiSinh = new KhaiSinhModel();
+                khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
                 khaiSinh.setMaKS(tf_maKhaiSinh.getText().trim());
                 khaiSinh.setQuocTich(tf_quocTich.getText().trim());
                 khaiSinh.setHoTenKS(tf_hoTen.getText());
@@ -493,11 +493,8 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
 
                 listKhaiSinh.add(khaiSinh);
 
-                if (new KhaiSinhDAOImpl().update(khaiSinh)) {
-                    if(listChuaDuyet.contains(khaiSinh)){
-                        listChuaDuyet.remove(khaiSinh);
-                    }
-                    model.removeRow(tbl_thongTinCongDan.getSelectedRow());
+                if (new KhaiSinhServiceImpl().update(khaiSinh)) {
+                    listChuaDuyet.remove(khaiSinh);
                     JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
@@ -522,9 +519,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 clear();
                 disableTextField();
             } else {
-                //listChuaDuyet.remove(khaiSinh);
-                
-                //showTableChuaDuyet();
+                model.removeRow(tbl_thongTinCongDan.getSelectedRow());
             }
         }
 

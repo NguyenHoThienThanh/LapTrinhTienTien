@@ -93,28 +93,24 @@
               <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_soCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_maKhaiSinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tf_noiCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_ngayCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_noiSinh" alignment="3" max="32767" attributes="0"/>
-                          <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_soDienThoai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="btn_loadData" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_soCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_maKhaiSinh" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_noiCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_ngayCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_noiSinh" alignment="3" max="32767" attributes="0"/>
+                  <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_soDienThoai" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="280" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

@@ -153,7 +153,7 @@ public class KhaiSinhDAOImpl implements IKhaiSinhDAO{
 
     @Override
     public boolean delete(String maKS) {
-        String query = "Delete KhaiSinh where MaKS = ?";
+        String query = "update KhaiSinh set TrangThai = 0 where MaKS = ?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

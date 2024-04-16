@@ -138,7 +138,7 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
     @Override
     public KhaiSinhModel findOneChuaDuyet(String maKS) {
         KhaiSinhModel khaiSinh = new KhaiSinhModel();
-        String query = "select * from KhaiSinh where MaKS=?";
+        String query = "select * from KhaiSinh where MaKS=? and TrangThai = 2 ";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
