@@ -31,7 +31,9 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         listKhaiSinh = khaiSinhService.findAll();
         model = (DefaultTableModel) tbl_thongTinCongDan.getModel();
         showTable();
-
+        if(cbx_loaiDon.getSelectedIndex() == 0){
+            btn_luuThem.setVisible(false);
+        }
         disableTextField();
 
     }
@@ -72,7 +74,6 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         tbl_thongTinCongDan = new Swing.TableDark();
         btn_luuSua = new Swing.Button();
         btn_luuThem = new Swing.Button();
-        btn_them = new Swing.Button();
         tf_danToc = new Swing.TextField();
         tf_CCCDMe = new Swing.TextField();
         tf_ngayDangKy = new Swing.TextField();
@@ -194,15 +195,6 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             }
         });
 
-        btn_them.setBackground(new java.awt.Color(18, 99, 63));
-        btn_them.setForeground(new java.awt.Color(255, 255, 255));
-        btn_them.setText("Thêm thông tin");
-        btn_them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_themActionPerformed(evt);
-            }
-        });
-
         tf_danToc.setLabelText("Dân tộc");
 
         tf_CCCDMe.setLabelText("Số CCCD mẹ");
@@ -233,11 +225,9 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(217, 217, 217)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,8 +327,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                     .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -370,19 +359,12 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
 
         int selectedRow = tbl_thongTinCongDan.getSelectedRow();
-        if (cbx_loaiDon.getSelectedIndex() == 1) {
-            JOptionPane dialog = new JOptionPane("Đơn chưa duyệt không thể chỉnh sửa!", JOptionPane.WARNING_MESSAGE);
+        if (tbl_thongTinCongDan.getRowCount() <= 0 ) {
+            JOptionPane dialog = new JOptionPane("Không có đơn cần xóa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-            return;
-        }
-        if (tbl_thongTinCongDan.getRowCount() <= 0) {
-            JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-        } else if (selectedRow < 0) {
+        }else if (selectedRow < 0) {
             JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -393,7 +375,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             if (confirm == JOptionPane.YES_OPTION) {
 
                 try {
-                    String id = (String) tbl_thongTinCongDan.getValueAt(selectedRow, 1);
+                    String id = (String) tbl_thongTinCongDan.getValueAt(selectedRow, 0);
                     model.removeRow(selectedRow);
                     //listKhaiSinh.remove(selectedRow);
                     if (new KhaiSinhServiceImpl().delete(id)) {
@@ -421,118 +403,126 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
-        if (cbx_loaiDon.getSelectedIndex() == 0) {
-            JOptionPane dialog = new JOptionPane("Đơn này đã được duyệt!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
+        if(tbl_thongTinCongDan.getRowCount() <= 0 ){
+            JOptionPane dialog = new JOptionPane("Không có đơn cần duyệt!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
         } else {
-            if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
-                JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
-                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-
-            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
-                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
-                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-
-            KhaiSinhModel khaiSinh = new KhaiSinhModel();
-            khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
-            khaiSinh.setMaKS(tf_maKhaiSinh.getText().trim());
-            khaiSinh.setQuocTich(tf_quocTich.getText().trim());
-            khaiSinh.setHoTenKS(tf_hoTen.getText());
-            khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
-            khaiSinh.setGioiTinh(tf_gioiTinh.getText());
-            khaiSinh.setNoiSinh(tf_noiSinh.getText());
-            khaiSinh.setQueQuan(tf_queQuan.getText());
-            khaiSinh.setCha(tf_CCCDCha.getText().trim());
-            khaiSinh.setMe(tf_CCCDMe.getText().trim());
-            khaiSinh.setQuanHe(tf_quanHe.getText());
-            khaiSinh.setDanToc(tf_danToc.getText());
-            khaiSinh.setNoiDk(tf_noiDangKy.getText());
-            khaiSinh.setTrangThai(1);
-            try {
-                if (isDateValid(tf_ngayDangKy.getText().trim())) {
-                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
-                    java.sql.Date sqlDate;
-                    sqlDate = new java.sql.Date(utilDate.getTime());
-                    khaiSinh.setNgayDk(sqlDate);
-                } else {
-                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+            if (tbl_thongTinCongDan.getSelectedRow() > 0) {
+                if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
+                    JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
                 }
 
-            } catch (ParseException ex) {
-                return;
-            }
-
-            try {
-                if (isDateValid(tf_ngaySinh.getText().trim())) {
-                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
-                    java.sql.Date sqlDate;
-                    sqlDate = new java.sql.Date(utilDate.getTime());
-                    khaiSinh.setNgaySinh(sqlDate);
-                } else {
-                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
                 }
 
-            } catch (ParseException ex) {
-                return;
-            }
+                KhaiSinhModel khaiSinh = new KhaiSinhModel();
+                khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
+                khaiSinh.setMaKS(tf_maKhaiSinh.getText().trim());
+                khaiSinh.setQuocTich(tf_quocTich.getText().trim());
+                khaiSinh.setHoTenKS(tf_hoTen.getText());
+                khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
+                khaiSinh.setGioiTinh(tf_gioiTinh.getText());
+                khaiSinh.setNoiSinh(tf_noiSinh.getText());
+                khaiSinh.setQueQuan(tf_queQuan.getText());
+                khaiSinh.setCha(tf_CCCDCha.getText().trim());
+                khaiSinh.setMe(tf_CCCDMe.getText().trim());
+                khaiSinh.setQuanHe(tf_quanHe.getText());
+                khaiSinh.setDanToc(tf_danToc.getText());
+                khaiSinh.setNoiDk(tf_noiDangKy.getText());
+                khaiSinh.setTrangThai(1);
+                try {
+                    if (isDateValid(tf_ngayDangKy.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        khaiSinh.setNgayDk(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
 
-            listKhaiSinh.add(khaiSinh);
+                } catch (ParseException ex) {
+                    return;
+                }
 
-            if (new KhaiSinhServiceImpl().update(khaiSinh)) {
-                listChuaDuyet.remove(khaiSinh);
-                JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    if (isDateValid(tf_ngaySinh.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        khaiSinh.setNgaySinh(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
+
+                } catch (ParseException ex) {
+                    return;
+                }
+
+                listKhaiSinh.add(khaiSinh);
+
+                if (new KhaiSinhServiceImpl().update(khaiSinh)) {
+                    listChuaDuyet.remove(khaiSinh);
+                    JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                } else {
+                    JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+
+            }else if(tbl_thongTinCongDan.getSelectedRowCount() < 0 ){
+                    JOptionPane dialog = new JOptionPane("Không có đơn chưa duyệt!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
+                return;
+                    }
+            if (cbx_loaiDon.getSelectedIndex() == 0) {
+                showResult();
+                clear();
+                disableTextField();
             } else {
-                JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
+                model.removeRow(tbl_thongTinCongDan.getSelectedRow());
             }
+        }
 
-        }
-        if (cbx_loaiDon.getSelectedIndex() == 0) {
-            showResult();
-            clear();
-            disableTextField();
-        } else {
-            model.removeRow(tbl_thongTinCongDan.getSelectedRow());
-        }
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -568,183 +558,153 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
-        try{
+        try {
             int selectedRow = tbl_thongTinCongDan.getSelectedRow();
-        if (cbx_loaiDon.getSelectedIndex() == 1) {
-            JOptionPane dialog = new JOptionPane("Đơn chưa duyệt không thể chỉnh sửa!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        if (tbl_thongTinCongDan.getRowCount() <= 0) {
-            JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        } else if (selectedRow < 0) {
-            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        } else if (selectedRow >= 0) {
-            if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
-                JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+            if (cbx_loaiDon.getSelectedIndex() == 1) {
+                JOptionPane dialog = new JOptionPane("Đơn chưa duyệt không thể chỉnh sửa!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
             }
-            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
-                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            if (tbl_thongTinCongDan.getRowCount() <= 0) {
+                JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
-            }
-
-            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
-                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            } else if (selectedRow < 0) {
+                JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
-            }
-            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
-                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-            KhaiSinhModel khaiSinh = new KhaiSinhModel();
-            khaiSinh = khaiSinhService.findOne(tf_maKhaiSinh.getText().trim());
-            khaiSinh.setQuocTich(tf_quocTich.getText().trim());
-            khaiSinh.setHoTenKS(tf_hoTen.getText());
-            khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
-            khaiSinh.setGioiTinh(tf_gioiTinh.getText());
-            khaiSinh.setNoiSinh(tf_noiSinh.getText());
-            khaiSinh.setQueQuan(tf_queQuan.getText());
-            khaiSinh.setCha(tf_CCCDCha.getText().trim());
-            khaiSinh.setMe(tf_CCCDMe.getText().trim());
-            khaiSinh.setQuanHe(tf_quanHe.getText());
-            khaiSinh.setDanToc(tf_danToc.getText());
-            khaiSinh.setNoiDk(tf_noiDangKy.getText());
-            khaiSinh.setTrangThai(1);
-            try {
-                if (isDateValid(tf_ngayDangKy.getText().trim())) {
-                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
-                    java.sql.Date sqlDate;
-                    sqlDate = new java.sql.Date(utilDate.getTime());
-                    khaiSinh.setNgayDk(sqlDate);
-                } else {
-                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+            } else if (selectedRow >= 0) {
+                if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
+                    JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
                 }
 
-            } catch (ParseException ex) {
-                return;
-            }
-
-            try {
-                if (isDateValid(tf_ngaySinh.getText().trim())) {
-                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
-                    java.sql.Date sqlDate;
-                    sqlDate = new java.sql.Date(utilDate.getTime());
-                    khaiSinh.setNgaySinh(sqlDate);
-                } else {
-                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
                 }
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                KhaiSinhModel khaiSinh = new KhaiSinhModel();
+                khaiSinh = khaiSinhService.findOne(tf_maKhaiSinh.getText().trim());
+                khaiSinh.setQuocTich(tf_quocTich.getText().trim());
+                khaiSinh.setHoTenKS(tf_hoTen.getText());
+                khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
+                khaiSinh.setGioiTinh(tf_gioiTinh.getText());
+                khaiSinh.setNoiSinh(tf_noiSinh.getText());
+                khaiSinh.setQueQuan(tf_queQuan.getText());
+                khaiSinh.setCha(tf_CCCDCha.getText().trim());
+                khaiSinh.setMe(tf_CCCDMe.getText().trim());
+                khaiSinh.setQuanHe(tf_quanHe.getText());
+                khaiSinh.setDanToc(tf_danToc.getText());
+                khaiSinh.setNoiDk(tf_noiDangKy.getText());
+                khaiSinh.setTrangThai(1);
+                try {
+                    if (isDateValid(tf_ngayDangKy.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        khaiSinh.setNgayDk(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
 
-            } catch (ParseException ex) {
-                return;
+                } catch (ParseException ex) {
+                    return;
+                }
+
+                try {
+                    if (isDateValid(tf_ngaySinh.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        khaiSinh.setNgaySinh(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
+
+                } catch (ParseException ex) {
+                    return;
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                String ngaySinh = sdf.format(sqlDate);
+                Date util = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
+                java.sql.Date sql = new java.sql.Date(util.getTime());
+
+                String ngayDangKy = sdf.format(sql);
+                if (new KhaiSinhServiceImpl().update(khaiSinh)) {
+                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    model.setValueAt(tf_hoTen.getText(), selectedRow, 1);
+                    model.setValueAt(tf_gioiTinh.getText(), selectedRow, 2);
+                    model.setValueAt(ngaySinh, selectedRow, 3);
+                    model.setValueAt(tf_danToc.getText(), selectedRow, 4);
+                    model.setValueAt(tf_quocTich.getText(), selectedRow, 5);
+                    model.setValueAt(tf_noiSinh.getText(), selectedRow, 6);
+                    model.setValueAt(tf_queQuan.getText(), selectedRow, 7);
+                    model.setValueAt(tf_CCCDCha.getText(), selectedRow, 8);
+                    model.setValueAt(tf_CCCDMe.getText(), selectedRow, 9);
+                    model.setValueAt(tf_CCCDNguoiDangKy.getText(), selectedRow, 10);
+                    model.setValueAt(tf_quanHe.getText(), selectedRow, 11);
+                    model.setValueAt(ngayDangKy, selectedRow, 12);
+                    model.setValueAt(tf_noiDangKy.getText(), selectedRow, 13);
+                    model.fireTableDataChanged();
+                } else {
+                    JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
             }
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            String ngaySinh = sdf.format(sqlDate);
-            Date util = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
-            java.sql.Date sql = new java.sql.Date(util.getTime());
-            
-            String ngayDangKy = sdf.format(sql);
-            if (new KhaiSinhServiceImpl().update(khaiSinh)) {
-                JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                model.setValueAt(tf_hoTen.getText(), selectedRow, 1);
-                model.setValueAt(tf_gioiTinh.getText(), selectedRow, 2);
-                model.setValueAt(ngaySinh, selectedRow, 3);
-                model.setValueAt(tf_danToc.getText(), selectedRow, 4);
-                model.setValueAt(tf_quocTich.getText(), selectedRow, 5);
-                model.setValueAt(tf_noiSinh.getText(), selectedRow, 6);
-                model.setValueAt(tf_queQuan.getText(), selectedRow, 7);
-                model.setValueAt(tf_CCCDCha.getText(), selectedRow, 8);
-                model.setValueAt(tf_CCCDMe.getText(), selectedRow, 9);
-                model.setValueAt(tf_CCCDNguoiDangKy.getText(), selectedRow, 10);
-                model.setValueAt(tf_quanHe.getText(), selectedRow, 11);
-                model.setValueAt(ngayDangKy, selectedRow, 12);
-                model.setValueAt(tf_noiDangKy.getText(), selectedRow, 13);
-                model.fireTableDataChanged();
-            } else {
-                JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-        }
-        clear();
-        }catch(Exception e){
+            clear();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btn_luuSuaActionPerformed
-
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-//        if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_noiSinh.getText().equals("")) {
-//            JOptionPane dialog = new JOptionPane("Please enter birth certificate information and load the data!", JOptionPane.WARNING_MESSAGE);
-//            JDialog jDialog = dialog.createDialog(null);
-//            jDialog.setModal(true);
-//            jDialog.setVisible(true);
-//            return;
-//        }
-//        if (!isEligibleForCCCD(tf_ngaySinh)) {
-//            JOptionPane dialog = new JOptionPane("This citizen is not old enough to be granted an identification number!", JOptionPane.WARNING_MESSAGE);
-//            JDialog jDialog = dialog.createDialog(null);
-//            jDialog.setModal(true);
-//            jDialog.setVisible(true);
-//            return;
-//        } else {
-//            tf_quocTich.setEditable(true);
-//            tf_hoTen.setEditable(true);
-//            tf_gioiTinh.setEditable(true);
-//            tf_ngaySinh.setEditable(true);
-//            tf_noiSinh.setEditable(true);
-//            tf_quanHe.setEditable(true);
-//            tf_CCCDNguoiDangKy.setEditable(true);
-//            tf_queQuan.setEditable(true);
-//            tf_CCCDCha.setEditable(true);
-//            tf_danToc.setEditable(true);
-//            tf_ngayDangKy.setEditable(true);
-//        }
-
-
-    }//GEN-LAST:event_btn_themActionPerformed
 
     private void cbx_loaiDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_loaiDonActionPerformed
         if (cbx_loaiDon.getSelectedIndex() == 0) {
             lbl_loaiDon.setText("ĐƠN ĐÃ DUYỆT");
             showTable();
+            btn_luuThem.setVisible(false);
         } else {
             listChuaDuyet = khaiSinhService.findAllChuaDuyet();
             if (listChuaDuyet == null) {
@@ -758,6 +718,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             model.setRowCount(0);
 
             showTableChuaDuyet();
+            btn_luuThem.setVisible(true);
         }
     }//GEN-LAST:event_cbx_loaiDonActionPerformed
     public void showResult() {
@@ -884,7 +845,6 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private Swing.Button btn_luuSua;
     private Swing.Button btn_luuThem;
     private Swing.Button btn_sua;
-    private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
     private Swing.Combobox cbx_loaiDon;
