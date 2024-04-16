@@ -20,6 +20,7 @@ public class GiayChungTuModel {
     private int TrangThai;
     private String HoTen;
     private Date NgaySinh;
+    private String MaKS;
 
     public String getHoTen() {
         return HoTen;
@@ -44,7 +45,7 @@ public class GiayChungTuModel {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public GiayChungTuModel(int ID, String MaCT, String CCCD, Date NgayMat, String NoiMat, String NguyenNhan, int TrangThai) {
+    public GiayChungTuModel(int ID, String MaCT, String CCCD, Date NgayMat, String NoiMat, String NguyenNhan, int TrangThai, String HoTen, Date NgaySinh, String MaKS) {
         this.ID = ID;
         this.MaCT = MaCT;
         this.CCCD = CCCD;
@@ -52,7 +53,12 @@ public class GiayChungTuModel {
         this.NoiMat = NoiMat;
         this.NguyenNhan = NguyenNhan;
         this.TrangThai = TrangThai;
+        this.HoTen = HoTen;
+        this.NgaySinh = NgaySinh;
+        this.MaKS = MaKS;
     }
+
+    
 
     // Getters and setters
     public int getID() {
@@ -110,5 +116,15 @@ public class GiayChungTuModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    public String getMaKS() {
+        return MaKS;
+    }
+
+    public void setMaKS(String MaKS) {
+        this.MaKS = MaKS;
+    }
+    
+    
 }
 
