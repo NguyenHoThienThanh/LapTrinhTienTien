@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import InterfaceDAO.IChungNhanKetHonDAO;
-import Models.DonChungNhanKetHon;
 
 /**
  *
@@ -26,22 +25,30 @@ public class ChungNhanKetHonDAOImpl implements IChungNhanKetHonDAO{
     
     @Override
     public List<ChungNhanKetHonModel> findAll() {
-        String query = "SELECT * FROM Cnkh WHERE TrangThai = 1";
+        String query = "select DISTINCT * from Cnkh join (select HoTen as Hotenchong, NgaySinh as Ngaysinhchong, DanToc as Dantocchong, QuocTich as Quoctichchong, DiaChi as Noicutruchong, CccdChong as Giaytotuythanchong, Cnkh.TrangThai from Cnkh join CongDan on Cnkh.CccdChong = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS  join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1)Q on Cnkh.CccdChong = Q.Giaytotuythanchong join (select HoTen as Hotenvo, NgaySinh as Ngaysinhvo, DanToc as Dantocvo, QuocTich as Quoctichvo, DiaChi as Noicutruvo,CccdVo as Giaytotuythanvo from Cnkh join CongDan on Cnkh.CccdVo = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1)P on Cnkh.CccdVo = P.Giaytotuythanvo where Cnkh.TrangThai = 1";
         List<ChungNhanKetHonModel> listChungNhanKetHon = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                ChungNhanKetHonModel chungNhanKetHon = new ChungNhanKetHonModel();
-                chungNhanKetHon.setID(rs.getInt(1));
-                chungNhanKetHon.setMaCnkh(rs.getString(2));
-                chungNhanKetHon.setCCCDVo(rs.getString(3));
-                chungNhanKetHon.setCCCDChong(rs.getString(4));
-                chungNhanKetHon.setNoidk(rs.getString(5));
-                chungNhanKetHon.setNgaydk(rs.getDate(6));
-                chungNhanKetHon.setTrangThai(rs.getInt(7));
-                listChungNhanKetHon.add(chungNhanKetHon);
+                ChungNhanKetHonModel dcnkh = new ChungNhanKetHonModel();
+                dcnkh.setCCCDChong(rs.getString("Giaytotuythanchong"));
+                dcnkh.setCCCDVo(rs.getString("Giaytotuythanvo"));
+                dcnkh.setNgaySinhChong(rs.getDate("Ngaysinhchong"));
+                dcnkh.setQuocTichChong(rs.getString("Quoctichchong"));
+                dcnkh.setNgaySinhVo(rs.getDate("Ngaysinhvo"));
+                dcnkh.setQuocTichVo(rs.getString("Quoctichvo"));
+                dcnkh.setDanTocChong(rs.getString("Dantocchong"));
+                dcnkh.setDanTocVo(rs.getString("Dantocvo"));
+                dcnkh.setHoTenChong(rs.getString("Hotenchong"));
+                dcnkh.setHoTenVo(rs.getString("Hotenvo"));
+                dcnkh.setNoiCuTruChong(rs.getString("Noicutruchong"));
+                dcnkh.setNoiCuTruVo(rs.getString("Noicutruvo"));
+                dcnkh.setMaCnkh(rs.getString("MaCnkh"));
+                dcnkh.setNgaydk(rs.getDate("Ngaydk"));
+                dcnkh.setNoidk(rs.getString("Noidk"));
+                listChungNhanKetHon.add(dcnkh);
             }
             conn.close();
         } catch (Exception e) {
@@ -116,7 +123,7 @@ public class ChungNhanKetHonDAOImpl implements IChungNhanKetHonDAO{
 
     @Override
     public boolean delete(String MaKH) {
-        String query = "DELETE Cnkh WHERE MaCnkh = ?";
+        String query = "DELETE Cnkh Where MaCnkh = ?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

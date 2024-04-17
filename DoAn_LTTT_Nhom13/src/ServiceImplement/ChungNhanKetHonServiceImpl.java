@@ -102,5 +102,79 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
         return listDonChungNhanKetHon;
     }
     
+    @Override
+    public List<ChungNhanKetHonModel> findAllChuaDuyet() {
+        String query = "SELECT * FROM Cnkh WHERE TrangThai = 2";
+        List<ChungNhanKetHonModel> listChungNhanKetHon = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ChungNhanKetHonModel chungNhanKetHon = new ChungNhanKetHonModel();
+                chungNhanKetHon.setID(rs.getInt(1));
+                chungNhanKetHon.setMaCnkh(rs.getString(2));
+                chungNhanKetHon.setCCCDVo(rs.getString(3));
+                chungNhanKetHon.setCCCDChong(rs.getString(4));
+                chungNhanKetHon.setNoidk(rs.getString(5));
+                chungNhanKetHon.setNgaydk(rs.getDate(6));
+                chungNhanKetHon.setTrangThai(rs.getInt(7));
+                listChungNhanKetHon.add(chungNhanKetHon);
+            }
+            conn.close();
+        } catch (Exception e) {
+
+        }
+        return listChungNhanKetHon;
+    }
+    
+    
+    @Override
+    public ChungNhanKetHonModel findOneChuaDuyet(String Giaytotuythanvo, String Giaytotuythanchong) {
+        ChungNhanKetHonModel dcnkh = new ChungNhanKetHonModel();
+        String query = "select Giaytotuythanchong, Giaytotuythanvo, Ngaysinhchong, Quoctichchong, Ngaysinhvo, Quoctichvo, Dantocchong, Dantocvo, Hotenchong, Hotenvo, Noicutruchong, Noicutruvo, MaCnkh, Ngaydk, Noidk from Cnkh \n" +
+            "	join (select HoTen as Hotenchong, NgaySinh as Ngaysinhchong, DanToc as Dantocchong, QuocTich as Quoctichchong, DiaChi as Noicutruchong, CccdChong as Giaytotuythanchong, Cnkh.TrangThai from Cnkh \n" +
+            "	join CongDan on Cnkh.CccdChong = CongDan.CCCD \n" +
+            "	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS  \n" +
+            "	join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia \n" +
+            "	join HoKhau on QuanHe.MaHK = HoKhau.MaHK \n" +
+            "	where QuanHe.TrangThai = 1)Q on Cnkh.CccdChong = Q.Giaytotuythanchong \n" +
+            "	join (select HoTen as Hotenvo, NgaySinh as Ngaysinhvo, DanToc as Dantocvo, QuocTich as Quoctichvo, DiaChi as Noicutruvo,CccdVo as Giaytotuythanvo from Cnkh \n" +
+            "	join CongDan on Cnkh.CccdVo = CongDan.CCCD \n" +
+            "	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS \n" +
+            "	join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia \n" +
+            "	join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1)P on Cnkh.CccdVo = P.Giaytotuythanvo where Cnkh.TrangThai = 2 and (Giaytotuythanchong = ? or Giaytotuythanvo = ?)";
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, Giaytotuythanchong);
+            ps.setString(2, Giaytotuythanvo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                dcnkh.setCCCDChong(rs.getString(1));
+                dcnkh.setCCCDVo(rs.getString(2));
+                dcnkh.setNgaySinhChong(rs.getDate(3));
+                dcnkh.setQuocTichChong(rs.getString(4));
+                dcnkh.setNgaySinhVo(rs.getDate(5));
+                dcnkh.setQuocTichVo(rs.getString(6));
+                dcnkh.setDanTocChong(rs.getString(7));
+                dcnkh.setDanTocVo(rs.getString(8));
+                dcnkh.setHoTenChong(rs.getString(9));
+                dcnkh.setHoTenVo(rs.getString(10));
+                dcnkh.setNoiCuTruChong(rs.getString(11));
+                dcnkh.setNoiCuTruVo(rs.getString(12));
+                dcnkh.setMaCnkh(rs.getString(13));
+                dcnkh.setNgaydk(rs.getDate(14));
+                dcnkh.setNoidk(rs.getString(15));
+                
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return dcnkh;
+    }
     
 }
