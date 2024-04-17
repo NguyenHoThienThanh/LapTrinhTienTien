@@ -133,7 +133,7 @@ public class TamVangDAOImpl implements ITamVangDAO {
 
     @Override
     public boolean delete(String MaTV) {
-        String query = "DELETE Tamvang WHERE MaTV = ?";
+        String query = "UPDATE Tamvang SET TrangThai = 0 WHERE MaTV = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

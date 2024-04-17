@@ -4,15 +4,11 @@
  */
 package Controller.Admin;
 
-import InterfaceDAO.ICongDanDAO;
 import InterfaceService.ICongDanService;
-import InterfaceService.ITamTruService;
 import InterfaceService.ITamVangService;
 import Models.CongDanModel;
 import Models.TamVangModel;
-import Models.TamVangModel;
 import ServiceImplement.CongDanServiceImpl;
-import ServiceImplement.TamVangServiceImpl;
 import ServiceImplement.TamVangServiceImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +28,7 @@ public class TamVangController extends javax.swing.JPanel {
 
     DefaultTableModel model;
     List<TamVangModel> listTamVang;
+    List<TamVangModel> listChuaDuyet;
     ITamVangService tamVangService = new TamVangServiceImpl();
 
     public TamVangController() {
@@ -39,12 +36,22 @@ public class TamVangController extends javax.swing.JPanel {
         listTamVang = tamVangService.findAll();
         model = (DefaultTableModel) tbl_thongTinTamVang.getModel();
         tbl_thongTinTamVang.fixTable(jScrollPane2);
+        if (cbx_loaiDon.getSelectedIndex() == 0) {
+            btn_luuThem.setVisible(false);
+        }
         showTable();
         disableTextField();
     }
 
     private void showTable() {
         for (TamVangModel tamVang : listTamVang) {
+            model.addRow(new Object[]{tamVang.getMaTV(), tamVang.getNgaydk(), tamVang.getNcdi(), tamVang.getNcden(), tamVang.getHoTen(), tamVang.getNgaySinh(), tamVang.getCCCD(), tamVang.getNgayCapCCCD(), tamVang.getNoiCapCCCD(), tamVang.getNgaydi(), tamVang.getNgayve(), tamVang.getLydo()});
+        }
+    }
+
+    private void showTableChuaDuyet() {
+        listChuaDuyet = tamVangService.findAllChuaDuyet();
+        for (TamVangModel tamVang : listChuaDuyet) {
             model.addRow(new Object[]{tamVang.getMaTV(), tamVang.getNgaydk(), tamVang.getNcdi(), tamVang.getNcden(), tamVang.getHoTen(), tamVang.getNgaySinh(), tamVang.getCCCD(), tamVang.getNgayCapCCCD(), tamVang.getNoiCapCCCD(), tamVang.getNgaydi(), tamVang.getNgayve(), tamVang.getLydo()});
         }
     }
@@ -67,7 +74,6 @@ public class TamVangController extends javax.swing.JPanel {
         tf_ngayCapCCCD = new Swing.TextField();
         tf_noiChuyenDi = new Swing.TextField();
         tf_ngaySinh = new Swing.TextField();
-        btn_them = new Swing.Button();
         btn_sua = new Swing.Button();
         btn_xoa = new Swing.Button();
         jLabel1 = new javax.swing.JLabel();
@@ -80,6 +86,8 @@ public class TamVangController extends javax.swing.JPanel {
         btn_loadData = new button.MyButton();
         btn_luuThem = new Swing.Button();
         btn_luuSua = new Swing.Button();
+        cbx_loaiDon = new Swing.Combobox();
+        lbl_loaiDon = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,15 +108,6 @@ public class TamVangController extends javax.swing.JPanel {
         tf_noiChuyenDi.setLabelText("Nơi chuyển đi");
 
         tf_ngaySinh.setLabelText("Ngày sinh");
-
-        btn_them.setBackground(new java.awt.Color(18, 99, 63));
-        btn_them.setForeground(new java.awt.Color(255, 255, 255));
-        btn_them.setText("Thêm thông tin");
-        btn_them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_themActionPerformed(evt);
-            }
-        });
 
         btn_sua.setBackground(new java.awt.Color(18, 99, 63));
         btn_sua.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,7 +181,7 @@ public class TamVangController extends javax.swing.JPanel {
 
         btn_luuThem.setBackground(new java.awt.Color(18, 99, 63));
         btn_luuThem.setForeground(new java.awt.Color(255, 255, 255));
-        btn_luuThem.setText("Lưu thêm");
+        btn_luuThem.setText("Duyệt thông tin");
         btn_luuThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_luuThemActionPerformed(evt);
@@ -198,6 +197,18 @@ public class TamVangController extends javax.swing.JPanel {
             }
         });
 
+        cbx_loaiDon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đơn Đã Duyệt", "Đơn Chưa Duyệt" }));
+        cbx_loaiDon.setLabeText("");
+        cbx_loaiDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_loaiDonActionPerformed(evt);
+            }
+        });
+
+        lbl_loaiDon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_loaiDon.setForeground(new java.awt.Color(18, 99, 63));
+        lbl_loaiDon.setText("ĐƠN ĐÃ DUYỆT");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,11 +221,6 @@ public class TamVangController extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -239,14 +245,21 @@ public class TamVangController extends javax.swing.JPanel {
                                     .addComponent(tf_noiChuyenDen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGap(0, 87, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_loaiDon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbx_loaiDon, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(25, 25, 25))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,32 +279,36 @@ public class TamVangController extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tf_maTamVang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tf_noiChuyenDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_noiChuyenDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tf_lyDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tf_ngayVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_maTamVang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tf_noiChuyenDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_noiChuyenDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tf_lyDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_ngayVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbx_loaiDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_loaiDon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,129 +363,155 @@ public class TamVangController extends javax.swing.JPanel {
         clear();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
 
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        if (tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_ngayCapCCCD.getText().equals("") || tf_noiCapCCCD.getText().equals("")) {
-            JOptionPane dialog = new JOptionPane("Please enter identity number information and load the data!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        } else {
-            tf_noiChuyenDi.setEditable(true);
-            tf_noiChuyenDen.setEditable(true);
-            tf_ngayVe.setEditable(false);
-            tf_ngayDi.setEditable(true);
-            tf_lyDo.setEditable(true);
-            tf_soCCCD.setEditable(false);
-        }
-
-    }//GEN-LAST:event_btn_themActionPerformed
-
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
-        if (tf_lyDo.getText().equals("") || tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_noiCapCCCD.getText().equals("") || tf_ngayCapCCCD.getText().equals("") || tf_noiChuyenDi.getText().equals("") || tf_noiChuyenDen.getText().equals("")) {
-            JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+        if (tbl_thongTinTamVang.getRowCount() <= 0) {
+            JOptionPane dialog = new JOptionPane("Không có đơn cần duyệt!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-            return;
-        }
-        if (tamVangService.ifExists(tf_soCCCD.getText().trim()) == 1) {
-            JOptionPane dialog = new JOptionPane("Công dân này đã đăng ký tạm trú!", JOptionPane.INFORMATION_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
+        } else {
+            if (tbl_thongTinTamVang.getSelectedRow() >= 0) {
+                if (tf_lyDo.getText().equals("") || tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_noiCapCCCD.getText().equals("") || tf_ngayCapCCCD.getText().equals("") || tf_noiChuyenDi.getText().equals("") || tf_noiChuyenDen.getText().equals("")) {
+                    JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                if (tamVangService.ifExists(tf_soCCCD.getText().trim()) == 1) {
+                    JOptionPane dialog = new JOptionPane("Công dân này đã đăng ký tạm vắng!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
 
-        TamVangModel tamVang = new TamVangModel();
-        tamVang.setCCCD(tf_soCCCD.getText().trim());
-        tamVang.setHoTen(tf_hoTen.getText());
-        tamVang.setNoiCapCCCD(tf_noiCapCCCD.getText());
-        tamVang.setNcden(tf_noiChuyenDen.getText());
-        tamVang.setNcdi(tf_noiChuyenDi.getText());
-        try {
-            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
-            java.sql.Date sqlDate;
-            sqlDate = new java.sql.Date(utilDate.getTime());
-            tamVang.setNgaySinh(sqlDate);
-        } catch (ParseException ex) {
-            return;
-        }
+                TamVangModel tamVang = tamVangService.findOneChuaDuyet(tf_maTamVang.getText().trim());
+                tamVang.setCCCD(tf_soCCCD.getText().trim());
+                tamVang.setHoTen(tf_hoTen.getText());
+                tamVang.setNoiCapCCCD(tf_noiCapCCCD.getText());
+                tamVang.setNcden(tf_noiChuyenDen.getText());
+                tamVang.setNcdi(tf_noiChuyenDi.getText());
+                try {
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
+                    java.sql.Date sqlDate;
+                    sqlDate = new java.sql.Date(utilDate.getTime());
+                    tamVang.setNgaySinh(sqlDate);
+                } catch (ParseException ex) {
+                    return;
+                }
 
+                try {
+                    if (isDateValidPresent(tf_ngayDangKy.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        tamVang.setNgaydk(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đăng ký!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
+
+                } catch (ParseException ex) {
+                    return;
+                }
+                
+                try {
+                    if (isDateValidPresent(tf_ngayCapCCCD.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        tamVang.setNgayCapCCCD(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
+
+                } catch (ParseException ex) {
+                    return;
+                }
 //        try {
-//            if (isDateValidPresent(tf_ngayDangKy.getText().trim())) {
-//                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
-//                java.sql.Date sqlDate;
-//                sqlDate = new java.sql.Date(utilDate.getTime());
-//                tamVang.setNgaydk(sqlDate);
-//            } else {
-//                JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đăng ký!", JOptionPane.WARNING_MESSAGE);
-//                JDialog jDialog = dialog.createDialog(null);
-//                jDialog.setModal(true);
-//                jDialog.setVisible(true);
-//                return;
-//            }
-//
-//        } catch (ParseException ex) {
+//            Calendar today = Calendar.getInstance();
+//            SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            String ngayDangKy = DateFormat.format(today.getTime());
+//            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(ngayDangKy);
+//            java.sql.Date sqlDate;
+//            sqlDate = new java.sql.Date(utilDate.getTime());
+//            tamVang.setNgaydk(sqlDate);
+//        }catch(Exception e){
 //            return;
 //        }
-        try {
-            Calendar today = Calendar.getInstance();
-            SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String ngayDangKy = DateFormat.format(today.getTime());
-            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(ngayDangKy);
-            java.sql.Date sqlDate;
-            sqlDate = new java.sql.Date(utilDate.getTime());
-            tamVang.setNgaydk(sqlDate);
-        }catch(Exception e){
-            return;
-        }
 
-        try {
-            if (isDateValidPresent(tf_ngayDi.getText().trim())) {
-                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDi.getText().trim());
-                java.sql.Date sqlDate;
-                sqlDate = new java.sql.Date(utilDate.getTime());
-                tamVang.setNgaydi(sqlDate);
-            } else {
-                JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đến!", JOptionPane.WARNING_MESSAGE);
+                try {
+                    if (isDateValidPresent(tf_ngayDi.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDi.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        tamVang.setNgaydi(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đến!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
+                } catch (ParseException ex) {
+                    return;
+                }
+
+                try {
+                    String str = calculateDepartureDate(tf_ngayDi.getText().trim());
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(str);
+                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                    tamVang.setNgayve(sqlDate);
+                } catch (ParseException ex) {
+                    Logger.getLogger(TamVangController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                tamVang.setLydo(tf_lyDo.getText());
+                tamVang.setTrangThai(1);
+                listTamVang.add(tamVang);
+
+                if (new TamVangServiceImpl().update(tamVang)) {
+                    if (listChuaDuyet.contains(tamVang)) {
+                        listChuaDuyet.remove(tamVang);
+                    }
+                    model.removeRow(tbl_thongTinTamVang.getSelectedRow());
+                    JOptionPane dialog = new JOptionPane("Duyệt thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                } else {
+                    JOptionPane dialog = new JOptionPane("Duyệt thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+            } else if (tbl_thongTinTamVang.getSelectedRowCount() < 0) {
+                JOptionPane dialog = new JOptionPane("Không có đơn chưa duyệt!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
             }
-        } catch (ParseException ex) {
-            return;
+            if (cbx_loaiDon.getSelectedIndex() == 0) {
+                showResult();
+                clear();
+                disableTextField();
+            } else {
+                //listChuaDuyet.remove(khaiSinh);
+
+                //showTableChuaDuyet();
+            }
         }
 
-        try {
-            String str = calculateDepartureDate(tf_ngayDi.getText().trim());
-            Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(str);
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            tamVang.setNgayve(sqlDate);
-        } catch (ParseException ex) {
-            Logger.getLogger(TamVangController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        tamVang.setLydo(tf_lyDo.getText());
-        tamVang.setTrangThai(1);
-        listTamVang.add(tamVang);
-
-        if (new TamVangServiceImpl().insert(tamVang)) {
-            JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-        } else {
-            JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        showResult();
-        clear();
-        disableTextField();
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     public void showResult() {
@@ -478,6 +521,13 @@ public class TamVangController extends javax.swing.JPanel {
         model.addRow(new Object[]{tamVang.getMaTV(), tamVang.getNgaydk(), tamVang.getNcdi(), tamVang.getNcden(), tamVang.getHoTen(), tamVang.getNgaySinh(), tamVang.getCCCD(), tamVang.getNgayCapCCCD(), tamVang.getNoiCapCCCD(), tamVang.getNgaydi(), tamVang.getNgayve(), tamVang.getLydo()});
     }
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        if (cbx_loaiDon.getSelectedIndex() == 1) {
+            JOptionPane dialog = new JOptionPane("Đơn chưa duyệt không thể chỉnh sửa!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
         if (tbl_thongTinTamVang.getSelectedRow() < 0) {
             JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -496,6 +546,13 @@ public class TamVangController extends javax.swing.JPanel {
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
         try {
+            if (cbx_loaiDon.getSelectedIndex() == 1) {
+                JOptionPane dialog = new JOptionPane("Đơn chưa duyệt không thể chỉnh sửa!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
             int selectedRow = tbl_thongTinTamVang.getSelectedRow();
             if (tbl_thongTinTamVang.getRowCount() <= 0) {
                 JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
@@ -528,7 +585,6 @@ public class TamVangController extends javax.swing.JPanel {
                     jDialog.setVisible(true);
                     return;
                 }
-
 
                 try {
                     String strNgayVe = calculateDepartureDate(tf_ngayDi.getText().trim());
@@ -576,13 +632,12 @@ public class TamVangController extends javax.swing.JPanel {
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
 
         int selectedRow = tbl_thongTinTamVang.getSelectedRow();
-
         if (tbl_thongTinTamVang.getRowCount() <= 0) {
-            JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Không có đơn cần xóa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-        } else if (selectedRow < 0) {
+        }else if (selectedRow < 0) {
             JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -596,7 +651,7 @@ public class TamVangController extends javax.swing.JPanel {
                     String id = (String) tbl_thongTinTamVang.getValueAt(selectedRow, 0);
                     model.removeRow(selectedRow);
                     listTamVang.remove(selectedRow);
-                    if (new TamVangServiceImpl().delete(id)) {
+                    if (new TamVangServiceImpl().delete(tf_maTamVang.getText().trim())) {
                         JOptionPane msg = new JOptionPane("Information deleted successfully!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsg = msg.createDialog(null);
                         jMsg.setModal(true);
@@ -619,6 +674,28 @@ public class TamVangController extends javax.swing.JPanel {
             clear();
         }
     }//GEN-LAST:event_btn_xoaActionPerformed
+
+    private void cbx_loaiDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_loaiDonActionPerformed
+        if (cbx_loaiDon.getSelectedIndex() == 0) {
+            lbl_loaiDon.setText("ĐƠN ĐÃ DUYỆT");
+            showTable();
+            btn_luuThem.setVisible(false);
+        } else {
+            listChuaDuyet = tamVangService.findAllChuaDuyet();
+            if (listChuaDuyet == null) {
+                JOptionPane dialog = new JOptionPane("Không có đơn cần duyệt!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+            lbl_loaiDon.setText("ĐƠN CHƯA DUYỆT");
+            model.setRowCount(0);
+
+            showTableChuaDuyet();
+            btn_luuThem.setVisible(true);
+        }
+    }//GEN-LAST:event_cbx_loaiDonActionPerformed
 
     private void clear() {
         tf_soCCCD.setText("");
@@ -744,11 +821,12 @@ public class TamVangController extends javax.swing.JPanel {
     private Swing.Button btn_luuSua;
     private Swing.Button btn_luuThem;
     private Swing.Button btn_sua;
-    private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
+    private Swing.Combobox cbx_loaiDon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_loaiDon;
     private Swing.TableDark tbl_thongTinTamVang;
     private Swing.TextField tf_hoTen;
     private Swing.TextField tf_lyDo;

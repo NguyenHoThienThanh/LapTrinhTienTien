@@ -157,4 +157,69 @@ public class TamVangServiceImpl implements ITamVangService{
         return listDonTamVang;
     }
     
+    @Override
+    public List<TamVangModel> findAllChuaDuyet() {
+        String query = "SELECT Tamvang.ID, MaTV, Tamvang.CCCD, Tamvang.Ngaydk, Ncdi, Ncden, Ngaydi, Ngayve, Lydo, Tamvang.TrangThai, HoTen, NgaySinh, CongDan.NgcCccd, CongDan.NcCccd FROM Tamvang "
+                + "INNER JOIN CongDan ON Tamvang.CCCD = CongDan.CCCD "
+                + "INNER JOIN KhaiSinh ON CongDan.MaKS = KhaiSinh.MaKS "
+                + "AND Tamvang.TrangThai = 2 ORDER BY Tamvang.ID ASC";
+        List<TamVangModel> listTamVang = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                TamVangModel tamVang = new TamVangModel();
+                tamVang.setID(rs.getInt(1));
+                tamVang.setMaTV(rs.getString(2));
+                tamVang.setCCCD(rs.getString(3));
+                tamVang.setNgaydk(rs.getDate(4));
+                tamVang.setNcdi(rs.getString(5));
+                tamVang.setNcden(rs.getString(6));
+                tamVang.setNgaydi(rs.getDate(7));
+                tamVang.setNgayve(rs.getDate(8));
+                tamVang.setLydo(rs.getString(9));
+                tamVang.setTrangThai(rs.getInt(10));
+                tamVang.setHoTen(rs.getString(11));
+                tamVang.setNgaySinh(rs.getDate(12));
+                tamVang.setNgayCapCCCD(rs.getDate(13));
+                tamVang.setNoiCapCCCD(rs.getString(14));
+                listTamVang.add(tamVang);
+            }
+            conn.close();
+        } catch (Exception e) {
+
+        }
+        return listTamVang;
+    }
+    
+    @Override
+    public TamVangModel findOneChuaDuyet(String MaTV) {
+        String query = "SELECT * FROM Tamvang WHERE MaTV = ? and TrangThai = 2";
+        TamVangModel tamVang = new TamVangModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MaTV);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                tamVang.setID(rs.getInt(1));
+                tamVang.setMaTV(rs.getString(2));
+                tamVang.setCCCD(rs.getString(3));
+                tamVang.setNgaydk(rs.getDate(4));
+                tamVang.setNcdi(rs.getString(5));
+                tamVang.setNcden(rs.getString(6));
+                tamVang.setNgaydi(rs.getDate(7));
+                tamVang.setNgayve(rs.getDate(8));
+                tamVang.setLydo(rs.getString(9));
+                tamVang.setTrangThai(rs.getInt(10));
+            }
+            conn.close();
+        } catch (Exception e) {
+
+        }
+        return tamVang;
+    }
+    
+    
 }

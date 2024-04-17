@@ -4,7 +4,6 @@
  */
 package Controller.Admin;
 
-import InterfaceDAO.ICongDanDAO;
 import InterfaceService.ICongDanService;
 import InterfaceService.ITamTruService;
 import Models.CongDanModel;
@@ -345,28 +344,28 @@ public class TamTruController extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_thongTinTamTruMouseClicked
 
     private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
-//        ICongDanService congDanService = new CongDanServiceImpl();
-//        try {
-//
-//            CongDanModel congDan = new CongDanModel();
-//            congDan = congDanService.findOne(tf_soCCCD.getText().trim());
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            tf_hoTen.setText(congDan.getHoTen());
-//            tf_soDienThoai.setText(congDan.getSDT());
-//            tf_email.setText(congDan.getEmail());
-//            tf_soCCCD.setText(congDan.getCCCD());
-//            String ngayCapCCCD = dateFormat.format(congDan.getNgcCccd());
-//            tf_ngayCapCCCD.setText(ngayCapCCCD);
-//            tf_noiCapCCCD.setText(congDan.getNcCccd());
-//            String ngaySinh = dateFormat.format(congDan.getNgaySinh());
-//            tf_ngaySinh.setText(ngaySinh);
-//
-//        } catch (Exception e) {
-//            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
-//            JDialog jDialog = dialog.createDialog(null);
-//            jDialog.setModal(true);
-//            jDialog.setVisible(true);
-//        }
+        ICongDanService congDanService = new CongDanServiceImpl();
+        try {
+
+            CongDanModel congDan = new CongDanModel();
+            congDan = congDanService.findOne(tf_soCCCD.getText().trim());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            tf_hoTen.setText(congDan.getHoTen());
+            tf_soDienThoai.setText(congDan.getSDT());
+            tf_email.setText(congDan.getEmail());
+            tf_soCCCD.setText(congDan.getCCCD());
+            String ngayCapCCCD = dateFormat.format(congDan.getNgcCccd());
+            tf_ngayCapCCCD.setText(ngayCapCCCD);
+            tf_noiCapCCCD.setText(congDan.getNcCccd());
+            String ngaySinh = dateFormat.format(congDan.getNgaySinh());
+            tf_ngaySinh.setText(ngaySinh);
+
+        } catch (Exception e) {
+            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+        }
     }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
@@ -461,15 +460,32 @@ public class TamTruController extends javax.swing.JPanel {
                 } catch (ParseException ex) {
                     return;
                 }
-
+                
                 try {
-                    String str = calculateDepartureDate(tf_ngayDen.getText().trim());
-                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(str);
-                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                    tamTru.setNgaydi(sqlDate);
+                    if (isDateValidPresent(tf_ngayDi.getText().trim())) {
+                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDi.getText().trim());
+                        java.sql.Date sqlDate;
+                        sqlDate = new java.sql.Date(utilDate.getTime());
+                        tamTru.setNgaydi(sqlDate);
+                    } else {
+                        JOptionPane dialog = new JOptionPane("Lỗi ngày tháng năm ngày đến!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                    }
                 } catch (ParseException ex) {
-                    Logger.getLogger(TamTruController.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
                 }
+
+//                try {
+//                    String str = calculateDepartureDate(tf_ngayDen.getText().trim());
+//                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(str);
+//                    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+//                    tamTru.setNgaydi(sqlDate);
+//                } catch (ParseException ex) {
+//                    Logger.getLogger(TamTruController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
 
                 tamTru.setLydo(tf_lyDo.getText());
                 tamTru.setSDT(tf_soDienThoai.getText());
@@ -651,12 +667,7 @@ public class TamTruController extends javax.swing.JPanel {
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-        } else if (tbl_thongTinTamTru.getRowCount() <= 0) {
-            JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-        } else if (selectedRow < 0) {
+        }else if (selectedRow < 0) {
             JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
