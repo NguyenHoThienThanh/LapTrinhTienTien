@@ -23,74 +23,75 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPane2" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="tf_soCCCD" min="-2" pref="154" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tf_noiCapCCCD" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="tf_lyDo" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tf_maTamTru" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tf_ngayDi" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="tf_ngayDen" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_ngayDangKy" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tf_noiCapCCCD" min="-2" pref="188" max="-2" attributes="0"/>
-                                          <Component id="tf_lyDo" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tf_maTamTru" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="tf_hoTen" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="tf_ngayCapCCCD" min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tf_ngayDi" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="tf_ngayDen" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="tf_ngayDangKy" min="-2" pref="130" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tf_hoTen" min="-2" pref="188" max="-2" attributes="0"/>
-                                          <Component id="tf_ngayCapCCCD" min="-2" pref="133" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tf_soDienThoai" min="-2" pref="130" max="-2" attributes="0"/>
-                                          <Component id="tf_ngaySinh" min="-2" pref="130" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace pref="50" max="32767" attributes="0"/>
-                                      <Component id="tf_noiDangKy" min="-2" pref="151" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="tf_email" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="tf_soDienThoai" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="tf_ngaySinh" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="tf_email" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="50" max="32767" attributes="0"/>
+                              <Component id="tf_noiDangKy" min="-2" pref="151" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="tf_soCCCD" min="-2" pref="154" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_loadData" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lbl_loaiDon" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="cbx_loaiDon" min="-2" pref="188" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="btn_them" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
               <Component id="btn_luuThem" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btn_sua" min="-2" pref="100" max="-2" attributes="0"/>
@@ -100,12 +101,7 @@
               <Component id="btn_xoa" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_xoaDuLieu" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,18 +137,22 @@
                   <Component id="tf_ngayDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tf_noiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cbx_loaiDon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_loaiDon" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="256" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_them" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_sua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xoaDuLieu" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_luuThem" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_luuSua" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -207,20 +207,6 @@
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
       </Properties>
-    </Component>
-    <Component class="Swing.Button" name="btn_them">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3f" green="63" red="12" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Th&#xea;m th&#xf4;ng tin"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themActionPerformed"/>
-      </Events>
     </Component>
     <Component class="Swing.Button" name="btn_sua">
       <Properties>
@@ -417,7 +403,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="L&#x1b0;u th&#xea;m"/>
+        <Property name="text" type="java.lang.String" value="Duy&#x1ec7;t &#x111;&#x1a1;n"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_luuThemActionPerformed"/>
@@ -436,6 +422,31 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_luuSuaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="Swing.Combobox" name="cbx_loaiDon">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="&#x110;&#x1a1;n &#x110;&#xe3; Duy&#x1ec7;t"/>
+            <StringItem index="1" value="&#x110;&#x1a1;n Ch&#x1b0;a Duy&#x1ec7;t"/>
+          </StringArray>
+        </Property>
+        <Property name="labeText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbx_loaiDonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_loaiDon">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="3f" green="63" red="12" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x110;&#x1a0;N &#x110;&#xc3; DUY&#x1ec6;T"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

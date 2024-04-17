@@ -112,5 +112,66 @@ public class TamTruServiceImpl implements ITamTruService {
             return -1;
         }
     }
+    
+    @Override
+    public List<TamTruModel> findAllChuaDuyet() {
+        String query = "select Tamtru.ID, Tamtru.MaTT, Tamtru.CCCD, Tamtru.Ngaydk, Tamtru.Noidk, Tamtru.Ngayden, Tamtru.Ngaydi, Tamtru.Lydo, Tamtru.TrangThai, CongDan.HoTen, KhaiSinh.NgaySinh, KhaiSinh.GioiTinh, CongDan.NcCccd, CongDan.NgcCccd, CongDan.SDT, CongDan.Email from Tamtru  join CongDan  on Tamtru.Cccd = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS join (select datediff(day, Tamtru.Ngaydk, GETDATE()) as Han, MaTT as Ma from Tamtru)Q on Tamtru.MaTT = Q.Ma Where Tamtru.TrangThai = 2 and Han <= 730 order by Tamtru.ID ASC";
+        List<TamTruModel> listTamTru = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                TamTruModel tamTru = new TamTruModel();
+                tamTru.setID(rs.getInt(1));
+                tamTru.setMaTT(rs.getString(2));
+                tamTru.setCCCD(rs.getString(3));
+                tamTru.setNgaydk(rs.getDate(4));
+                tamTru.setNoidk(rs.getString(5));
+                tamTru.setNgayden(rs.getDate(6));
+                tamTru.setNgaydi(rs.getDate(7));
+                tamTru.setLydo(rs.getString(8));
+                tamTru.setTrangThai(rs.getInt(9));
+                tamTru.setHoTen(rs.getString(10));
+                tamTru.setNgaySinh(rs.getDate(11));
+                tamTru.setGioiTinh(rs.getString(12));
+                tamTru.setNcCccd(rs.getString(13));
+                tamTru.setNgcCccd(rs.getDate(14));
+                tamTru.setSDT(rs.getString(15));
+                tamTru.setEmail(rs.getString(16));
+                listTamTru.add(tamTru);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTamTru;
+    }
 
+    @Override
+    public TamTruModel findOneChuaDuyet(String maTT) {
+        TamTruModel tamTru = new TamTruModel();
+        String query = "select * from TamTru where MaTT=? and TrangThai =2";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maTT);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                tamTru.setID(rs.getInt(1));
+                tamTru.setMaTT(rs.getString(2));
+                tamTru.setCCCD(rs.getString(3));
+                tamTru.setNgaydk(rs.getDate(4));
+                tamTru.setNoidk(rs.getString(5));
+                tamTru.setNgayden(rs.getDate(6));
+                tamTru.setNgaydi(rs.getDate(7));
+                tamTru.setLydo(rs.getString(8));
+                tamTru.setTrangThai(rs.getInt(9));
+            }
+            conn.close();
+        } catch (Exception ex) {
+
+        }
+        return tamTru;
+    }
 }
