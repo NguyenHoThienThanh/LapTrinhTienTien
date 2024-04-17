@@ -1316,11 +1316,13 @@
                       <Component id="tf_ngaysinhks" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tf_dantoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="tf_quequan" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_quoctich" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tf_noisinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tf_dantoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_quoctich" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_noisinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
