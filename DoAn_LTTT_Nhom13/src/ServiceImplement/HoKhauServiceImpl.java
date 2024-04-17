@@ -57,7 +57,41 @@ public class HoKhauServiceImpl implements IHoKhauService {
     public boolean delete(String MaHK) {
         return hoKhauDAO.delete(MaHK);
     }
+    
+    @Override
+    public List<ThongTinHoKhau> findAllHoKhauUser(String MaHK) {
+        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, KhaiSinhNguoiThamGia, Hotennguoithan, QuanHeVoiChuHo, DiaChi, CCCD \n" +
+                "from \n" +
+                "(select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo \n" +
+                "from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n" +
+                "where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n" +
+                "WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)";
+        List<ThongTinHoKhau> listThongTinHoKhau = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MaHK);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongTinHoKhau tthk = new ThongTinHoKhau();
+                tthk.setMaHoKhau(rs.getString("MaHK"));
+                tthk.setKhaiSinhChuHo(rs.getString("KhaiSinhChuHo"));
+                tthk.setHoTenChuHo(rs.getString("HoTenChuHo"));
+                tthk.setKhaiSinhNguoiThamGia(rs.getString("KhaiSinhNguoiThamGia"));
+                tthk.setHoTenNguoiThan(rs.getString("HoTenNguoiThan"));
+                tthk.setQuanHeVoiChuHo(rs.getString("QuanHeVoiChuHo"));
+                tthk.setDiaChi(rs.getString("DiaChi"));
+                listThongTinHoKhau.add(tthk);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
 
+        }
+        return listThongTinHoKhau;
+
+    }
+    
     @Override
     public List<ThongTinHoKhau> findAllHoKhau(String CCCD) {
         String query = "select CCCD as CCCDNguoiThan, HoTen as HoTenNguoiThan, SDT, NgaySinh, QuanHeVoiChuHo, MaHK from CongDan join (select MaKS, HoTenKS, GioiTinh, NgaySinh, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from KhaiSinh join (select T.MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from QuanHe join (select MaHK, DiaChi, KhaiSinhChuHo from HoKhau where MaHK in (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and CCCD = ?)) T on QuanHe.MaHK = T.MaHK) Q on Q.KhaiSinhNguoiThamGia = KhaiSinh.MaKS) C on C.KhaiSinhNguoiThamGia = CongDan.MaKS";

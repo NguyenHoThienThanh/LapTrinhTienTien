@@ -22,6 +22,22 @@ public class ThongTinHoKhau {
     private String HoTenNguoiThan;
     private String HoTenNguoiDangNhap;
     private Date NgaySinh;
+    private String KhaiSinhChuHo, KhaiSinhNguoiThamGia;
+
+    public ThongTinHoKhau(String MaHoKhau, String CCCDNguoiThan, String CCCDChuHo, String CCCDNguoiDangNhap, String QuanHeVoiChuHo, String DiaChi, String HoTenChuHo, String HoTenNguoiThan, String HoTenNguoiDangNhap, Date NgaySinh, String KhaiSinhChuHo, String KhaiSinhNguoiThamGia) {
+        this.MaHoKhau = MaHoKhau;
+        this.CCCDNguoiThan = CCCDNguoiThan;
+        this.CCCDChuHo = CCCDChuHo;
+        this.CCCDNguoiDangNhap = CCCDNguoiDangNhap;
+        this.QuanHeVoiChuHo = QuanHeVoiChuHo;
+        this.DiaChi = DiaChi;
+        this.HoTenChuHo = HoTenChuHo;
+        this.HoTenNguoiThan = HoTenNguoiThan;
+        this.HoTenNguoiDangNhap = HoTenNguoiDangNhap;
+        this.NgaySinh = NgaySinh;
+        this.KhaiSinhChuHo = KhaiSinhChuHo;
+        this.KhaiSinhNguoiThamGia = KhaiSinhNguoiThamGia;
+    }
 
     public ThongTinHoKhau() {
     }
@@ -105,6 +121,22 @@ public class ThongTinHoKhau {
     public void setNgaySinh(Date NgaySinh) {
         this.NgaySinh = NgaySinh;
     }
-    
-    
+
+    public String getKhaiSinhChuHo() {
+        return KhaiSinhChuHo;
+    }
+
+    public void setKhaiSinhChuHo(String KhaiSinhChuHo) {
+        this.KhaiSinhChuHo = KhaiSinhChuHo;
+    }
+
+    public String getKhaiSinhNguoiThamGia() {
+        return KhaiSinhNguoiThamGia;
+    }
+
+    public void setKhaiSinhNguoiThamGia(String KhaiSinhNguoiThamGia) {
+        this.KhaiSinhNguoiThamGia = KhaiSinhNguoiThamGia;
+    }
+
+  
 }
