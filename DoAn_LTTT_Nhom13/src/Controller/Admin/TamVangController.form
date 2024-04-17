@@ -80,7 +80,7 @@
               <Component id="btn_them" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_luuThem" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <EmptySpace pref="126" max="32767" attributes="0"/>
               <Component id="btn_sua" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_luuSua" min="-2" pref="100" max="-2" attributes="0"/>
@@ -112,9 +112,9 @@
                   </Group>
                   <Component id="tf_maTamVang" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="tf_noiChuyenDi" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_noiCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_noiChuyenDen" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -123,15 +123,15 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="tf_lyDo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_ngayDi" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_ngayDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="tf_ngayVe" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="256" max="-2" attributes="0"/>
+              <EmptySpace pref="72" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="250" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_them" alignment="3" min="-2" max="-2" attributes="0"/>

@@ -37,7 +37,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="tf_noiOChong" pref="120" max="32767" attributes="0"/>
+                      <Component id="tf_noiOChong" pref="127" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="tf_noiDangKy" min="-2" pref="176" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
