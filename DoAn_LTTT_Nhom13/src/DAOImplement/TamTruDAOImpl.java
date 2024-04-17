@@ -127,7 +127,7 @@ public class TamTruDAOImpl implements ITamTruDAO {
 
     @Override
     public boolean delete(String maTT) {
-        String query = "DELETE Tamtru WHERE MaTT = ?";
+        String query = "UPDATE Tamtru SET TrangThai = 0 where MaTT =?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

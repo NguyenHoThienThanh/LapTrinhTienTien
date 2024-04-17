@@ -20,4 +20,6 @@ public interface ITamTruService {
     boolean delete(String maTT);
     List<DonTamTru> findAllTT(String CCCD);
     int ifExists(String CCCD);
+    List<TamTruModel> findAllChuaDuyet();
+    TamTruModel findOneChuaDuyet(String maTT);
 }
