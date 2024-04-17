@@ -33,10 +33,69 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="tf_noiOChong" pref="120" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="tf_noiDangKy" min="-2" pref="176" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="tf_ngayDangKy" min="-2" pref="137" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="449" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="tf_noiOVo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tf_maKetHon" alignment="0" pref="120" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="tf_hoTenChong" min="-2" pref="176" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_CCCDChong" min="-2" pref="137" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_hoTenVo" min="-2" pref="175" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_CCCDVo" min="-2" pref="138" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_quocTichVo" pref="102" max="32767" attributes="0"/>
+                          <Component id="tf_quocTichChong" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="tf_ngaySinh" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_danToc" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="tf_ngaySinhChong" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_danTocChong" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="908" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btn_them" min="-2" pref="100" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="btn_luuThem" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
               <Component id="btn_sua" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_luuSua" min="-2" pref="100" max="-2" attributes="0"/>
@@ -44,61 +103,7 @@
               <Component id="btn_xoa" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_xoaDuLieu" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="908" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tf_quocTich" max="32767" attributes="0"/>
-                                  <Component id="tf_maKhaiSinh" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="tf_CCCDNguoiDangKy" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tf_hoTen" max="32767" attributes="0"/>
-                                  <Component id="tf_noiSinh" pref="188" max="32767" attributes="0"/>
-                                  <Component id="tf_quanHe" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tf_ngayDangKy" max="32767" attributes="0"/>
-                                  <Component id="tf_gioiTinh" min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="tf_queQuan" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tf_ngaySinh" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Component id="tf_CCCDCha" alignment="0" pref="138" max="32767" attributes="0"/>
-                                  <Component id="tf_noiDangKy" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbl_loaiDon" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="637" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                                  <Component id="tf_danToc" min="-2" pref="130" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="tf_CCCDMe" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="cbx_loaiDon" min="-2" pref="155" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,119 +113,93 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_hoTenVo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_maKetHon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_CCCDVo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_danToc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_quocTichVo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_maKhaiSinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tf_noiSinh" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tf_quocTich" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tf_queQuan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tf_CCCDCha" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="tf_danToc" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tf_CCCDMe" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tf_CCCDNguoiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_quanHe" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_ngayDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tf_noiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cbx_loaiDon" min="-2" pref="44" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_noiOVo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_hoTenChong" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="lbl_loaiDon" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="tf_quocTichChong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_CCCDChong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_ngaySinhChong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_danTocChong" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_noiOChong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_ngayDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_noiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="257" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_sua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_luuSua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_luuThem" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xoaDuLieu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_them" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="Swing.TextField" name="tf_hoTen">
+    <Component class="Swing.TextField" name="tf_hoTenVo">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n"/>
+        <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n v&#x1ee3;"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_gioiTinh">
+    <Component class="Swing.TextField" name="tf_quocTichVo">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
+        <Property name="labelText" type="java.lang.String" value="Qu&#x1ed1;c t&#x1ecb;ch v&#x1ee3;"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_CCCDNguoiDangKy">
+    <Component class="Swing.TextField" name="tf_noiOChong">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD ng&#x1b0;&#x1edd;i &#x111;&#x103;ng k&#xfd;"/>
+        <Property name="labelText" type="java.lang.String" value="N&#x1a1;i c&#x1b0; tr&#xfa; ch&#x1ed3;ng"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_quocTich">
+    <Component class="Swing.TextField" name="tf_noiOVo">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Qu&#x1ed1;c t&#x1ecb;ch"/>
+        <Property name="labelText" type="java.lang.String" value="N&#x1a1;i c&#x1b0; tr&#xfa; v&#x1ee3;"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_CCCDCha">
+    <Component class="Swing.TextField" name="tf_CCCDChong">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD cha"/>
+        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD ch&#x1ed3;ng"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_noiSinh">
+    <Component class="Swing.TextField" name="tf_hoTenChong">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="N&#x1a1;i sinh"/>
+        <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n ch&#x1ed3;ng"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_maKhaiSinh">
+    <Component class="Swing.TextField" name="tf_maKetHon">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="M&#xe3; khai sinh"/>
+        <Property name="labelText" type="java.lang.String" value="M&#xe3; k&#x1ebf;t h&#xf4;n"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_quanHe">
+    <Component class="Swing.TextField" name="tf_quocTichChong">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Quan h&#x1ec7; v&#x1edb;i ng&#x1b0;&#x1edd;i khai sinh"/>
-      </Properties>
-    </Component>
-    <Component class="Swing.TextField" name="tf_queQuan">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Qu&#xea; qu&#xe1;n"/>
+        <Property name="labelText" type="java.lang.String" value="Qu&#x1ed1;c t&#x1ecb;ch ch&#x1ed3;ng"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_ngaySinh">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
+        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh v&#x1ee3;"/>
       </Properties>
     </Component>
     <Component class="Swing.Button" name="btn_sua">
@@ -259,7 +238,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN KHAI SINH"/>
+        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN K&#x1ebe;T H&#xd4;N"/>
       </Properties>
     </Component>
     <Component class="Swing.Button" name="btn_xoaDuLieu">
@@ -283,22 +262,23 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="Swing.TableDark" name="tbl_thongTinCongDan">
+        <Component class="Swing.TableDark" name="tbl_thongTinKetHon">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="14" rowCount="0">
-                <Column editable="false" title="M&#xe3; Khai Sinh" type="java.lang.Object"/>
-                <Column editable="false" title="H&#x1ecd; T&#xea;n" type="java.lang.Object"/>
-                <Column editable="false" title="Gi&#x1edb;i T&#xed;nh" type="java.lang.Object"/>
-                <Column editable="false" title="Ng&#xe0;y Sinh" type="java.lang.Object"/>
-                <Column editable="false" title="D&#xe2;n t&#x1ed9;c" type="java.lang.Object"/>
-                <Column editable="false" title="Qu&#x1ed1;c T&#x1ecb;ch" type="java.lang.Object"/>
-                <Column editable="false" title="N&#x1a1;i Sinh" type="java.lang.Object"/>
-                <Column editable="false" title="Qu&#xea; Qu&#xe1;n" type="java.lang.Object"/>
-                <Column editable="false" title="CCCD Cha" type="java.lang.Object"/>
-                <Column editable="false" title="CCCD M&#x1eb9;" type="java.lang.Object"/>
-                <Column editable="false" title="CCCD Ng&#x1b0;&#x1edd;i &#x110;&#x103;ng K&#xfd;" type="java.lang.Object"/>
-                <Column editable="false" title="Quan H&#x1ec7;" type="java.lang.Object"/>
+              <Table columnCount="15" rowCount="0">
+                <Column editable="false" title="M&#xe3; K&#x1ebf;t H&#xf4;n" type="java.lang.Object"/>
+                <Column editable="false" title="CCCD V&#x1ee3;" type="java.lang.Object"/>
+                <Column editable="false" title="H&#x1ecd; T&#xea;n V&#x1ee3;" type="java.lang.Object"/>
+                <Column editable="false" title="Ng&#xe0;y Sinh V&#x1ee3;" type="java.lang.Object"/>
+                <Column editable="false" title="D&#xe2;n T&#x1ed9;c V&#x1ee3;" type="java.lang.Object"/>
+                <Column editable="false" title="Qu&#x1ed1;c T&#x1ecb;ch V&#x1ee3;" type="java.lang.Object"/>
+                <Column editable="false" title="N&#x1a1;i C&#x1b0; Tr&#xfa; V&#x1ee3;" type="java.lang.Object"/>
+                <Column editable="false" title="CCCD Ch&#x1ed3;ng" type="java.lang.Object"/>
+                <Column editable="false" title="H&#x1ecd; T&#xea;n Ch&#x1ed3;ng" type="java.lang.Object"/>
+                <Column editable="false" title="Ng&#xe0;y Sinh Ch&#x1ed3;ng" type="java.lang.Object"/>
+                <Column editable="false" title="D&#xe2;n T&#x1ed9;c Ch&#x1ed3;ng" type="java.lang.Object"/>
+                <Column editable="false" title="Qu&#x1ed1;c T&#x1ecb;ch Ch&#x1ed3;ng" type="java.lang.Object"/>
+                <Column editable="false" title="N&#x1a1;i C&#x1b0; Tr&#xfa; Ch&#x1ed3;ng" type="java.lang.Object"/>
                 <Column editable="false" title="Ng&#xe0;y &#x110;&#x103;ng K&#xfd;" type="java.lang.Object"/>
                 <Column editable="false" title="N&#x1a1;i &#x110;&#x103;ng K&#xfd;" type="java.lang.Object"/>
               </Table>
@@ -306,83 +286,88 @@
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="M&#xe3; Khai Sinh"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="H&#x1ecd; T&#xea;n"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
-                  <Title value="Gi&#x1edb;i T&#xed;nh"/>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="true">
-                  <Title value="Ng&#xe0;y Sinh"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="D&#xe2;n t&#x1ed9;c"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="Qu&#x1ed1;c T&#x1ecb;ch"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="N&#x1a1;i Sinh"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="Qu&#xea; Qu&#xe1;n"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="CCCD Cha"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="CCCD M&#x1eb9;"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="CCCD Ng&#x1b0;&#x1edd;i &#x110;&#x103;ng K&#xfd;"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="Quan H&#x1ec7;"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="Ng&#xe0;y &#x110;&#x103;ng K&#xfd;"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="N&#x1a1;i &#x110;&#x103;ng K&#xfd;"/>
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_thongTinCongDanMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_thongTinKetHonMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -409,7 +394,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Duy&#x1ec7;t th&#xf4;ng tin"/>
+        <Property name="text" type="java.lang.String" value="L&#x1b0;u th&#xea;m"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_luuThemActionPerformed"/>
@@ -417,12 +402,12 @@
     </Component>
     <Component class="Swing.TextField" name="tf_danToc">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="D&#xe2;n t&#x1ed9;c"/>
+        <Property name="labelText" type="java.lang.String" value="D&#xe2;n t&#x1ed9;c v&#x1ee3;"/>
       </Properties>
     </Component>
-    <Component class="Swing.TextField" name="tf_CCCDMe">
+    <Component class="Swing.TextField" name="tf_CCCDVo">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD m&#x1eb9;"/>
+        <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD v&#x1ee3;"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_ngayDangKy">
@@ -435,33 +420,29 @@
         <Property name="labelText" type="java.lang.String" value="N&#x1a1;i &#x111;&#x103;ng k&#xfd;"/>
       </Properties>
     </Component>
-    <Component class="Swing.Combobox" name="cbx_loaiDon">
+    <Component class="Swing.TextField" name="tf_ngaySinhChong">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="&#x110;&#x1a1;n &#x110;&#xe3; Duy&#x1ec7;t"/>
-            <StringItem index="1" value="&#x110;&#x1a1;n Ch&#x1b0;a Duy&#x1ec7;t"/>
-          </StringArray>
-        </Property>
-        <Property name="labeText" type="java.lang.String" value=""/>
+        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh ch&#x1ed3;ng"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbx_loaiDonActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_loaiDon">
+    <Component class="Swing.TextField" name="tf_danTocChong">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="1"/>
+        <Property name="labelText" type="java.lang.String" value="D&#xe2;n t&#x1ed9;c ch&#x1ed3;ng"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.Button" name="btn_them">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="3f" green="63" red="12" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="47" green="6e" red="15" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x110;&#x1a0;N &#x110;&#xc3; DUY&#x1ec6;T"/>
+        <Property name="text" type="java.lang.String" value="Th&#xea;m th&#xf4;ng tin"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

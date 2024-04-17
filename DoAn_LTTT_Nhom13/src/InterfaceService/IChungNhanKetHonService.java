@@ -19,4 +19,6 @@ public interface IChungNhanKetHonService {
     boolean update (ChungNhanKetHonModel chungNhanKetHonModel);
     boolean delete (String MaKH);
     List<DonChungNhanKetHon> findAllCNKH(String CCCDVo, String CCCDChong);
+    List<ChungNhanKetHonModel> findAllChuaDuyet();
+    ChungNhanKetHonModel findOneChuaDuyet(String Giaytotuythanvo, String Giaytotuythanchong) ;
 }
