@@ -40,6 +40,7 @@ public class HoKhauServiceImpl implements IHoKhauService {
     public boolean insert(HoKhauModel hoKhau) {
         return hoKhauDAO.insert(hoKhau);
     }
+    
 
     @Override
     public boolean update(HoKhauModel hoKhau) {

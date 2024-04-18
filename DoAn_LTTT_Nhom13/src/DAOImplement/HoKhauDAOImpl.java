@@ -7,6 +7,7 @@ package DAOImplement;
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.IHoKhauDAO;
 import Models.HoKhauModel;
+import Models.ThongTinHoKhau;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -79,7 +80,34 @@ public class HoKhauDAOImpl implements IHoKhauDAO {
         }
         return hoKhau;
     }
+    
+    @Override
+    public HoKhauModel findOneMaHK(String MaHK) {
+        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, DiaChi \n" +
+                "from \n" +
+                "(select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo \n" +
+                "from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n" +
+                "where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n" +
+                "WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)";
+        HoKhauModel hoKhau = new HoKhauModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MaHK);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                hoKhau.setMaHK(rs.getString(1));
+                hoKhau.setKhaiSinhChuHo(rs.getString(2));
+                hoKhau.setHoTen(rs.getString(3));
+                hoKhau.setDiaChi(rs.getString(4));
+            }
+            conn.close();
+        } catch (Exception e) {
 
+        }
+        return hoKhau;
+    }
+    
     @Override
     public boolean insert(HoKhauModel hoKhau) {
         String query = "INSERT INTO HoKhau (DiaChi, KhaiSinhChuHo, TrangThai) VALUES (?,?,?) ";
@@ -97,7 +125,28 @@ public class HoKhauDAOImpl implements IHoKhauDAO {
         }
         return true;
     }
-
+    
+//    @Override
+//    public boolean insertHK(ThongTinHoKhau hoKhau) {
+//        String query = "INSERT INTO HoKhau (maHoKhau, khaiSinhChuHo, hoTenChuHo, khaiSinhNguoiThamGia, hoTenNguoiThan, quanHeVoiChuHo, diaChi) VALUES (?, ?, ?, ?, ?, ?, ?)";
+//        try {
+//            conn = DBConnection.getConnection();
+//            ps = conn.prepareStatement(query);
+//            ps.setString(1, hoKhau.getMaHoKhau());
+//            ps.setString(2, hoKhau.getHoTenChuHo());
+//            ps.setString(3, hoKhau.getKhaiSinhNguoiThamGia());
+//            ps.setString(4, hoKhau.getHoTenNguoiThan());
+//            ps.setString(5, hoKhau.getQuanHeVoiChuHo());
+//            ps.setString(6, hoKhau.getDiaChi());
+//            ps.executeUpdate();
+//
+//            conn.close();
+//        } catch (Exception e) {
+//            return false;
+//        }
+//        return true;
+//    }
+    
     @Override
     public boolean update(HoKhauModel hoKhau) {
         String query = "UPDATE HoKhau SET DiaChi = ? , KhaiSinhChuHo = ?, TrangThai = ? WHERE MaHK =?";

@@ -5,6 +5,7 @@
 package InterfaceDAO;
 
 import Models.HoKhauModel;
+import Models.ThongTinHoKhau;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ import java.util.List;
 public interface IHoKhauDAO {
     List<HoKhauModel> findAll();
     HoKhauModel findOneByMaHK (String MaHK);
+    HoKhauModel findOneMaHK (String MaHK);
     boolean insert (HoKhauModel hoKhau);
     boolean update (HoKhauModel hoKhau);
     boolean delete (String MaHK);

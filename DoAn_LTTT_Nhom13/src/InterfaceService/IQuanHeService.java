@@ -5,6 +5,7 @@
 package InterfaceService;
 
 import Models.QuanHeModel;
+import Models.ThongTinHoKhau;
 import java.util.List;
 
 /**

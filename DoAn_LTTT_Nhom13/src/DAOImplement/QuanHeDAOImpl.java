@@ -7,6 +7,7 @@ package DAOImplement;
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.IQuanHeDAO;
 import Models.QuanHeModel;
+import Models.ThongTinHoKhau;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,7 +87,25 @@ public class QuanHeDAOImpl implements IQuanHeDAO {
         }
         return true;
     }
-
+    
+    @Override
+    public boolean insertHK(ThongTinHoKhau quanHe) {
+        String query = "INSERT INTO QuanHe (MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, TrangThai) VALUES (?,?,?,?)";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, quanHe.getMaHoKhau());
+            ps.setString(2, quanHe.getKhaiSinhNguoiThamGia());
+            ps.setString(3, quanHe.getQuanHeVoiChuHo());
+            ps.setInt(4, quanHe.getTrangThai());
+            ps.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public boolean update(QuanHeModel quanHe) {
         String query = "UPDATE QuanHe SET QuanHeVoiChuHo=?, TrangThai=? WHERE MaHK =? AND KhaiSinhNguoiThamGia=?";
@@ -118,5 +137,18 @@ public class QuanHeDAOImpl implements IQuanHeDAO {
         }
         return true;
     }
-
+    
+    @Override
+    public boolean deleteHK(String KhaiSinhNguoiThamGia) {
+        String query = "DELETE QuanHe WHERE KhaiSinhNguoiThamGia=?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, KhaiSinhNguoiThamGia);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }
