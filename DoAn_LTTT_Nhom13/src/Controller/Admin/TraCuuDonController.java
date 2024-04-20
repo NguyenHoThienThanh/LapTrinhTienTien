@@ -115,11 +115,13 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tf_diachihk = new Swing.TextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbl_hokhau = new Swing.TableDark();
+        jLabel7 = new javax.swing.JLabel();
         panelThue = new javax.swing.JPanel();
         tf_masothue = new Swing.TextField();
         tf_hotenthue = new Swing.TextField();
         tf_coquanthue = new Swing.TextField();
         tf_ngaythaydoithongtin = new Swing.TextField();
+        jLabel8 = new javax.swing.JLabel();
         btn_timkiem = new button.MyButton();
         panelGCNKH = new javax.swing.JPanel();
         tf_ngaysinhchong = new Swing.TextField();
@@ -166,6 +168,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tf_noimat = new Swing.TextField();
         tf_lydogct = new Swing.TextField();
         btn_backFromGCTToDon = new button.MyButton();
+        jLabel6 = new javax.swing.JLabel();
         panelKS = new javax.swing.JPanel();
         tf_maks = new Swing.TextField();
         tf_noisinh = new Swing.TextField();
@@ -249,7 +252,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tabbedPaneCustom1.setSelectedColor(new java.awt.Color(21, 110, 71));
 
         panelXemDon.setBackground(new java.awt.Color(255, 255, 255));
-        panelXemDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
+        panelXemDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 110, 71), 2));
         panelXemDon.setPreferredSize(new java.awt.Dimension(877, 400));
 
         btn_donkhaisinh.setForeground(new java.awt.Color(176, 176, 176));
@@ -375,7 +378,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(btn_dontamvang, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelXemDonLayout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(135, Short.MAX_VALUE)
                 .addComponent(btn_thongtincongdan, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(btn_donlyhon, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,7 +409,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tabbedPaneCustom1.addTab("Xem đơn từ", panelXemDon);
 
         panelHoKhau.setBackground(new java.awt.Color(255, 255, 255));
-        panelHoKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
+        panelHoKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 110, 71), 2));
 
         tf_mahokhau.setLabelText("Mã hộ khẩu");
 
@@ -432,6 +435,11 @@ public class TraCuuDonController extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(tbl_hokhau);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(21, 110, 71));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("THÔNG TIN HỘ KHẨU");
+
         javax.swing.GroupLayout panelHoKhauLayout = new javax.swing.GroupLayout(panelHoKhau);
         panelHoKhau.setLayout(panelHoKhauLayout);
         panelHoKhauLayout.setHorizontalGroup(
@@ -444,14 +452,17 @@ public class TraCuuDonController extends javax.swing.JPanel {
                         .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tf_mahokhau, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_cccdthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_cccdchuho, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_hotenthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tf_hotenchuho, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_quanhevoichuho, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(panelHoKhauLayout.createSequentialGroup()
+                                .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_cccdchuho, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_hotenthanhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tf_hotenchuho, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_quanhevoichuho, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(61, 61, 61))
             .addGroup(panelHoKhauLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -461,7 +472,9 @@ public class TraCuuDonController extends javax.swing.JPanel {
         panelHoKhauLayout.setVerticalGroup(
             panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHoKhauLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelHoKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_mahokhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_cccdchuho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -473,15 +486,15 @@ public class TraCuuDonController extends javax.swing.JPanel {
                     .addComponent(tf_quanhevoichuho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(tf_diachihk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         tabbedPaneCustom1.addTab("Hộ khẩu", panelHoKhau);
 
         panelThue.setBackground(new java.awt.Color(255, 255, 255));
-        panelThue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 255)));
+        panelThue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 110, 71), 2));
 
         tf_masothue.setLabelText("Mã số thuế");
 
@@ -490,6 +503,11 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tf_coquanthue.setLabelText("Cơ quan thuế");
 
         tf_ngaythaydoithongtin.setLabelText("Ngày thay đổi thông tin gần nhất");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(21, 110, 71));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("THÔNG TIN THUẾ");
 
         javax.swing.GroupLayout panelThueLayout = new javax.swing.GroupLayout(panelThue);
         panelThue.setLayout(panelThueLayout);
@@ -500,16 +518,22 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tf_coquanthue, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                     .addComponent(tf_masothue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tf_hotenthue, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                     .addComponent(tf_ngaythaydoithongtin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(68, 68, 68))
+            .addGroup(panelThueLayout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelThueLayout.setVerticalGroup(
             panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelThueLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel8)
+                .addGap(43, 43, 43)
                 .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_masothue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_hotenthue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -517,7 +541,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_coquanthue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_ngaythaydoithongtin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         tabbedPaneCustom1.addTab("Thuế", panelThue);
@@ -551,7 +575,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                         .addComponent(tf_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         panelDonLayout.setVerticalGroup(
             panelDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -861,6 +885,8 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
         add(panelTT, "card4");
 
+        panelGCT.setBackground(new java.awt.Color(255, 255, 255));
+
         tf_machungtu.setLabelText("Mã chứng tử");
 
         tf_cccdgct.setLabelText("CCCD");
@@ -875,12 +901,23 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
         tf_lydogct.setLabelText("Lý do");
 
-        btn_backFromGCTToDon.setText("myButton1");
+        btn_backFromGCTToDon.setBackground(new java.awt.Color(21, 110, 71));
+        btn_backFromGCTToDon.setForeground(new java.awt.Color(255, 255, 255));
+        btn_backFromGCTToDon.setText("Back");
+        btn_backFromGCTToDon.setBorderColor(new java.awt.Color(255, 255, 255));
+        btn_backFromGCTToDon.setColor(new java.awt.Color(21, 110, 71));
+        btn_backFromGCTToDon.setColorClick(new java.awt.Color(141, 240, 197));
+        btn_backFromGCTToDon.setColorOver(new java.awt.Color(61, 212, 146));
         btn_backFromGCTToDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_backFromGCTToDonActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(21, 110, 71));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("THÔNG TIN CHỨNG TỬ");
 
         javax.swing.GroupLayout panelGCTLayout = new javax.swing.GroupLayout(panelGCT);
         panelGCT.setLayout(panelGCTLayout);
@@ -889,33 +926,39 @@ public class TraCuuDonController extends javax.swing.JPanel {
             .addGroup(panelGCTLayout.createSequentialGroup()
                 .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelGCTLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(44, 44, 44)
                         .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_ngaysinhgct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelGCTLayout.createSequentialGroup()
                                 .addComponent(tf_machungtu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
-                                .addComponent(tf_cccdgct, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(tf_hotengct, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGCTLayout.createSequentialGroup()
-                                .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_ngaysinhgct, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf_noimat, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tf_ngaymat, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                                    .addComponent(tf_lydogct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(tf_cccdgct, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                            .addComponent(tf_noimat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tf_lydogct, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                            .addComponent(tf_ngaymat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_hotengct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(56, 56, 56))
                     .addGroup(panelGCTLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(btn_backFromGCTToDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                        .addComponent(btn_backFromGCTToDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 191, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelGCTLayout.setVerticalGroup(
             panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGCTLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(btn_backFromGCTToDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelGCTLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_backFromGCTToDon, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGCTLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel6)))
+                .addGap(40, 40, 40)
                 .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_machungtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_cccdgct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -928,7 +971,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelGCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_noimat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_lydogct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         add(panelGCT, "card5");
@@ -2030,6 +2073,9 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

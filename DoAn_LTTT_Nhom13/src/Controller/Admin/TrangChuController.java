@@ -4,12 +4,23 @@
  */
 package Controller.Admin;
 
+import InterfaceService.ICongDanService;
 import InterfaceService.IDanhGiaService;
+import Models.CongDanModel;
 import Models.DanhGiaModel;
+import Models.ThongTinCaNhan;
+import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DanhGiaServiceImpl;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -18,11 +29,19 @@ import javax.swing.JOptionPane;
 public class TrangChuController extends javax.swing.JPanel {
 
     List<DanhGiaModel> listDanhGia = new ArrayList<>();
-    
+
     IDanhGiaService danhGiaService = new DanhGiaServiceImpl();
+    ICongDanService congDanService = new CongDanServiceImpl();
+
     public TrangChuController() {
         initComponents();
         starRatingStatistics();
+        totalCongDan();
+        avgAge();
+        LocalDate ngayHienTai = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String ngayHienTaiFormatted = ngayHienTai.format(formatter);
+        lbl_localDate.setText(ngayHienTaiFormatted);
     }
 
     /**
@@ -42,7 +61,7 @@ public class TrangChuController extends javax.swing.JPanel {
         panelRound5 = new Swing.PanelRound();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lbl_localDate = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         rating_tongquan = new Star_Rating.StarRating();
         rating_trucquan = new Star_Rating.StarRating();
@@ -54,6 +73,20 @@ public class TrangChuController extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        panel_totalCongDan = new Swing.PanelRound();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        lbl_totalCongDan = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        panelRound6 = new Swing.PanelRound();
+        panelRound7 = new Swing.PanelRound();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        lbl_checkAge = new javax.swing.JLabel();
+        panel_totalCongDan1 = new Swing.PanelRound();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        lbl_averageAge = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         myButton1 = new button.MyButton();
         panelRound2 = new Swing.PanelRound();
@@ -73,6 +106,9 @@ public class TrangChuController extends javax.swing.JPanel {
         panel.setLayout(new java.awt.GridBagLayout());
 
         scrollPaneWin112.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPaneWin112.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneWin112.setToolTipText("");
+        scrollPaneWin112.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneWin112.setPreferredSize(new java.awt.Dimension(637, 589));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -107,16 +143,16 @@ public class TrangChuController extends javax.swing.JPanel {
         panelRound5Layout.setVerticalGroup(
             panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound5Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setText("18/04/2024");
+        lbl_localDate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_localDate.setForeground(new java.awt.Color(153, 153, 153));
+        lbl_localDate.setText("18/04/2024");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Đánh giá công dân khi sử dụng:");
@@ -136,19 +172,162 @@ public class TrangChuController extends javax.swing.JPanel {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Trực quan");
 
+        panel_totalCongDan.setBackground(new java.awt.Color(102, 0, 102));
+        panel_totalCongDan.setRoundBottomLeft(30);
+        panel_totalCongDan.setRoundBottomRight(30);
+        panel_totalCongDan.setRoundTopLeft(30);
+        panel_totalCongDan.setRoundTopRight(30);
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calculator-variant-outline-custom.png"))); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("TỔNG DÂN SỐ");
+
+        lbl_totalCongDan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_totalCongDan.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_totalCongDan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl_totalCongDan.setText("6");
+
+        javax.swing.GroupLayout panel_totalCongDanLayout = new javax.swing.GroupLayout(panel_totalCongDan);
+        panel_totalCongDan.setLayout(panel_totalCongDanLayout);
+        panel_totalCongDanLayout.setHorizontalGroup(
+            panel_totalCongDanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_totalCongDanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(panel_totalCongDanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(lbl_totalCongDan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        panel_totalCongDanLayout.setVerticalGroup(
+            panel_totalCongDanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_totalCongDanLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(panel_totalCongDanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_totalCongDanLayout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(17, 17, 17))
+                    .addGroup(panel_totalCongDanLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_totalCongDan)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Thống kê dân số");
+
+        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
+        panelRound6.setLayout(panelRound6Layout);
+        panelRound6Layout.setHorizontalGroup(
+            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelRound6Layout.setVerticalGroup(
+            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        panelRound7.setBackground(new java.awt.Color(102, 102, 255));
+        panelRound7.setRoundBottomLeft(30);
+        panelRound7.setRoundBottomRight(30);
+        panelRound7.setRoundTopLeft(30);
+        panelRound7.setRoundTopRight(30);
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calendar-account-outline-custom.png"))); // NOI18N
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("TRONG TUỔI LAO ĐỘNG");
+
+        lbl_checkAge.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_checkAge.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_checkAge.setText("6");
+
+        javax.swing.GroupLayout panelRound7Layout = new javax.swing.GroupLayout(panelRound7);
+        panelRound7.setLayout(panelRound7Layout);
+        panelRound7Layout.setHorizontalGroup(
+            panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRound7Layout.createSequentialGroup()
+                        .addComponent(lbl_checkAge)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelRound7Layout.setVerticalGroup(
+            panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound7Layout.createSequentialGroup()
+                .addGroup(panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRound7Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRound7Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_checkAge)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panel_totalCongDan1.setBackground(new java.awt.Color(255, 153, 153));
+        panel_totalCongDan1.setRoundBottomLeft(30);
+        panel_totalCongDan1.setRoundBottomRight(30);
+        panel_totalCongDan1.setRoundTopLeft(30);
+        panel_totalCongDan1.setRoundTopRight(30);
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calculator-variant-outline-custom.png"))); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("TUỔI TRUNG BÌNH");
+
+        lbl_averageAge.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_averageAge.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_averageAge.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl_averageAge.setText("6");
+
+        javax.swing.GroupLayout panel_totalCongDan1Layout = new javax.swing.GroupLayout(panel_totalCongDan1);
+        panel_totalCongDan1.setLayout(panel_totalCongDan1Layout);
+        panel_totalCongDan1Layout.setHorizontalGroup(
+            panel_totalCongDan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_totalCongDan1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_totalCongDan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addGroup(panel_totalCongDan1Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_averageAge, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        panel_totalCongDan1Layout.setVerticalGroup(
+            panel_totalCongDan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_totalCongDan1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(panel_totalCongDan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_totalCongDan1Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_averageAge))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel6))
-                    .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -156,7 +335,7 @@ public class TrangChuController extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rating_thuantien, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,13 +344,34 @@ public class TrangChuController extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rating_trucquan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rating_chinhxac, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
-                .addGap(62, 62, 62))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41)
+                            .addComponent(lbl_localDate))
+                        .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(panel_totalCongDan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(panel_totalCongDan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(panelRound7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(panelRound6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,10 +379,10 @@ public class TrangChuController extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_localDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +410,15 @@ public class TrangChuController extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rating_trucquan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelRound6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelRound7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_totalCongDan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_totalCongDan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(205, 205, 205))
         );
 
         scrollPaneWin112.setViewportView(jPanel1);
@@ -392,14 +600,49 @@ public class TrangChuController extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void starRatingStatistics(){
+    private void totalCongDan() {
+        List<CongDanModel> list;
+        list = congDanService.findAll();
+        lbl_totalCongDan.setText(String.valueOf(list.size()));
+    }
+
+    private void avgAge() {
+        double sum = 0;
+        int sum1 = 0;
+        List<ThongTinCaNhan> list;
+        list = congDanService.getNgaySinh();
+        for (ThongTinCaNhan ttcn : list) {
+            LocalDate ngaySinh = convertToLocalDate(ttcn.getNgaySinh());
+            sum += tinhTuoi(ngaySinh);
+            if (tinhTuoi(ngaySinh) >= 18) {
+                sum1++;
+            }
+        }
+        int avgAge = (int) Math.round(sum / list.size()); // Làm tròn kết quả về số nguyên
+        lbl_averageAge.setText(String.valueOf(avgAge));
+        lbl_checkAge.setText(String.valueOf(sum1));
+    }
+
+    public int tinhTuoi(LocalDate ngaySinh) {
+        LocalDate ngayHienTai = LocalDate.now();
+        Period period = Period.between(ngaySinh, ngayHienTai);
+        return period.getYears();
+    }
+
+    private LocalDate convertToLocalDate(Date dateToConvert) {
+        return Instant.ofEpochMilli(dateToConvert.getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    private void starRatingStatistics() {
         double avg_rating_tongquan = 0;
         double avg_rating_thuantien = 0;
         double avg_rating_dedang = 0;
         double avg_rating_chinhxac = 0;
         double avg_rating_trucquan = 0;
         listDanhGia = danhGiaService.findAll();
-        for(DanhGiaModel dg : listDanhGia){
+        for (DanhGiaModel dg : listDanhGia) {
             avg_rating_tongquan += dg.getTongQuan();
             avg_rating_thuantien += dg.getThuanTien();
             avg_rating_dedang += dg.getDeDang();
@@ -409,14 +652,14 @@ public class TrangChuController extends javax.swing.JPanel {
         rating_tongquan.setStar((int) Math.round(avg_rating_tongquan / listDanhGia.size()));
         rating_thuantien.setStar((int) Math.round(avg_rating_thuantien / listDanhGia.size()));
         rating_dedang.setStar((int) Math.round(avg_rating_dedang / listDanhGia.size()));
-        rating_chinhxac.setStar((int) Math.round(avg_rating_chinhxac/ listDanhGia.size()));
+        rating_chinhxac.setStar((int) Math.round(avg_rating_chinhxac / listDanhGia.size()));
         rating_trucquan.setStar((int) Math.round(avg_rating_trucquan / listDanhGia.size()));
     }
     private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
         // TODO add your handling code here:
         int confirmed = JOptionPane.showConfirmDialog(null,
-            "Bạn có muốn đăng xuất khỏi tài khoản?", "Exit Program Confirmation",
-            JOptionPane.YES_NO_OPTION);
+                "Bạn có muốn đăng xuất khỏi tài khoản?", "Exit Program Confirmation",
+                JOptionPane.YES_NO_OPTION);
 
         if (confirmed == JOptionPane.YES_OPTION) {
             Login_RegisterController lg = new Login_RegisterController();
@@ -427,24 +670,38 @@ public class TrangChuController extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.ImageAvatar imageAvatar2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_averageAge;
+    private javax.swing.JLabel lbl_checkAge;
+    private javax.swing.JLabel lbl_localDate;
+    private javax.swing.JLabel lbl_totalCongDan;
     private button.MyButton myButton1;
     private javax.swing.JPanel panel;
     private Swing.PanelRound panelRound1;
     private Swing.PanelRound panelRound2;
     private Swing.PanelRound panelRound3;
     private Swing.PanelRound panelRound5;
+    private Swing.PanelRound panelRound6;
+    private Swing.PanelRound panelRound7;
+    private Swing.PanelRound panel_totalCongDan;
+    private Swing.PanelRound panel_totalCongDan1;
     private Star_Rating.StarRating rating_chinhxac;
     private Star_Rating.StarRating rating_dedang;
     private Star_Rating.StarRating rating_thuantien;

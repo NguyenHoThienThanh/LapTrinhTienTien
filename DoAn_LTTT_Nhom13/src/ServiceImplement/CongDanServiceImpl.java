@@ -9,6 +9,7 @@ import Models.ThongTinCaNhan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CongDanServiceImpl implements ICongDanService {
@@ -160,6 +161,27 @@ public class CongDanServiceImpl implements ICongDanService {
         ICongDanDAO dn = new CongDanDAOImpl();
         CongDanModel model = dn.findOne("083303008061");
         System.out.println(model.getHoTen());
+    }
+
+    @Override
+    public List<ThongTinCaNhan> getNgaySinh() {
+        String query = " select NgaySinh from CongDan inner join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS";
+        List<ThongTinCaNhan> listTTCN = new ArrayList<>();
+        try {
+            ThongTinCaNhan ttcn = new ThongTinCaNhan();
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ttcn.setNgaySinh(rs.getDate("NgaySinh"));
+                listTTCN.add(ttcn);
+                    
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTTCN;
     }
 }
 

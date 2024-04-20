@@ -25,4 +25,5 @@ public interface ICongDanService {
 
     CongDanModel findOneByMaKS(String MaKS);
     public int countCCCD(String MaKS);
+    List<ThongTinCaNhan> getNgaySinh();
 }
