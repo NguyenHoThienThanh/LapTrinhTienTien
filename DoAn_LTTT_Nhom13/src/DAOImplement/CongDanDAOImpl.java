@@ -55,11 +55,12 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, hk.DiaChi, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai\n"
-                + "                FROM KhaiSinh ks\n"
-                + "                INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS\n"
-                + "                INNER JOIN HoKhau hk ON ks.ID = hk.ID\n"
-                + "                WHERE cd.CCCD = ?";
+        String query = "  SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, hk.DiaChi, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai\n"
+                + "              FROM KhaiSinh ks \n"
+                + "              INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS\n"
+                + "              INNER JOIN QuanHe qh ON qh.KhaiSinhNguoiThamGia = ks.MaKS\n"
+                + "		 INNER JOIN HoKhau  hk ON hk.MaHK = qh.MaHK\n"
+                + "              WHERE cd.CCCD = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
