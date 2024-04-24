@@ -26,6 +26,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         initComponents();
         //starRatingStatistics();
         menu2.setMenuEvent(new MenuEvent() {
+            
             @Override
             public void selected(int index, int subIndex) {
                 showForm(new TrangChuController());
@@ -51,7 +52,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                 } else if (index == 1 && subIndex == 9) {
                     showForm(new ThongTinKetHonController());
                 } else if (index == 1 && subIndex == 10) {
-
+                    showForm(new ThongTinLyHonController());
                 } else if (index == 2) {
                     showForm(new TraCuuDonController());
                 } else if (index == 3 && subIndex == 1) {
