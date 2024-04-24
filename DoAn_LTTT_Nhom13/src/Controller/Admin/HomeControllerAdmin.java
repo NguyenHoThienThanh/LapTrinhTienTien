@@ -11,7 +11,6 @@ import ServiceImplement.DanhGiaServiceImpl;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +25,6 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         initComponents();
         //starRatingStatistics();
         menu2.setMenuEvent(new MenuEvent() {
-            
             @Override
             public void selected(int index, int subIndex) {
                 showForm(new TrangChuController());
@@ -112,7 +110,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
-        trangChuController2 = new Controller.Admin.TrangChuController();
+        trangChuController1 = new Controller.Admin.TrangChuController();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -147,7 +145,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setLayout(new java.awt.BorderLayout());
-        panel.add(trangChuController2, java.awt.BorderLayout.CENTER);
+        panel.add(trangChuController1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +154,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(scrollPaneWin111, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE))
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -217,6 +215,6 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
     private Menu.Menu menu2;
     private javax.swing.JPanel panel;
     private Swing.ScrollPaneWin11 scrollPaneWin111;
-    private Controller.Admin.TrangChuController trangChuController2;
+    private Controller.Admin.TrangChuController trangChuController1;
     // End of variables declaration//GEN-END:variables
 }

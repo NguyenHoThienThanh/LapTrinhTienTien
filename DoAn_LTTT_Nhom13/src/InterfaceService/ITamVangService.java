@@ -23,6 +23,4 @@ public interface ITamVangService {
     List<DonTamVang> findAllTV(String CCCD);
     int ifExists(String CCCD);
     List<DonTamVangUser> findAllTVuser(String CCCD); 
-    List<TamVangModel> findAllChuaDuyet();
-    TamVangModel findOneChuaDuyet(String MaTV);
 }
