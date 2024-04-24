@@ -4,6 +4,7 @@ import InterfaceService.IChungNhanKetHonService;
 import Models.ChungNhanKetHonModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.ChungNhanKetHonServiceImpl;
+import ServiceImplement.LyHonServiceImpl;
 import Swing.TextField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +29,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
     public ThongTinKetHonController() {
         initComponents();
         tbl_thongTinKetHon.fixTable(jScrollPane2);
-        listKetHon = ketHonService.findAll();
+        listKetHon = ketHonService.findAllKetHon();
         model = (DefaultTableModel) tbl_thongTinKetHon.getModel();
         showTable();
 
@@ -720,9 +721,8 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
         tf_ngaySinhChong.setEditable(true);
     }//GEN-LAST:event_btn_themActionPerformed
     public void showResult() {
-        model = new DefaultTableModel();
+        listKetHon = ketHonService.findAllKetHon();
         ChungNhanKetHonModel ketHon = listKetHon.get(listKetHon.size() - 1);
-        model.setRowCount(0);
         model.fireTableDataChanged();
         model.addRow(new Object[]{ketHon.getMaCnkh(), ketHon.getCCCDVo(), ketHon.getHoTenVo(), ketHon.getNgaySinhVo(), ketHon.getDanTocVo(), ketHon.getQuocTichVo(), ketHon.getNoiCuTruVo(), ketHon.getCCCDChong(), ketHon.getHoTenChong(), ketHon.getNgaySinhChong(), ketHon.getDanTocChong(), ketHon.getQuocTichChong(), ketHon.getNoiCuTruChong(), ketHon.getNgaydk(), ketHon.getNoidk()});
     }

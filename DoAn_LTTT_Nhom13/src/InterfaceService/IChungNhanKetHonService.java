@@ -21,4 +21,5 @@ public interface IChungNhanKetHonService {
     List<DonChungNhanKetHon> findAllCNKH(String CCCDVo, String CCCDChong);
     List<ChungNhanKetHonModel> findAllChuaDuyet();
     ChungNhanKetHonModel findOneChuaDuyet(String Giaytotuythanvo, String Giaytotuythanchong) ;
+    List<ChungNhanKetHonModel> findAllKetHon() ;
 }
