@@ -25,19 +25,87 @@ public class LyHonModel {
     private String HoTenVo;
     private String HoTenChong;
 
+    public LyHonModel(String MaLh, String MaCnkh, String CCCDNguoiNopDon, String HoTenNguoiNopDon, String CCCDVO, String HoTenVo, String CCCDChong, String HoTenChong, Date Ngaydk, String Noidk, String Lydo, int TrangThai) {
+        this.MaLh = MaLh;
+        this.MaCnkh = MaCnkh;
+        this.CCCDNguoiNopDon = CCCDNguoiNopDon;
+        this.HoTenNguoiNopDon = HoTenNguoiNopDon;
+        this.CCCDVO = CCCDVO;
+        this.HoTenVo = HoTenVo;
+        this.CCCDChong = CCCDChong;
+        this.HoTenChong = HoTenChong;
+        this.Ngaydk = Ngaydk;
+        this.Noidk = Noidk;
+        this.Lydo = Lydo;
+        this.TrangThai = TrangThai;
+    }
+
     // Constructor
     public LyHonModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public LyHonModel(int ID, String MaLh, String MaCnkh, String CCCDNguoiNopDon, String Noidk, Date Ngaydk, String Lydo, int TrangThai) {
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String getMaLh() {
+        return MaLh;
+    }
+
+    public void setMaLh(String MaLh) {
         this.MaLh = MaLh;
+    }
+
+    public String getMaCnkh() {
+        return MaCnkh;
+    }
+
+    public void setMaCnkh(String MaCnkh) {
         this.MaCnkh = MaCnkh;
+    }
+
+    public String getCCCDNguoiNopDon() {
+        return CCCDNguoiNopDon;
+    }
+
+    public void setCCCDNguoiNopDon(String CCCDNguoiNopDon) {
         this.CCCDNguoiNopDon = CCCDNguoiNopDon;
+    }
+
+    public String getNoidk() {
+        return Noidk;
+    }
+
+    public void setNoidk(String Noidk) {
         this.Noidk = Noidk;
+    }
+
+    public Date getNgaydk() {
+        return Ngaydk;
+    }
+
+    public void setNgaydk(Date Ngaydk) {
         this.Ngaydk = Ngaydk;
+    }
+
+    public String getLydo() {
+        return Lydo;
+    }
+
+    public void setLydo(String Lydo) {
         this.Lydo = Lydo;
+    }
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
 
@@ -81,68 +149,4 @@ public class LyHonModel {
         this.HoTenChong = HoTenChong;
     }
 
-    // Getters and setters
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getMaLh() {
-        return MaLh;
-    }
-
-    public void setMaLh(String maLh) {
-        MaLh = maLh;
-    }
-
-    public String getMaCnkh() {
-        return MaCnkh;
-    }
-
-    public void setMaCnkh(String maCnkh) {
-        MaCnkh = maCnkh;
-    }
-
-    public String getCCCDNguoiNopDon() {
-        return CCCDNguoiNopDon;
-    }
-
-    public void setCCCDNguoiNopDon(String CCCDNguoiNopDon) {
-        this.CCCDNguoiNopDon = CCCDNguoiNopDon;
-    }
-
-    public String getNoidk() {
-        return Noidk;
-    }
-
-    public void setNoidk(String noidk) {
-        Noidk = noidk;
-    }
-
-    public Date getNgaydk() {
-        return Ngaydk;
-    }
-
-    public void setNgaydk(Date ngaydk) {
-        Ngaydk = ngaydk;
-    }
-
-    public String getLydo() {
-        return Lydo;
-    }
-
-    public void setLydo(String lydo) {
-        Lydo = lydo;
-    }
-
-    public int getTrangThai() {
-        return TrangThai;
-    }
-
-    public void setTrangThai(int trangThai) {
-        TrangThai = trangThai;
-    }
 }

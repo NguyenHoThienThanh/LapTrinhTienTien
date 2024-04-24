@@ -60,7 +60,7 @@ public class TamTruDAOImplUser implements ITamTruDAOUser{
     @Override
     public DonTamTruUser findOne(String maTT) {
         DonTamTruUser tamTru = new DonTamTruUser();
-        String query = "select * from TamTru where MaTT=?";
+        String query = "SELECT Tamtru.MaTT, CongDan.HoTen, KhaiSinh.GioiTinh, KhaiSinh.NgaySinh, Tamtru.Ngaydk AS NgayDk, Tamtru.CCCD, CongDan.NcCccd AS NoiCap, CongDan.NgcCccd AS NgayCap, CongDan.SDT AS Sdt, CongDan.Email, Tamtru.Lydo, Tamtru.Ngayden AS NgayDen, Tamtru.Ngaydi AS NgayDi, Tamtru.Noidk AS NoiDangKy, Tamtru.TrangThai FROM Tamtru INNER JOIN CongDan ON Tamtru.CCCD = CongDan.CCCD LEFT JOIN KhaiSinh ON CongDan.MaKS = KhaiSinh.MaKS WHERE Tamtru.CCCD = ?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -89,6 +89,7 @@ public class TamTruDAOImplUser implements ITamTruDAOUser{
         } 
         return tamTru;
     }
+    
     @Override
     public boolean insert(DonTamTruUser tamTru) {
         String query = "INSERT INTO Tamtru(Cccd, Ngaydk, Noidk, Ngayden, Ngaydi, Lydo, TrangThai) VALUES(?,?,?,?,?,?,?)";

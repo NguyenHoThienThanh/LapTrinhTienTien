@@ -8,6 +8,7 @@ import DAOImplement.LyHonDAOImpl;
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.ILyHonDAO;
 import InterfaceService.ILyHonService;
+import Models.DonChungNhanKetHon;
 import Models.LyHonModel;
 import java.util.List;
 import java.sql.*;
@@ -48,7 +49,6 @@ public class LyHonServiceImpl implements ILyHonService{
         lh.setNoidk(lh.getNoidk());
         lh.setNgaydk(lh.getNgaydk());
         lh.setLydo(lyHon.getLydo());
-        lh.setTrangThai(lyHon.getTrangThai());
         return lyHonDAO.update(lh);
     }
     
@@ -88,6 +88,11 @@ public class LyHonServiceImpl implements ILyHonService{
 
         }
         return listLyHon;
+    }
+
+    @Override
+    public DonChungNhanKetHon findOneByMaKH(String MaKH) {
+        return lyHonDAO.findOneByMaKH(MaKH);
     }
     
 }
