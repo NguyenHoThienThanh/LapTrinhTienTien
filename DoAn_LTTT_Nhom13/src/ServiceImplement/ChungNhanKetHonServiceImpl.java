@@ -5,10 +5,8 @@
 package ServiceImplement;
 
 import DAOImplement.ChungNhanKetHonDAOImpl;
-import DAOImplement.KhaiSinhDAOImpl;
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.IChungNhanKetHonDAO;
-import InterfaceDAO.IKhaiSinhDAO;
 import InterfaceService.IChungNhanKetHonService;
 import Models.ChungNhanKetHonModel;
 
@@ -24,8 +22,8 @@ import java.util.List;
  *
  * @author Admin
  */
-public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
-    
+public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService {
+
     IChungNhanKetHonDAO cnkhDAO = new ChungNhanKetHonDAOImpl();
     Connection conn = null;
     PreparedStatement ps = null;
@@ -91,7 +89,7 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
                 dcnkh.setMaCnkh(rs.getString("MaCnkh"));
                 dcnkh.setNgaydk(rs.getDate("Ngaydk"));
                 dcnkh.setNoidk(rs.getString("Noidk"));
-                
+
                 listDonChungNhanKetHon.add(dcnkh);
             }
             conn.close();
@@ -101,7 +99,7 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
         }
         return listDonChungNhanKetHon;
     }
-    
+
     @Override
     public List<ChungNhanKetHonModel> findAllChuaDuyet() {
         String query = "SELECT * FROM Cnkh WHERE TrangThai = 2";
@@ -127,23 +125,22 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
         }
         return listChungNhanKetHon;
     }
-    
-    
+
     @Override
     public ChungNhanKetHonModel findOneChuaDuyet(String Giaytotuythanvo, String Giaytotuythanchong) {
         ChungNhanKetHonModel dcnkh = new ChungNhanKetHonModel();
-        String query = "select Giaytotuythanchong, Giaytotuythanvo, Ngaysinhchong, Quoctichchong, Ngaysinhvo, Quoctichvo, Dantocchong, Dantocvo, Hotenchong, Hotenvo, Noicutruchong, Noicutruvo, MaCnkh, Ngaydk, Noidk from Cnkh \n" +
-            "	join (select HoTen as Hotenchong, NgaySinh as Ngaysinhchong, DanToc as Dantocchong, QuocTich as Quoctichchong, DiaChi as Noicutruchong, CccdChong as Giaytotuythanchong, Cnkh.TrangThai from Cnkh \n" +
-            "	join CongDan on Cnkh.CccdChong = CongDan.CCCD \n" +
-            "	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS  \n" +
-            "	join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia \n" +
-            "	join HoKhau on QuanHe.MaHK = HoKhau.MaHK \n" +
-            "	where QuanHe.TrangThai = 1)Q on Cnkh.CccdChong = Q.Giaytotuythanchong \n" +
-            "	join (select HoTen as Hotenvo, NgaySinh as Ngaysinhvo, DanToc as Dantocvo, QuocTich as Quoctichvo, DiaChi as Noicutruvo,CccdVo as Giaytotuythanvo from Cnkh \n" +
-            "	join CongDan on Cnkh.CccdVo = CongDan.CCCD \n" +
-            "	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS \n" +
-            "	join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia \n" +
-            "	join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1)P on Cnkh.CccdVo = P.Giaytotuythanvo where Cnkh.TrangThai = 2 and (Giaytotuythanchong = ? or Giaytotuythanvo = ?)";
+        String query = "select Giaytotuythanchong, Giaytotuythanvo, Ngaysinhchong, Quoctichchong, Ngaysinhvo, Quoctichvo, Dantocchong, Dantocvo, Hotenchong, Hotenvo, Noicutruchong, Noicutruvo, MaCnkh, Ngaydk, Noidk from Cnkh \n"
+                + "	join (select HoTen as Hotenchong, NgaySinh as Ngaysinhchong, DanToc as Dantocchong, QuocTich as Quoctichchong, DiaChi as Noicutruchong, CccdChong as Giaytotuythanchong, Cnkh.TrangThai from Cnkh \n"
+                + "	join CongDan on Cnkh.CccdChong = CongDan.CCCD \n"
+                + "	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS  \n"
+                + "	join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia \n"
+                + "	join HoKhau on QuanHe.MaHK = HoKhau.MaHK \n"
+                + "	where QuanHe.TrangThai = 1)Q on Cnkh.CccdChong = Q.Giaytotuythanchong \n"
+                + "	join (select HoTen as Hotenvo, NgaySinh as Ngaysinhvo, DanToc as Dantocvo, QuocTich as Quoctichvo, DiaChi as Noicutruvo,CccdVo as Giaytotuythanvo from Cnkh \n"
+                + "	join CongDan on Cnkh.CccdVo = CongDan.CCCD \n"
+                + "	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS \n"
+                + "	join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia \n"
+                + "	join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1)P on Cnkh.CccdVo = P.Giaytotuythanvo where Cnkh.TrangThai = 2 and (Giaytotuythanchong = ? or Giaytotuythanvo = ?)";
 
         try {
             conn = DBConnection.getConnection();
@@ -167,7 +164,7 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
                 dcnkh.setMaCnkh(rs.getString(13));
                 dcnkh.setNgaydk(rs.getDate(14));
                 dcnkh.setNoidk(rs.getString(15));
-                
+
             }
             conn.close();
         } catch (Exception e) {
@@ -176,8 +173,7 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
         }
         return dcnkh;
     }
-    
-    
+
     @Override
     public List<ChungNhanKetHonModel> findAllKetHon() {
         String query = "select DISTINCT * from Cnkh join (select HoTen as Hotenchong, NgaySinh as Ngaysinhchong, DanToc as Dantocchong, QuocTich as Quoctichchong, DiaChi as Noicutruchong, CccdChong as Giaytotuythanchong, Cnkh.TrangThai from Cnkh join CongDan on Cnkh.CccdChong = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS  join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1 and Cnkh.TrangThai = 1)Q on Cnkh.CccdChong = Q.Giaytotuythanchong join (select HoTen as Hotenvo, NgaySinh as Ngaysinhvo, DanToc as Dantocvo, QuocTich as Quoctichvo, DiaChi as Noicutruvo,CccdVo as Giaytotuythanvo from Cnkh join CongDan on Cnkh.CccdVo = CongDan.CCCD join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia join HoKhau on QuanHe.MaHK = HoKhau.MaHK where QuanHe.TrangThai = 1 and Cnkh.TrangThai = 1)P on Cnkh.CccdVo = P.Giaytotuythanvo where Cnkh.TrangThai = 1 ";
@@ -211,4 +207,28 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService{
         }
         return listChungNhanKetHon;
     }
+
+    @Override
+    public int ifExists(String CCCDChong, String CCCCDVo) {
+        String query = "select count(*) as SoLuong \n"
+                + "from Cnkh\n"
+                + "where CccdChong = ? or CccdVo = ? \n"
+                + "and TrangThai = 1";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, CCCDChong);
+            ps.setString(2, CCCCDVo);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("SoLuong");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    
+
 }

@@ -142,8 +142,8 @@ public class CongDanServiceImpl implements ICongDanService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace(); 
-            return -1;  
+            e.printStackTrace();
+            return -1;
         }
     }
 
@@ -155,8 +155,8 @@ public class CongDanServiceImpl implements ICongDanService {
         } else {
             return false;
         }
-    } 
-    
+    }
+
     public static void main(String[] args) {
         ICongDanDAO dn = new CongDanDAOImpl();
         CongDanModel model = dn.findOne("083303008061");
@@ -175,7 +175,7 @@ public class CongDanServiceImpl implements ICongDanService {
             while (rs.next()) {
                 ttcn.setNgaySinh(rs.getDate("NgaySinh"));
                 listTTCN.add(ttcn);
-                    
+
             }
             conn.close();
         } catch (Exception e) {
@@ -183,6 +183,34 @@ public class CongDanServiceImpl implements ICongDanService {
         }
         return listTTCN;
     }
+
+    @Override
+    public ThongTinCaNhan findOneByCCCD(String CCCD) {
+        String query = "select CCCD, HoTen, NgaySinh, DiaChi, DanToc, QuocTich, GioiTinh  from KhaiSinh\n"
+                + "inner join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia\n"
+                + "inner join HoKhau on HoKhau.MaHK = QuanHe.MaHK\n"
+                + "inner join CongDan on KhaiSinh.MaKS = CongDan.MaKS\n"
+                + "and CongDan.TrangThai = 1 and CongDan.CCCD = ?";
+        ThongTinCaNhan ttcn = new ThongTinCaNhan();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ttcn.setHoTen(rs.getString("HoTen"));
+                ttcn.setNgaySinh(rs.getDate("NgaySinh"));
+                ttcn.setDanToc(rs.getString("DanToc"));
+                ttcn.setQuocTich(rs.getString("QuocTich"));
+                ttcn.setCCCD(rs.getString("CCCD"));
+                ttcn.setDiaChi(rs.getString("DiaChi"));
+                ttcn.setGioiTinh(rs.getString("GioiTinh"));
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ttcn;
+
+    }
 }
-
-
