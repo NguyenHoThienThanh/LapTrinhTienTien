@@ -111,7 +111,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
-        trangChuController1 = new Controller.Admin.TrangChuController();
+        trangChuController2 = new Controller.Admin.TrangChuController();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -146,7 +146,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setLayout(new java.awt.BorderLayout());
-        panel.add(trangChuController1, java.awt.BorderLayout.CENTER);
+        panel.add(trangChuController2, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,6 +216,6 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
     private Menu.Menu menu2;
     private javax.swing.JPanel panel;
     private Swing.ScrollPaneWin11 scrollPaneWin111;
-    private Controller.Admin.TrangChuController trangChuController1;
+    private Controller.Admin.TrangChuController trangChuController2;
     // End of variables declaration//GEN-END:variables
 }

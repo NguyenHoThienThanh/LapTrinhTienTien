@@ -306,9 +306,7 @@ public class TrangChuController extends javax.swing.JPanel {
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panel_totalCongDan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
-                    .addGroup(panel_totalCongDan1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(lbl_averageAge, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbl_averageAge, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         panel_totalCongDan1Layout.setVerticalGroup(
@@ -430,6 +428,7 @@ public class TrangChuController extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 614;
         gridBagConstraints.ipady = 574;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 11, 11, 0);
         panel.add(scrollPaneWin112, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -437,24 +436,25 @@ public class TrangChuController extends javax.swing.JPanel {
         jLabel3.setText("Hồ sơ của bạn");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 30, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(3, 30, 0, 0);
         panel.add(jLabel3, gridBagConstraints);
 
-        myButton1.setText("myButton1");
+        myButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout-custom.png"))); // NOI18N
+        myButton1.setBorderColor(new java.awt.Color(255, 255, 255));
+        myButton1.setColorClick(new java.awt.Color(255, 255, 255));
+        myButton1.setColorOver(new java.awt.Color(255, 255, 255));
         myButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 myButton1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 90, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 107, 0, 30);
         panel.add(myButton1, gridBagConstraints);
 
         panelRound2.setRoundBottomLeft(30);
@@ -576,12 +576,11 @@ public class TrangChuController extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 19);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 30);
         panel.add(panelRound2, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
