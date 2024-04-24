@@ -1,12 +1,25 @@
 package Controller.User;
+import Controller.Admin.Login_RegisterController;
+import DAOImplement.ChungNhanKetHonDAOImpl;
+import DAOImplement.DangNhapDAOImpl;
+import InterfaceDAO.IChungNhanKetHonDAO;
+import InterfaceDAO.IDangNhapDAO;
 import Menu.MenuEvent;
+import Models.ChungNhanKetHonModel;
+import Models.DangNhapModel;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 
 
 public class HomeControllerUser extends javax.swing.JFrame {
 
     public HomeControllerUser() {
         initComponents();
+               
+        IChungNhanKetHonDAO chungNhanKetHonDAO = new ChungNhanKetHonDAOImpl();
+        String currentUser = Login_RegisterController.AppContext.userName;
+        ChungNhanKetHonModel cnkh = chungNhanKetHonDAO.findOneCNKH(currentUser, currentUser);
+                
         showForm(new ThongTinCongDanControllerUser());
         menuUser.setMenuEvent(new MenuEvent() {
             @Override
@@ -14,8 +27,7 @@ public class HomeControllerUser extends javax.swing.JFrame {
            
                if (index == 0) {
                     showForm(new ThongTinCongDanControllerUser());
-                } else  
-               if (index == 1 && subIndex == 1) {
+                } else if (index == 1 && subIndex == 1) {
                     showForm(new ThongTinKhaiSinhControllerUser());
                 } else if(index == 1 && subIndex == 2){
                     showForm(new ThongTinChungTuControllerUser());
@@ -28,6 +40,10 @@ public class HomeControllerUser extends javax.swing.JFrame {
                 } else if(index == 1 && subIndex == 6){
                     showForm(new TamVangControllerUser());
                 } else if(index == 1 && subIndex == 7){
+                    if(cnkh.getMaCnkh()==null){
+                        JOptionPane.showMessageDialog(null, "Công dân chưa kết hôn");
+                        return;
+                    }
                     showForm(new GiayChungNhanKetHonControllerUser());
                 } else if(index == 1 && subIndex == 8){
                     showForm(new DonLyHonControllerUser());

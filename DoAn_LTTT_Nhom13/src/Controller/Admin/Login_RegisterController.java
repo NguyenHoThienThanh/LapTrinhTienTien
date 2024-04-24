@@ -4,6 +4,8 @@
  */
 package Controller.Admin;
 import Controller.User.HomeControllerUser;
+import DAOImplement.DangNhapDAOImpl;
+import InterfaceDAO.IDangNhapDAO;
 import InterfaceService.IDangNhapService;
 import Models.DangNhapModel;
 import java.awt.Color;
@@ -25,6 +27,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
     private Animator animatorLogin;
     private Animator animatorRegister;
     IDangNhapService dangNhapService = new ServiceImplement.DangNhapServiceImpl();
+    
     private boolean signIn = true;
     public Login_RegisterController() {
         initComponents();
@@ -320,7 +323,11 @@ public class Login_RegisterController extends javax.swing.JFrame {
     }
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
-        DangNhapModel model = dangNhapService.findOne(tf_username.getText());       
+        DangNhapModel model = dangNhapService.findOne(tf_username.getText());
+        if(model.getTrangThai() == 0){
+            JOptionPane.showMessageDialog(null, "Công dân này đã mất");
+            return;
+        }
         if (!animatorLogin.isRunning()) {
             AppContext.userName = tf_username.getText().trim();
             AppContext.password = String.valueOf(tf_password.getPassword());
