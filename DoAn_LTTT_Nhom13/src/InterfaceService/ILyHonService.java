@@ -4,6 +4,7 @@
  */
 package InterfaceService;
 
+import Models.DonChungNhanKetHon;
 import Models.LyHonModel;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface ILyHonService {
     boolean update(LyHonModel lyHon);
     boolean delete(String MaLH);
     List<LyHonModel> findAllLH(String CCCDVo, String CCCDChong);
+    DonChungNhanKetHon findOneByMaKH(String MaKH);
 }

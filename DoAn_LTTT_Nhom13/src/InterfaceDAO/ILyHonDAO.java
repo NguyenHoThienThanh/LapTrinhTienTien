@@ -4,6 +4,7 @@
  */
 package InterfaceDAO;
 
+import Models.DonChungNhanKetHon;
 import Models.LyHonModel;
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface ILyHonDAO {
     boolean update(LyHonModel lyHon);
 
     boolean delete(String MaLH);
+    DonChungNhanKetHon findOneByMaKH(String MaKH);
 }
