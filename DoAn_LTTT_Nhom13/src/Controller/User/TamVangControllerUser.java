@@ -9,6 +9,7 @@ import InterfaceService.ICongDanService;
 import InterfaceService.ITamVangService;
 import Models.CongDanModel;
 import Models.DonTamVangUser;
+import Models.TamVangModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.TamVangServiceImpl;
 import com.toedter.calendar.JDateChooser;
@@ -97,6 +98,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         tf_noichuyendi = new Swing.TextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(920, 540));
 
         tf_hoTen.setEditable(false);
         tf_hoTen.setLabelText("Họ và tên");
@@ -226,9 +228,9 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                                             .addGap(6, 6, 6)
                                             .addComponent(tf_maTamVang, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(1, 1, 1)
@@ -255,8 +257,9 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                                             .addComponent(jLabel3)
                                             .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
                                         .addComponent(tf_noichuyenden, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
+                                        .addGap(23, 23, 23)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6)
                                             .addComponent(jDateNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,7 +277,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                         .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_xoaDuLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(459, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,13 +332,13 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                                 .addComponent(tf_noichuyenden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_noichuyendi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -352,7 +355,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -392,29 +395,29 @@ public class TamVangControllerUser extends javax.swing.JPanel {
     private void btn_luuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuActionPerformed
 
         if (isDuplicateEntry(listTamVang)) {
-            System.out.println("hihi");
             JOptionPane.showMessageDialog(TamVangControllerUser.this,"Đơn đã tồn tại.","Form exist",JOptionPane.WARNING_MESSAGE);
+            return;
         } else if(isFormEmpty()){
-            System.out.println("hihi2");
             JOptionPane.showMessageDialog(TamVangControllerUser.this,"Vui lòng điền đầy đủ thông tin.","Fill all information",JOptionPane.WARNING_MESSAGE);
-        } else if(validateDates(jDateNgayDi.getDate(),jDateNgayDangKy.getDate(),jDateNgayVe.getDate())){
-            System.out.println("hihi3");
-            JOptionPane.showMessageDialog(TamVangControllerUser.this,"Nhập lại ngày.","Form exist",JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if(!validateDates(jDateNgayDi.getDate(),jDateNgayDangKy.getDate(),jDateNgayVe.getDate())){
+//            JOptionPane.showMessageDialog(TamVangControllerUser.this,"Nhập lại ngày.","Form exist",JOptionPane.WARNING_MESSAGE);
+            return;
         }else {
             // Assuming you have UI components that correspond to each model property
             String MaTV = "";
             String HoTen = tf_hoTen.getText();
-            String GioiTinh = combo_GioiTinh.getSelectedItem().toString(); // Assuming JComboBox for gender
-            Date NgaySinh = jDateNgaySinh.getDate(); // For JDateChooser
-            Date NgayDk = new Date(); // Current date or from a date picker
+            String GioiTinh = combo_GioiTinh.getSelectedItem().toString();
+            Date NgaySinh = jDateNgaySinh.getDate();
+            Date NgayDk = new Date();
             String CCCD = tf_soCCCD.getText();
             String NoiCap = tf_noiCapCCCD.getText();
-            Date NgayCap = jDateNgayCap.getDate(); // For JDateChooser
+            Date NgayCap = jDateNgayCap.getDate();
             String Sdt = tf_soDienThoai.getText();
             String Email = tf_email.getText();
             String LiDo = tf_lyDo.getText();
-            Date NgayDen = jDateNgayVe.getDate(); // For JDateChooser
-            Date NgayDi = jDateNgayDi.getDate(); // For JDateChooser
+            Date NgayDen = jDateNgayVe.getDate();
+            Date NgayDi = jDateNgayDi.getDate(); 
             String NoiChuyenDen = tf_noichuyenden.getText();
             String NoiChuyenDi = tf_noichuyendi.getText();
             int TrangThai = 1;
@@ -433,6 +436,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuActionPerformed
     public boolean isDuplicateEntry(List<DonTamVangUser> listTamVang) {
         // Retrieve values from GUI components
+        TamVangModel model = new TamVangServiceImpl().findOneByMaTV(tf_maTamVang.getText().trim());
         String MaTV = "";
         String hoTen = tf_hoTen.getText();
         String gioiTinh = (String) combo_GioiTinh.getSelectedItem();
@@ -445,52 +449,11 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         String lyDo = tf_lyDo.getText();
         Date ngayVe = jDateNgayVe.getDate();
         Date ngayDi = jDateNgayDi.getDate();
-        String noiChuyenDen = tf_noichuyenden.getText();
-        String noiChuyenDi = tf_noichuyendi.getText();
+        String noiChuyenDen = model.getNcden();
+        String noiChuyenDi = model.getNcdi();
         
         // Loop through the list and compare entries
         for (DonTamVangUser tamVang : listTamVang) {
-             System.out.println("Comparing against record: Name=" + tamVang.getHoTen() + ", Gender=" + tamVang.getGioiTinh());
-            
-            if (tamVang.getHoTen().equals(hoTen)) {
-                System.out.println("Name matches");
-            }
-            if (tamVang.getGioiTinh().equals(gioiTinh)) {
-                System.out.println("Gender matches");
-            }
-            if (tamVang.getNgaySinh().equals(ngaySinh)) {
-                System.out.println("Birth date matches");
-            }
-            if (tamVang.getCCCD().equals(cccd)) {
-                System.out.println("CCCD matches");
-            }
-            if (tamVang.getNoiCap().equals(noiCap)) {
-                System.out.println("Issue place matches");
-            }
-            if (tamVang.getNgayCap().equals(ngayCap)) {
-                System.out.println("Issue date matches");
-            }
-            if (tamVang.getSdt().equals(sdt)) {
-                System.out.println("Phone number matches");
-            }
-            if (tamVang.getEmail().equals(email)) {
-                System.out.println("Email matches");
-            }
-            if (tamVang.getLydo().equals(lyDo)) {
-                System.out.println("Reason matches");
-            }
-            if (tamVang.getNgayVe().equals(ngayVe)) {
-                System.out.println("Return date matches");
-            }
-            if (tamVang.getNgayDi().equals(ngayDi)) {
-                System.out.println("Departure date matches");
-            }
-            if (tamVang.getNoiChuyenDen().equals(noiChuyenDen)) {
-                System.out.println("Transfer to location matches");
-            }
-            if (tamVang.getNoiChuyenDi().equals(noiChuyenDi)) {
-                System.out.println("Transfer from location matches");
-            }
             if (tamVang.getHoTen().equals(hoTen) &&
                 tamVang.getGioiTinh().equals(gioiTinh) &&
                 tamVang.getNgaySinh().equals(ngaySinh) &&
@@ -524,26 +487,24 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         return false;
     }
     public boolean validateDates(Date ngayDi, Date ngayDk, Date ngayVe) {
-        // Check if ngayDi (departure date) is on or before ngayDk (registration date)
         if (ngayDi.after(ngayDk)) {
-            System.out.println("Departure date must be on or before the registration date.");
+            JOptionPane.showMessageDialog(TamVangControllerUser.this, "Ngày đi không được sau ngày đăng ký.", "Fill all information", JOptionPane.WARNING_MESSAGE);
             return false;
-        }
-        // Check if ngayVe (return date) is on or before ngayDi (departure date)
-        if (ngayVe.before(ngayDi)) {
-            System.out.println("Return date must be on or after the departure date.");
+        } else if (ngayVe.before(ngayDi)) {
+            JOptionPane.showMessageDialog(TamVangControllerUser.this, "Ngày về không được trước ngày đi.", "Fill all information", JOptionPane.WARNING_MESSAGE);
             return false;
-        }
-        if (ngayVe.before(ngayDk)) {
-            System.out.println("Return date must be on or after the departure date.");
+        } else if (ngayVe.before(ngayDk)) {
+            JOptionPane.showMessageDialog(TamVangControllerUser.this, "Ngày về không được trước ngày đăng ký.", "Fill all information", JOptionPane.WARNING_MESSAGE);
             return false;
+        } else {
+            return true;
         }
-        return true; // Both conditions are satisfied
-    }   
+    }
+
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         clear();
         showInfo();
-        btn_luu.setVisible(true); // Make the save button visible
+        btn_luu.setVisible(true);
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_xoaDuLieu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieu1ActionPerformed

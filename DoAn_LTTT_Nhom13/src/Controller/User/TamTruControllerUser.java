@@ -17,7 +17,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
-import java.text.ParseException;     
+import java.text.ParseException;
 
 /**
  *
@@ -33,22 +33,25 @@ public class TamTruControllerUser extends javax.swing.JPanel {
     ITamTruServiceUser tamTruService = new TamTruServiceImplUser();
     ICongDanService CongDanService = new CongDanServiceImpl();
     CongDanModel cd = new CongDanModel();
+
     public TamTruControllerUser() {
         initComponents();
-        model = (DefaultTableModel) tbl_thongTinTamTru.getModel();    
+        model = (DefaultTableModel) tbl_thongTinTamTru.getModel();
         showInfo();
-        
+
         showTable();
     }
+
     private void showTable() {
         model.setRowCount(0);
         listTamTru = tamTruService.findAllTT(Login_RegisterController.AppContext.userName);
         for (DonTamTruUser tamTru : listTamTru) {
             System.out.println(tamTru.getGioiTinh());
-            model.addRow(new Object[]{tamTru.getMaTT(),tamTru.getNgayDk(), tamTru.getNgayDen(), tamTru.getNgayDi(),tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getGioiTinh(), tamTru.getCCCD(),    tamTru.getNoiCap(), tamTru.getNgayCap(), tamTru.getLiDo(), tamTru.getSdt(), tamTru.getEmail(), tamTru.getNoiDangKy()});
+            model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgayDk(), tamTru.getNgayDen(), tamTru.getNgayDi(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getGioiTinh(), tamTru.getCCCD(), tamTru.getNoiCap(), tamTru.getNgayCap(), tamTru.getLiDo(), tamTru.getSdt(), tamTru.getEmail(), tamTru.getNoiDangKy()});
         }
     }
-    private void showInfo(){
+
+    private void showInfo() {
         cd = CongDanService.findOne(Login_RegisterController.AppContext.userName);
         tf_hoTen.setText(cd.getHoTen());
         tf_soCCCD.setText(cd.getCCCD());
@@ -60,6 +63,7 @@ public class TamTruControllerUser extends javax.swing.JPanel {
         combo_GioiTinh.setSelectedItem(cd.getGioiTinh());
         jDateNgayDangKy.setDate(new java.util.Date());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -350,7 +354,7 @@ public class TamTruControllerUser extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_thongTinTamTruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinTamTruMouseClicked
-       
+
         DefaultTableModel model = (DefaultTableModel) tbl_thongTinTamTru.getModel();
 
         // Setting non-date values
@@ -382,12 +386,32 @@ public class TamTruControllerUser extends javax.swing.JPanel {
             dateChooser.requestFocus();
         }
     }
+    public boolean validateDates(Date ngayDen, Date ngayDi, Date ngayDk) {
+       if (ngayDen.after(ngayDk)) {
+           JOptionPane.showMessageDialog(TamTruControllerUser.this, "Ngày đến không được sau ngày đăng ký.", "Fill all information", JOptionPane.WARNING_MESSAGE);           
+           return false;
+       } 
+       if (ngayDi.before(ngayDen)) {
+           JOptionPane.showMessageDialog(TamTruControllerUser.this, "Ngày đi không được trước ngày đến.", "Fill all information", JOptionPane.WARNING_MESSAGE);
+           return false;
+       } 
+       if (ngayDi.before(ngayDk)) {
+           JOptionPane.showMessageDialog(TamTruControllerUser.this, "Ngày đi không được trước ngày đăng ký.", "Fill all information", JOptionPane.WARNING_MESSAGE);
+           return false;
+       } 
+       return true;
+   }
     private void btn_luuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuActionPerformed
         if (isDuplicateEntry(listTamTru)) {
-            JOptionPane.showMessageDialog(TamTruControllerUser.this,"Đơn đã tồn tại.","Form exist",JOptionPane.WARNING_MESSAGE);
-        } else if(isFormEmpty()){
-            JOptionPane.showMessageDialog(TamTruControllerUser.this,"Vui lòng điền đầy đủ thông tin.","Fill all information",JOptionPane.WARNING_MESSAGE);
-        }        else {
+            JOptionPane.showMessageDialog(TamTruControllerUser.this, "Đơn đã tồn tại.", "Form exist", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (isFormEmpty()) {
+            JOptionPane.showMessageDialog(TamTruControllerUser.this, "Vui lòng điền đầy đủ thông tin.", "Fill all information", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (!validateDates(jDateDen.getDate(), jDateNgayDi.getDate(), jDateNgayDangKy.getDate())) {
+//            JOptionPane.showMessageDialog(TamTruControllerUser.this, "Vui lòng nhập lại ngày.", "Lỗi định dạng", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
             // Assuming you have UI components that correspond to each model property
             String MaTT = "";
             String HoTen = tf_hoTen.getText();
@@ -411,7 +435,7 @@ public class TamTruControllerUser extends javax.swing.JPanel {
             boolean success = tamTruService.insert(model);
 
             // Display the result to the user
-            if(success) {
+            if (success) {
                 JOptionPane.showMessageDialog(null, "Thêm mới thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 // Additional actions (e.g., clearing form, updating a list, etc.)
             }
@@ -436,36 +460,37 @@ public class TamTruControllerUser extends javax.swing.JPanel {
 
         // Loop through the list and compare entries
         for (DonTamTruUser tamTru : listTamTru) {
-            if (tamTru.getHoTen().equals(hoTen) &&
-                tamTru.getGioiTinh().equals(gioiTinh) &&
-                tamTru.getNgaySinh().equals(ngaySinh) &&
-                tamTru.getNgayDk().equals(ngayDk) &&
-                tamTru.getCCCD().equals(cccd) &&
-                tamTru.getNoiCap().equals(noiCap) &&
-                tamTru.getNgayCap().equals(ngayCap) &&
-                tamTru.getSdt().equals(sdt) &&
-                tamTru.getEmail().equals(email) &&
-                tamTru.getLiDo().equals(lyDo) &&
-                tamTru.getNgayDen().equals(ngayDen) &&
-                tamTru.getNgayDi().equals(ngayDi) &&
-                tamTru.getNoiDangKy().equals(noiDangKy)) {
+            if (tamTru.getHoTen().equals(hoTen)
+                    && tamTru.getGioiTinh().equals(gioiTinh)
+                    && tamTru.getNgaySinh().equals(ngaySinh)
+                    && tamTru.getNgayDk().equals(ngayDk)
+                    && tamTru.getCCCD().equals(cccd)
+                    && tamTru.getNoiCap().equals(noiCap)
+                    && tamTru.getNgayCap().equals(ngayCap)
+                    && tamTru.getSdt().equals(sdt)
+                    && tamTru.getEmail().equals(email)
+                    && tamTru.getLiDo().equals(lyDo)
+                    && tamTru.getNgayDen().equals(ngayDen)
+                    && tamTru.getNgayDi().equals(ngayDi)
+                    && tamTru.getNoiDangKy().equals(noiDangKy)) {
                 return true; // Duplicate found
             }
         }
         return false; // No duplicates found
     }
+
     private boolean isFormEmpty() {
-        if (tf_lyDo.getText().trim().isEmpty() ||
-            tf_noidangky.getText().trim().isEmpty()) {
+        if (tf_lyDo.getText().trim().isEmpty()
+                || tf_noidangky.getText().trim().isEmpty()) {
             return true;
         }
-        if (jDateDen.getDate() == null ||
-            jDateNgayDi.getDate() == null) {
+        if (jDateDen.getDate() == null
+                || jDateNgayDi.getDate() == null) {
             return true;
         }
         return false;
     }
- 
+
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         clear();
         showInfo();
@@ -485,7 +510,7 @@ public class TamTruControllerUser extends javax.swing.JPanel {
         tf_email.setText("");
         tf_noidangky.setText("");
         tf_lyDo.setText("");
-        combo_GioiTinh.setSelectedIndex(-1); 
+        combo_GioiTinh.setSelectedIndex(-1);
         jDateNgaySinh.setDate(null);
         jDateNgayCap.setDate(null);
         jDateNgayDangKy.setDate(null);
