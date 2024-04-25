@@ -4,9 +4,11 @@ import DAOImplement.HoKhauDAOImpl;
 import DAOImplement.QuanHeDAOImpl;
 import InterfaceDAO.IHoKhauDAO;
 import InterfaceService.IHoKhauService;
+import Models.CongDanModel;
 import Models.HoKhauModel;
 import Models.QuanHeModel;
 import Models.ThongTinHoKhau;
+import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.HoKhauServiceImpl;
 import ServiceImplement.QuanHeServiceImpl;
 import java.util.List;
@@ -58,6 +60,7 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
         btn_catKhau = new Swing.Button();
         btn_themNguoiVaoHoKhau = new Swing.Button();
         btn_timTheoMaHoKhau = new Swing.Button();
+        btn_luuThem = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -135,6 +138,15 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
             }
         });
 
+        btn_luuThem.setBackground(new java.awt.Color(18, 99, 63));
+        btn_luuThem.setForeground(new java.awt.Color(255, 255, 255));
+        btn_luuThem.setText("Lưu thêm");
+        btn_luuThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_luuThemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,33 +157,34 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                 .addGap(361, 361, 361))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tf_diaChi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(tf_maHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_maKhaiSinhNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_hoTenNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_quanHeChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btn_timTheoMaHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163)
+                        .addComponent(btn_themNguoiVaoHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_catKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(56, 56, 56)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tf_diaChi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(tf_maHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tf_maKhaiSinhNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tf_hoTenNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tf_quanHeChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(btn_timTheoMaHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183)
-                .addComponent(btn_themNguoiVaoHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_catKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +207,8 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_themNguoiVaoHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_catKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_timTheoMaHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_timTheoMaHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -236,15 +250,163 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                     jMsgFail.setModal(true);
                     jMsgFail.setVisible(true);
                 }
-                clear();
+                clearTextFields();
             }
         }
     }//GEN-LAST:event_btn_catKhauActionPerformed
     private void clear() {
         tf_quanHeChuHo.setText("");
+        tf_maKhaiSinhNguoiThan.setText("");
         tf_hoTenNguoiThan.setText("");
     }
     private void btn_themNguoiVaoHoKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themNguoiVaoHoKhauActionPerformed
+        //ThongTinHoKhau hoKhau = new ThongTinHoKhau();
+        QuanHeModel quanHe = new QuanHeModel();
+        HoKhauModel hoKhau = new HoKhauDAOImpl().findOneMaHK(tf_maHoKhau.getText());
+   
+        quanHe.setTrangThai(1);
+        
+        tf_maKhaiSinhChuHo.setText(hoKhau.getKhaiSinhChuHo());
+        tf_hoTenChuHo.setText(hoKhau.getHoTen());
+        tf_diaChi.setText(hoKhau.getDiaChi());
+        ableTextFields();
+        clear();
+    }//GEN-LAST:event_btn_themNguoiVaoHoKhauActionPerformed
+    public void showResult() {
+        listHoKhau = hoKhauService.findAllHoKhauUser(tf_maHoKhau.getText());
+        ThongTinHoKhau hoKhau = listHoKhau.get(listHoKhau.size() - 1);
+        model.fireTableDataChanged();
+        model.addRow(new Object[]{hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhChuHo(), hoKhau.getHoTenChuHo(), hoKhau.getKhaiSinhNguoiThamGia(), hoKhau.getHoTenNguoiThan(), hoKhau.getQuanHeVoiChuHo(), hoKhau.getDiaChi()});
+    }
+    
+    private void btn_timTheoMaHoKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timTheoMaHoKhauActionPerformed
+        clearTable();
+        HoKhauModel hoKhau = new HoKhauDAOImpl().findOneMaHK(tf_maHoKhau.getText());
+        CongDanModel congDan = new CongDanServiceImpl().findOneByMaKS(hoKhau.getKhaiSinhChuHo());
+                
+        String maHoKhau = tf_maHoKhau.getText().trim();
+        
+        if (tf_maHoKhau.getText().equals("")) {
+            JOptionPane dialog = new JOptionPane("Vui lòng điền mã hộ khẩu cần tìm!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
+        if (!checkMaHoKhau(maHoKhau)) {
+            JOptionPane dialog = new JOptionPane("Mã hộ khẩu không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+            return;
+        }
+        
+        if(congDan.getTrangThai() == 0){
+            JOptionPane dialog = new JOptionPane("Hộ khẩu không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            clearTextFields();
+            disableTextFields();
+            return;
+        }
+        
+        listHoKhau = hoKhauService.findAllHoKhauUser(maHoKhau);
+        showTable();
+        
+        tf_maKhaiSinhChuHo.setText(hoKhau.getKhaiSinhChuHo());
+        tf_hoTenChuHo.setText(hoKhau.getHoTen());
+        tf_diaChi.setText(hoKhau.getDiaChi());
+                
+        clearTextFields();
+        disableTextFields();
+    }//GEN-LAST:event_btn_timTheoMaHoKhauActionPerformed
+    private void ableTextFields(){
+        tf_maKhaiSinhNguoiThan.setEditable(true);
+        tf_quanHeChuHo.setEditable(true);
+    }
+    private void disableTextFields() {
+        tf_maKhaiSinhChuHo.setEditable(false);
+        tf_hoTenChuHo.setEditable(false);
+        tf_hoTenNguoiThan.setEditable(false);
+        tf_diaChi.setEditable(false);
+    }
+    private void clearTextFields() {
+        //tf_maHoKhau.setText("");
+        tf_maKhaiSinhChuHo.setText("");
+        tf_hoTenChuHo.setText("");
+        tf_maKhaiSinhNguoiThan.setText("");
+        tf_hoTenNguoiThan.setText("");
+        tf_quanHeChuHo.setText("");
+        tf_diaChi.setText("");
+    }
+    
+    private void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) tb_HK.getModel();
+        model.setRowCount(0);
+    }
+    
+    private void disableTextField() {
+        tf_maKhaiSinhNguoiThan.setEditable(true);
+        tf_quanHeChuHo.setEditable(true);
+    }
+    
+    private boolean checkMaHoKhau(String maHoKhau) {
+        
+        // Kiểm tra các ký tự đầu tiên là "HK"
+        if (!maHoKhau.startsWith("HK")) {
+            return false;
+        }
+
+        // Kiểm tra phần số ở phía sau
+        String soPhiaSau = maHoKhau.substring(2);
+        try {
+            int so = Integer.parseInt(soPhiaSau);
+            // Kiểm tra số phía sau có là số dương không
+            if (so <= 0) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+    private boolean checkMaKhaiSinh(String maKhaiSinh) {
+        
+        // Kiểm tra các ký tự đầu tiên là "HK"
+        if (!maKhaiSinh.startsWith("KS")) {
+            return false;
+        }
+
+        // Kiểm tra phần số ở phía sau
+        String soPhiaSau = maKhaiSinh.substring(2);
+        try {
+            int so = Integer.parseInt(soPhiaSau);
+            // Kiểm tra số phía sau có là số dương không
+            if (so <= 0) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+    
+    private void tb_HKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_HKMouseClicked
+        model = (DefaultTableModel) tb_HK.getModel();
+        tf_maHoKhau.setText(model.getValueAt(tb_HK.getSelectedRow(), 0).toString());
+        tf_maKhaiSinhChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 1).toString());
+        tf_hoTenChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 2).toString());
+        tf_maKhaiSinhNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 3).toString());
+        tf_hoTenNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 4).toString());
+        tf_quanHeChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 5).toString());
+        tf_diaChi.setText(model.getValueAt(tb_HK.getSelectedRow(), 6).toString());
+    }//GEN-LAST:event_tb_HKMouseClicked
+
+    private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
         ThongTinHoKhau hoKhau = new ThongTinHoKhau();
         QuanHeModel quanHe = new QuanHeModel();
         
@@ -312,106 +474,13 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                 return;
             }
             showResult();
-            clear();
-    }//GEN-LAST:event_btn_themNguoiVaoHoKhauActionPerformed
-    public void showResult() {
-        listHoKhau = hoKhauService.findAllHoKhauUser(tf_maHoKhau.getText());
-        ThongTinHoKhau hoKhau = listHoKhau.get(listHoKhau.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhChuHo(), hoKhau.getHoTenChuHo(), hoKhau.getKhaiSinhNguoiThamGia(), hoKhau.getHoTenNguoiThan(), hoKhau.getQuanHeVoiChuHo(), hoKhau.getDiaChi()});
-    }
-    
-    private void btn_timTheoMaHoKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timTheoMaHoKhauActionPerformed
-        hoKhau = hoKhauDAO.findOneMaHK(tf_maHoKhau.getText());
-        
-        String maHoKhau = tf_maHoKhau.getText().trim();
-        
-        if (tf_maHoKhau.getText().equals("")) {
-            JOptionPane dialog = new JOptionPane("Vui lòng điền mã hộ khẩu cần tìm!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        
-        if (!checkMaHoKhau(maHoKhau)) {
-            JOptionPane dialog = new JOptionPane("Mã hộ khẩu không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-            return;
-        }
-        
-        listHoKhau = hoKhauService.findAllHoKhauUser(maHoKhau);
-        showTable();
-        disableTextField();
-        tf_maKhaiSinhChuHo.setText(hoKhau.getKhaiSinhChuHo());
-        tf_hoTenChuHo.setText(hoKhau.getHoTen());
-        tf_diaChi.setText(hoKhau.getDiaChi());
-    }//GEN-LAST:event_btn_timTheoMaHoKhauActionPerformed
-    
-    private void disableTextField() {
-        tf_maKhaiSinhNguoiThan.setEditable(true);
-        tf_quanHeChuHo.setEditable(true);
-    }
-    
-    private boolean checkMaHoKhau(String maHoKhau) {
-        
-        // Kiểm tra các ký tự đầu tiên là "HK"
-        if (!maHoKhau.startsWith("HK")) {
-            return false;
-        }
-
-        // Kiểm tra phần số ở phía sau
-        String soPhiaSau = maHoKhau.substring(2);
-        try {
-            int so = Integer.parseInt(soPhiaSau);
-            // Kiểm tra số phía sau có là số dương không
-            if (so <= 0) {
-                return false;
-            }
-        } catch (NumberFormatException e) {
-            return false;
-        }
-
-        return true;
-    }
-    private boolean checkMaKhaiSinh(String maKhaiSinh) {
-        
-        // Kiểm tra các ký tự đầu tiên là "HK"
-        if (!maKhaiSinh.startsWith("KS")) {
-            return false;
-        }
-
-        // Kiểm tra phần số ở phía sau
-        String soPhiaSau = maKhaiSinh.substring(2);
-        try {
-            int so = Integer.parseInt(soPhiaSau);
-            // Kiểm tra số phía sau có là số dương không
-            if (so <= 0) {
-                return false;
-            }
-        } catch (NumberFormatException e) {
-            return false;
-        }
-
-        return true;
-    }
-    
-    private void tb_HKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_HKMouseClicked
-        model = (DefaultTableModel) tb_HK.getModel();
-        tf_maHoKhau.setText(model.getValueAt(tb_HK.getSelectedRow(), 0).toString());
-        tf_maKhaiSinhChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 1).toString());
-        tf_hoTenChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 2).toString());
-        tf_maKhaiSinhNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 3).toString());
-        tf_hoTenNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 4).toString());
-        tf_quanHeChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 5).toString());
-        tf_diaChi.setText(model.getValueAt(tb_HK.getSelectedRow(), 6).toString());
-    }//GEN-LAST:event_tb_HKMouseClicked
+            clearTextFields();
+    }//GEN-LAST:event_btn_luuThemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Button btn_catKhau;
+    private Swing.Button btn_luuThem;
     private Swing.Button btn_themNguoiVaoHoKhau;
     private Swing.Button btn_timTheoMaHoKhau;
     private javax.swing.JLabel jLabel1;

@@ -83,12 +83,10 @@ public class HoKhauDAOImpl implements IHoKhauDAO {
     
     @Override
     public HoKhauModel findOneMaHK(String MaHK) {
-        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, DiaChi \n" +
-                "from \n" +
-                "(select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo \n" +
-                "from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n" +
-                "where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n" +
-                "WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)";
+        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, DiaChi from (select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo\n" +
+            "from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS\n" +
+            "where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS\n" +
+            "WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)";
         HoKhauModel hoKhau = new HoKhauModel();
         try {
             conn = DBConnection.getConnection();
