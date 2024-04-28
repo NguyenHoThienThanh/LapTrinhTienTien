@@ -5,6 +5,9 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[920, 540]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -21,57 +24,77 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="375" max="-2" attributes="0"/>
+                      <Component id="btn_sua1" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="tf_diaChi" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tf_quocTich" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tf_soCCCD" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tf_hoTen" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="79" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="tf_ngayCapCCCD" max="32767" attributes="0"/>
+                                      <Component id="tf_ngaySinh" min="-2" pref="145" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tf_danToc" min="-2" pref="146" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="tf_noiCapCCCD" max="32767" attributes="0"/>
+                                  <Component id="tf_noiSinh" max="32767" attributes="0"/>
+                                  <Component id="tf_queQuan" min="-2" pref="166" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="tf_soDienThoai" alignment="1" min="-2" pref="162" max="-2" attributes="0"/>
+                                      <Component id="tf_email" min="-2" pref="162" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tf_gioiTinh" alignment="1" min="-2" pref="162" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
-                      <Component id="btn_sua" min="-2" pref="100" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="405" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="tf_diaChi" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tf_hoTen" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="tf_soCCCD" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tf_tenDangNhap" min="-2" pref="240" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tf_matKhau" min="-2" pref="242" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="tf_quocTich" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tf_ngayCapCCCD" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tf_ngaySinh" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tf_danToc" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tf_noiSinh" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tf_noiCapCCCD" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tf_queQuan" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="tf_gioiTinh" min="-2" pref="102" max="-2" attributes="0"/>
-                              <Component id="tf_soDienThoai" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="btn_doiMatKhau" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="tf_email" min="-2" pref="162" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,32 +103,50 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_noiSinh" alignment="3" max="32767" attributes="0"/>
-                  <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="tf_tenDangNhap" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_matKhau" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tf_soCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_ngayCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_noiCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_soDienThoai" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btn_doiMatKhau" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_noiSinh" alignment="3" max="32767" attributes="0"/>
+                          <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tf_ngayCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_noiCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_soDienThoai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tf_danToc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_queQuan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="tf_diaChi" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_sua1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="tf_hoTen" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="tf_soCCCD" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="tf_quocTich" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="115" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tf_danToc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_quocTich" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_queQuan" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_email" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="tf_diaChi" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="btn_sua" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -163,7 +204,7 @@
         <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
       </Properties>
     </Component>
-    <Component class="Swing.Button" name="btn_sua">
+    <Component class="Swing.Button" name="btn_doiMatKhau">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="3f" green="63" red="12" type="rgb"/>
@@ -171,10 +212,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="S&#x1eed;a th&#xf4;ng tin"/>
+        <Property name="text" type="java.lang.String" value="&#x110;&#x1ed5;i m&#x1ead;t kh&#x1ea9;u"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_suaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_doiMatKhauActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -185,7 +226,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN C&#xd4;NG D&#xc2;N"/>
+        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN T&#xc0;I KHO&#x1ea2;N"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_diaChi">
@@ -195,17 +236,57 @@
     </Component>
     <Component class="Swing.TextField" name="tf_quocTich">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="Qu&#x1ed1;c t&#x1ecb;ch"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_danToc">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="D&#xe2;n t&#x1ed9;c"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_queQuan">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="Qu&#xea; qu&#xe1;n"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN C&#xd4;NG D&#xc2;N"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_tenDangNhap">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="T&#xea;n &#x111;&#x103;ng nh&#x1ead;p"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.Button" name="btn_sua1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="3f" green="63" red="12" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="S&#x1eed;a th&#xf4;ng tin"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_sua1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="Swing.PasswordField" name="tf_matKhau">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u"/>
       </Properties>
     </Component>
   </SubComponents>
