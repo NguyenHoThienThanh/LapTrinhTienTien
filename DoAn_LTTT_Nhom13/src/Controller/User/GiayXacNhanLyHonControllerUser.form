@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="tf_maChungNhanLyHon" min="-2" pref="360" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="tf_cccdChong" min="-2" pref="360" max="-2" attributes="0"/>
+                              <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
+                              <Component id="tf_cccdVo" min="-2" pref="360" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="tf_hoTenChong" min="-2" pref="360" max="-2" attributes="0"/>
+                              <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tf_hoTenVo" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                                  <Component id="tf_maChungNhanKetHon" alignment="1" min="-2" pref="360" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tf_noiDangKyKetHon" pref="360" max="32767" attributes="0"/>
+                                  <Component id="tf_ngayDangKyKetHon" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tf_ngayLyHon" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tf_lyDoLyHon" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_maChungNhanLyHon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_maChungNhanKetHon" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_hoTenChong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_hoTenVo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_cccdChong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_cccdVo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_ngayLyHon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_ngayDangKyKetHon" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tf_lyDoLyHon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_noiDangKyKetHon" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="GI&#x1ea4;Y X&#xc1;C NH&#x1eac;N LY H&#xd4;N"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_hoTenChong">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n ch&#x1ed3;ng"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_hoTenVo">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n v&#x1ee3;"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_maChungNhanLyHon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="M&#xe3; ch&#x1ee9;ng nh&#x1ead;n ly h&#xf4;n"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_cccdChong">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="CCCD ch&#x1ed3;ng"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_ngayDangKyKetHon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y &#x111;&#x103;ng k&#xfd; k&#x1ebf;t h&#xf4;n"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_lyDoLyHon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="inheritsPopupMenu" type="boolean" value="true"/>
+        <Property name="labelText" type="java.lang.String" value="L&#xfd; do ly h&#xf4;n"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_noiDangKyKetHon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="N&#x1a1;i &#x111;&#x103;ng k&#xfd;"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_ngayLyHon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="Ng&#xe0;y ly h&#xf4;n"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_maChungNhanKetHon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="M&#xe3; ch&#x1ee9;ng nh&#x1ead;n k&#x1ebf;t h&#xf4;n"/>
+      </Properties>
+    </Component>
+    <Component class="Swing.TextField" name="tf_cccdVo">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="labelText" type="java.lang.String" value="CCCD v&#x1ee3;"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

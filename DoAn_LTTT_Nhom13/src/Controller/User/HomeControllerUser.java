@@ -1,12 +1,12 @@
 package Controller.User;
 import Controller.Admin.Login_RegisterController;
 import DAOImplement.ChungNhanKetHonDAOImpl;
-import DAOImplement.DangNhapDAOImpl;
+import DAOImplement.LyHonDAOImpl;
 import InterfaceDAO.IChungNhanKetHonDAO;
-import InterfaceDAO.IDangNhapDAO;
+import InterfaceDAO.ILyHonDAO;
 import Menu.MenuEvent;
 import Models.ChungNhanKetHonModel;
-import Models.DangNhapModel;
+import Models.LyHonModel;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 
@@ -19,7 +19,10 @@ public class HomeControllerUser extends javax.swing.JFrame {
         IChungNhanKetHonDAO chungNhanKetHonDAO = new ChungNhanKetHonDAOImpl();
         String currentUser = Login_RegisterController.AppContext.userName;
         ChungNhanKetHonModel cnkh = chungNhanKetHonDAO.findOneCNKH(currentUser, currentUser);
-                
+              
+        ILyHonDAO lyHonDAO = new LyHonDAOImpl();
+        LyHonModel lyHon = lyHonDAO.findOneByMaLH(currentUser);
+        
         showForm(new ThongTinCongDanControllerUser());
         menuUser.setMenuEvent(new MenuEvent() {
             @Override
@@ -46,7 +49,11 @@ public class HomeControllerUser extends javax.swing.JFrame {
                     }
                     showForm(new GiayChungNhanKetHonControllerUser());
                 } else if(index == 1 && subIndex == 8){
-                    showForm(new DonLyHonControllerUser());
+                    if(lyHon.getMaLh()==null){
+                        JOptionPane.showMessageDialog(null, "Công dân chưa ly hôn");
+                        return;
+                    }
+                    showForm(new GiayXacNhanLyHonControllerUser());
                 } else if(index == 2){
                     showForm(new DanhGiaControllerUser());
                 }
