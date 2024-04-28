@@ -5,6 +5,7 @@
 package Controller.User;
 
 import Controller.Admin.Login_RegisterController;
+import DAOImplement.CongDanDAOImpl;
 import InterfaceService.ICongDanService;
 import InterfaceService.ITamVangService;
 import Models.CongDanModel;
@@ -49,7 +50,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         }
     }
     private void showInfo(){
-        cd = CongDanService.findOne(Login_RegisterController.AppContext.userName);
+        cd = new CongDanDAOImpl().findOneWithoutAdd(Login_RegisterController.AppContext.userName);
         tf_hoTen.setText(cd.getHoTen());
         tf_soCCCD.setText(cd.getCCCD());
         jDateNgaySinh.setDate(cd.getNgaySinh());
@@ -355,7 +356,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

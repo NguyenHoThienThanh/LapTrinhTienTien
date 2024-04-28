@@ -14,6 +14,7 @@ import java.util.List;
 public interface IChungNhanKetHonDAO {
     List<ChungNhanKetHonModel> findAll();
     ChungNhanKetHonModel findOneByMaKH (String MaKH);
+    ChungNhanKetHonModel findOneCNKH_TrangThai(String Giaytotuythanvo, String Giaytotuythanchong);
     boolean insert (ChungNhanKetHonModel chungNhanKetHon);
     boolean update (ChungNhanKetHonModel chungNhanKetHonModel);
     boolean delete (String MaKH);

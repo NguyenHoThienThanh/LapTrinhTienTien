@@ -22,37 +22,32 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="tf_maChungNhanLyHon" min="-2" pref="360" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="tf_cccdChong" min="-2" pref="360" max="-2" attributes="0"/>
-                              <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
-                              <Component id="tf_cccdVo" min="-2" pref="360" max="-2" attributes="0"/>
+                  <Component id="tf_maChungNhanLyHon" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="tf_cccdChong" min="-2" pref="360" max="-2" attributes="0"/>
+                          <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
+                          <Component id="tf_cccdVo" min="-2" pref="360" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="tf_hoTenChong" min="-2" pref="360" max="-2" attributes="0"/>
+                          <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tf_hoTenVo" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                              <Component id="tf_maChungNhanKetHon" alignment="1" min="-2" pref="360" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="tf_hoTenChong" min="-2" pref="360" max="-2" attributes="0"/>
-                              <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tf_hoTenVo" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
-                                  <Component id="tf_maChungNhanKetHon" alignment="1" min="-2" pref="360" max="-2" attributes="0"/>
-                              </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tf_noiDangKyKetHon" pref="360" max="32767" attributes="0"/>
+                              <Component id="tf_ngayDangKyKetHon" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tf_noiDangKyKetHon" pref="360" max="32767" attributes="0"/>
-                                  <Component id="tf_ngayDangKyKetHon" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tf_ngayLyHon" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_lyDoLyHon" alignment="1" max="32767" attributes="0"/>
-                              </Group>
+                          <EmptySpace min="92" pref="92" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tf_ngayLyHon" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tf_lyDoLyHon" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

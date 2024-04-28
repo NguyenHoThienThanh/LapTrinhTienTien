@@ -95,7 +95,15 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
             new String [] {
                 "Mã hộ khẩu", "Mã KS chủ hộ", "Họ và tên chủ hộ", "Mã KS người thân", "Họ và tên người thân", "Quan hệ với chủ hộ", "Địa chỉ"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tb_HK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb_HKMouseClicked(evt);

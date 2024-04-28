@@ -79,6 +79,33 @@ Connection conn = null;
         }
         return lyHon;
     }
+    
+    @Override
+    public LyHonModel findOneByMaCNKH(String MaCnkh) {
+        String query = "SELECT * FROM Lyhon WHERE MaCnkh = ?";
+        LyHonModel lyHon = new LyHonModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MaCnkh);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                lyHon.setID(rs.getInt(1));
+                lyHon.setMaLh(rs.getString(2));
+                lyHon.setMaCnkh(rs.getString(3));
+                lyHon.setCCCDNguoiNopDon(rs.getString(4));
+                lyHon.setNoidk(rs.getString(5));
+                lyHon.setNgaydk(rs.getDate(6));
+                lyHon.setLydo(rs.getString(7));
+                lyHon.setTrangThai(rs.getInt(8));
+            }
+            conn.close();
+        } catch (Exception e) {
+
+        }
+        return lyHon;
+    }
+    
     @Override
     public DonChungNhanKetHon findOneByMaKH(String MaKH) {
         String query = "SELECT Cnkh.MaCnkh, Cnkh.CccdVo, Vo.HoTen AS HoTenVo, Cnkh.CccdChong, Chong.HoTen AS HoTenChong FROM Cnkh JOIN CongDan AS Vo ON Cnkh.CccdVo = Vo.CCCD JOIN CongDan AS Chong ON Cnkh.CccdChong = Chong.CCCD WHERE MaCnkh=? and Cnkh.TrangThai=1";

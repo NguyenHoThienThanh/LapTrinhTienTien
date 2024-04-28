@@ -17,7 +17,7 @@ public interface ILyHonDAO {
     List<LyHonModel> findAll();
 
     LyHonModel findOneByMaLH(String MaLH);
-
+    LyHonModel findOneByMaCNKH(String MaCnkh);
     boolean insert(LyHonModel lyHon);
 
     boolean update(LyHonModel lyHon);

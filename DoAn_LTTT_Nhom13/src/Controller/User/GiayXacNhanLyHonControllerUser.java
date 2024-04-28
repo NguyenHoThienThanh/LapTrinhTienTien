@@ -12,20 +12,22 @@ import Models.LyHonModel;
 public class GiayXacNhanLyHonControllerUser extends javax.swing.JPanel {
     public GiayXacNhanLyHonControllerUser() {
         initComponents();
-        IChungNhanKetHonDAO chungNhanKetHonDAO = new ChungNhanKetHonDAOImpl();
         String currentUser = Login_RegisterController.AppContext.userName;
-        ChungNhanKetHonModel cnkh = chungNhanKetHonDAO.findOneCNKH(currentUser, currentUser);
         
+        IChungNhanKetHonDAO chungNhanKetHonDAO = new ChungNhanKetHonDAOImpl();
+         
+        ChungNhanKetHonModel ketHon = chungNhanKetHonDAO.findOneCNKH_TrangThai(currentUser, currentUser);
+
         ILyHonDAO lyHonDAO = new LyHonDAOImpl();
-        LyHonModel lyHon = lyHonDAO.findOneByMaLH(currentUser);
+        LyHonModel lyHon = lyHonDAO.findOneByMaCNKH(ketHon.getMaCnkh());
         
         tf_maChungNhanLyHon.setText(lyHon.getMaLh());
-        tf_maChungNhanLyHon.setText(lyHon.getMaCnkh());
-        tf_hoTenChong.setText(lyHon.getHoTenChong());
-        tf_hoTenVo.setText(lyHon.getHoTenVo());
-        tf_cccdChong.setText(lyHon.getCCCDChong());
-        tf_cccdVo.setText(lyHon.getCCCDVO());
-        tf_ngayDangKyKetHon.setText(cnkh.getNgaydk().toString());
+        tf_maChungNhanKetHon.setText(lyHon.getMaCnkh());
+        tf_hoTenChong.setText(ketHon.getHoTenChong());
+        tf_hoTenVo.setText(ketHon.getHoTenVo());
+        tf_cccdChong.setText(ketHon.getCCCDChong());
+        tf_cccdVo.setText(ketHon.getCCCDVo());
+        tf_ngayDangKyKetHon.setText(ketHon.getNgaydk().toString());
         tf_ngayLyHon.setText(lyHon.getNgaydk().toString());
         tf_noiDangKyKetHon.setText(lyHon.getNoidk());
         tf_lyDoLyHon.setText(lyHon.getLydo());

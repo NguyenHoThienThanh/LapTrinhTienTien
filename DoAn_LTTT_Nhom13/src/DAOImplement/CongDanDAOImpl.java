@@ -55,7 +55,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public CongDanModel findOne(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "  SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, hk.DiaChi, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai\n"
+        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, hk.DiaChi, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai\n"
                 + "              FROM KhaiSinh ks \n"
                 + "              INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS\n"
                 + "              INNER JOIN QuanHe qh ON qh.KhaiSinhNguoiThamGia = ks.MaKS\n"
@@ -92,6 +92,42 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     }
 
+    @Override
+    public CongDanModel findOneWithoutAdd(String CCCD) {
+        CongDanModel congDan = new CongDanModel();
+        String query = " SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai\n" +
+"                            FROM KhaiSinh ks\n" +
+"                            INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS\n" +
+"                            WHERE cd.CCCD = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                congDan.setCCCD(rs.getString(1));
+                congDan.setHoTen(rs.getString(2));
+                congDan.setNgaySinh(rs.getDate(3));
+                congDan.setQuocTich(rs.getString(4));
+                congDan.setDanToc(rs.getString(5));
+                congDan.setQueQuan(rs.getString(6));
+                congDan.setGioiTinh(rs.getString(7));
+                congDan.setNoiSinh(rs.getString(8));
+                congDan.setNcCccd(rs.getString(9));
+                congDan.setNgcCccd(rs.getDate(10));
+                congDan.setMaKS(rs.getString(11));
+                congDan.setSDT(rs.getString(12));
+                congDan.setEmail(rs.getString(13));
+                congDan.setTrangThai(rs.getInt(14));
+            }
+            conn.close();
+        } catch (Exception ex) {
+
+        }
+        return congDan;
+
+    }
+    
     @Override
     public boolean insert(CongDanModel model) {
         String query = "INSERT INTO CongDan(CCCD, HoTen, NcCccd, NgcCccd, MaKS, SDT, Email, TrangThai) values(?,?,?,?,?,?,?,?)";

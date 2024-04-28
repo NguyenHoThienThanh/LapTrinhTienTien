@@ -123,7 +123,7 @@ public class ChungNhanKetHonDAOImpl implements IChungNhanKetHonDAO{
 
     @Override
     public boolean delete(String MaKH) {
-        String query = "DELETE Cnkh Where MaCnkh = ?";
+        String query = "Update Cnkh set TrangThai = 0 Where MaCnkh = ?";
         try{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -134,6 +134,50 @@ public class ChungNhanKetHonDAOImpl implements IChungNhanKetHonDAO{
         }
         return true;
     }
+    
+    @Override
+    public ChungNhanKetHonModel findOneCNKH_TrangThai(String Giaytotuythanvo, String Giaytotuythanchong) {
+        ChungNhanKetHonModel dcnkh = new ChungNhanKetHonModel();
+        String query = "select Giaytotuythanchong, Giaytotuythanvo, Ngaysinhchong, Quoctichchong, Ngaysinhvo, Quoctichvo, Dantocchong, Dantocvo, Hotenchong, Hotenvo, MaCnkh, Ngaydk, Noidk from Cnkh \n" +
+"            	join (select HoTen as Hotenchong, NgaySinh as Ngaysinhchong, DanToc as Dantocchong, QuocTich as Quoctichchong, CccdChong as Giaytotuythanchong, Cnkh.TrangThai from Cnkh \n" +
+"            	join CongDan on Cnkh.CccdChong = CongDan.CCCD  \n" +
+"            	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS \n" +
+"            	where CongDan.TrangThai = 1)Q on Cnkh.CccdChong = Q.Giaytotuythanchong \n" +
+"            	join (select HoTen as Hotenvo, NgaySinh as Ngaysinhvo, DanToc as Dantocvo, QuocTich as Quoctichvo, CccdVo as Giaytotuythanvo from Cnkh \n" +
+"            	join CongDan on Cnkh.CccdVo = CongDan.CCCD \n" +
+"            	join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS\n" +
+"		where CongDan.TrangThai = 1)P on Cnkh.CccdVo = P.Giaytotuythanvo where Cnkh.TrangThai = 0 and (Giaytotuythanchong = ? or Giaytotuythanvo = ?)";
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, Giaytotuythanchong);
+            ps.setString(2, Giaytotuythanvo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                dcnkh.setCCCDChong(rs.getString(1));
+                dcnkh.setCCCDVo(rs.getString(2));
+                dcnkh.setNgaySinhChong(rs.getDate(3));
+                dcnkh.setQuocTichChong(rs.getString(4));
+                dcnkh.setNgaySinhVo(rs.getDate(5));
+                dcnkh.setQuocTichVo(rs.getString(6));
+                dcnkh.setDanTocChong(rs.getString(7));
+                dcnkh.setDanTocVo(rs.getString(8));
+                dcnkh.setHoTenChong(rs.getString(9));
+                dcnkh.setHoTenVo(rs.getString(10));
+                dcnkh.setMaCnkh(rs.getString(11));
+                dcnkh.setNgaydk(rs.getDate(12));
+                dcnkh.setNoidk(rs.getString(13));
+                
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return dcnkh;
+    }
+    
     @Override
     public ChungNhanKetHonModel findOneCNKH(String Giaytotuythanvo, String Giaytotuythanchong) {
         ChungNhanKetHonModel dcnkh = new ChungNhanKetHonModel();

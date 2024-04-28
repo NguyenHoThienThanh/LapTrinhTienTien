@@ -1,25 +1,22 @@
 package Controller.User;
 
 import Controller.Admin.Login_RegisterController;
-import InterfaceService.ICongDanService;
+import DAOImplement.CongDanDAOImpl;
 import InterfaceService.IDanhGiaService;
 import Models.CongDanModel;
 import Models.DanhGiaModel;
-import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DanhGiaServiceImpl;
 import javax.swing.JOptionPane;
 
 public class DanhGiaControllerUser extends javax.swing.JPanel {
         String currentUser = Login_RegisterController.AppContext.userName;
         
-        ICongDanService congDanService = new CongDanServiceImpl();
-        CongDanModel cd = congDanService.findOne(currentUser);
+        CongDanModel cd = new CongDanDAOImpl().findOneWithoutAdd(currentUser);
         
         IDanhGiaService danhGiaService = new DanhGiaServiceImpl();
         
     public DanhGiaControllerUser() {
         initComponents();      
-        
         tf_cccddg.setText(cd.getCCCD());
         tf_hotendg.setText(cd.getHoTen());
     }
@@ -84,12 +81,14 @@ public class DanhGiaControllerUser extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        tf_cccddg.setEditable(false);
         tf_cccddg.setLabelText("CCCD");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("PHẢN HỒI CỦA CÔNG DÂN VỀ DỊCH VỤ");
 
+        tf_hotendg.setEditable(false);
         tf_hotendg.setLabelText("Họ tên");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -233,13 +232,18 @@ public class DanhGiaControllerUser extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Gửi đánh giá thất bại! Vui lòng kiểm tra lại thông tin đánh giá!");
         }
+        
+        rating_tongQuanUser.setEnabled(false);
+        rating_chinhXacUser.setEnabled(false);
+        rating_deDangUser.setEnabled(false);
+        rating_thuanTienUser.setEnabled(false);
+        rating_trucQuanUser.setEnabled(false);
+        tar_danhGiaUser.setEnabled(false);
     }//GEN-LAST:event_btn_guiPhanHoiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Button btn_guiPhanHoi;
-    private Swing.Button btn_them;
-    private Swing.Button btn_them1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -7,14 +7,12 @@ import Models.ChungNhanKetHonModel;
 
 
 public class GiayChungNhanKetHonControllerUser extends javax.swing.JPanel {
-
-
     public GiayChungNhanKetHonControllerUser() {
         initComponents();
         IChungNhanKetHonDAO chungNhanKetHonDAO = new ChungNhanKetHonDAOImpl();
         String currentUser = Login_RegisterController.AppContext.userName;
         ChungNhanKetHonModel cnkh = chungNhanKetHonDAO.findOneCNKH(currentUser, currentUser);
-
+        
         tf_cccdChong.setText(cnkh.getCCCDChong());
         tf_cccdVo.setText(cnkh.getCCCDVo());
         tf_danTocChong.setText(cnkh.getDanTocChong());
@@ -30,8 +28,7 @@ public class GiayChungNhanKetHonControllerUser extends javax.swing.JPanel {
         tf_noiDangKyKetHon.setText(cnkh.getNoidk());
         tf_quocTichChong.setText(cnkh.getQuocTichChong());
         tf_quocTichVo.setText(cnkh.getQuocTichVo());
-    }
-
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -1,6 +1,7 @@
 package Controller.User;
 
 import Controller.Admin.Login_RegisterController;
+import DAOImplement.CongDanDAOImpl;
 import InterfaceService.ICongDanService;
 import InterfaceService.IDangNhapService;
 import Models.CongDanModel;
@@ -23,24 +24,44 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
     
     public ThongTinCongDanControllerUser() {
         initComponents();
+        CongDanModel cd = congDanService.findOne(currentUser);
+        CongDanModel congDan = new CongDanDAOImpl().findOneWithoutAdd(currentUser);
         
+        if(cd.getCCCD() != null){            
+            tf_tenDangNhap.setText(dn.getTenDangNhap());
+            tf_matKhau.setText(dn.getMatKhau().trim());
+            tf_soCCCD.setText(cd.getCCCD());
+            tf_email.setText(cd.getEmail());
+            tf_gioiTinh.setText(cd.getGioiTinh());
+            tf_hoTen.setText(cd.getHoTen());
+            tf_ngayCapCCCD.setText(cd.getNgcCccd().toString());
+            tf_ngaySinh.setText(cd.getNgaySinh().toString());
+            tf_noiCapCCCD.setText(cd.getNcCccd());
+            tf_noiSinh.setText(cd.getNoiSinh());
+            tf_soDienThoai.setText(cd.getSDT());
+            tf_danToc.setText(cd.getDanToc());
+            tf_queQuan.setText(cd.getQueQuan());
+            tf_quocTich.setText(cd.getQuocTich());
+            tf_diaChi.setText(cd.getDiaChi());
         
-        tf_tenDangNhap.setText(dn.getTenDangNhap());
-        tf_matKhau.setText(dn.getMatKhau().trim());
-        tf_soCCCD.setText(cd.getCCCD());
-        tf_email.setText(cd.getEmail());
-        tf_gioiTinh.setText(cd.getGioiTinh());
-        tf_hoTen.setText(cd.getHoTen());
-        tf_diaChi.setText(cd.getMaKS());
-        tf_ngayCapCCCD.setText(cd.getNgcCccd().toString());
-        tf_ngaySinh.setText(cd.getNgaySinh().toString());
-        tf_noiCapCCCD.setText(cd.getNcCccd());
-        tf_noiSinh.setText(cd.getNoiSinh());
-        tf_soDienThoai.setText(cd.getSDT());
-        tf_danToc.setText(cd.getDanToc());
-        tf_queQuan.setText(cd.getQueQuan());
-        tf_quocTich.setText(cd.getQuocTich());
-        tf_diaChi.setText(cd.getDiaChi());
+        }
+        else {
+            tf_tenDangNhap.setText(dn.getTenDangNhap());
+            tf_matKhau.setText(dn.getMatKhau().trim());
+            tf_soCCCD.setText(congDan.getCCCD());
+            tf_email.setText(congDan.getEmail());
+            tf_gioiTinh.setText(congDan.getGioiTinh());
+            tf_hoTen.setText(congDan.getHoTen());
+            tf_ngayCapCCCD.setText(congDan.getNgcCccd().toString());
+            tf_ngaySinh.setText(congDan.getNgaySinh().toString());
+            tf_noiCapCCCD.setText(congDan.getNcCccd());
+            tf_noiSinh.setText(congDan.getNoiSinh());
+            tf_soDienThoai.setText(congDan.getSDT());
+            tf_danToc.setText(congDan.getDanToc());
+            tf_queQuan.setText(congDan.getQueQuan());
+            tf_quocTich.setText(congDan.getQuocTich());
+            tf_diaChi.setText("");
+        }
     }
 
     @SuppressWarnings("unchecked")

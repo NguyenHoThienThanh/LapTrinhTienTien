@@ -119,6 +119,7 @@
   <SubComponents>
     <Component class="Swing.TextField" name="tf_cccddg">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="CCCD"/>
       </Properties>
     </Component>
@@ -135,6 +136,7 @@
     </Component>
     <Component class="Swing.TextField" name="tf_hotendg">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="H&#x1ecd; t&#xea;n"/>
       </Properties>
     </Component>
