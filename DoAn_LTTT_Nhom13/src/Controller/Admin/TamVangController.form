@@ -60,7 +60,7 @@
                                   <Component id="tf_noiChuyenDen" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="tf_ngayDangKy" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="87" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -142,7 +142,7 @@
               </Group>
               <EmptySpace pref="10" max="32767" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="250" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_sua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xoa" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -150,7 +150,7 @@
                   <Component id="btn_luuThem" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_luuSua" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

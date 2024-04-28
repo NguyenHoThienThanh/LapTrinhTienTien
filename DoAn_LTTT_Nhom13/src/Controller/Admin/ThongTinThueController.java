@@ -220,7 +220,7 @@ public class ThongTinThueController extends javax.swing.JPanel {
                                 .addComponent(tf_coQuanThue, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(328, 328, 328)
                                 .addComponent(tf_ngayThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

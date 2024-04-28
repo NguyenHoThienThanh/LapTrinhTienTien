@@ -129,7 +129,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         jLabel1.setText("ADMIN");
 
         btn_logout.setBackground(new java.awt.Color(21, 110, 71));
-        btn_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout-custom (1).png"))); // NOI18N
+        btn_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout-custom.png"))); // NOI18N
         btn_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_logoutActionPerformed(evt);
@@ -178,9 +178,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))))
+                    .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
