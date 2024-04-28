@@ -7,23 +7,23 @@ import Models.CongDanModel;
 import Models.DangNhapModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DangNhapServiceImpl;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
-
-
+    String currentUser = Login_RegisterController.AppContext.userName;
+    ICongDanService congDanService = new CongDanServiceImpl();
+        
+    CongDanModel cd = congDanService.findOne(currentUser);
+        
+    IDangNhapService dangNhapService = new DangNhapServiceImpl();
+    DangNhapModel dn = dangNhapService.findOne(currentUser);
+    
     public ThongTinCongDanControllerUser() {
         initComponents();
-        ICongDanService congDanService = new CongDanServiceImpl();
-        String currentUser = Login_RegisterController.AppContext.userName;
-        CongDanModel cd = congDanService.findOne(currentUser);
         
-        IDangNhapService dangNhapService = new DangNhapServiceImpl();
-        DangNhapModel dn = dangNhapService.findOne(currentUser);
         
         tf_tenDangNhap.setText(dn.getTenDangNhap());
         tf_matKhau.setText(dn.getMatKhau().trim());
@@ -245,90 +245,85 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_doiMatKhauActionPerformed
 
     private void showChangePasswordDialog() {
-        // Tạo hộp thoại đổi mật khẩu
-        JPasswordField currentPasswordField = new JPasswordField();
-        JPasswordField newPasswordField = new JPasswordField();
-        JPasswordField confirmPasswordField = new JPasswordField();
+    // Tạo hộp thoại đổi mật khẩu
+    JPasswordField currentPasswordField = new JPasswordField();
+    JPasswordField newPasswordField = new JPasswordField();
+    JPasswordField confirmPasswordField = new JPasswordField();
 
-        Object[] message = {
-            "Mật khẩu cũ:", currentPasswordField,
-            "Mật khẩu mới:", newPasswordField,
-            "Xác nhận mật khẩu mới:", confirmPasswordField
-        };
+    Object[] message = {
+        "Mật khẩu cũ:", currentPasswordField,
+        "Mật khẩu mới:", newPasswordField,
+        "Xác nhận mật khẩu mới:", confirmPasswordField
+    };
 
-        int option = JOptionPane.showConfirmDialog(null, message, "Đổi mật khẩu", JOptionPane.OK_CANCEL_OPTION);
+    int option = JOptionPane.showConfirmDialog(null, message, "Đổi mật khẩu", JOptionPane.OK_CANCEL_OPTION);
 
-        // Xử lý sự kiện khi người dùng nhấn nút "OK"
-        if (option == JOptionPane.OK_OPTION) {
-            char[] currentPassword = currentPasswordField.getPassword();
-            char[] newPassword = newPasswordField.getPassword();
-            char[] confirmPassword = confirmPasswordField.getPassword();
+    // Xử lý sự kiện khi người dùng nhấn nút "OK"
+    if (option == JOptionPane.OK_OPTION) {
+        String currentPassword = new String(currentPasswordField.getPassword());
+        String newPassword = new String(newPasswordField.getPassword());
+        String confirmPassword = new String(confirmPasswordField.getPassword());
 
-            if(isCurrentPasswordMatched(currentPassword)){
-                JOptionPane.showMessageDialog(null, "Mật khẩu cũ Không chính xác!");
-                return;
-            }
-            // Kiểm tra tính hợp lệ của dữ liệu nhập vào
-            if (isPasswordCurrent(newPassword, currentPassword)) {
-                JOptionPane.showMessageDialog(null, "Mật khẩu cũ không thể giống mật khẩu mới!");
-                return;
-            }
+        if (!isCurrentPasswordMatched(currentPassword.trim())) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu cũ Không chính xác!");
+            return;
+        }
+        // Kiểm tra tính hợp lệ của dữ liệu nhập vào
+        if (isPasswordCurrent(newPassword, currentPassword)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu cũ không thể giống mật khẩu mới!");
+            return;
+        }
 
-            if (!isValidPassword(newPassword)) {
-                JOptionPane.showMessageDialog(null, "Mật khẩu mới không hợp lệ!");
-                return;
-            }
+        if (!isValidPassword(newPassword)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu mới không hợp lệ!");
+            return;
+        }
 
-            if (!isPasswordConfirmed(newPassword, confirmPassword)) {
-                JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu mới không khớp!");
-                return;
-            }
+        if (!isPasswordConfirmed(newPassword, confirmPassword)) {
+            JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu mới không khớp!");
+            return;
+        }
 
-            // Tiến hành đổi mật khẩu trong cơ sở dữ liệu
-            boolean changed = changePassword(currentPassword, newPassword);
+        // Tiến hành đổi mật khẩu trong cơ sở dữ liệu
+        boolean changed = changePassword(currentPassword, newPassword);
 
-            if (changed) {
-                JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại!");
-            }
+        if (changed) {
+            JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại!");
         }
     }
-    private boolean isValidPassword(char[] newPassword) {
-        // Kiểm tra tính hợp lệ của mật khẩu mới
-        return newPassword.length >= 6;
-    }
-    
-    private boolean isPasswordCurrent(char[] currentPassword, char[] newPassword) {
-        return Arrays.equals(currentPassword,newPassword);
-    }
-    
-    private boolean isPasswordConfirmed(char[] newPassword, char[] confirmPassword) {
-        return Arrays.equals(newPassword, confirmPassword);
-    }
-    
-    private boolean isCurrentPasswordMatched(char[] currentPassword) {
-        String currentUser = Login_RegisterController.AppContext.userName;
+}
 
-        IDangNhapService dangNhapService = new DangNhapServiceImpl();
-        DangNhapModel dn = dangNhapService.findOne(currentUser);
+    private boolean isValidPassword(String newPassword) {
+        // Kiểm tra tính hợp lệ của mật khẩu mới
+        return newPassword.length() >= 6;
+    }
+
+    private boolean isPasswordCurrent(String currentPassword, String newPassword) {
+        return currentPassword.trim().equals(newPassword);
+    }
+
+    private boolean isPasswordConfirmed(String newPassword, String confirmPassword) {
+        return newPassword.equals(confirmPassword);
+    }
+
+    private boolean isCurrentPasswordMatched(String currentPassword) {
+        currentUser = Login_RegisterController.AppContext.userName;
 
         // Kiểm tra tính chính xác của mật khẩu cũ
-        return Arrays.equals(currentPassword, dn.getMatKhau().toCharArray());
+        return currentPassword.equals(dn.getMatKhau().trim());
     }
-    
-    private boolean changePassword(char[] currentPassword, char[] newPassword) {
-        String currentUser = Login_RegisterController.AppContext.userName;
 
-        IDangNhapService dangNhapService = new DangNhapServiceImpl();
-        DangNhapModel dn = dangNhapService.findOne(currentUser);
+    private boolean changePassword(String currentPassword, String newPassword) {
+        currentUser = Login_RegisterController.AppContext.userName;
 
         // Cập nhật mật khẩu mới
-        dn.setMatKhau(String.valueOf(newPassword));
+        dn.setMatKhau(newPassword);
         boolean updated = dangNhapService.update(dn);
         if (updated) {
             // Load lại mật khẩu vừa đổi từ cơ sở dữ liệu
-            tf_matKhau.setText(dn.getMatKhau());            
+            tf_matKhau.setText(dn.getMatKhau().trim());
             return true;
         } else {
             return false;
@@ -342,9 +337,6 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         updateCongDanInfo(email, soDienThoai, diaChi);
     }//GEN-LAST:event_btn_sua1ActionPerformed
     private void updateCongDanInfo(String email, String soDienThoai, String diaChi) {
-        ICongDanService congDanService = new CongDanServiceImpl();
-        String currentUser = Login_RegisterController.AppContext.userName;
-        CongDanModel cd = congDanService.findOne(currentUser);
         
         // Kiểm tra số điện thoại và email hợp lệ trước khi cập nhật
         if (!isValidPhoneNumber(soDienThoai)) {
