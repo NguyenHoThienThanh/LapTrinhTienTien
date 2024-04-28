@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Admin
  */
-public class StarRating extends javax.swing.JPanel {
+public class StarRatingUser extends javax.swing.JPanel {
 
     
     public int getStar() {
@@ -38,10 +38,10 @@ public class StarRating extends javax.swing.JPanel {
     private List<EventStarRating> events = new ArrayList<>();
     private int star;
 
-    public StarRating() {
+    public StarRatingUser() {
         initComponents();
         init();
-        disableAllStars();
+        //disableAllStars();
     }
 
     private void init() {
