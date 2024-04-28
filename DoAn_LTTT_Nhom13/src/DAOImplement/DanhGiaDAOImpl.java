@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOImplement;
 
 import InterfaceDAO.DBConnection;
@@ -10,6 +6,8 @@ import Models.DanhGiaModel;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,7 +69,35 @@ public class DanhGiaDAOImpl implements IDanhGiaDAO
         }
         return danhGia;
     }
-
+    
+    @Override
+    public boolean hasRated(String CCCD) {
+        String query = "SELECT COUNT(*) FROM DanhGia WHERE CCCD = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(DanhGiaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
     @Override
     public boolean insert(DanhGiaModel danhGia) {
         String query ="INSERT INTO DanhGia (CCCD, DanhGia, TongQuan, ThuanTien, DeDang, ChinhXac, TrucQuan) VALUES (?,?,?,?,?,?,?)";

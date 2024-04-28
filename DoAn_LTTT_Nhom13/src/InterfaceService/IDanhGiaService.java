@@ -14,6 +14,7 @@ import java.util.List;
 public interface IDanhGiaService {
     List<DanhGiaModel> findAll();
     DanhGiaModel findOneByMaDG (String CCCD);
+    boolean hasRated(String CCCD);
     boolean insert (DanhGiaModel danhGia);
     boolean update (DanhGiaModel danhGia);
     boolean delete (String CCCD);

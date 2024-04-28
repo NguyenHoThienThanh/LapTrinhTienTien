@@ -33,7 +33,11 @@ public class DanhGiaServiceImpl implements IDanhGiaService{
     public boolean insert(DanhGiaModel danhGia) {
         return danhGiaDAO.insert(danhGia);
     }
-
+    
+    @Override
+    public boolean hasRated(String CCCD){
+        return danhGiaDAO.hasRated(CCCD);
+    }
     @Override
     public boolean update(DanhGiaModel danhGia) {
         DanhGiaModel dg = danhGiaDAO.findOneByMaDG(danhGia.getCCCD());
