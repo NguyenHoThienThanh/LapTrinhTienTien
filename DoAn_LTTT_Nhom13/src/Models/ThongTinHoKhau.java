@@ -24,11 +24,12 @@ public class ThongTinHoKhau {
     private Date NgaySinh;
     private String KhaiSinhChuHo, KhaiSinhNguoiThamGia;
     private int TrangThai;
-
+    private int QuanHeID;
+    
     public ThongTinHoKhau() {
     }
 
-    public ThongTinHoKhau(String MaHoKhau, String CCCDNguoiThan, String CCCDChuHo, String CCCDNguoiDangNhap, String QuanHeVoiChuHo, String DiaChi, String HoTenChuHo, String HoTenNguoiThan, String HoTenNguoiDangNhap, Date NgaySinh, String KhaiSinhChuHo, String KhaiSinhNguoiThamGia, int TrangThai) {
+    public ThongTinHoKhau(String MaHoKhau, String CCCDNguoiThan, String CCCDChuHo, String CCCDNguoiDangNhap, String QuanHeVoiChuHo, String DiaChi, String HoTenChuHo, String HoTenNguoiThan, String HoTenNguoiDangNhap, Date NgaySinh, String KhaiSinhChuHo, String KhaiSinhNguoiThamGia, int TrangThai, int QuanHeID) {
         this.MaHoKhau = MaHoKhau;
         this.CCCDNguoiThan = CCCDNguoiThan;
         this.CCCDChuHo = CCCDChuHo;
@@ -42,6 +43,7 @@ public class ThongTinHoKhau {
         this.KhaiSinhChuHo = KhaiSinhChuHo;
         this.KhaiSinhNguoiThamGia = KhaiSinhNguoiThamGia;
         this.TrangThai = TrangThai;
+        this.QuanHeID = QuanHeID;
     }
 
     public String getMaHoKhau() {
@@ -146,6 +148,14 @@ public class ThongTinHoKhau {
 
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public int getQuanHeID() {
+        return QuanHeID;
+    }
+
+    public void setQuanHeID(int QuanHeID) {
+        this.QuanHeID = QuanHeID;
     }
 
     

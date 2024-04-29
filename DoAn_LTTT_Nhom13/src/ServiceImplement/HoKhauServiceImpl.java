@@ -8,6 +8,7 @@ import DAOImplement.HoKhauDAOImpl;
 import InterfaceDAO.DBConnection;
 import InterfaceDAO.IHoKhauDAO;
 import InterfaceService.IHoKhauService;
+import Models.CongDanModel;
 import Models.HoKhauModel;
 import Models.ThongTinHoKhau;
 import java.util.ArrayList;
@@ -61,12 +62,13 @@ public class HoKhauServiceImpl implements IHoKhauService {
     
     @Override
     public List<ThongTinHoKhau> findAllHoKhauUser(String MaHK) {
-        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, KhaiSinhNguoiThamGia, Hotennguoithan, QuanHeVoiChuHo, DiaChi, CCCD \n" +
-                "from \n" +
-                "(select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo \n" +
-                "from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n" +
-                "where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n" +
-                "WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)";
+        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, KhaiSinhNguoiThamGia, Hotennguoithan, QuanHeVoiChuHo, DiaChi, CCCD , QuanHeID\n" +
+"                 from  \n" +
+"                 (select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo, QuanHe.ID as QuanHeID\n" +
+"                 from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n" +
+"                where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n" +
+"                 WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)\n" +
+"				 order by QuanHeID ASC";
         List<ThongTinHoKhau> listThongTinHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -77,11 +79,12 @@ public class HoKhauServiceImpl implements IHoKhauService {
                 ThongTinHoKhau tthk = new ThongTinHoKhau();
                 tthk.setMaHoKhau(rs.getString("MaHK"));
                 tthk.setKhaiSinhChuHo(rs.getString("KhaiSinhChuHo"));
-                tthk.setHoTenChuHo(rs.getString("HoTenChuHo"));
+                tthk.setHoTenChuHo(rs.getString("HotenChuHo"));
                 tthk.setKhaiSinhNguoiThamGia(rs.getString("KhaiSinhNguoiThamGia"));
-                tthk.setHoTenNguoiThan(rs.getString("HoTenNguoiThan"));
+                tthk.setHoTenNguoiThan(rs.getString("Hotennguoithan"));
                 tthk.setQuanHeVoiChuHo(rs.getString("QuanHeVoiChuHo"));
                 tthk.setDiaChi(rs.getString("DiaChi"));
+                tthk.setQuanHeID(rs.getInt("QuanHeID"));
                 listThongTinHoKhau.add(tthk);
             }
             conn.close();
@@ -248,6 +251,12 @@ public class HoKhauServiceImpl implements IHoKhauService {
             e.printStackTrace();
             return -1;
         }
+    }
+    
+    public static void main(String[] args) {
+        HoKhauModel hk = new HoKhauDAOImpl().findOneMaHK("HK04");
+        CongDanModel cd = new CongDanServiceImpl().findOneByMaKS(hk.getKhaiSinhChuHo());
+        System.out.println(cd.getMaKS() +" "+ hk.getKhaiSinhChuHo()+" " + cd.getTrangThai());
     }
 
 }

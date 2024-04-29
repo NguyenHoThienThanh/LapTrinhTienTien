@@ -386,6 +386,22 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
 
         return true;
     }
+    private boolean checkQuanHeChuHo(String quanHe) {
+        String[] validQuanHe = {
+            "vợ", "chồng", "cha đẻ", "mẹ đẻ", "cha nuôi", "mẹ nuôi", "con đẻ", "con nuôi", "con trai", "con gái",
+            "ông nội", "bà nội", "ông ngoại", "bà ngoại", "anh ruột", "chị ruột", "em ruột", "cháu ruột",
+            "cụ nội", "cụ ngoại", "bác ruột", "chú ruột", "cậu ruột", "cô ruột", "dì ruột", "chắt ruột",
+            "người giám hộ", "ở nhờ", "ở mượn", "ở thuê", "cùng ở nhờ", "cùng ở thuê", "cùng ở mượn"
+        };
+
+        for (String validQuanHeItem : validQuanHe) {
+            if (validQuanHeItem.equalsIgnoreCase(quanHe)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     private boolean checkMaKhaiSinh(String maKhaiSinh) {
         
         // Kiểm tra các ký tự đầu tiên là "HK"
@@ -456,7 +472,13 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                 jDialog.setVisible(true);
             return;
         }
-        
+        if (!checkQuanHeChuHo(tf_quanHeChuHo.getText().trim())) {
+            JOptionPane dialog = new JOptionPane("Quan hệ với chủ hộ không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
         if (hoKhauService.ifExists(tf_maKhaiSinhNguoiThan.getText().trim()) == 1) {
             JOptionPane dialog = new JOptionPane("Công dân này đã có hộ khẩu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
