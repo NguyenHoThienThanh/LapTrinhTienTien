@@ -47,24 +47,24 @@ values (N'Phạm Văn T',N'Nam', '1978-05-10', N'TP. Hồ Chí Minh', N'Kinh', N
 	,(N'Lê Minh D', N'Nam', '2000-11-22', N'Bình Dương', N'Kinh', N'Việt Nam', N'Bình Dương', '09217400315', '09217400415', '09217400315', N'Cha', '2000-11-29', N'Bình Dương', 1)
 
 	,(N'Đinh Văn Sấu', N'Nam', '1950-11-22', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083003001234', '083303004545', '083003001234', N'Cha', '1951-01-01', N'Bến Tre', 1)
-	,(N'Phạm Thị Sáng', N'Nu', '1948-01-12', N'Cà Mau', N'Kinh', N'Việt Nam', N'Bến Tre', '083003004567', '083303001478', '083303001478', N'Cha', '1948-01-20', N'Bến Tre', 1)
+	,(N'Phạm Thị Sáng', N'Nữ', '1948-01-12', N'Cà Mau', N'Kinh', N'Việt Nam', N'Bến Tre', '083003004567', '083303001478', '083303001478', N'Cha', '1948-01-20', N'Bến Tre', 1)
 	,(N'Đinh Văn Thanh', N'Nam', '1969-10-12', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1969-11-12', N'Bến Tre', 1)
 	,(N'Đinh Văn Nhung', N'Nam', '1976-04-23', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1976-05-23', N'Bến Tre', 1)
 	,(N'Đinh Văn Liêm', N'Nam', '1972-05-22', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1972-06-22', N'Bến Tre', 1)
 	,(N'Đinh Công Tiền', N'Nam', '1983-04-22', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1983-04-22', N'Bến Tre', 1)
-	,(N'Đinh Thị Kim Hương', N'Nu', '1979-07-04', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1979-08-04', N'Bến Tre', 1)
-	,(N'Đinh Thị Kim Dung', N'Nu', '1976-01-21', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1976-01-21', N'Bến Tre', 1)
-	,(N'Đinh Thị Kim Phụng', N'Nu', '1981-07-12', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1981-07-12', N'Bến Tre', 1)
+	,(N'Đinh Thị Kim Hương', N'Nữ', '1979-07-04', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1979-08-04', N'Bến Tre', 1)
+	,(N'Đinh Thị Kim Dung', N'Nữ', '1976-01-21', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1976-01-21', N'Bến Tre', 1)
+	,(N'Đinh Thị Kim Phụng', N'Nữ', '1981-07-12', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1981-07-12', N'Bến Tre', 1)
 
 	,(N'Phạm Văn Láng', N'Nam', '1951-11-22', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '083003001247', '023324328743', '083003001247', N'Cha', '1952-01-01', N'Bến Tre', 1)
-	,(N'Nguyễn Thị Nhan', N'Nu', '1952-01-12', N'Quảng Nam', N'Kinh', N'Việt Nam', N'Bến Tre', '024451228457', '034572551784', '024451228457', N'Cha', '1952-01-20', N'Bến Tre', 1)
+	,(N'Nguyễn Thị Nhan', N'Nữ', '1952-01-12', N'Quảng Nam', N'Kinh', N'Việt Nam', N'Bến Tre', '024451228457', '034572551784', '024451228457', N'Cha', '1952-01-20', N'Bến Tre', 1)
 	,(N'Phạm Thị Nhe', N'Nam', '1970-10-12', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1970-11-12', N'Bến Tre', 1)
 	,(N'Phạm Thị Nhé', N'Nam', '1972-04-23', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1972-05-23', N'Bến Tre', 1)
 	,(N'Phạm Văn Lơn', N'Nam', '1977-05-22', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1977-06-22', N'Bến Tre', 1)
 	,(N'Phạm Văn Tơn', N'Nam', '1978-04-22', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1978-04-22', N'Bến Tre', 1)
 	,(N'Phạm Văn Tuân', N'Nam', '1979-07-04', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1979-08-04', N'Bến Tre', 1)
-	,(N'Phạm Thị Nhi', N'Nu', '1981-01-21', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1981-01-21', N'Bến Tre', 1)
-	,(N'Phạm Thị Mộng Nghi', N'Nu', '1992-07-12', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1992-07-12', N'Bến Tre', 1)
+	,(N'Phạm Thị Nhi', N'Nữ', '1981-01-21', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1981-01-21', N'Bến Tre', 1)
+	,(N'Phạm Thị Mộng Nghi', N'Nữ', '1992-07-12', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1992-07-12', N'Bến Tre', 1)
 create table CongDan
 (
 	CCCD nvarchar(20) primary key,
@@ -239,6 +239,7 @@ values (N'123 đường Lê Văn Duyệt, Phường 5, thành phố TP. Hồ Ch�
 
 create table QuanHe
 (
+	ID integer identity(1,1) not null constraint Qh_ID unique,
 	MaHK varchar(10) references HoKhau(MaHK),
 	KhaiSinhNguoiThamGia varchar(10) references KhaiSinh(MaKS),
 	QuanHeVoiChuHo nvarchar(50),
