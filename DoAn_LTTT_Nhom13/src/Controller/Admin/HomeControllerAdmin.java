@@ -39,18 +39,16 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
                 }else if(index == 1 && subIndex == 3){
                     showForm(new  ThongTinGiayChungTuController());
                 }else if (index == 1 && subIndex == 4) {
-                    showForm(new ThongTinThueController());
-                } else if (index == 1 && subIndex == 5) {
                     showForm(new ThongTinHoKhauController());
-                } else if (index == 1 && subIndex == 6) {
+                } else if (index == 1 && subIndex == 5) {
                     showForm(new ThongTinChiTietHoKhauController());
-                } else if (index == 1 && subIndex == 7) {
+                } else if (index == 1 && subIndex == 6) {
                     showForm(new TamTruController());
-                } else if (index == 1 && subIndex == 8) {
+                } else if (index == 1 && subIndex == 7) {
                     showForm(new TamVangController());
-                } else if (index == 1 && subIndex == 9) {
+                } else if (index == 1 && subIndex == 8) {
                     showForm(new ThongTinKetHonController());
-                } else if (index == 1 && subIndex == 10) {
+                } else if (index == 1 && subIndex == 9) {
                     showForm(new ThongTinLyHonController());
                 } else if (index == 2) {
                     showForm(new TraCuuDonController());

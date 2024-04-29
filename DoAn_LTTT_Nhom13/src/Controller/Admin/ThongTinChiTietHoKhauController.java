@@ -65,27 +65,33 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         tf_hoTenChuHo.setEditable(false);
+        tf_hoTenChuHo.setBackground(new java.awt.Color(255, 255, 255));
         tf_hoTenChuHo.setLabelText("Họ và tên chủ hộ");
 
         tf_maHoKhau.setLabelText("Mã hộ khẩu");
 
         tf_hoTenNguoiThan.setEditable(false);
+        tf_hoTenNguoiThan.setBackground(new java.awt.Color(255, 255, 255));
         tf_hoTenNguoiThan.setLabelText("Họ tên người thân");
 
         tf_maKhaiSinhChuHo.setEditable(false);
+        tf_maKhaiSinhChuHo.setBackground(new java.awt.Color(255, 255, 255));
         tf_maKhaiSinhChuHo.setLabelText("Mã khai sinh chủ hộ");
 
         tf_maKhaiSinhNguoiThan.setEditable(false);
+        tf_maKhaiSinhNguoiThan.setBackground(new java.awt.Color(255, 255, 255));
         tf_maKhaiSinhNguoiThan.setLabelText("Mã KS người thân");
 
         tf_quanHeChuHo.setEditable(false);
+        tf_quanHeChuHo.setBackground(new java.awt.Color(255, 255, 255));
         tf_quanHeChuHo.setLabelText("Quan hệ với chủ hộ");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText("THÔNG TIN HỘ KHẨU");
+        jLabel1.setText("THÔNG TIN CHI TIẾT HỘ KHẨU");
 
         tf_diaChi.setEditable(false);
+        tf_diaChi.setBackground(new java.awt.Color(255, 255, 255));
         tf_diaChi.setLabelText("Địa chỉ");
 
         tb_HK.setModel(new javax.swing.table.DefaultTableModel(
@@ -159,10 +165,6 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(361, 361, 361))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -181,18 +183,21 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(tf_diaChi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(tf_maHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tf_maKhaiSinhNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(tf_maHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(tf_maKhaiSinhNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(18, 18, 18)
                                     .addComponent(tf_hoTenNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(tf_quanHeChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +215,7 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(tf_diaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_themNguoiVaoHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

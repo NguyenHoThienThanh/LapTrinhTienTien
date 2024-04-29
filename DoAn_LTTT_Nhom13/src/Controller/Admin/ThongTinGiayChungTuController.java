@@ -351,7 +351,14 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
-
+        GiayChungTuModel model = new GiayChungTuServiceImpl().findAllGCT(tf_soCCCD.getText().trim());
+        if(model.getMaCT() != null){
+            JOptionPane dialog = new JOptionPane("Công dân này đã có chứng tử!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+        }
         GiayChungTuModel giayChungTu = new GiayChungTuModel();
         giayChungTu.setHoTen(tf_hoTen.getText());
         giayChungTu.setCCCD(tf_soCCCD.getText().trim());

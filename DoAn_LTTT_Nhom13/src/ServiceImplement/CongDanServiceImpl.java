@@ -149,8 +149,8 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public boolean checkCCCDExist(String CCCD) {
-        CongDanModel cd = congDanDao.findOne(CCCD);
-        if (CCCD.equals(cd.getCCCD()) && cd.getTrangThai() == 1) {
+        CongDanModel cd = congDanDao.findOneWithoutAdd(CCCD);
+        if (CCCD.equals(cd.getCCCD())) {
             return true;
         } else {
             return false;
@@ -159,8 +159,9 @@ public class CongDanServiceImpl implements ICongDanService {
 
     public static void main(String[] args) {
         ICongDanDAO dn = new CongDanDAOImpl();
-        CongDanModel model = dn.findOne("083303008061");
-        System.out.println(model.getHoTen());
+        CongDanModel model = dn.findOneWithoutAdd("083303008061");
+        boolean rs = new CongDanServiceImpl().checkCCCDExist("083303008061");
+        System.out.println(model.getHoTen() + " "+rs);
     }
 
     @Override

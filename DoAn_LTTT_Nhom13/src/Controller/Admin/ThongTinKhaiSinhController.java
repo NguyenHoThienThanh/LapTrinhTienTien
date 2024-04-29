@@ -592,8 +592,8 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                     jDialog.setVisible(true);
                     return;
                 }
-                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
-                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false)|| (!isValidCCCD(tf_CCCDCha.getText().trim())) ) {
+                    JOptionPane dialog = new JOptionPane("Số CCCD cha không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -601,14 +601,14 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 }
 
                 if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
-                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Số CCCD mẹ không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
                 }
                 if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
-                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Số CCCD người đăng ký không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -619,7 +619,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 khaiSinh.setQuocTich(tf_quocTich.getText().trim());
                 khaiSinh.setHoTenKS(tf_hoTen.getText());
                 khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
-                khaiSinh.setGioiTinh(tf_gioiTinh.getText());
+                
                 khaiSinh.setNoiSinh(tf_noiSinh.getText());
                 khaiSinh.setQueQuan(tf_queQuan.getText());
                 khaiSinh.setCha(tf_CCCDCha.getText().trim());
@@ -628,6 +628,18 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 khaiSinh.setDanToc(tf_danToc.getText());
                 khaiSinh.setNoiDk(tf_noiDangKy.getText());
                 khaiSinh.setTrangThai(1);
+                
+                if(tf_gioiTinh.getText().trim().equals("Nam") || tf_gioiTinh.getText().trim().equals("nam")){
+                    khaiSinh.setGioiTinh(tf_gioiTinh.getText());
+                }else if(tf_gioiTinh.getText().trim().equals("Nữ") || tf_gioiTinh.getText().trim().equals("Nu") || tf_gioiTinh.getText().trim().equals("nu") || tf_gioiTinh.getText().trim().equals("nữ")){
+                    khaiSinh.setGioiTinh(tf_gioiTinh.getText());
+                }else{
+                    JOptionPane dialog = new JOptionPane("Giới tính nam hoặc nữ!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
                 try {
                     if (isDateValid(tf_ngayDangKy.getText().trim())) {
                         Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
@@ -740,7 +752,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         tf_hoTen.setText("");
         tf_ngaySinh.setText("");
         tf_gioiTinh.setText("");
-        tf_ngaySinh.setText("");
+        tf_ngayDangKy.setText("");
         tf_noiSinh.setText("");
         tf_quanHe.setText("");
         tf_CCCDNguoiDangKy.setText("");
