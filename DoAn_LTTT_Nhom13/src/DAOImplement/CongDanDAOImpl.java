@@ -174,7 +174,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     @Override
     public boolean delete(String CCCD) {
-        String query = "Delete CongDan where CCCD = ?";
+        String query = "update CongDan set TrangThai = 0 where CCCD = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

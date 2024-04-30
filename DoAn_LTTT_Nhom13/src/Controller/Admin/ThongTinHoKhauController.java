@@ -10,9 +10,12 @@ import InterfaceService.IKhaiSinhService;
 import Models.CongDanModel;
 import Models.HoKhauModel;
 import Models.KhaiSinhModel;
+import Models.QuanHeModel;
+import Models.ThongTinHoKhau;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.HoKhauServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
+import ServiceImplement.QuanHeServiceImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -251,6 +254,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
+        tf_maKhaiSinh.setEditable(true);
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
 
     private void tbl_thongTinHoKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinHoKhauMouseClicked
@@ -345,12 +349,24 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             hoKhau.setQuanHeChuHo("Chủ hộ");
             hoKhau.setTrangThai(1);
             listHoKhau.add(hoKhau);
-
+            
             if (new HoKhauServiceImpl().insert(hoKhau)) {
+                HoKhauModel hk = new HoKhauModel();
+                hk = new HoKhauServiceImpl().findOneHKByMaKS(hoKhau.getKhaiSinhChuHo());
+                QuanHeModel quanHe = new QuanHeModel();
+                quanHe.setKhaiSinhNguoiThamGia(hk.getKhaiSinhChuHo());
+                quanHe.setQuanHeVoiChuHo("Chủ hộ");
+                quanHe.setMaHK(hk.getMaHK());
+                quanHe.setTrangThai(1);
+                new QuanHeServiceImpl().insert(quanHe);
+                    
+                
                 JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
+                
+                
             } else {
                 JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -367,7 +383,15 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
 
     private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
         ICongDanService congDanService = new CongDanServiceImpl();
+        CongDanModel model = new CongDanServiceImpl().findOneByMaKS(tf_maKhaiSinh.getText().trim());
         try {
+            if (model.getCCCD() == null) {
+                JOptionPane dialog = new JOptionPane("Mã khai sinh không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
             if (congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 0) {
                 JOptionPane dialog = new JOptionPane("Công dân không đủ điều kiện để đăng ký hộ khẩu!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -472,6 +496,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             tf_soCCCD.setEditable(false);
             tf_maHoKhau.setEditable(false);
             tf_diaChi.setEditable(true);
+            tf_maKhaiSinh.setEditable(false);
         }
 
 
@@ -492,7 +517,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
     }
 
     private void disableTextField() {
-        tf_soCCCD.setEditable(true);
+        tf_soCCCD.setEditable(false);
         tf_hoTen.setEditable(false);
         tf_diaChi.setEditable(false);
         tf_maHoKhau.setEditable(false);

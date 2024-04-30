@@ -495,6 +495,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             tf_email.setEditable(true);
             tf_soDienThoai.setEditable(true);
             tf_maKhaiSinh.setEditable(false);
+            tf_soCCCD.setEditable(false);
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed

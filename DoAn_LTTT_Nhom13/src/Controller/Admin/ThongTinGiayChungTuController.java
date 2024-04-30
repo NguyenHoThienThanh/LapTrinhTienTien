@@ -414,7 +414,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
-        clear();
+        //clear();
         ICongDanService congDanService = new CongDanServiceImpl();
         try {
 
