@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Controller.Admin;
 
 import InterfaceService.IDanhGiaService;
@@ -13,12 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Admin
- */
-public class HomeControllerAdmin extends javax.swing.JFrame {
 
+public class HomeControllerAdmin extends javax.swing.JFrame {
+    
     List<DanhGiaModel> listDanhGia = new ArrayList<>();
     
     IDanhGiaService danhGiaService = new DanhGiaServiceImpl();
@@ -126,7 +119,6 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ADMIN");
 
-        btn_logout.setBackground(new java.awt.Color(21, 110, 71));
         btn_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout-custom.png"))); // NOI18N
         btn_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,8 +176,6 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         int confirmed = JOptionPane.showConfirmDialog(null,
                 "Bạn có muốn đăng xuất khỏi tài khoản?", "Exit Program Confirmation",
                 JOptionPane.YES_NO_OPTION);
@@ -197,6 +187,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_logoutActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
