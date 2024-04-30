@@ -25,4 +25,5 @@ public interface IHoKhauService {
     HoKhauModel findOneByMaKS(String MaKS);
     List<HoKhauModel> findAllHK();
     int ifExists(String MaHK);
+    HoKhauModel findOneHKByMaKS(String MaKS);
 }

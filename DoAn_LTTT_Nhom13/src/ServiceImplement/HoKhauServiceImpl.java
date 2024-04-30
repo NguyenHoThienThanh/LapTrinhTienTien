@@ -252,7 +252,7 @@ public class HoKhauServiceImpl implements IHoKhauService {
         }
     }
     
-     @Override
+    @Override
     public HoKhauModel findOneHKByMaKS(String MaKS) {
         String query = "select MaHK, DiaChi, KhaiSinhChuHo, TrangThai from HoKhau where KhaiSinhChuHo = ?";
         HoKhauModel hoKhau = new HoKhauModel();
