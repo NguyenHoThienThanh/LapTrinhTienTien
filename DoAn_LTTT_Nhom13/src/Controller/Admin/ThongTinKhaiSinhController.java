@@ -5,12 +5,9 @@ import InterfaceService.IKhaiSinhService;
 import Models.KhaiSinhModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
-import Swing.TextField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -42,14 +39,12 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         }
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         tf_ngayDangKy1 = new Swing.TextField();
         tf_hoTen = new Swing.TextField();
-        tf_gioiTinh = new Swing.TextField();
         tf_CCCDNguoiDangKy = new Swing.TextField();
         tf_quocTich = new Swing.TextField();
         tf_CCCDCha = new Swing.TextField();
@@ -71,14 +66,13 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         tf_ngayDangKy = new Swing.TextField();
         tf_noiDangKy = new Swing.TextField();
         btn_themThongTin = new Swing.Button();
+        cbx_gioiTinh = new Swing.Combobox();
 
         tf_ngayDangKy1.setLabelText("Ngày đăng ký");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         tf_hoTen.setLabelText("Họ và tên");
-
-        tf_gioiTinh.setLabelText("Giới tính");
 
         tf_CCCDNguoiDangKy.setLabelText("Số CCCD người đăng ký");
 
@@ -203,6 +197,11 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             }
         });
 
+        cbx_gioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nam", "Nữ" }));
+        cbx_gioiTinh.setSelectedIndex(-1);
+        cbx_gioiTinh.setLabeText("Giới tính");
+        cbx_gioiTinh.setLineColor(new java.awt.Color(21, 110, 71));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,35 +214,6 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_quocTich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_CCCDNguoiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_hoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(tf_quanHe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_CCCDCha, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(tf_noiDangKy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(tf_danToc, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tf_CCCDMe, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_themThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,7 +224,36 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_CCCDNguoiDangKy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_quocTich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_hoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_quanHe, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_queQuan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbx_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_CCCDCha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_noiDangKy, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(tf_ngaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_CCCDMe, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(tf_danToc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -265,32 +264,34 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tf_quocTich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tf_CCCDCha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(tf_quocTich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(tf_CCCDNguoiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tf_danToc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_CCCDMe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbx_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, 0)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tf_CCCDCha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tf_CCCDMe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(tf_danToc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_quanHe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_noiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_CCCDNguoiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_quanHe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_noiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,7 +299,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_themThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -311,7 +312,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         model = (DefaultTableModel) tbl_thongTinCongDan.getModel();
         tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 0).toString());
         tf_hoTen.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 1).toString());
-        tf_gioiTinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 2).toString());
+        cbx_gioiTinh.setSelectedItem(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 2).toString());
         tf_ngaySinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 3).toString());
         tf_danToc.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 4).toString());
         tf_quocTich.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 5).toString());
@@ -330,12 +331,12 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
 
         int selectedRow = tbl_thongTinCongDan.getSelectedRow();
-        if (tbl_thongTinCongDan.getRowCount() <= 0 ) {
+        if (tbl_thongTinCongDan.getRowCount() <= 0) {
             JOptionPane dialog = new JOptionPane("Không có đơn cần xóa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-        }else if (selectedRow < 0) {
+        } else if (selectedRow < 0) {
             JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -374,115 +375,120 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
-        
-            if (tbl_thongTinCongDan.getSelectedRow() >= 0) {
-                if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
-                    JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
-                }
-                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
-                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
-                }
 
-                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
-                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
-                }
-                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
-                    JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
-                }
-
-                KhaiSinhModel khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
-                khaiSinh.setMaKS(tf_maKhaiSinh.getText().trim());
-                khaiSinh.setQuocTich(tf_quocTich.getText().trim());
-                khaiSinh.setHoTenKS(tf_hoTen.getText());
-                khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
-                khaiSinh.setGioiTinh(tf_gioiTinh.getText());
-                khaiSinh.setNoiSinh(tf_noiSinh.getText());
-                khaiSinh.setQueQuan(tf_queQuan.getText());
-                khaiSinh.setCha(tf_CCCDCha.getText().trim());
-                khaiSinh.setMe(tf_CCCDMe.getText().trim());
-                khaiSinh.setQuanHe(tf_quanHe.getText());
-                khaiSinh.setDanToc(tf_danToc.getText());
-                khaiSinh.setNoiDk(tf_noiDangKy.getText());
-                khaiSinh.setTrangThai(1);
-                try {
-                    if (isDateValid(tf_ngayDangKy.getText().trim())) {
-                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
-                        java.sql.Date sqlDate;
-                        sqlDate = new java.sql.Date(utilDate.getTime());
-                        khaiSinh.setNgayDk(sqlDate);
-                    } else {
-                        JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
-                        JDialog jDialog = dialog.createDialog(null);
-                        jDialog.setModal(true);
-                        jDialog.setVisible(true);
-                        return;
-                    }
-
-                } catch (ParseException ex) {
-                    return;
-                }
-
-                try {
-                    if (isDateValid(tf_ngaySinh.getText().trim())) {
-                        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
-                        java.sql.Date sqlDate;
-                        sqlDate = new java.sql.Date(utilDate.getTime());
-                        khaiSinh.setNgaySinh(sqlDate);
-                    } else {
-                        JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
-                        JDialog jDialog = dialog.createDialog(null);
-                        jDialog.setModal(true);
-                        jDialog.setVisible(true);
-                        return;
-                    }
-
-                } catch (ParseException ex) {
-                    return;
-                }
-
-                listKhaiSinh.add(khaiSinh);
-
-                if (new KhaiSinhDAOImpl().update(khaiSinh)) {
-                    if(listChuaDuyet.contains(khaiSinh)){
-                        listChuaDuyet.remove(khaiSinh);
-                    }
-                    model.removeRow(tbl_thongTinCongDan.getSelectedRow());
-                    JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                } else {
-                    JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
-                }
-
+        if (tbl_thongTinCongDan.getSelectedRow() >= 0) {
+            if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
+                JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
             }
-            
-        
+            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
+                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+
+            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDMe.getText()) == false) || (!isValidCCCD(tf_CCCDMe.getText().trim()))) {
+                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+            if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDNguoiDangKy.getText()) == false) || (!isValidCCCD(tf_CCCDNguoiDangKy.getText().trim()))) {
+                JOptionPane dialog = new JOptionPane("Số CCCD không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+
+            KhaiSinhModel khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
+            khaiSinh.setMaKS(tf_maKhaiSinh.getText().trim());
+            khaiSinh.setQuocTich(tf_quocTich.getText().trim());
+            khaiSinh.setHoTenKS(tf_hoTen.getText());
+            khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
+            khaiSinh.setNoiSinh(tf_noiSinh.getText());
+            khaiSinh.setQueQuan(tf_queQuan.getText());
+            khaiSinh.setCha(tf_CCCDCha.getText().trim());
+            khaiSinh.setMe(tf_CCCDMe.getText().trim());
+            khaiSinh.setQuanHe(tf_quanHe.getText());
+            khaiSinh.setDanToc(tf_danToc.getText());
+            khaiSinh.setNoiDk(tf_noiDangKy.getText());
+            khaiSinh.setTrangThai(1);
+
+            if (cbx_gioiTinh.getSelectedIndex() == 0) {
+                khaiSinh.setGioiTinh((String) cbx_gioiTinh.getSelectedItem());
+            } else if (cbx_gioiTinh.getSelectedIndex() == 1) {
+                khaiSinh.setGioiTinh((String) cbx_gioiTinh.getSelectedItem());
+            }
+
+            try {
+                if (isDateValid(tf_ngayDangKy.getText().trim())) {
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
+                    java.sql.Date sqlDate;
+                    sqlDate = new java.sql.Date(utilDate.getTime());
+                    khaiSinh.setNgayDk(sqlDate);
+                } else {
+                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+
+            } catch (ParseException ex) {
+                return;
+            }
+
+            try {
+                if (isDateValid(tf_ngaySinh.getText().trim())) {
+                    Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaySinh.getText().trim());
+                    java.sql.Date sqlDate;
+                    sqlDate = new java.sql.Date(utilDate.getTime());
+                    khaiSinh.setNgaySinh(sqlDate);
+                } else {
+                    JOptionPane dialog = new JOptionPane("Lỗi định dạng ngày tháng năm!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+
+            } catch (ParseException ex) {
+                return;
+            }
+
+            listKhaiSinh.add(khaiSinh);
+
+            if (new KhaiSinhDAOImpl().update(khaiSinh)) {
+                if (listChuaDuyet.contains(khaiSinh)) {
+                    listChuaDuyet.remove(khaiSinh);
+                }
+                model.removeRow(tbl_thongTinCongDan.getSelectedRow());
+                JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+            } else {
+                JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+
+        }
+
 
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        
+
         if (tbl_thongTinCongDan.getSelectedRow() < 0) {
             JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -492,7 +498,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         } else {
             tf_quocTich.setEditable(true);
             tf_hoTen.setEditable(true);
-            tf_gioiTinh.setEditable(true);
+            cbx_gioiTinh.setEnabled(true);
             tf_ngaySinh.setEditable(true);
             tf_noiSinh.setEditable(true);
             tf_quanHe.setEditable(true);
@@ -510,7 +516,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
         try {
             int selectedRow = tbl_thongTinCongDan.getSelectedRow();
-            
+
             if (tbl_thongTinCongDan.getRowCount() <= 0) {
                 JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -524,14 +530,14 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 jDialog.setVisible(true);
                 return;
             } else if (selectedRow >= 0) {
-                if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
+                if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
                     JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     return;
                 }
-                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false)|| (!isValidCCCD(tf_CCCDCha.getText().trim())) ) {
+                if ((new CongDanServiceImpl().checkCCCDExist(tf_CCCDCha.getText()) == false) || (!isValidCCCD(tf_CCCDCha.getText().trim()))) {
                     JOptionPane dialog = new JOptionPane("Số CCCD cha không hợp lệ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
@@ -553,12 +559,19 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                     jDialog.setVisible(true);
                     return;
                 }
+                if (cbx_gioiTinh.getSelectedIndex() == -1) {
+                    JOptionPane dialog = new JOptionPane("Vui lòng chọn giới tính!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
                 KhaiSinhModel khaiSinh = new KhaiSinhModel();
                 khaiSinh = khaiSinhService.findOne(tf_maKhaiSinh.getText().trim());
                 khaiSinh.setQuocTich(tf_quocTich.getText().trim());
                 khaiSinh.setHoTenKS(tf_hoTen.getText());
                 khaiSinh.setNguoiKhaiSinh(tf_CCCDNguoiDangKy.getText().trim());
-                
+
                 khaiSinh.setNoiSinh(tf_noiSinh.getText());
                 khaiSinh.setQueQuan(tf_queQuan.getText());
                 khaiSinh.setCha(tf_CCCDCha.getText().trim());
@@ -567,18 +580,13 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 khaiSinh.setDanToc(tf_danToc.getText());
                 khaiSinh.setNoiDk(tf_noiDangKy.getText());
                 khaiSinh.setTrangThai(1);
-                
-                if(tf_gioiTinh.getText().trim().equals("Nam") || tf_gioiTinh.getText().trim().equals("nam")){
-                    khaiSinh.setGioiTinh(tf_gioiTinh.getText());
-                }else if(tf_gioiTinh.getText().trim().equals("Nữ") || tf_gioiTinh.getText().trim().equals("Nu") || tf_gioiTinh.getText().trim().equals("nu") || tf_gioiTinh.getText().trim().equals("nữ")){
-                    khaiSinh.setGioiTinh(tf_gioiTinh.getText());
-                }else{
-                    JOptionPane dialog = new JOptionPane("Giới tính nam hoặc nữ!", JOptionPane.WARNING_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
+
+                if (cbx_gioiTinh.getSelectedIndex() == 0) {
+                    khaiSinh.setGioiTinh((String) cbx_gioiTinh.getSelectedItem());
+                } else if (cbx_gioiTinh.getSelectedIndex() == 1) {
+                    khaiSinh.setGioiTinh((String) cbx_gioiTinh.getSelectedItem());
                 }
+
                 try {
                     if (isDateValid(tf_ngayDangKy.getText().trim())) {
                         Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDangKy.getText().trim());
@@ -628,7 +636,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
                     model.setValueAt(tf_hoTen.getText(), selectedRow, 1);
-                    model.setValueAt(tf_gioiTinh.getText(), selectedRow, 2);
+                    model.setValueAt((String) cbx_gioiTinh.getSelectedItem(), selectedRow, 2);
                     model.setValueAt(ngaySinh, selectedRow, 3);
                     model.setValueAt(tf_danToc.getText(), selectedRow, 4);
                     model.setValueAt(tf_quocTich.getText(), selectedRow, 5);
@@ -657,7 +665,19 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themThongTinActionPerformed
-        // TODO add your handling code here:
+        tf_quocTich.setEditable(true);
+        tf_hoTen.setEditable(true);
+        cbx_gioiTinh.setEnabled(true);
+        tf_ngaySinh.setEditable(true);
+        tf_noiSinh.setEditable(true);
+        tf_quanHe.setEditable(true);
+        tf_CCCDNguoiDangKy.setEditable(true);
+        tf_queQuan.setEditable(true);
+        tf_CCCDCha.setEditable(true);
+        tf_danToc.setEditable(true);
+        tf_ngayDangKy.setEditable(true);
+        tf_CCCDMe.setEditable(true);
+        tf_noiDangKy.setEditable(true);
     }//GEN-LAST:event_btn_themThongTinActionPerformed
     public void showResult() {
         model = new DefaultTableModel();
@@ -672,7 +692,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
         tf_quocTich.setText("");
         tf_hoTen.setText("");
         tf_ngaySinh.setText("");
-        tf_gioiTinh.setText("");
+        cbx_gioiTinh.setSelectedIndex(-1);
         tf_ngayDangKy.setText("");
         tf_noiSinh.setText("");
         tf_quanHe.setText("");
@@ -688,7 +708,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private void disableTextField() {
         tf_quocTich.setEditable(false);
         tf_hoTen.setEditable(false);
-        tf_gioiTinh.setEditable(false);
+        cbx_gioiTinh.setEnabled(false);
         tf_ngaySinh.setEditable(false);
         tf_noiSinh.setEditable(false);
         tf_quanHe.setEditable(false);
@@ -786,6 +806,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private Swing.Button btn_themThongTin;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
+    private Swing.Combobox cbx_gioiTinh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private Swing.TableDark tbl_thongTinCongDan;
@@ -793,7 +814,6 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
     private Swing.TextField tf_CCCDMe;
     private Swing.TextField tf_CCCDNguoiDangKy;
     private Swing.TextField tf_danToc;
-    private Swing.TextField tf_gioiTinh;
     private Swing.TextField tf_hoTen;
     private Swing.TextField tf_maKhaiSinh;
     private Swing.TextField tf_ngayDangKy;

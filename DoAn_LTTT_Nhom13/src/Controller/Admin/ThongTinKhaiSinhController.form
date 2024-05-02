@@ -37,43 +37,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tf_quocTich" max="32767" attributes="0"/>
-                          <Component id="tf_maKhaiSinh" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="tf_CCCDNguoiDangKy" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tf_hoTen" max="32767" attributes="0"/>
-                          <Component id="tf_noiSinh" pref="188" max="32767" attributes="0"/>
-                          <Component id="tf_quanHe" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tf_ngayDangKy" max="32767" attributes="0"/>
-                          <Component id="tf_gioiTinh" min="-2" pref="102" max="-2" attributes="0"/>
-                          <Component id="tf_queQuan" min="-2" pref="150" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tf_ngaySinh" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="tf_CCCDCha" alignment="0" pref="138" max="32767" attributes="0"/>
-                          <Component id="tf_noiDangKy" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                              <Component id="tf_danToc" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="tf_CCCDMe" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="908" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Component id="btn_themThongTin" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btn_luuThem" min="-2" pref="100" max="-2" attributes="0"/>
@@ -85,6 +48,42 @@
                       <Component id="btn_xoa" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btn_xoaDuLieu" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="908" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_CCCDNguoiDangKy" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tf_quocTich" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tf_maKhaiSinh" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_hoTen" max="32767" attributes="0"/>
+                          <Component id="tf_noiSinh" max="32767" attributes="0"/>
+                          <Component id="tf_quanHe" min="-2" pref="188" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_ngayDangKy" max="32767" attributes="0"/>
+                          <Component id="tf_queQuan" max="32767" attributes="0"/>
+                          <Component id="cbx_gioiTinh" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_CCCDCha" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tf_noiDangKy" pref="138" max="32767" attributes="0"/>
+                          <Component id="tf_ngaySinh" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_CCCDMe" pref="138" max="32767" attributes="0"/>
+                          <Component id="tf_danToc" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -99,39 +98,43 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tf_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_maKhaiSinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tf_noiSinh" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tf_quocTich" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_queQuan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_CCCDCha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="tf_maKhaiSinh" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="tf_quocTich" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="tf_CCCDNguoiDangKy" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="tf_danToc" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tf_CCCDMe" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tf_hoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbx_gioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="tf_queQuan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tf_CCCDCha" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tf_CCCDMe" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tf_noiSinh" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="tf_danToc" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tf_quanHe" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_ngayDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tf_noiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tf_CCCDNguoiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_quanHe" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_ngayDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_noiDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="257" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_sua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_luuSua" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -140,7 +143,7 @@
                   <Component id="btn_xoaDuLieu" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_themThongTin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,11 +152,6 @@
     <Component class="Swing.TextField" name="tf_hoTen">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n"/>
-      </Properties>
-    </Component>
-    <Component class="Swing.TextField" name="tf_gioiTinh">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
       </Properties>
     </Component>
     <Component class="Swing.TextField" name="tf_CCCDNguoiDangKy">
@@ -421,6 +419,21 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themThongTinActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="Swing.Combobox" name="cbx_gioiTinh">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Nam"/>
+            <StringItem index="1" value="N&#x1eef;"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+        <Property name="labeText" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
+        <Property name="lineColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="47" green="6e" red="15" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

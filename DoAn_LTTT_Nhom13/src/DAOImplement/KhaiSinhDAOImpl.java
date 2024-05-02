@@ -23,7 +23,7 @@ public class KhaiSinhDAOImpl implements IKhaiSinhDAO{
     
     @Override
     public List<KhaiSinhModel> findAll() {
-        String query = "select * from KhaiSinh where TrangThai = 1";
+        String query = "select * from KhaiSinh where TrangThai = 1 order by ID";
         List<KhaiSinhModel> listKhaiSinh = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
