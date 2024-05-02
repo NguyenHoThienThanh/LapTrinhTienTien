@@ -361,6 +361,7 @@ public class TamVangController extends javax.swing.JPanel {
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
+        tbl_thongTinTamVang.clearSelection();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
 
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed

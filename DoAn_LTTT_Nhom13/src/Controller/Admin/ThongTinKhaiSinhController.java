@@ -304,6 +304,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
+        tbl_thongTinCongDan.clearSelection();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
 
     private void tbl_thongTinCongDanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinCongDanMouseClicked

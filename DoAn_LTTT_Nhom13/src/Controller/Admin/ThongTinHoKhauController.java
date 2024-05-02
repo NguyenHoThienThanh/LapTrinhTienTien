@@ -253,6 +253,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
+        tbl_thongTinHoKhau.clearSelection();
         clear();
         tf_maKhaiSinh.setEditable(true);
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
