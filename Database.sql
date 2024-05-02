@@ -15,7 +15,6 @@
 create database QuanLyDanCuDoThi
 go
 use QuanLyDanCuDoThi
-
 go
 
 create table KhaiSinh
@@ -55,7 +54,7 @@ values (N'Phạm Văn T',N'Nam', '1978-05-10', N'TP. Hồ Chí Minh', N'Kinh', N
 	,(N'Đinh Thị Kim Hương', N'Nữ', '1979-07-04', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1979-08-04', N'Bến Tre', 1)
 	,(N'Đinh Thị Kim Dung', N'Nữ', '1976-01-21', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1976-01-21', N'Bến Tre', 1)
 	,(N'Đinh Thị Kim Phụng', N'Nữ', '1981-07-12', N'Bến Tre', N'Kinh', N'Việt Nam', N'Bến Tre', '083303001234', '083303007894', '083303001234', N'Cha', '1981-07-12', N'Bến Tre', 1)
-
+	
 	,(N'Phạm Văn Láng', N'Nam', '1951-11-22', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '083003001247', '023324328743', '083003001247', N'Cha', '1952-01-01', N'Bến Tre', 1)
 	,(N'Nguyễn Thị Nhan', N'Nữ', '1952-01-12', N'Quảng Nam', N'Kinh', N'Việt Nam', N'Bến Tre', '024451228457', '034572551784', '024451228457', N'Cha', '1952-01-20', N'Bến Tre', 1)
 	,(N'Phạm Thị Nhe', N'Nam', '1970-10-12', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1970-11-12', N'Bến Tre', 1)
@@ -65,6 +64,13 @@ values (N'Phạm Văn T',N'Nam', '1978-05-10', N'TP. Hồ Chí Minh', N'Kinh', N
 	,(N'Phạm Văn Tuân', N'Nam', '1979-07-04', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1979-08-04', N'Bến Tre', 1)
 	,(N'Phạm Thị Nhi', N'Nữ', '1981-01-21', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1981-01-21', N'Bến Tre', 1)
 	,(N'Phạm Thị Mộng Nghi', N'Nữ', '1992-07-12', N'Bình Phước', N'Kinh', N'Việt Nam', N'Bến Tre', '023303001234', '023303007894', '023303001234', N'Cha', '1992-07-12', N'Bến Tre', 1)
+	
+	,(N'Nguyễn Thanh Tuấn', N'Nam', '1974-09-19', N'Hậu Giang', 'Kinh', N'Việt Nam', N'Hậu Giang','092303008760', '092303008761', '092303008761', N'Mẹ',  '1974-09-30', N'Hậu Giang', 1)
+	,(N'Hồ Thị Thanh Hương', N'Nữ', '1976-09-21', N'Bến Tre', 'Kinh', N'Việt Nam', N'Bến Tre','092303008750', '092303008751', '092303008750', N'Cha',  '1974-09-30', N'Bến Tre', 1)
+	,(N'Nguyễn Hồ Thanh Thanh', N'Nữ', '2002-08-02', N'Thành phố Cần Thơ', 'Kinh', N'Việt Nam', N'Thành phố Cần Thơ','092303008770', '092303008771', '092303008771', N'Mẹ',  '2002-08-20', N'Thành phố Cần Thơ', 1)
+	,(N'Nguyễn Hồ Thiên Thanh', N'Nữ', '2003-12-26', N'Thành phố Cần Thơ', 'Kinh', N'Việt Nam', N'Thành phố Cần Thơ','092303008770', '092303008771', '092303008771', N'Mẹ',  '2003-12-30', N'Thành phố Cần Thơ', 1)
+	,(N'Hồ Hữu Hòa', N'Nam', '1975-05-05', N'Thành phố Cần Thơ', 'Kinh', N'Việt Nam', N'Thành phố Cần Thơ','092303008750', '092303008751', '092303008751', N'Mẹ',  '1975-05-25', N'Thành phố Cần Thơ', 1)
+	,(N'Hồ Hữu Hải', N'Nam', '2002-02-14', N'Thành phố Cần Thơ', 'Kinh', N'Việt Nam', N'Thành phố Cần Thơ','0923030087580', '092303008781', '092303008781', N'Mẹ',  '2002-02-25', N'Thành phố Cần Thơ', 1)
 create table CongDan
 (
 	CCCD nvarchar(20) primary key,
@@ -105,6 +111,13 @@ values ('083303008061',N'Phạm Văn T', N'TP. Hồ Chí Minh', '2021-12-21', 'K
 	 ,('043305656254',N'Phạm Văn Tuân', N'Bến Tre', '2020-02-20', 'KS023', '0345746645', 'phamvantuan@gmail.com', 1)
 	 ,('062007451678',N'Phạm Thị Nhi', N'Bến Tre', '2020-02-20', 'KS024', '0345746645', 'phamthinhi@gmail.com', 1)
 	 ,('033301234757',N'Phạm Thị Mộng Nghi', N'Bến Tre', '2020-02-20', 'KS025', '0345746645', 'phamthimongnghi@gmail.com', 1)
+
+	 ,('092303008770', N'Nguyễn Thanh Tuấn', N'Hậu Giang', '2021-03-31', 'KS026', '0939339727', 'tuannguyen@gmail.com',1)
+	 ,('092303008771', N'Hồ Thị Thanh Hương', N'Bến Tre', '2021-03-31', 'KS027', '0939339726', 'thanhhuong@gmail.com',1)
+	 ,('092303008772', N'Nguyễn Hồ Thanh Thanh', N'Thành phố Cần Thơ', '2021-03-31', 'KS028', '0939339725', 'thanhthanh@gmail.com',1)
+	 ,('092303008779', N'Nguyễn Hồ Thiên Thanh', N'Bến Tre', '2021-03-31', 'KS029', '0818221901', '21110645@gmail.com', 1)
+	 ,('092303008773', N'Hồ Hữu Hòa', N'Thành phố Cần Thơ', '2021-03-31', 'KS030', '0939339724', 'hoaho@gmail.com',1)
+	 ,('092303008774', N'Hồ Hữu Hải', N'Thành phố Cần Thơ', '2021-03-31', 'KS026', '0939339723', 'haiho@gmail.com',1)
 create table Tamtru
 (
 	ID integer identity(1,1) not null constraint Mtt_ID unique,
@@ -172,20 +185,7 @@ values ('083303008211', '2022-12-30', N'TP. Hồ Chí Minh', N'TP HCM', '2023-01
 	,('013301479547', '2024-12-02',N'Bến Tre', N'TP HCM', '2024-12-02','2026-12-02',	N'Làm công ty', 1)
 	,('013303007814', '2024-12-02',N'Bến Tre', N'TP HCM', '2024-12-02','2026-12-05',	N'Làm công ty', 1)
 	,('023303004512', '2023-07-20',N'Bến Tre', N'TP HCM', '2023-07-20','2025-07-20',	N'Làm công ty', 1)
-create table Thue
-(
-	ID integer identity(1,1) not null constraint Mst_ID unique,
-	Masothue as right('TH0' + cast(ID as varchar(10)),10) persisted constraint PK_Mst primary key clustered,
-	Coquanthue nchar(100),
-	SoCMT_CCCD nvarchar(20)references CongDan(Cccd),
-	Ngaythaydoithongtingannhat datetime,
-	TrangThai int
-)
-insert into Thue (Coquanthue, SoCMT_CCCD, Ngaythaydoithongtingannhat, TrangThai)
-values (N'Cục thuế tỉnh TP. Hồ Chí Minh', '083303008061', '2022-01-20', 1)
-	, (N'Cục thuế tỉnh TP. Hồ Chí Minh', '083303008072', '2022-05-12', 1)
-	, (N'Cục thuế tỉnh Bình Dương', '083303002561', '2021-07-14', 1)
-	, (N'Cục thuế tỉnh Đồng Nai', '083303008061', '2021-12-22', 1)
+
 create table Cnkh
 (
 	ID integer identity(1,1) not null constraint Mcnkh_ID unique,
@@ -203,6 +203,7 @@ values ('083303008072', '083303008061', N'Ủy ban nhân dân xã TTB', '2002-10
 	, ('013303007814', '083303007814', N'Ủy ban nhân dân tỉnh Bến Tre', '2000-07-12', 0)
 	, ('082007451678', '013301479547', N'Ủy ban nhân dân tp Hồ Chí Minh', '2001-01-12', 0)
 	, ('083301234757', '043305656254', N'Ủy ban nhân dân tp Hồ Chí Minh', '2008-04-27', 0)
+	,('092303008771', '092303008770', N'Quận ủy quận Ninh Kiều', '2000-01-01', 1)
 create table Lyhon
 (
 	ID integer identity(1,1) not null constraint Mlh_ID unique,
@@ -253,7 +254,11 @@ values ('HK01', 'KS01', N'Chủ hộ', 1),
 		('HK01', 'KS04', N'Con trai', 1),
 		('HK02', 'KS05', N'Chủ hộ', 1),
 		('HK02', 'KS06', N'Vợ', 0),
-		('HK02', 'KS07', N'Con trai', 1)
+		('HK02', 'KS07', N'Con trai', 1),
+		('HK03', 'KS08', N'Chủ hộ', 1),
+		('HK04', 'KS017', N'Chủ hộ', 1),
+		('HK05', 'KS020', N'Chủ hộ', 1),
+		('HK06', 'KS021', N'Chủ hộ', 1)
 create table DangNhap
 (
 	Quyen char(20),
@@ -285,6 +290,9 @@ insert into GiayChungTu(CCCD, NgayMat, NoiMat, NguyenNhan, TrangThai)
 values ('083303003061', '2023-04-01', N'TP HCM', N'Benh tim', 1)
 insert into GiayChungTu(CCCD, NgayMat, NoiMat, NguyenNhan, TrangThai)
 values ('083303001234', '2023-10-01', N'Hà Nội', N'Benh ung thu', 1)
+
+update Tamvang set TrangThai = 0 where Cccd = 083303001234
+select * from Tamtru
 create table DanhGia 
 (	
 	CCCD nvarchar(20) references CongDan(CCCD),
