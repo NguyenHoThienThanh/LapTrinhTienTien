@@ -124,7 +124,7 @@ public class GiayChungTuDAOImpl implements IGiayChungTuDAO {
 
     @Override
     public boolean delete(String MaCT) {
-        String query = "DELETE GiayChungTu WHERE MaCT = ?";
+        String query = "UPDATE GiayChungTu SET TrangThai = 0 WHERE MaCT = ? ";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

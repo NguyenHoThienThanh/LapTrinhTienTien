@@ -174,4 +174,31 @@ public class TamTruServiceImpl implements ITamTruService {
         }
         return tamTru;
     }
+    
+    @Override
+    public TamTruModel findOneByCCCD(String CCCD) {
+        TamTruModel tamTru = new TamTruModel();
+        String query = "select * from TamTru where Cccd = ?  and TrangThai = 1";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                tamTru.setID(rs.getInt(1));
+                tamTru.setMaTT(rs.getString(2));
+                tamTru.setCCCD(rs.getString(3));
+                tamTru.setNgaydk(rs.getDate(4));
+                tamTru.setNoidk(rs.getString(5));
+                tamTru.setNgayden(rs.getDate(6));
+                tamTru.setNgaydi(rs.getDate(7));
+                tamTru.setLydo(rs.getString(8));
+                tamTru.setTrangThai(rs.getInt(9));
+            }
+            conn.close();
+        } catch (Exception ex) {
+
+        }
+        return tamTru;
+    }
 }

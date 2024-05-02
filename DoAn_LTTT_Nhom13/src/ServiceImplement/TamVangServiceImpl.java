@@ -221,5 +221,33 @@ public class TamVangServiceImpl implements ITamVangService{
         return tamVang;
     }
     
+    @Override
+    public TamVangModel findOneByCCCD(String CCCD) {
+        String query = "SELECT * FROM Tamvang WHERE CCCD = ? and TrangThai = 1";
+        TamVangModel tamVang = new TamVangModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                tamVang.setID(rs.getInt(1));
+                tamVang.setMaTV(rs.getString(2));
+                tamVang.setCCCD(rs.getString(3));
+                tamVang.setNgaydk(rs.getDate(4));
+                tamVang.setNcdi(rs.getString(5));
+                tamVang.setNcden(rs.getString(6));
+                tamVang.setNgaydi(rs.getDate(7));
+                tamVang.setNgayve(rs.getDate(8));
+                tamVang.setLydo(rs.getString(9));
+                tamVang.setTrangThai(rs.getInt(10));
+            }
+            conn.close();
+        } catch (Exception e) {
+
+        }
+        return tamVang;
+    }
+    
     
 }

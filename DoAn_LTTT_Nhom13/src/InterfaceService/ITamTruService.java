@@ -22,4 +22,5 @@ public interface ITamTruService {
     int ifExists(String CCCD);
     List<TamTruModel> findAllChuaDuyet();
     TamTruModel findOneChuaDuyet(String maTT);
+    TamTruModel findOneByCCCD(String CCCD);
 }

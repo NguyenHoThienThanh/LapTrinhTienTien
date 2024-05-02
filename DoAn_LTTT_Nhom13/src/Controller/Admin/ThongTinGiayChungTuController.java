@@ -4,13 +4,25 @@
  */
 package Controller.Admin;
 
+import DAOImplement.ChungNhanKetHonDAOImpl;
 import InterfaceService.ICongDanService;
 import InterfaceService.IGiayChungTuService;
+import Models.ChungNhanKetHonModel;
 import Models.CongDanModel;
 import Models.GiayChungTuModel;
+import Models.KhaiSinhModel;
+import Models.QuanHeModel;
+import Models.TamTruModel;
+import Models.TamVangModel;
+import Models.ThongTinHoKhau;
+import ServiceImplement.ChungNhanKetHonServiceImpl;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.GiayChungTuServiceImpl;
-import ServiceImplement.ThueServiceImpl;
+import ServiceImplement.HoKhauServiceImpl;
+import ServiceImplement.KhaiSinhServiceImpl;
+import ServiceImplement.QuanHeServiceImpl;
+import ServiceImplement.TamTruServiceImpl;
+import ServiceImplement.TamVangServiceImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -312,7 +324,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                     String id = (String) tbl_thongTinThue.getValueAt(selectedRow, 0);
                     model.removeRow(selectedRow);
                     listGiayChungTu.remove(selectedRow);
-                    if (new ThueServiceImpl().delete(id)) {
+                    if (new GiayChungTuServiceImpl().delete(id)) {
                         JOptionPane msg = new JOptionPane("Information deleted successfully!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsg = msg.createDialog(null);
                         jMsg.setModal(true);
@@ -331,7 +343,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                     jMsgFail.setVisible(true);
                 }
             }
-
+            
             clear();
         }
     }//GEN-LAST:event_btn_xoaActionPerformed
@@ -400,6 +412,55 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
+            
+            TamTruModel tamTru = new TamTruServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
+            int countTamTru = new TamTruServiceImpl().ifExists(giayChungTu.getCCCD());
+            if(countTamTru == 1){
+                new TamTruServiceImpl().delete(tamTru.getMaTT());
+            }
+            
+            TamVangModel tamVang = new TamVangServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
+            int countTamVang = new TamVangServiceImpl().ifExists(giayChungTu.getCCCD());
+            if(countTamVang == 1){
+                new TamVangServiceImpl().delete(tamVang.getMaTV());
+            }
+            
+            ChungNhanKetHonModel ketHon = new ChungNhanKetHonDAOImpl().findOneCNKH_TrangThai(giayChungTu.getCCCD(), giayChungTu.getCCCD());
+            if(ketHon.getMaCnkh() != null){
+                new ChungNhanKetHonServiceImpl().delete(ketHon.getMaCnkh());
+            }
+            
+            CongDanModel congDan = new CongDanServiceImpl().findOne(giayChungTu.getCCCD());
+            if(congDan.getTrangThai() == 1){
+                new CongDanServiceImpl().delete(giayChungTu.getCCCD());
+            }
+            
+            KhaiSinhModel khaiSinh = new KhaiSinhServiceImpl().findByCCCD(giayChungTu.getCCCD());
+            if(khaiSinh.getMaKS() != null){
+                new KhaiSinhServiceImpl().delete(khaiSinh.getMaKS());
+            }
+            
+            QuanHeModel quanHe = new QuanHeServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
+            if(quanHe.getMaHK() != null){
+                new QuanHeServiceImpl().deleteByMaHK(quanHe.getMaHK(), quanHe.getKhaiSinhNguoiThamGia());
+            }
+            
+//            ThongTinHoKhau hoKhau = new HoKhauServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
+//            if(hoKhau.getCCCDChuHo() == giayChungTu.getCCCD()){
+//                List<ThongTinHoKhau> list = new QuanHeServiceImpl().findAllByMaHK(hoKhau.getMaHoKhau());
+//                for(ThongTinHoKhau qh :list){
+//                    if(Integer.parseInt(qh.getQuanHeID()) > Integer.parseInt(hoKhau.getQuanHeID())){
+//                        QuanHeModel qhmodel = new QuanHeServiceImpl().findOneByMaHK(qh.getMaHoKhau(),qh.getKhaiSinhNguoiThamGia());
+//                        qhmodel.setQuanHeVoiChuHo("Chủ hộ");
+//                        new QuanHeServiceImpl().update(qhmodel);
+//                        break;
+//                    }       
+//                }
+//                QuanHeModel ml = new QuanHeServiceImpl().findOneByMaHK(hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhNguoiThamGia());
+//                ml.setTrangThai(0);
+//                new QuanHeServiceImpl().deleteByMaHK(hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhNguoiThamGia());   
+//                
+//            }
         } else {
             JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);

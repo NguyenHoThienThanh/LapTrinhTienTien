@@ -24,12 +24,12 @@ public class ThongTinHoKhau {
     private Date NgaySinh;
     private String KhaiSinhChuHo, KhaiSinhNguoiThamGia;
     private int TrangThai;
-    private int QuanHeID;
+    private String QuanHeID;
     
     public ThongTinHoKhau() {
     }
 
-    public ThongTinHoKhau(String MaHoKhau, String CCCDNguoiThan, String CCCDChuHo, String CCCDNguoiDangNhap, String QuanHeVoiChuHo, String DiaChi, String HoTenChuHo, String HoTenNguoiThan, String HoTenNguoiDangNhap, Date NgaySinh, String KhaiSinhChuHo, String KhaiSinhNguoiThamGia, int TrangThai, int QuanHeID) {
+    public ThongTinHoKhau(String MaHoKhau, String CCCDNguoiThan, String CCCDChuHo, String CCCDNguoiDangNhap, String QuanHeVoiChuHo, String DiaChi, String HoTenChuHo, String HoTenNguoiThan, String HoTenNguoiDangNhap, Date NgaySinh, String KhaiSinhChuHo, String KhaiSinhNguoiThamGia, int TrangThai, String QuanHeID) {
         this.MaHoKhau = MaHoKhau;
         this.CCCDNguoiThan = CCCDNguoiThan;
         this.CCCDChuHo = CCCDChuHo;
@@ -150,11 +150,11 @@ public class ThongTinHoKhau {
         this.TrangThai = TrangThai;
     }
 
-    public int getQuanHeID() {
+    public String getQuanHeID() {
         return QuanHeID;
     }
 
-    public void setQuanHeID(int QuanHeID) {
+    public void setQuanHeID(String QuanHeID) {
         this.QuanHeID = QuanHeID;
     }
 
