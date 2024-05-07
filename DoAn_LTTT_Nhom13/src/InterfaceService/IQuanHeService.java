@@ -18,4 +18,7 @@ public interface IQuanHeService {
     boolean insert (QuanHeModel quanHe);
     boolean update (QuanHeModel quanHe);
     boolean delete (String MaHK);
+    QuanHeModel findOneByCCCD(String CCCD);
+    boolean deleteByMaHK(String MaHK, String KhaiSinhNguoiThamGia);
+    List<ThongTinHoKhau> findAllByMaHK(String MaHK);
 }
