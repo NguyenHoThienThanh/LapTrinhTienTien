@@ -13,18 +13,22 @@ public class QuanHeModel {
     private String KhaiSinhNguoiThamGia;
     private String QuanHeVoiChuHo;
     private int TrangThai;
+    private String ID;
 
     // Constructor
     public QuanHeModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
 
-    public QuanHeModel(String MaHK, String KhaiSinhNguoiThamGia, String QuanHeVoiChuHo, int TrangThai) {
+    public QuanHeModel(String MaHK, String KhaiSinhNguoiThamGia, String QuanHeVoiChuHo, int TrangThai, String ID) {
         this.MaHK = MaHK;
         this.KhaiSinhNguoiThamGia = KhaiSinhNguoiThamGia;
         this.QuanHeVoiChuHo = QuanHeVoiChuHo;
         this.TrangThai = TrangThai;
+        this.ID = ID;
     }
+
+
 
     
     // Getters and setters
@@ -59,4 +63,14 @@ public class QuanHeModel {
     public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    
+    
 }

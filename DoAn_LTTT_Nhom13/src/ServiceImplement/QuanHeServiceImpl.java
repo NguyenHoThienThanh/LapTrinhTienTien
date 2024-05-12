@@ -34,8 +34,8 @@ public class QuanHeServiceImpl implements IQuanHeService {
     }
 
     @Override
-    public QuanHeModel findOneByMaHK(String MaHK, String KhaiSinhNguoiThamGia) {
-        return quanHeDAO.findOneByMaHK(MaHK, KhaiSinhNguoiThamGia);
+    public QuanHeModel findOneByMaHK(String MaHK) {
+        return quanHeDAO.findOneByMaHK(MaHK);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class QuanHeServiceImpl implements IQuanHeService {
 
     @Override
     public boolean update(QuanHeModel quanHe) {
-        QuanHeModel qh = quanHeDAO.findOneByMaHK(quanHe.getMaHK(), quanHe.getKhaiSinhNguoiThamGia());
+        QuanHeModel qh = quanHeDAO.findOneByMaHK(quanHe.getMaHK());
         qh.setMaHK(quanHe.getMaHK());
         qh.setKhaiSinhNguoiThamGia(quanHe.getKhaiSinhNguoiThamGia());
         qh.setQuanHeVoiChuHo(quanHe.getQuanHeVoiChuHo());
@@ -123,4 +123,30 @@ public class QuanHeServiceImpl implements IQuanHeService {
         }
         return list;
     }
+    
+    @Override
+    public QuanHeModel findOneByMaHKAndQuanHeID(String MaHK, String QuanHeID) {
+        String query = "select ID, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, QuanHe.TrangThai from QuanHe where MaHK = ? and ID = ?";
+        QuanHeModel quanHe = new QuanHeModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MaHK);
+            ps.setString(2, QuanHeID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                quanHe.setID(rs.getString(1));
+                quanHe.setMaHK(rs.getString(2));
+                quanHe.setKhaiSinhNguoiThamGia(rs.getString(3));
+                quanHe.setQuanHeVoiChuHo(rs.getString(4));
+                quanHe.setTrangThai(rs.getInt(5));
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return quanHe;
+    }
+    
+
 }

@@ -18,12 +18,13 @@ import java.util.List;
  *
  * @author Admin
  */
-public class GiayChungTuServiceImpl implements IGiayChungTuService{
+public class GiayChungTuServiceImpl implements IGiayChungTuService {
 
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     IGiayChungTuDAO giayChungTuDAO = new GiayChungTuDAOImpl();
+
     @Override
     public List<GiayChungTuModel> findAll() {
         return giayChungTuDAO.findAll();
@@ -59,7 +60,7 @@ public class GiayChungTuServiceImpl implements IGiayChungTuService{
 
     @Override
     public GiayChungTuModel findAllGCT(String CCCD) {
-        String query = "select MaCT, GiayChungTu.CCCD, HoTen,NgaySinh, NgayMat, NoiMat, NguyenNhan from GiayChungTu join (select CCCD, NgaySinh, HoTen from KhaiSinh join CongDan on KhaiSinh.MaKS = CongDan.MaKS) Q on GiayChungTu.CCCD = Q.CCCD Where GiayChungTu.CCCD = ?";
+        String query = "select MaCT, GiayChungTu.CCCD, HoTen,NgaySinh, NgayMat, NoiMat, NguyenNhan from GiayChungTu join (select CCCD, NgaySinh, HoTen from KhaiSinh join CongDan on KhaiSinh.MaKS = CongDan.MaKS) Q on GiayChungTu.CCCD = Q.CCCD Where GiayChungTu.CCCD = ? and GiayChungTu.TrangThai =1";
         GiayChungTuModel gct = new GiayChungTuModel();
         try {
             conn = DBConnection.getConnection();
@@ -81,5 +82,5 @@ public class GiayChungTuServiceImpl implements IGiayChungTuService{
         }
         return gct;
     }
-    
+
 }
