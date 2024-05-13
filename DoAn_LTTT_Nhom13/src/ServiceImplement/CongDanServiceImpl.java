@@ -288,4 +288,9 @@ public class CongDanServiceImpl implements ICongDanService {
         }
         return listCongDan;
     }
+
+    @Override
+    public CongDanModel findOneWithoutAdd(String CCCD) {
+        return congDanDao.findOneWithoutAdd(CCCD);
+    }
 }
