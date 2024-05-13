@@ -1,8 +1,14 @@
 package Models;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class CongDanModel {
+
     private String CCCD;
     private String HoTen;
     private String NcCccd;
@@ -14,33 +20,52 @@ public class CongDanModel {
     private Date NgaySinh;
     private String GioiTinh;
     private String NoiSinh;
-    
+
     //Them
     private String QuocTich;
     private String DanToc;
     private String QueQuan;
     private String DiaChi;
-    
+    private byte[] HinhAnh;
+
     // Constructor
     public CongDanModel() {
     }
 
-    public CongDanModel(String CCCD, String HoTen, String NcCccd, Date NgcCccd, String MaKS, String SDT, String Email, int TrangThai, Date NgaySinh, String GioiTinh, String NoiSinh, String QuocTich, String DanToc, String QueQuan, String DiaChi) {
-        this.CCCD = CCCD;
-        this.HoTen = HoTen;
-        this.NcCccd = NcCccd;
-        this.NgcCccd = NgcCccd;
-        this.MaKS = MaKS;
-        this.SDT = SDT;
-        this.Email = Email;
-        this.TrangThai = TrangThai;
-        this.NgaySinh = NgaySinh;
-        this.GioiTinh = GioiTinh;
-        this.NoiSinh = NoiSinh;
-        this.QuocTich = QuocTich;
-        this.DanToc = DanToc;
-        this.QueQuan = QueQuan;
-        this.DiaChi = DiaChi;
+    public CongDanModel(ResultSet resultSet) throws SQLException {
+        this.CCCD = resultSet.getString("CCCD");
+        this.HoTen = resultSet.getString("HoTen");
+        this.NcCccd = resultSet.getString("NcCccd");
+        this.NgcCccd = resultSet.getDate("NgcCccd");
+        this.MaKS = resultSet.getString("MaKS");
+        this.SDT = resultSet.getString("SDT");
+        this.Email = resultSet.getString("Email");
+        this.TrangThai = resultSet.getInt("TrangThai");
+        this.NgaySinh = resultSet.getDate("NgaySinh");
+        this.GioiTinh = resultSet.getString("GioiTinh");
+        this.NoiSinh = resultSet.getString("NoiSinh");
+        this.QuocTich = resultSet.getString("QuocTich");
+        this.DanToc = resultSet.getString("DanToc");
+        this.QueQuan = resultSet.getString("QueQuan");
+        this.DiaChi = resultSet.getString("DiaChi");
+
+        InputStream inputStream = resultSet.getBinaryStream("HinhAnh");
+        if (inputStream == null) {
+            this.HinhAnh = null;
+        } else {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            try {
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                byte[] data = outputStream.toByteArray();
+                this.HinhAnh = data;
+            } catch (IOException e) {
+                this.HinhAnh = null;
+            }
+        }
     }
 
     public String getCCCD() {
@@ -163,6 +188,12 @@ public class CongDanModel {
         this.DiaChi = DiaChi;
     }
 
-}
- 
+    public byte[] getHinhAnh() {
+        return HinhAnh;
+    }
 
+    public void setHinhAnh(byte[] HinhAnh) {
+        this.HinhAnh = HinhAnh;
+    }
+
+}

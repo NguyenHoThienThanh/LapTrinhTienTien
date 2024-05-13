@@ -44,7 +44,8 @@ public class CongDanServiceImpl implements ICongDanService {
         cd.setMaKS(model.getMaKS());
         cd.setSDT(model.getSDT());
         cd.setEmail(model.getEmail());
-        cd.setTrangThai(model.getTrangThai());
+        cd.setTrangThai(1);
+        cd.setHinhAnh(model.getHinhAnh());
         return congDanDao.update(cd);
     }
 
@@ -55,7 +56,7 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public ThongTinCaNhan findTTCN(String CCCD) {
-        String query = "select HoTen, GioiTinh, NgaySinh, NoiSinh, DanToc, QuocTich, QueQuan, CCCD, DiaChi, SDT, Email from KhaiSinh join CongDan on KhaiSinh.MaKS = CongDan.MaKS join QuanHe on KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia join HoKhau on QuanHe.MaHK = HoKhau.MaHK Where QuanHe.TrangThai = 1 and Cccd = ?";
+        String query = "SELECT CongDan.HoTen, KhaiSinh.GioiTinh, KhaiSinh.NgaySinh, KhaiSinh.NoiSinh, KhaiSinh.DanToc, KhaiSinh.QuocTich, KhaiSinh.QueQuan, CongDan.CCCD, HoKhau.DiaChi, CongDan.SDT, CongDan.Email, CongDan.HinhAnh FROM KhaiSinh JOIN CongDan ON KhaiSinh.MaKS = CongDan.MaKS JOIN QuanHe ON KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia JOIN HoKhau ON QuanHe.MaHK = HoKhau.MaHK WHERE QuanHe.TrangThai = 1 AND CongDan.CCCD = '?'";
         ThongTinCaNhan ttcn = new ThongTinCaNhan();
         try {
             conn = DBConnection.getConnection();
@@ -74,6 +75,7 @@ public class CongDanServiceImpl implements ICongDanService {
                 ttcn.setDiaChi(rs.getString("DiaChi"));
                 ttcn.setSdt(rs.getString("SDT"));
                 ttcn.setEmail(rs.getString("Email"));
+                ttcn.setHinhAnh(rs.getBytes("HinhAnh"));
             }
             conn.close();
         } catch (Exception e) {
@@ -100,7 +102,7 @@ public class CongDanServiceImpl implements ICongDanService {
     @Override
     public CongDanModel findOneByMaKS(String MaKS) {
         CongDanModel congDan = new CongDanModel();
-        String query = "Select CongDan.HoTen, CCCD, NcCccd, NgcCccd, KhaiSinh.MaKS, SDT, Email, CongDan.TrangThai, GioiTinh, NgaySinh, NoiSinh from CongDan, KhaiSinh where CongDan.MaKS = KhaiSinh.MaKS and KhaiSinh.TrangThai = 1 and KhaiSinh.MaKS=?";
+        String query = "Select CongDan.HoTen, CCCD, NcCccd, NgcCccd, KhaiSinh.MaKS, SDT, Email, CongDan.TrangThai, GioiTinh, NgaySinh, NoiSinh, HinhAnh from CongDan, KhaiSinh where CongDan.MaKS = KhaiSinh.MaKS and KhaiSinh.TrangThai = 1 and KhaiSinh.MaKS=?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -118,6 +120,7 @@ public class CongDanServiceImpl implements ICongDanService {
                 congDan.setGioiTinh(rs.getString(9));
                 congDan.setNgaySinh(rs.getDate(10));
                 congDan.setNoiSinh(rs.getString(11));
+                congDan.setHinhAnh(rs.getBytes(12));
             }
             conn.close();
         } catch (Exception ex) {

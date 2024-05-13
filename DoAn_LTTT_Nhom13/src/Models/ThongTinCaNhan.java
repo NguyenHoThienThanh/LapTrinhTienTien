@@ -5,6 +5,7 @@
 package Models;
 
 import java.util.Date;
+import javax.swing.Icon;
 
 /**
  *
@@ -23,8 +24,9 @@ public class ThongTinCaNhan {
     private String DiaChi;
     private String Sdt;
     private String Email;
+    private byte[] HinhAnh;
 
-    public ThongTinCaNhan(String HoTen, String GioiTinh, String CCCD, Date NgaySinh, String NoiSinh, String QuocTich, String DanToc, String QueQuan, String DiaChi, String Sdt, String Email) {
+    public ThongTinCaNhan(String HoTen, String GioiTinh, String CCCD, Date NgaySinh, String NoiSinh, String QuocTich, String DanToc, String QueQuan, String DiaChi, String Sdt, String Email, byte[] HinhAnh) {
         this.HoTen = HoTen;
         this.GioiTinh = GioiTinh;
         this.CCCD = CCCD;
@@ -36,7 +38,18 @@ public class ThongTinCaNhan {
         this.DiaChi = DiaChi;
         this.Sdt = Sdt;
         this.Email = Email;
+        this.HinhAnh = HinhAnh;
     }
+
+    public byte[] getHinhAnh() {
+        return HinhAnh;
+    }
+
+    public void setHinhAnh(byte[] HinhAnh) {
+        this.HinhAnh = HinhAnh;
+    }
+
+
 
     public ThongTinCaNhan() {
     }
@@ -128,6 +141,6 @@ public class ThongTinCaNhan {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    
+ 
     
 }

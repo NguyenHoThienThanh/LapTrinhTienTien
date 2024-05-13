@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DAO.ImageUtils;
 import InterfaceService.ICongDanService;
 import InterfaceService.IKhaiSinhService;
 import Models.CongDanModel;
@@ -7,6 +8,11 @@ import Models.KhaiSinhModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
 import Swing.TextField;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -17,7 +23,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -46,7 +56,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
     private void showTable() {
         for (CongDanModel congDan : listCongDan) {
-            model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+            model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
         }
     }
 
@@ -80,6 +90,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         rd_nam = new javax.swing.JRadioButton();
         btn_xuatDanhSach = new Swing.Button();
         tf_queQuan = new Swing.TextField();
+        picHinhAnh = new Views.OtherForm.swing.PictureBox();
+        btn_chooseFile = new button.MyButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -139,11 +151,11 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Khai Sinh", "Số CCCD", "Họ Tên", "Ngày Sinh", "Giới Tính", "Nơi Sinh", "Nơi Cấp CCCD", "Ngày Cấp CCCD", "Số Điện Thoại", "Email"
+                "Mã Khai Sinh", "Số CCCD", "Họ Tên", "Ngày Sinh", "Giới Tính", "Nơi Sinh", "Nơi Cấp CCCD", "Ngày Cấp CCCD", "Số Điện Thoại", "Email", "Hình Ảnh"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -232,6 +244,15 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
         tf_queQuan.setLabelText("Quê quán");
 
+        btn_chooseFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/icons8-upload-10.png"))); // NOI18N
+        btn_chooseFile.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn_chooseFile.setRadius(50);
+        btn_chooseFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_chooseFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,30 +260,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tf_noiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,34 +286,71 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                         .addGap(60, 60, 60)
                         .addComponent(cbx_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(289, 289, 289)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tf_noiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(53, 53, 53))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
+                                .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(733, 733, 733)
+                                .addGap(563, 563, 563)
                                 .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)
-                                .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,6 +395,24 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 7).toString());
         tf_soDienThoai.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 8).toString());
         tf_email.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 9).toString());
+        
+        byte[] imageData = (byte[]) model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 10);
+        Image image = null;
+        try {
+            image = ImageIO.read(new ByteArrayInputStream(imageData));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (image != null) {
+        ImageIcon icon = new ImageIcon(image);
+
+            // Đặt ImageIcon vào JLabel
+            picHinhAnh.setImage(icon);
+            picHinhAnh.repaint(); // Cập nhật lại JLabel để hiển thị hình ảnh mới
+        } else {
+            // Đặt hình ảnh mặc định hoặc thông báo lỗi nếu hình ảnh không thể đọc được
+            picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
+        }
     }//GEN-LAST:event_tbl_thongTinCongDanMouseClicked
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
@@ -489,6 +541,15 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         congDan.setSDT(tf_soDienThoai.getText());
         congDan.setEmail(tf_email.getText());
         congDan.setTrangThai(1);
+        byte[] hinhAnh = null;
+        try {
+            Icon icon = picHinhAnh.getImage();
+            if (icon instanceof ImageIcon) {
+                hinhAnh = ImageUtils.imageToByteArray((ImageIcon) icon);
+            }
+        } catch (Exception e) {
+        }
+        congDan.setHinhAnh(hinhAnh);
         listCongDan.add(congDan);
 
         if (new CongDanServiceImpl().insert(congDan)) {
@@ -509,8 +570,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
-
-        try {
+try {
             if (congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 1) {
                 CongDanModel congDan = new CongDanModel();
                 congDan = congDanService.findOneByMaKS(tf_maKhaiSinh.getText().trim());
@@ -526,6 +586,20 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 tf_ngaySinh.setText(ngaySinh);
                 tf_gioiTinh.setText(congDan.getGioiTinh());
                 tf_noiSinh.setText(congDan.getNoiSinh());
+                byte[] imageData = (byte[]) congDan.getHinhAnh();
+                Image image = null;
+                try {
+                    image = ImageIO.read(new ByteArrayInputStream(imageData));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (image != null) {
+                ImageIcon icon = new ImageIcon(image);
+                    picHinhAnh.setImage(icon);
+                    picHinhAnh.repaint();
+                } else {
+                    picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
+                }
             } else if (congDanService.countCCCD(tf_maKhaiSinh.getText().trim()) == 0) {
                 IKhaiSinhService khaiSinhService = new KhaiSinhServiceImpl();
                 KhaiSinhModel khaiSinh = new KhaiSinhModel();
@@ -541,7 +615,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 tf_soCCCD.setText("");
                 tf_noiCapCCCD.setText("");
                 tf_ngayCapCCCD.setText("");
-
+                picHinhAnh.setImage(null);
             }
 
         } catch (Exception e) {
@@ -550,7 +624,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             jDialog.setModal(true);
             jDialog.setVisible(true);
         }
-
     }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -567,6 +640,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             tf_soDienThoai.setEditable(true);
             tf_maKhaiSinh.setEditable(false);
             tf_soCCCD.setEditable(false);
+            btn_chooseFile.setVisible(true);
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -629,6 +703,16 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 congDan.setNgcCccd(sqlDate);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String dateStr = sdf.format(utilDate);
+                byte[] hinhAnh = null;
+                try {
+                    Icon icon = picHinhAnh.getImage();
+                    if (icon instanceof ImageIcon) {
+                        hinhAnh = ImageUtils.imageToByteArray((ImageIcon) icon);
+                    }
+                } catch (Exception e) {
+                }
+                congDan.setHinhAnh(hinhAnh); 
+                congDan.setCCCD(tf_soCCCD.getText());
                 if (new CongDanServiceImpl().update(congDan)) {
                     JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
@@ -639,6 +723,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     model.setValueAt(dateStr, selectedRow, 7);
                     model.setValueAt(tf_soDienThoai.getText(), selectedRow, 8);
                     model.setValueAt(tf_email.getText(), selectedRow, 9);
+                    model.setValueAt(congDan.getHinhAnh(), selectedRow, 10);
                     model.fireTableDataChanged();
                 } else {
                     JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
@@ -659,7 +744,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_noiSinh.getText().equals("")) {
+if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_noiSinh.getText().equals("")) {
             JOptionPane dialog = new JOptionPane("Please enter birth certificate information and load the data!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -678,9 +763,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             tf_noiCapCCCD.setEditable(true);
             tf_email.setEditable(true);
             tf_soDienThoai.setEditable(true);
+            btn_chooseFile.setVisible(true);
         }
-
-
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void cbx_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_filterActionPerformed
@@ -741,6 +825,25 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
+
+    private void btn_chooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chooseFileActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                BufferedImage b = ImageIO.read(selectedFile);
+                ImageIcon icon = new ImageIcon(b.getScaledInstance(-1, -1, BufferedImage.SCALE_SMOOTH));
+                picHinhAnh.setImage(icon);
+                picHinhAnh.setBackground(Color.WHITE);
+                picHinhAnh.repaint();
+                picHinhAnh.setBackground(Color.WHITE);
+            }
+            catch(Exception e){
+
+            }
+        }
+    }//GEN-LAST:event_btn_chooseFileActionPerformed
     private void exportToExcel(String filePath) {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Danh sách công dân");
@@ -799,7 +902,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     public void showResult() {
         CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
         model.fireTableDataChanged();
-        model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+        model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
     }
 
     private void clearRadio() {
@@ -817,6 +920,10 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_maKhaiSinh.setText("");
         tf_soDienThoai.setText("");
         tf_email.setText("");
+        picHinhAnh.setImage(null);
+        picHinhAnh.setBackground(Color.WHITE);
+        picHinhAnh.repaint();
+        btn_chooseFile.setVisible(false);
     }
 
     private void disableTextField() {
@@ -832,6 +939,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         rd_nam.setVisible(false);
         rd_nu.setVisible(false);
         tf_queQuan.setVisible(false);
+        picHinhAnh.setEnabled(false);
+        btn_chooseFile.setVisible(false);
     }
 
     private static boolean isValidCCCD(String cccd) {
@@ -960,6 +1069,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private button.MyButton btn_chooseFile;
     private button.MyButton btn_loadData;
     private Swing.Button btn_luuSua;
     private Swing.Button btn_luuThem;
@@ -972,6 +1082,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private Swing.Combobox cbx_filter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private Views.OtherForm.swing.PictureBox picHinhAnh;
     private javax.swing.JRadioButton rd_nam;
     private javax.swing.JRadioButton rd_nu;
     private Swing.TableDark tbl_thongTinCongDan;
