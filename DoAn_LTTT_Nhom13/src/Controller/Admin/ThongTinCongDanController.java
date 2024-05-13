@@ -36,6 +36,8 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ThongTinCongDanController extends javax.swing.JPanel {
@@ -242,7 +244,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             }
         });
 
-        tf_queQuan.setLabelText("Quê quán");
+        tf_queQuan.setLabelText("Nơi sinh");
 
         btn_chooseFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/icons8-upload-10.png"))); // NOI18N
         btn_chooseFile.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -290,18 +292,18 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                             .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_soCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(tf_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -768,18 +770,25 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void cbx_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_filterActionPerformed
+        tf_queQuan.setText("");
         if (cbx_filter.getSelectedIndex() == 0) {
+            rd_nam.setVisible(false);
+            rd_nu.setVisible(false);
             clearRadio();
             model.setRowCount(0);
             showTable();
+
         } else if (cbx_filter.getSelectedIndex() == 1) {
             rd_nam.setVisible(true);
             rd_nu.setVisible(true);
+            tf_queQuan.setVisible(false);
+
         } else if (cbx_filter.getSelectedIndex() == 2) {
             tf_queQuan.setVisible(true);
-            
-        }
+            rd_nam.setVisible(false);
+            rd_nu.setVisible(false);
 
+        }
 
     }//GEN-LAST:event_cbx_filterActionPerformed
 
@@ -845,12 +854,15 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
         }
     }//GEN-LAST:event_btn_chooseFileActionPerformed
     private void exportToExcel(String filePath) {
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Danh sách công dân");
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Danh sách công dân");
 
         Cell cell = null;
+        XSSFRow roww = sheet.createRow(0);
+        cell = roww.createCell(5, CellType.STRING);
+        cell.setCellValue("DANH SÁCH CÔNG DÂN");
         // Tiêu đề cột
-        Row headerRow = sheet.createRow(0);
+        Row headerRow = sheet.createRow(2);
         headerRow.createCell(0).setCellValue("STT");
         headerRow.createCell(1).setCellValue("Mã Khai Sinh");
         headerRow.createCell(2).setCellValue("Số CCCD");
@@ -866,7 +878,7 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
         int sttCounter = 1;
         // Dữ liệu
         for (int i = 0; i < tbl_thongTinCongDan.getRowCount(); i++) {
-            Row row = sheet.createRow(i + 1);
+            Row row = sheet.createRow(i + 3);
             row.createCell(0).setCellValue(sttCounter++);
             row.createCell(1).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 0));
             row.createCell(2).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 1));
