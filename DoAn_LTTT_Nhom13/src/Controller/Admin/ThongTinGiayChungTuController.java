@@ -441,7 +441,6 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 new QuanHeServiceImpl().deleteByMaHK(quanHe.getMaHK(), quanHe.getKhaiSinhNguoiThamGia());
             }
             ThongTinHoKhau hoKhau = new HoKhauServiceImpl().findOneByCCCDChungTu(giayChungTu.getCCCD());
-            System.out.println(hoKhau.getCCCDChuHo()  + " " + giayChungTu.getCCCD() );
             if (hoKhau.getCCCDChuHo().equals(giayChungTu.getCCCD())) {
                 List<ThongTinHoKhau> list = new QuanHeServiceImpl().findAllByMaHK(hoKhau.getMaHoKhau());
                 for (ThongTinHoKhau qh : list) {
@@ -451,7 +450,6 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                             HoKhauModel hkModel = new HoKhauServiceImpl().findOneByMaHK(qh.getMaHoKhau());
                             hkModel.setKhaiSinhChuHo(qh.getKhaiSinhNguoiThamGia());
                             new HoKhauServiceImpl().update(hkModel);
-                            System.out.println(hkModel.getKhaiSinhChuHo());
                             qhmodel.setQuanHeVoiChuHo("Chủ hộ");
                             qhmodel.setKhaiSinhNguoiThamGia(qh.getKhaiSinhNguoiThamGia());
                             new QuanHeServiceImpl().update(qhmodel);

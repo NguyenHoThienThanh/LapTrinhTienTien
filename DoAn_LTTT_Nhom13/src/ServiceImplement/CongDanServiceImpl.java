@@ -228,7 +228,7 @@ public class CongDanServiceImpl implements ICongDanService {
             rs = ps.executeQuery();
             while (rs.next()) {
                 CongDanModel congDan = new CongDanModel();
-                
+
                 congDan.setMaKS(rs.getString(1));
                 congDan.setCCCD(rs.getString(2));
                 congDan.setHoTen(rs.getString(3));
@@ -240,6 +240,42 @@ public class CongDanServiceImpl implements ICongDanService {
                 congDan.setSDT(rs.getString(9));
                 congDan.setEmail(rs.getString(10));
                 congDan.setTrangThai(rs.getInt(11));
+
+                listCongDan.add(congDan);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listCongDan;
+    }
+
+    @Override
+    public List<CongDanModel> filterByHomeTown(String hometown) {
+        String query = " select KhaiSinh.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, QueQuan, NoiSinh, NcCccd, NgcCccd, SDT, Email  from CongDan\n"
+                + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
+                + "  where KhaiSinh.QueQuan = ? and CongDan.TrangThai = 1\n"
+                + "  order by ID ASC";
+        List<CongDanModel> listCongDan = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, hometown);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                CongDanModel congDan = new CongDanModel();
+                congDan.setMaKS(rs.getString(1));
+                congDan.setCCCD(rs.getString(2));
+                congDan.setHoTen(rs.getString(3));
+                congDan.setNgaySinh(rs.getDate(4));
+                congDan.setGioiTinh(rs.getString(5));
+                congDan.setQueQuan(rs.getString(6));
+                congDan.setNoiSinh(rs.getString(7));
+                congDan.setNcCccd(rs.getString(8));
+                congDan.setNgcCccd(rs.getDate(9));
+                congDan.setSDT(rs.getString(10));
+                congDan.setEmail(rs.getString(11));
+                congDan.setTrangThai(rs.getInt(12));
 
                 listCongDan.add(congDan);
             }

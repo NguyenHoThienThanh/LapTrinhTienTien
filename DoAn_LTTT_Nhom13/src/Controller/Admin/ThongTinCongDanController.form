@@ -78,6 +78,8 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="btn_xuatDanhSach" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="tf_queQuan" min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rd_nu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="rd_nam" min="-2" max="-2" attributes="0"/>
@@ -135,6 +137,7 @@
                   <Component id="rd_nu" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rd_nam" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_xuatDanhSach" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_queQuan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="280" max="-2" attributes="0"/>
@@ -402,11 +405,10 @@
     <Component class="Swing.Combobox" name="cbx_filter">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
             <StringItem index="1" value="Gi&#x1edb;i t&#xed;nh"/>
-            <StringItem index="2" value="N&#x1a1;i sinh"/>
-            <StringItem index="3" value="N&#x1a1;i c&#x1ea5;p CCCD"/>
+            <StringItem index="2" value="Qu&#xea; qu&#xe1;n"/>
           </StringArray>
         </Property>
         <Property name="labeText" type="java.lang.String" value=""/>
@@ -450,6 +452,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_xuatDanhSachActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="Swing.TextField" name="tf_queQuan">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Qu&#xea; qu&#xe1;n"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

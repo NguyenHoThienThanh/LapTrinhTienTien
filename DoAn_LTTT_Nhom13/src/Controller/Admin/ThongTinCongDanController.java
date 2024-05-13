@@ -79,6 +79,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         rd_nu = new javax.swing.JRadioButton();
         rd_nam = new javax.swing.JRadioButton();
         btn_xuatDanhSach = new Swing.Button();
+        tf_queQuan = new Swing.TextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -196,7 +197,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             }
         });
 
-        cbx_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả", "Giới tính", "Nơi sinh", "Nơi cấp CCCD" }));
+        cbx_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả", "Giới tính", "Quê quán" }));
         cbx_filter.setLabeText("");
         cbx_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +229,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 btn_xuatDanhSachActionPerformed(evt);
             }
         });
+
+        tf_queQuan.setLabelText("Quê quán");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -278,6 +281,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rd_nu)
                         .addGap(28, 28, 28)
                         .addComponent(rd_nam)
@@ -323,7 +328,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     .addComponent(cbx_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rd_nu)
                     .addComponent(rd_nam)
-                    .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -682,6 +688,12 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             clearRadio();
             model.setRowCount(0);
             showTable();
+        } else if (cbx_filter.getSelectedIndex() == 1) {
+            rd_nam.setVisible(true);
+            rd_nu.setVisible(true);
+        } else if (cbx_filter.getSelectedIndex() == 2) {
+            tf_queQuan.setVisible(true);
+            
         }
 
 
@@ -717,23 +729,23 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_rd_namActionPerformed
 
     private void btn_xuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatDanhSachActionPerformed
-        if(tbl_thongTinCongDan.getRowCount()!=0){
+        if (tbl_thongTinCongDan.getRowCount() != 0) {
             String filePath = "D:\\DanhSachCongDan.xlsx";
-        exportToExcel(filePath);
-        }else{
+            exportToExcel(filePath);
+        } else {
             JOptionPane dialog = new JOptionPane("Bảng dữ liệu trống!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
             return;
         }
-        
+
     }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
     private void exportToExcel(String filePath) {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Danh sách công dân");
-        
-        Cell cell =null;
+
+        Cell cell = null;
         // Tiêu đề cột
         Row headerRow = sheet.createRow(0);
         headerRow.createCell(0).setCellValue("STT");
@@ -756,17 +768,17 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             row.createCell(1).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 0));
             row.createCell(2).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 1));
             row.createCell(3).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 2));
-            
+
             cell = row.createCell(4, CellType.STRING);
-            cell.setCellValue( tbl_thongTinCongDan.getValueAt(i, 3).toString());
-            
+            cell.setCellValue(tbl_thongTinCongDan.getValueAt(i, 3).toString());
+
             row.createCell(5).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 4));
             row.createCell(6).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 5));
             row.createCell(7).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 6));
-            
+
             cell = row.createCell(8, CellType.STRING);
-            cell.setCellValue( tbl_thongTinCongDan.getValueAt(i, 7).toString());
-            
+            cell.setCellValue(tbl_thongTinCongDan.getValueAt(i, 7).toString());
+
             row.createCell(9).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 8));
             row.createCell(10).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 9));
 
@@ -817,6 +829,9 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_noiCapCCCD.setEditable(false);
         tf_soDienThoai.setEditable(false);
         tf_email.setEditable(false);
+        rd_nam.setVisible(false);
+        rd_nu.setVisible(false);
+        tf_queQuan.setVisible(false);
     }
 
     private static boolean isValidCCCD(String cccd) {
@@ -968,6 +983,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private Swing.TextField tf_ngaySinh;
     private Swing.TextField tf_noiCapCCCD;
     private Swing.TextField tf_noiSinh;
+    private Swing.TextField tf_queQuan;
     private Swing.TextField tf_soCCCD;
     private Swing.TextField tf_soDienThoai;
     // End of variables declaration//GEN-END:variables

@@ -28,4 +28,5 @@ public interface ICongDanService {
     List<ThongTinCaNhan> getNgaySinh();
     ThongTinCaNhan findOneByCCCD(String CCCD);
     public List<CongDanModel> filterByGender(String gender);
+    public List<CongDanModel> filterByHomeTown(String hometown);
 }
