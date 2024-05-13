@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface ICongDanService {
     List<CongDanModel> findAll();
+    CongDanModel findOneWithoutAdd(String CCCD);
     CongDanModel findOne(String CCCD);
     boolean insert(CongDanModel model);
     boolean update(CongDanModel model);

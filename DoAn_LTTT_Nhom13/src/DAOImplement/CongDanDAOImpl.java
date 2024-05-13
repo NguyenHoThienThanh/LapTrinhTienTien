@@ -90,9 +90,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
     @Override
     public CongDanModel findOneWithoutAdd(String CCCD) {
         CongDanModel congDan = new CongDanModel();
-        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai, cd.HinhAnh FROM KhaiSinh ks\n" +
-                    "INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS\n" +
-                    "WHERE cd.CCCD = ?;";
+        String query = "  SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.QuocTich, ks.DanToc, ks.QueQuan, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai, cd.HinhAnh FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS WHERE cd.CCCD = ?;";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -120,7 +118,6 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
         }
         return congDan;
-
     }
     
     @Override

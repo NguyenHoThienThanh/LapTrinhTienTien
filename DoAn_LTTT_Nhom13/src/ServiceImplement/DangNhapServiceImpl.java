@@ -5,9 +5,13 @@
 package ServiceImplement;
 
 import DAOImplement.DangNhapDAOImpl;
+import InterfaceDAO.DBConnection;
 import InterfaceDAO.IDangNhapDAO;
 import InterfaceService.IDangNhapService;
 import Models.DangNhapModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,6 +22,9 @@ import java.util.List;
 public class DangNhapServiceImpl implements IDangNhapService {
 
     IDangNhapDAO dangNhapDAO = new DangNhapDAOImpl();
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
     @Override
     public List<DangNhapModel> findAll() {
@@ -100,6 +107,11 @@ public class DangNhapServiceImpl implements IDangNhapService {
     @Override
     public boolean verifyCodeWithUser(String tenDangNhap, String code) throws SQLException, Exception {
         return dangNhapDAO.verifyCodeWithUser(tenDangNhap, code);
+    }
+
+    @Override
+    public DangNhapModel findOneByEmail(String email) {
+        return dangNhapDAO.findOneByEmail(email);
     }
 
 }

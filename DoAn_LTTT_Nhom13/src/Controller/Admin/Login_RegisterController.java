@@ -5,9 +5,12 @@
 package Controller.Admin;
 
 import Controller.User.HomeControllerUser;
+import InterfaceService.ICongDanService;
 import InterfaceService.IDangNhapService;
 import Models.DangNhapModel;
+import Models.CongDanModel;
 import Models.ModelMessage;
+import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.ServiceMail;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -15,7 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
-import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
@@ -30,8 +32,11 @@ public class Login_RegisterController extends javax.swing.JFrame {
     private Animator animatorLogin;
     private Animator animatorRegister;
     private Animator animatorVerify;
+    private Animator animatorForgot;
     IDangNhapService dangNhapService = new ServiceImplement.DangNhapServiceImpl();
+    ICongDanService congDanService = new CongDanServiceImpl();
 
+    private boolean check = true;
     private boolean signIn = true;
 
     public Login_RegisterController() {
@@ -49,12 +54,18 @@ public class Login_RegisterController extends javax.swing.JFrame {
 
             @Override
             public void end() {
-                if (signIn) {
+                if (signIn && check == false) {
                     panelLogin.setVisible(false);
                     background1.setShowPaint(true);
                     panelRegister.setAlpha(0);
                     panelRegister.setVisible(true);
                     animatorRegister.start();
+                } else if (signIn && check == true) {
+                    panelLogin.setVisible(false);
+                    background1.setShowPaint(true);
+                    panelForgotPassword.setAlpha(0);
+                    panelForgotPassword.setVisible(true);
+                    animatorForgot.start();
                 } else {
                     enableLogin(true);
                     tf_username.grabFocus();
@@ -106,6 +117,28 @@ public class Login_RegisterController extends javax.swing.JFrame {
             }
         };
 
+        TimingTarget targetForgotPass = new TimingTargetAdapter() {
+            @Override
+            public void timingEvent(float fraction) {
+                if (signIn) {
+                    panelForgotPassword.setAlpha(fraction);
+                } else {
+                    panelForgotPassword.setAlpha(1f - fraction);
+                }
+            }
+
+            @Override
+            public void end() {
+                if (signIn == false) {
+                    panelForgotPassword.setVisible(false);
+                    background1.setShowPaint(false);
+                    background1.setAnimate(1);
+                    panelLogin.setVisible(true);
+                    animatorLogin.start();
+                }
+            }
+        };
+
         lbl_taotaikhoan.setForeground(Color.BLUE);
         lbl_taotaikhoan.setText("<html><u>Đăng Ký Ngay</u></html>");
         lbl_taotaikhoan.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -115,12 +148,25 @@ public class Login_RegisterController extends javax.swing.JFrame {
                 lbl_taotaikhoanMouseClicked(null); // Simulate button click to switch to Register panel
             }
         });
+
+        lbl_forgotpassword.setForeground(Color.BLUE);
+        lbl_forgotpassword.setText("<html><u>Forgot Password?</u></html>");
+        lbl_forgotpassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        lbl_forgotpassword.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                lbl_forgotpasswordMouseClicked(null); // Simulate button click to switch to Register panel
+            }
+        });
+
         animatorLogin = new Animator(1500, targetLogin);
         animatorRegister = new Animator(500, targetRegister);
         animatorVerify = new Animator(1500, targetVerify);
+        animatorForgot = new Animator(500, targetForgotPass);
         animatorLogin.setResolution(0);
         animatorRegister.setResolution(0);
         animatorVerify.setResolution(0);
+        animatorForgot.setResolution(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -137,6 +183,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lbl_taotaikhoan = new javax.swing.JLabel();
+        lbl_forgotpassword = new javax.swing.JLabel();
         panelRegister = new Swing.PanelTransparent();
         jpanelRegister = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -151,6 +198,11 @@ public class Login_RegisterController extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         tf_code = new Swing.MyTextField();
         btn_OK = new button.MyButton();
+        panelForgotPassword = new Swing.PanelTransparent();
+        jpanelForgotPass = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        tf_emailforgotpass = new Swing.MyTextField();
+        btn_okForgotpass = new button.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -192,31 +244,40 @@ public class Login_RegisterController extends javax.swing.JFrame {
             }
         });
 
+        lbl_forgotpassword.setText("Forgot Password?");
+        lbl_forgotpassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_forgotpasswordMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpanelLoginLayout = new javax.swing.GroupLayout(jpanelLogin);
         jpanelLogin.setLayout(jpanelLoginLayout);
         jpanelLoginLayout.setHorizontalGroup(
             jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelLoginLayout.createSequentialGroup()
+                .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelLoginLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_taotaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpanelLoginLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel1)))
+                .addGap(0, 55, Short.MAX_VALUE))
             .addGroup(jpanelLoginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tf_username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tf_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpanelLoginLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_taotaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 49, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLoginLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbl_forgotpassword)))
                 .addContainerGap())
-            .addGroup(jpanelLoginLayout.createSequentialGroup()
-                .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpanelLoginLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpanelLoginLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel1)))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpanelLoginLayout.setVerticalGroup(
             jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,9 +288,11 @@ public class Login_RegisterController extends javax.swing.JFrame {
                 .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_forgotpassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jpanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lbl_taotaikhoan))
@@ -252,7 +315,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
             .addGroup(panelLoginLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jpanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         background1.add(panelLogin, "card2");
@@ -429,6 +492,73 @@ public class Login_RegisterController extends javax.swing.JFrame {
 
         background1.add(panelVerify, "card4");
 
+        panelForgotPassword.setBackground(new java.awt.Color(255, 255, 255));
+        panelForgotPassword.setOpaque(true);
+
+        jpanelForgotPass.setBackground(new java.awt.Color(255, 255, 255));
+        jpanelForgotPass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Nhập email ");
+
+        btn_okForgotpass.setBackground(new java.awt.Color(21, 110, 71));
+        btn_okForgotpass.setForeground(new java.awt.Color(255, 255, 255));
+        btn_okForgotpass.setText("OK");
+        btn_okForgotpass.setBorderColor(new java.awt.Color(255, 255, 255));
+        btn_okForgotpass.setColor(new java.awt.Color(21, 110, 71));
+        btn_okForgotpass.setColorClick(new java.awt.Color(141, 240, 197));
+        btn_okForgotpass.setColorOver(new java.awt.Color(61, 212, 146));
+        btn_okForgotpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_okForgotpassActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpanelForgotPassLayout = new javax.swing.GroupLayout(jpanelForgotPass);
+        jpanelForgotPass.setLayout(jpanelForgotPassLayout);
+        jpanelForgotPassLayout.setHorizontalGroup(
+            jpanelForgotPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpanelForgotPassLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(tf_emailforgotpass, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelForgotPassLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_okForgotpass, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
+        );
+        jpanelForgotPassLayout.setVerticalGroup(
+            jpanelForgotPassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelForgotPassLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(tf_emailforgotpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_okForgotpass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panelForgotPasswordLayout = new javax.swing.GroupLayout(panelForgotPassword);
+        panelForgotPassword.setLayout(panelForgotPasswordLayout);
+        panelForgotPasswordLayout.setHorizontalGroup(
+            panelForgotPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelForgotPasswordLayout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(jpanelForgotPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(214, 214, 214))
+        );
+        panelForgotPasswordLayout.setVerticalGroup(
+            panelForgotPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelForgotPasswordLayout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jpanelForgotPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
+        );
+
+        background1.add(panelForgotPassword, "card5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -514,10 +644,10 @@ public class Login_RegisterController extends javax.swing.JFrame {
         tf_registerusername.setHelperText("");
         tf_registerpassword.setHelperText("");
         tf_registerconfirmpassword.setHelperText("");
-
     }
     private void lbl_taotaikhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_taotaikhoanMouseClicked
         // TODO add your handling code here:
+        check = false;
         if (!animatorLogin.isRunning()) {
             signIn = true;
             clearLogin();
@@ -528,51 +658,6 @@ public class Login_RegisterController extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lbl_taotaikhoanMouseClicked
 
-//    private void showMessage(Message.MessageType messageType, String message) {
-//        Message ms = new Message();
-//        ms.showMessage(messageType, message);
-//        TimingTarget target = new TimingTargetAdapter() {
-//            @Override
-//            public void begin() {
-//                if (ms.isShow()) {
-//                    background1.add(ms, "pos 0.5a1-30", 0);
-//                    ms.setVisible(true);
-//                    background1.repaint();
-//                }
-//            }
-//
-//            @Override
-//            public void timingEvent(float fraction) {
-//                float f;
-//                if (ms.isShow()) {
-//                    f = 40 * (1f - fraction);
-//
-//                } else {
-//                    f = 40 * fraction;
-//                }
-//                layout.setComponentConstraints(ms, "pos 0.5a1 " + (int) (f - 30));
-//                background1.repaint();
-//                background1.revalidate();
-//            }
-//
-//            @Override
-//            public void end() {
-//                if (ms.isShow()) {
-//                    background1.remove(ms);
-//                    background1.repaint();
-//                    background1.revalidate();
-//                } else {
-//                    ms.setShow(true);
-//                }
-//            }
-//        };
-//        Animator animator = new Animator(300, target);
-//        animator.setResolution(0);
-//        animator.setAcceleration(0.5f);
-//        animator.setDeceleration(0.5f);
-//        animator.start();
-//    }
-
     private void sendMail(DangNhapModel model) {
         new Thread(new Runnable() {
             @Override
@@ -582,7 +667,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
                     panelRegister.setVisible(false);
                     animatorVerify.start();
                     panelVerify.setVisible(true);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(Login_RegisterController.this, "Có lỗi xảy ra khi gửi email:\n" + ms.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -641,22 +726,30 @@ public class Login_RegisterController extends javax.swing.JFrame {
                 action = false;
             }
             List<DangNhapModel> list = dangNhapService.findAll();
-            if ((action && list.isEmpty()) || (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == false)) {
+            DangNhapModel dn = dangNhapService.findOne(tf_registerusername.getText());
+            CongDanModel cd = congDanService.findOneWithoutAdd(tf_registerusername.getText());
+            JOptionPane.showMessageDialog(rootPane, tf_registeremail.getText() + " " + cd.getEmail());
+            if(!tf_registeremail.getText().trim().equals(cd.getEmail())){
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập email đã đăng ký trong công dân", "Cảnh báo",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if ((action && list.isEmpty()) || (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == false && dn.getTenDangNhap().equals(cd.getCCCD()))) {
                 model.setQuyen("user");
                 model.setTenDangNhap(tf_registerusername.getText().trim());
                 model.setMatKhau(tf_registerpassword.getText().trim());
                 model.setVerifyCode(dangNhapService.generateVerifyCode().trim());
-                model.setEmail(tf_registeremail.getText().trim());
+                model.setEmail(cd.getEmail());
                 model.setTrangThai(1);
                 dangNhapService.insert(model);
                 sendMail(model);
-//                JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công", "Thông báo",
-//                        JOptionPane.INFORMATION_MESSAGE);
-//                signIn = false;
-//                animatorRegister.start();
             } else if (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == true) {
                 JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!!! Vui lòng nhập tên khác", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE);
+            }
+            else if(action && !cd.getCCCD().equals(dn.getTenDangNhap())){
+                JOptionPane.showMessageDialog(null, "Không thể tạo tài khoản mà chưa có công dân", "Cảnh báo",
+                        JOptionPane.WARNING_MESSAGE); 
             }
         }
     }//GEN-LAST:event_btn_signupActionPerformed
@@ -665,19 +758,60 @@ public class Login_RegisterController extends javax.swing.JFrame {
         // TODO add your handling code here: 
         DangNhapModel dangNhapModel = dangNhapService.findOne(tf_registerusername.getText());
         try {
-            if(dangNhapService.verifyCodeWithUser(dangNhapModel.getTenDangNhap(), tf_code.getText().trim())){
+            if (dangNhapService.verifyCodeWithUser(dangNhapModel.getTenDangNhap(), tf_code.getText().trim())) {
                 dangNhapService.doneVerify(dangNhapModel.getTenDangNhap());
-                JOptionPane.showMessageDialog(rootPane, dangNhapModel.getTenDangNhap());
+                JOptionPane.showMessageDialog(null, "Đăng ký tài khoản thành công", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
                 signIn = false;
-                animatorVerify.start();     
+                animatorVerify.start();
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, dangNhapModel.getTenDangNhap() +  " " + tf_code.getText().trim() );
+            JOptionPane.showMessageDialog(null, "Verify Code sai! Vui lòng nhập lại", "Cảnh báo",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_OKActionPerformed
 
-   
-    
+    private void lbl_forgotpasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_forgotpasswordMouseClicked
+        // TODO add your handling code here:
+        check = true;
+        if (!animatorLogin.isRunning()) {
+            signIn = true;
+            clearLogin();
+            tf_emailforgotpass.setText("");
+            panelLogin.setVisible(false);
+            animatorLogin.start();
+            panelForgotPassword.setVisible(true);
+        }
+    }//GEN-LAST:event_lbl_forgotpasswordMouseClicked
+
+    private void btn_okForgotpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_okForgotpassActionPerformed
+        // TODO add your handling code here:
+        DangNhapModel dangNhapModel = dangNhapService.findOneByEmail(tf_emailforgotpass.getText().trim());
+        try {
+            if (dangNhapModel.getEmail() != null) {
+                sendForgotPass(dangNhapModel);
+                signIn = false;
+                animatorForgot.start();
+                
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Sai email", "Cảnh báo",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btn_okForgotpassActionPerformed
+
+    private void sendForgotPass(DangNhapModel model) {
+        ModelMessage ms = new ServiceMail().sendMain(model.getEmail(), model.getMatKhau());
+        if (ms.isSuccess()) {
+            JOptionPane.showMessageDialog(null, "Đã gửi password về email", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(Login_RegisterController.this, "Có lỗi xảy ra khi gửi email:\n" + ms.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -714,6 +848,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
     private Swing.Background background1;
     private button.MyButton btn_OK;
     private Swing.Button btn_login;
+    private button.MyButton btn_okForgotpass;
     private Swing.Button btn_signup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -721,14 +856,19 @@ public class Login_RegisterController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jpanelForgotPass;
     private javax.swing.JPanel jpanelLogin;
     private javax.swing.JPanel jpanelRegister;
+    private javax.swing.JLabel lbl_forgotpassword;
     private javax.swing.JLabel lbl_taotaikhoan;
+    private Swing.PanelTransparent panelForgotPassword;
     private javax.swing.JPanel panelLogin;
     private Swing.PanelTransparent panelRegister;
     private Swing.PanelTransparent panelVerify;
     private Swing.MyTextField tf_code;
+    private Swing.MyTextField tf_emailforgotpass;
     private Swing.PasswordField tf_password;
     private Swing.PasswordField tf_registerconfirmpassword;
     private Swing.TextField tf_registeremail;

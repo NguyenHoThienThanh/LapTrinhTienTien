@@ -18,7 +18,6 @@ import java.util.Random;
  * @author TUAN
  */
 public class DangNhapDAOImpl implements IDangNhapDAO {
-
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -218,6 +217,31 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
             }
         }
         return verify;
+    }
+
+    @Override
+    public DangNhapModel findOneByEmail(String email) {
+        String query = "select * from DangNhap where Email = ? and TrangThai = 1";
+        DangNhapModel dangNhap = new DangNhapModel();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                dangNhap.setID(rs.getInt(1));
+                dangNhap.setQuyen(rs.getString(2));
+                dangNhap.setTenDangNhap(rs.getString(3));
+                dangNhap.setMatKhau(rs.getString(4));
+                dangNhap.setEmail(rs.getString(5));
+                dangNhap.setVerifyCode(rs.getString(6));
+                dangNhap.setTrangThai(rs.getInt(7));
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dangNhap;
     }
 
 }

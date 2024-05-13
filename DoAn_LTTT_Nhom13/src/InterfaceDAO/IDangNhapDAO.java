@@ -15,6 +15,7 @@ import java.util.List;
 public interface IDangNhapDAO {
     List<DangNhapModel> findAll();
     DangNhapModel findOne(String userName);
+    DangNhapModel findOneByEmail(String email);
     boolean insert (DangNhapModel dangNhap);
     boolean update (DangNhapModel dangNhap);
     boolean delete (String userName);
