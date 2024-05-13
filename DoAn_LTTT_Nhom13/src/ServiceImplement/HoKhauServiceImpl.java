@@ -40,7 +40,6 @@ public class HoKhauServiceImpl implements IHoKhauService {
     public boolean insert(HoKhauModel hoKhau) {
         return hoKhauDAO.insert(hoKhau);
     }
-    
 
     @Override
     public boolean update(HoKhauModel hoKhau) {
@@ -58,16 +57,16 @@ public class HoKhauServiceImpl implements IHoKhauService {
     public boolean delete(String MaHK) {
         return hoKhauDAO.delete(MaHK);
     }
-    
+
     @Override
     public List<ThongTinHoKhau> findAllHoKhauUser(String MaHK) {
-        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, KhaiSinhNguoiThamGia, Hotennguoithan, QuanHeVoiChuHo, DiaChi, CCCD , QuanHeID\n" +
-"                 from  \n" +
-"                 (select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo, QuanHe.ID as QuanHeID\n" +
-"                 from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n" +
-"                where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n" +
-"                 WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)\n" +
-"				 order by QuanHeID ASC";
+        String query = "select MaHK, KhaiSinhChuHo, HoTenKS as HotenChuHo, KhaiSinhNguoiThamGia, Hotennguoithan, QuanHeVoiChuHo, DiaChi, CCCD , QuanHeID\n"
+                + "                 from  \n"
+                + "                 (select HoKhau.MaHK, DiaChi, KhaiSinhChuHo, KhaiSinhNguoiThamGia, HoTenKS as Hotennguoithan, QuanHeVoiChuHo, QuanHe.ID as QuanHeID\n"
+                + "                 from HoKhau join QuanHe on HoKhau.MaHK = QuanHe.MaHK join KhaiSinh on QuanHe.KhaiSinhNguoiThamGia = KhaiSinh.MaKS \n"
+                + "                where QuanHe.TrangThai = 1) T join KhaiSinh on T.KhaiSinhChuHo = KhaiSinh.MaKS join CongDan on KhaiSinh.MaKS = CongDan.MaKS \n"
+                + "                 WHERE MaHK IN (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and MaHK = ?)\n"
+                + "				 order by QuanHeID ASC";
         List<ThongTinHoKhau> listThongTinHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -83,7 +82,7 @@ public class HoKhauServiceImpl implements IHoKhauService {
                 tthk.setHoTenNguoiThan(rs.getString("Hotennguoithan"));
                 tthk.setQuanHeVoiChuHo(rs.getString("QuanHeVoiChuHo"));
                 tthk.setDiaChi(rs.getString("DiaChi"));
-                tthk.setQuanHeID(rs.getInt("QuanHeID"));
+                tthk.setQuanHeID(rs.getString("QuanHeID"));
                 listThongTinHoKhau.add(tthk);
             }
             conn.close();
@@ -94,7 +93,7 @@ public class HoKhauServiceImpl implements IHoKhauService {
         return listThongTinHoKhau;
 
     }
-    
+
     @Override
     public List<ThongTinHoKhau> findAllHoKhau(String CCCD) {
         String query = "select CCCD as CCCDNguoiThan, HoTen as HoTenNguoiThan, SDT, NgaySinh, QuanHeVoiChuHo, MaHK from CongDan join (select MaKS, HoTenKS, GioiTinh, NgaySinh, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from KhaiSinh join (select T.MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from QuanHe join (select MaHK, DiaChi, KhaiSinhChuHo from HoKhau where MaHK in (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and CCCD = ?)) T on QuanHe.MaHK = T.MaHK) Q on Q.KhaiSinhNguoiThamGia = KhaiSinh.MaKS) C on C.KhaiSinhNguoiThamGia = CongDan.MaKS";
@@ -251,7 +250,7 @@ public class HoKhauServiceImpl implements IHoKhauService {
             return -1;
         }
     }
-    
+
     @Override
     public HoKhauModel findOneHKByMaKS(String MaKS) {
         String query = "select MaHK, DiaChi, KhaiSinhChuHo, TrangThai from HoKhau where KhaiSinhChuHo = ?";
@@ -262,12 +261,12 @@ public class HoKhauServiceImpl implements IHoKhauService {
             ps.setString(1, MaKS);
             rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 hoKhau.setMaHK(rs.getString(1));
                 hoKhau.setDiaChi(rs.getString(2));
                 hoKhau.setKhaiSinhChuHo(rs.getString(3));
                 hoKhau.setTrangThai(rs.getInt(4));
-                
+
             }
             conn.close();
         } catch (Exception e) {
@@ -277,4 +276,30 @@ public class HoKhauServiceImpl implements IHoKhauService {
 
     }
 
+    public ThongTinHoKhau findOneByCCCDChungTu(String CCCD) {
+        String query = "select GiayChungTu.CCCD as CCCDChuHo, KhaiSinh.MaKS as KhaiSinhChuHo , HoKhau.MaHK as MaHK, QuanHe.ID as ID from GiayChungTu\n"
+                + "inner join CongDan on GiayChungTu.CCCD = CongDan.CCCD\n"
+                + "inner join KhaiSinh on KhaiSinh.MaKS = CongDan.MaKS\n"
+                + "inner join HoKhau on HoKhau.KhaiSinhChuHo = KhaiSinh.MaKS\n"
+                + "inner join QuanHe on HoKhau.KhaiSinhChuHo = QuanHe.KhaiSinhNguoiThamGia\n"
+                + "where CongDan.CCCD = ? and GiayChungTu.TrangThai = 1";
+        ThongTinHoKhau tthk = new ThongTinHoKhau();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                tthk.setCCCDChuHo(rs.getString("CCCDChuHo"));
+                tthk.setKhaiSinhChuHo("KhaiSinhChuHo");
+                tthk.setMaHoKhau(rs.getString("MaHK"));
+                tthk.setQuanHeID(rs.getString("ID"));
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tthk;
+
+    }
 }
