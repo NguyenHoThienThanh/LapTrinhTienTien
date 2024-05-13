@@ -379,7 +379,7 @@ public class TamTruControllerUser extends javax.swing.JPanel {
             Date NgayDen = jDateDen.getDate(); // For JDateChooser
             Date NgayDi = jDateNgayDi.getDate(); // For JDateChooser
             String NoiDangKy = tf_noidangky.getText();
-            int TrangThai = 1;
+            int TrangThai = 2;
 
             // Create a new instance of DonTamTruUser with all properties
             DonTamTruUser model = new DonTamTruUser(MaTT, HoTen, GioiTinh, NgaySinh, NgayDk, CCCD, NoiCap, NgayCap, Sdt, Email, LiDo, NgayDen, NgayDi, NoiDangKy, TrangThai);

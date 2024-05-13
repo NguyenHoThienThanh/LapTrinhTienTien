@@ -421,7 +421,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
             Date NgayDi = jDateNgayDi.getDate(); 
             String NoiChuyenDen = tf_noichuyenden.getText();
             String NoiChuyenDi = tf_noichuyendi.getText();
-            int TrangThai = 1;
+            int TrangThai = 2;
             // Create a new instance of DonTamTruUser with all properties
             DonTamVangUser model = new DonTamVangUser(MaTV, HoTen, GioiTinh, NgaySinh, NgayDk, CCCD, NoiCap, NgayCap, Sdt, Email, NoiChuyenDen, NoiChuyenDi, NgayDi, NgayDen, LiDo, TrangThai);
 

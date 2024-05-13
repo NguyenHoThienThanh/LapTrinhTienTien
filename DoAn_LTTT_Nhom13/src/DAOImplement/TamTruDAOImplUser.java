@@ -104,7 +104,7 @@ public class TamTruDAOImplUser implements ITamTruDAOUser{
             ps.setDate(4, new java.sql.Date(tamTru.getNgayDen().getTime()));
             ps.setDate(5, new java.sql.Date(tamTru.getNgayDi().getTime()));
             ps.setString(6, tamTru.getLiDo());
-            ps.setInt(7, 1); // Assuming you have a getter for TrangThai
+            ps.setInt(7, 2); // Assuming you have a getter for TrangThai
 
             ps.executeUpdate();
         } catch (Exception e) {
