@@ -48,7 +48,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         else {
             tf_tenDangNhap.setText(dn.getTenDangNhap());
             tf_matKhau.setText(dn.getMatKhau().trim());
-            tf_soCCCD.setText(congDan.getCCCD());
+            tf_soCCCD.setText(congDan.getCCCD().trim());
             tf_email.setText(congDan.getEmail());
             tf_gioiTinh.setText(congDan.getGioiTinh());
             tf_hoTen.setText(congDan.getHoTen());
