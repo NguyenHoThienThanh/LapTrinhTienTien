@@ -10,6 +10,8 @@ import Models.CongDanModel;
 import Models.TamVangModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.TamVangServiceImpl;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -23,6 +25,12 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class TamVangController extends javax.swing.JPanel {
 
@@ -88,6 +96,7 @@ public class TamVangController extends javax.swing.JPanel {
         btn_luuSua = new Swing.Button();
         cbx_loaiDon = new Swing.Combobox();
         lbl_loaiDon = new javax.swing.JLabel();
+        btn_xuatDanhSach = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -151,7 +160,7 @@ public class TamVangController extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Tạm Trú", "Ngày Đăng Ký", "Nơi Chuyển Đi", "Nơi Chuyển Đến", "Họ Tên", "Ngày Sinh", "Số CCCD", "Ngày Cấp CCCD", "Nơi Cấp CCCD", "Ngày Đi", "Ngày Về", "Lý Do"
+                "Mã Tạm Vắng", "Ngày Đăng Ký", "Nơi Chuyển Đi", "Nơi Chuyển Đến", "Họ Tên", "Ngày Sinh", "Số CCCD", "Ngày Cấp CCCD", "Nơi Cấp CCCD", "Ngày Đi", "Ngày Về", "Lý Do"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -209,6 +218,15 @@ public class TamVangController extends javax.swing.JPanel {
         lbl_loaiDon.setForeground(new java.awt.Color(18, 99, 63));
         lbl_loaiDon.setText("ĐƠN ĐÃ DUYỆT");
 
+        btn_xuatDanhSach.setBackground(new java.awt.Color(18, 99, 63));
+        btn_xuatDanhSach.setForeground(new java.awt.Color(255, 255, 255));
+        btn_xuatDanhSach.setText("Xuất danh sách");
+        btn_xuatDanhSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xuatDanhSachActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,7 +275,9 @@ public class TamVangController extends javax.swing.JPanel {
                                 .addComponent(cbx_loaiDon, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(25, 25, 25))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
+                .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,7 +333,8 @@ public class TamVangController extends javax.swing.JPanel {
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -698,6 +719,84 @@ public class TamVangController extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cbx_loaiDonActionPerformed
 
+    private void btn_xuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatDanhSachActionPerformed
+        if (tbl_thongTinTamVang.getRowCount() != 0) {
+            String filePath = "D:\\DanhSachTamVang.xlsx";
+            exportToExcel(filePath);
+        } else {
+            JOptionPane dialog = new JOptionPane("Bảng dữ liệu trống!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+    }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
+    private void exportToExcel(String filePath) {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Danh sách tạm vắng");
+
+        Cell cell = null;
+        XSSFRow roww = sheet.createRow(0);
+        cell = roww.createCell(5, CellType.STRING);
+        cell.setCellValue("DANH SÁCH TẠM VẮNG");
+        // Tiêu đề cột
+        Row headerRow = sheet.createRow(2);
+        headerRow.createCell(0).setCellValue("Mã tạm vắng");
+        headerRow.createCell(1).setCellValue("Ngày đăng ký");
+        headerRow.createCell(2).setCellValue("Nơi chuyển đi");
+        headerRow.createCell(3).setCellValue("Nơi chuyển đến");
+        headerRow.createCell(4).setCellValue("Họ tên");
+        headerRow.createCell(5).setCellValue("Ngày sinhh");
+        headerRow.createCell(6).setCellValue("Số CCCD");
+        headerRow.createCell(7).setCellValue("Ngày cấp CCCD");
+        headerRow.createCell(8).setCellValue("Nơi Cấp CCCD");
+        headerRow.createCell(9).setCellValue("Ngày đi");
+        headerRow.createCell(10).setCellValue("Ngày về");
+        headerRow.createCell(11).setCellValue("Lý do");
+
+        int sttCounter = 1;
+        // Dữ liệu
+        for (int i = 0; i < tbl_thongTinTamVang.getRowCount(); i++) {
+            Row row = sheet.createRow(i + 3);
+            row.createCell(0).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 0));
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 1).toString());
+            
+            row.createCell(2).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 2)); 
+            row.createCell(3).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 3));
+            row.createCell(4).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 4));
+
+            cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 5).toString());
+
+            row.createCell(6).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 6));
+            
+            cell = row.createCell(7, CellType.STRING);
+            cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 7).toString());
+            
+            row.createCell(8).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 8));
+            
+            cell = row.createCell(9, CellType.STRING);
+            cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 9).toString());
+            
+            cell = row.createCell(10, CellType.STRING);
+            cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 10).toString());
+
+            row.createCell(11).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 11));
+
+        }
+
+        // Tự động điều chỉnh độ rộng cột
+        for (int i = 0; i < tbl_thongTinTamVang.getColumnCount(); i++) {
+            sheet.autoSizeColumn(i);
+        }
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+            JOptionPane.showMessageDialog(null, "Xuất dữ liệu ra file Excel thành công");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
+        }
+    }
     private void clear() {
         tf_soCCCD.setText("");
         tf_hoTen.setText("");
@@ -824,6 +923,7 @@ public class TamVangController extends javax.swing.JPanel {
     private Swing.Button btn_sua;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
+    private Swing.Button btn_xuatDanhSach;
     private Swing.Combobox cbx_loaiDon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;

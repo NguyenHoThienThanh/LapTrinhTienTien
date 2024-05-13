@@ -9,6 +9,8 @@ import ServiceImplement.ChungNhanKetHonServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
 import ServiceImplement.LyHonServiceImpl;
 import Swing.TextField;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -22,6 +24,12 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ThongTinKetHonController extends javax.swing.JPanel {
 
@@ -76,6 +84,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
         btn_them = new Swing.Button();
         btn_loadData = new button.MyButton();
         btn_loadData1 = new button.MyButton();
+        btn_xuatDanhSach = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -212,6 +221,15 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
             }
         });
 
+        btn_xuatDanhSach.setBackground(new java.awt.Color(18, 99, 63));
+        btn_xuatDanhSach.setForeground(new java.awt.Color(255, 255, 255));
+        btn_xuatDanhSach.setText("Xuất danh sách");
+        btn_xuatDanhSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xuatDanhSachActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,17 +279,19 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
                                 .addComponent(tf_noiDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tf_ngayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(34, 34, 34)
+                .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
+                .addGap(38, 38, 38)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,7 +349,8 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
                     .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -817,6 +838,87 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
             jDialog.setVisible(true);
         }
     }//GEN-LAST:event_btn_loadData1ActionPerformed
+
+    private void btn_xuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatDanhSachActionPerformed
+        if (tbl_thongTinKetHon.getRowCount() != 0) {
+            String filePath = "D:\\DanhSachKetHon.xlsx";
+            exportToExcel(filePath);
+        } else {
+            JOptionPane dialog = new JOptionPane("Bảng dữ liệu trống!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+    }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
+                                                
+    private void exportToExcel(String filePath) {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Danh sách kết hôn");
+
+        Cell cell = null;
+        XSSFRow roww = sheet.createRow(0);
+        cell = roww.createCell(6, CellType.STRING);
+        cell.setCellValue("DANH SÁCH KẾT HÔN");
+        // Tiêu đề cột
+        Row headerRow = sheet.createRow(2);
+        headerRow.createCell(0).setCellValue("Mã kết hôn");
+        headerRow.createCell(1).setCellValue("CCCD vợ");
+        headerRow.createCell(2).setCellValue("Họ tên vợ");
+        headerRow.createCell(3).setCellValue("Ngày sinh vợ");
+        headerRow.createCell(4).setCellValue("Dân tộc vợ");
+        headerRow.createCell(5).setCellValue("Quốc tịch vợ");
+        headerRow.createCell(6).setCellValue("Nơi cư trú vợ");
+        headerRow.createCell(7).setCellValue("CCCD chồng");
+        headerRow.createCell(8).setCellValue("Họ tên chồng");
+        headerRow.createCell(9).setCellValue("Ngày sinh chồng");
+        headerRow.createCell(10).setCellValue("Dân tộc chồng");
+        headerRow.createCell(11).setCellValue("Quốc tịch chồng");
+        headerRow.createCell(12).setCellValue("Nơi cư trú chồng");
+        headerRow.createCell(13).setCellValue("Ngày đăng ký");
+        headerRow.createCell(14).setCellValue("Nơi đăng ký");
+
+        int sttCounter = 1;
+        // Dữ liệu
+        for (int i = 0; i < tbl_thongTinKetHon.getRowCount(); i++) {
+            Row row = sheet.createRow(i + 3);
+            row.createCell(0).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 0));           
+            row.createCell(1).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 1)); 
+            row.createCell(2).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 2));
+            
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue(tbl_thongTinKetHon.getValueAt(i, 3).toString());
+
+            row.createCell(4).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 4));           
+            row.createCell(5).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 5)); 
+            row.createCell(6).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 6));
+            row.createCell(7).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 7));
+            row.createCell(8).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 8));
+
+            cell = row.createCell(9, CellType.STRING);
+            cell.setCellValue(tbl_thongTinKetHon.getValueAt(i, 9).toString());
+            
+            row.createCell(10).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 10));
+            row.createCell(11).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 11));
+            row.createCell(12).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 12));
+            
+            cell = row.createCell(13, CellType.STRING);
+            cell.setCellValue(tbl_thongTinKetHon.getValueAt(i, 13).toString());
+            
+            row.createCell(14).setCellValue((String) tbl_thongTinKetHon.getValueAt(i, 14));
+        }
+
+        // Tự động điều chỉnh độ rộng cột
+        for (int i = 0; i < tbl_thongTinKetHon.getColumnCount(); i++) {
+            sheet.autoSizeColumn(i);
+        }
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+            JOptionPane.showMessageDialog(null, "Xuất dữ liệu ra file Excel thành công");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
+        }
+    }
     public void showResult() {
         listKetHon = ketHonService.findAllKetHon();
         ChungNhanKetHonModel ketHon = listKetHon.get(listKetHon.size() - 1);
@@ -967,6 +1069,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
     private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
+    private Swing.Button btn_xuatDanhSach;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private Swing.TableDark tbl_thongTinKetHon;
