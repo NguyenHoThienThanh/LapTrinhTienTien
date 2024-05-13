@@ -9,6 +9,7 @@ package Models;
  * @author Admin
  */
 public class DangNhapModel {
+    private int ID;
     private String Quyen;
     private String TenDangNhap;
     private String MatKhau;
@@ -18,43 +19,54 @@ public class DangNhapModel {
     public DangNhapModel() {
         // Không có gì cần khởi tạo trong constructor này
     }
-    
-    // Getters and setters
+
+    public DangNhapModel(int ID, String Quyen, String TenDangNhap, String MatKhau, int TrangThai) {
+        this.ID = ID;
+        this.Quyen = Quyen;
+        this.TenDangNhap = TenDangNhap;
+        this.MatKhau = MatKhau;
+        this.TrangThai = TrangThai;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public String getQuyen() {
         return Quyen;
     }
 
-    public void setQuyen(String quyen) {
-        Quyen = quyen;
+    public void setQuyen(String Quyen) {
+        this.Quyen = Quyen;
     }
 
     public String getTenDangNhap() {
         return TenDangNhap;
     }
 
-    public void setTenDangNhap(String tenDangNhap) {
-        TenDangNhap = tenDangNhap;
+    public void setTenDangNhap(String TenDangNhap) {
+        this.TenDangNhap = TenDangNhap;
     }
 
     public String getMatKhau() {
         return MatKhau;
     }
 
-    public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
+    public void setMatKhau(String MatKhau) {
+        this.MatKhau = MatKhau;
     }
 
     public int getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(int trangThai) {
-        TrangThai = trangThai;
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
     }
-
-    @Override
-    public String toString() {
-        return "DangNhapModel{" + "Quyen=" + Quyen + ", TenDangNhap=" + TenDangNhap + ", MatKhau=" + MatKhau + ", TrangThai=" + TrangThai + '}';
-    }
+    
     
 }

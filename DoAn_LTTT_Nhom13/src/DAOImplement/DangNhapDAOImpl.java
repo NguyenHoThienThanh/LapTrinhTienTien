@@ -23,7 +23,7 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
 
     @Override
     public List<DangNhapModel> findAll() {
-        String query = "SELECT * FROM DangNhap";
+        String query = "SELECT * FROM DangNhap where Quyen = 'user' order by ID ASC";
         List<DangNhapModel> listDangNhap = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -31,10 +31,11 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 DangNhapModel dangNhap = new DangNhapModel();
-                dangNhap.setQuyen(rs.getString(1));
-                dangNhap.setTenDangNhap(rs.getString(2));
-                dangNhap.setMatKhau(rs.getString(3));
-                dangNhap.setTrangThai(rs.getInt(4));
+                dangNhap.setID(rs.getInt(1));
+                dangNhap.setQuyen(rs.getString(2));
+                dangNhap.setTenDangNhap(rs.getString(3));
+                dangNhap.setMatKhau(rs.getString(4));
+                dangNhap.setTrangThai(rs.getInt(5));
                 listDangNhap.add(dangNhap);
             }
             conn.close();
@@ -54,10 +55,11 @@ public class DangNhapDAOImpl implements IDangNhapDAO {
             ps.setString(1, userName);
             rs = ps.executeQuery();
             while (rs.next()) {
-                dangNhap.setQuyen(rs.getString(1));
-                dangNhap.setTenDangNhap(rs.getString(2));
-                dangNhap.setMatKhau(rs.getString(3));
-                dangNhap.setTrangThai(rs.getInt(4));
+                dangNhap.setID(rs.getInt(1));
+                dangNhap.setQuyen(rs.getString(2));
+                dangNhap.setTenDangNhap(rs.getString(3));
+                dangNhap.setMatKhau(rs.getString(4));
+                dangNhap.setTrangThai(rs.getInt(5));
             }
             conn.close();
         } catch (Exception e) {

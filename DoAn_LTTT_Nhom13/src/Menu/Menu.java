@@ -24,7 +24,7 @@ public class Menu extends JComponent {
     private MigLayout layout;
     private String[][] menuItems = new String[][]{
         {"Trang Chủ"},
-        {"Công Dân", "Thông Tin Công Dân", "Khai Sinh", "Chứng Tử", "Hộ Khẩu","Chi Tiết Hộ Khẩu", "Tạm Trú", "Tạm Vắng", "Giấy Chứng Nhận Kết Hôn", "Đơn Ly Hôn"},
+        {"Công Dân", "Thông Tin Công Dân", "Khai Sinh", "Chứng Tử", "Hộ Khẩu","Chi Tiết Hộ Khẩu", "Tạm Trú", "Tạm Vắng", "Giấy Chứng Nhận Kết Hôn", "Đơn Ly Hôn","Quản Lý Tài Khoản"},
         {"Quản Lý Đơn"},
         {"Thống Kê", "Khai Sinh", "Chứng Tử", "Kết Hôn", "Ly Hôn"},
         {"Đánh Giá"}
