@@ -15,6 +15,7 @@
 create database QuanLyDanCuDoThi
 go
 use QuanLyDanCuDoThi
+
 go
 
 create table KhaiSinh
@@ -80,44 +81,79 @@ create table CongDan
 	MaKS varchar(10) references KhaiSinh(MaKS),
 	SDT nvarchar(20),
 	Email nvarchar(50),
-	TrangThai int
+	TrangThai int, 
+	HinhAnh VARBINARY(MAX)
 )
 
-insert into CongDan(CCCD, HoTen, NcCccd, NgcCccd, MaKS, SDT, Email, TrangThai)
-values ('083303008061',N'Phạm Văn T', N'TP. Hồ Chí Minh', '2021-12-21', 'KS01', '0814096656', 'phamvant@gmail.com', 1)
-	 ,('083303008072',N'Đinh Thị Kim H', N'TP. Hồ Chí Minh', '2021-12-20', 'KS02', '0814096245', 'dinhthikimh@gmail.com', 1)
-	 ,('083303008211',N'Phạm Thị Phương N', N'TP. Hồ Chí Minh', '2021-12-21', 'KS03', '0987455412', 'phamthiphuongn@gmail.com', 1)
-	 ,('083303008161',N'Phạm Nhat T', N'TP. Hồ Chí Minh', '2022-12-27', 'KS04', '0358046675', 'phamnhatt@gmail.com', 1)
-	 ,('083303002561',N'Lê Hoàng L', N'Bình Dương', '2021-10-12', 'KS05', '0912124748', 'lehoangl@gmail.com', 1)
-	 ,('083303003061',N'Hoàng Thị Thùy D', N'Đồng Nai', '2021-10-10', 'KS06', '0345696784', 'hoangthithuyd@gmail.com', 0)
-	 ,('083303008761',N'Lê Minh D', N'Bình Dương', '2023-01-20', 'KS07', '0754141469', 'leminhd@gmail.com', 1)
+insert into CongDan(CCCD, HoTen, NcCccd, NgcCccd, MaKS, SDT, Email, TrangThai, HinhAnh)
+values ('083303008061',N'Phạm Văn T', N'TP. Hồ Chí Minh', '2021-12-21', 'KS01', '0814096656', 'phamvant@gmail.com', 1, 
+(SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22109011.jpg', SINGLE_BLOB) AS image));
 
-	 ,('083303001234',N'Đinh Văn Sấu', N'Bến Tre', '2020-02-20', 'KS08', '0345746645', 'dinhvans@gmail.com', 0)
-	 ,('083303007894',N'Phạm Thị Sáng', N'Bến Tre', '2020-02-22', 'KS09', '0745415844', 'phamthis@gmail.com', 1)
-	 ,('083303004512',N'Đinh Văn Thanh', N'Bến Tre', '2020-02-20', 'KS010', '0345746645', 'dinhvanthanh@gmail.com', 1)
-	 ,('083303007814',N'Đinh Văn Nhung', N'Bến Tre', '2020-02-20', 'KS011', '0345746645', 'dinhvannhung@gmail.com', 1)
-	 ,('083301479547',N'Đinh Văn Liêm', N'Bến Tre', '2020-02-20', 'KS012', '0345746645', 'dinhvanliem@gmail.com', 1)
-	 ,('083301726548',N'Đinh Công Tiền', N'Bến Tre', '2020-02-20', 'KS013', '0345746645', 'dinhcongtien@gmail.com', 1)
-	 ,('083305656254',N'Đinh Thị Kim Hương', N'Bến Tre', '2020-02-20', 'KS014', '0345746645', 'dinhthikimhuong@gmail.com', 1)
-	 ,('082007451678',N'Đinh Thị Kim Dung', N'Bến Tre', '2020-02-20', 'KS015', '0345746645', 'dinhthikimdung@gmail.com', 1)
-	 ,('083301234757',N'Đinh Thị Kim Phụng', N'Bến Tre', '2020-02-20', 'KS016', '0345746645', 'dinhthikimphung@gmail.com', 1)
 
-	 ,('023303001234',N'Phạm Văn Láng', N'Bến Tre', '2020-02-20', 'KS017', '0345746645', 'phamvanlang@gmail.com', 1)
-	 ,('023303007894',N'Nguyễn Thị Nhan', N'Bến Tre', '2020-02-22', 'KS018', '0745415844', 'nguyenthinhan@gmail.com', 1)
-	 ,('023303004512',N'Phạm Thị Nhe', N'Bến Tre', '2020-02-20', 'KS019', '0345746645', 'phamthinhe@gmail.com', 1)
-	 ,('013303007814',N'Phạm Thị Nhé', N'Bến Tre', '2020-02-20', 'KS020', '0345746645', 'phamthinhes@gmail.com', 1)
-	 ,('013301479547',N'Phạm Văn Lơn', N'Bến Tre', '2020-02-20', 'KS021', '0345746645', 'phamvanlon@gmail.com', 1)
-	 ,('023301726548',N'Phạm Văn Tơn', N'Bến Tre', '2020-02-20', 'KS022', '0345746645', 'phamvanton@gmail.com', 1)
-	 ,('043305656254',N'Phạm Văn Tuân', N'Bến Tre', '2020-02-20', 'KS023', '0345746645', 'phamvantuan@gmail.com', 1)
-	 ,('062007451678',N'Phạm Thị Nhi', N'Bến Tre', '2020-02-20', 'KS024', '0345746645', 'phamthinhi@gmail.com', 1)
-	 ,('033301234757',N'Phạm Thị Mộng Nghi', N'Bến Tre', '2020-02-20', 'KS025', '0345746645', 'phamthimongnghi@gmail.com', 1)
+insert into CongDan(CCCD, HoTen, NcCccd, NgcCccd, MaKS, SDT, Email, TrangThai, HinhAnh)
+values('083303008072',N'Đinh Thị Kim H', N'TP. Hồ Chí Minh', '2021-12-20', 'KS02', '0814096245', 'dinhthikimh@gmail.com', 1,
+(SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22128010.jpg', SINGLE_BLOB) AS image))
+	 ,('083303008211',N'Phạm Thị Phương N', N'TP. Hồ Chí Minh', '2021-12-21', 'KS03', '0987455412', '21110556@student.hcmute.edu.vn', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22131033.jpg', SINGLE_BLOB) AS image))
+	 ,('083303008161',N'Phạm Nhat T', N'TP. Hồ Chí Minh', '2022-12-27', 'KS04', '0358046675', 'phamnhatt@gmail.com',1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110154.jpg', SINGLE_BLOB) AS image))
+	 ,('083303002561',N'Lê Hoàng L', N'Bình Dương', '2021-10-12', 'KS05', '0912124748', 'lehoangl@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110155.jpg', SINGLE_BLOB) AS image))
+	 ,('083303003061',N'Hoàng Thị Thùy D', N'Đồng Nai', '2021-10-10', 'KS06', '0345696784', 'hoangthithuyd@gmail.com', 0, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110288.jpg', SINGLE_BLOB) AS image))
+	 ,('083303008761',N'Lê Minh D', N'Bình Dương', '2023-01-20', 'KS07', '0754141469', 'leminhd@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110305.jpg', SINGLE_BLOB) AS image))
 
-	 ,('092303008770', N'Nguyễn Thanh Tuấn', N'Hậu Giang', '2021-03-31', 'KS026', '0939339727', 'tuannguyen@gmail.com',1)
-	 ,('092303008771', N'Hồ Thị Thanh Hương', N'Bến Tre', '2021-03-31', 'KS027', '0939339726', 'thanhhuong@gmail.com',1)
-	 ,('092303008772', N'Nguyễn Hồ Thanh Thanh', N'Thành phố Cần Thơ', '2021-03-31', 'KS028', '0939339725', 'thanhthanh@gmail.com',1)
-	 ,('092303008779', N'Nguyễn Hồ Thiên Thanh', N'Bến Tre', '2021-03-31', 'KS029', '0818221901', '21110645@gmail.com', 1)
-	 ,('092303008773', N'Hồ Hữu Hòa', N'Thành phố Cần Thơ', '2021-03-31', 'KS030', '0939339724', 'hoaho@gmail.com',1)
-	 ,('092303008774', N'Hồ Hữu Hải', N'Thành phố Cần Thơ', '2021-03-31', 'KS026', '0939339723', 'haiho@gmail.com',1)
+	 ,('083303001234',N'Đinh Văn Sấu', N'Bến Tre', '2020-02-20', 'KS08', '0345746645', 'dinhvans@gmail.com', 0,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110141.jpg', SINGLE_BLOB) AS image))
+	 ,('083303007894',N'Phạm Thị Sáng', N'Bến Tre', '2020-02-22', 'KS09', '0745415844', 'phamthis@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22109069.jpg', SINGLE_BLOB) AS image))
+	 ,('083303004512',N'Đinh Văn Thanh', N'Bến Tre', '2020-02-20', 'KS010', '0345746645', 'dinhvanthanh@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110136.jpg', SINGLE_BLOB) AS image))
+	 ,('083303007814',N'Đinh Văn Nhung', N'Bến Tre', '2020-02-20', 'KS011', '0345746645', 'dinhvannhung@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110170.jpg', SINGLE_BLOB) AS image))
+	 ,('083301479547',N'Đinh Văn Liêm', N'Bến Tre', '2020-02-20', 'KS012', '0345746645', 'dinhvanliem@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110229.jpg', SINGLE_BLOB) AS image))
+	 ,('083301726548',N'Đinh Công Tiền', N'Bến Tre', '2020-02-20', 'KS013', '0345746645', 'dinhcongtien@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110237.jpg', SINGLE_BLOB) AS image))
+	 ,('083305656254',N'Đinh Thị Kim Hương', N'Bến Tre', '2020-02-20', 'KS014', '0345746645', 'dinhthikimhuong@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22109162.jpg', SINGLE_BLOB) AS image))
+	 ,('082007451678',N'Đinh Thị Kim Dung', N'Bến Tre', '2020-02-20', 'KS015', '0345746645', 'dinhthikimdung@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110272.jpg', SINGLE_BLOB) AS image))
+	 ,('083301234757',N'Đinh Thị Kim Phụng', N'Bến Tre', '2020-02-20', 'KS016', '0345746645', 'dinhthikimphung@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22109069.jpg', SINGLE_BLOB) AS image))
+	 ,('023303001234',N'Phạm Văn Láng', N'Bến Tre', '2020-02-20', 'KS017', '0345746645', 'phamvanlang@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22116068.jpg', SINGLE_BLOB) AS image))
+	 ,('023303007894',N'Nguyễn Thị Nhan', N'Bến Tre', '2020-02-22', 'KS018', '0745415844', 'nguyenthinhan@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22109072.jpg', SINGLE_BLOB) AS image))
+	 ,('023303004512',N'Phạm Thị Nhe', N'Bến Tre', '2020-02-20', 'KS019', '0345746645', 'phamthinhe@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22116075.jpg', SINGLE_BLOB) AS image))
+	 ,('013303007814',N'Phạm Thị Nhé', N'Bến Tre', '2020-02-20', 'KS020', '0345746645', 'phamthinhes@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22109108.jpg', SINGLE_BLOB) AS image))
+	 ,('013301479547',N'Phạm Văn Lơn', N'Bến Tre', '2020-02-20', 'KS021', '0345746645', 'phamvanlon@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110403.jpg', SINGLE_BLOB) AS image))
+	 ,('023301726548',N'Phạm Văn Tơn', N'Bến Tre', '2020-02-20', 'KS022', '0345746645', 'phamvanton@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22116067.jpg', SINGLE_BLOB) AS image))
+	 ,('043305656254',N'Phạm Văn Tuân', N'Bến Tre', '2020-02-20', 'KS023', '0345746645', 'phamvantuan@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110415.jpg', SINGLE_BLOB) AS image))
+	 ,('062007451678',N'Phạm Thị Nhi', N'Bến Tre', '2020-02-20', 'KS024', '0345746645', 'phamthinhi@gmail.com', 1,
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22119197.jpg', SINGLE_BLOB) AS image))
+	 ,('033301234757',N'Phạm Thị Mộng Nghi', N'Bến Tre', '2020-02-20', 'KS025', '0345746645', 'phamthimongnghi@gmail.com', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22124142.jpg', SINGLE_BLOB) AS image))
+
+	 ,('092303008770', N'Nguyễn Thanh Tuấn', N'Hậu Giang', '2021-03-31', 'KS026', '0939339727', 'tuannguyen@gmail.com',1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110252.jpg', SINGLE_BLOB) AS image))
+	 ,('092303008771', N'Hồ Thị Thanh Hương', N'Bến Tre', '2021-03-31', 'KS027', '0939339726', 'thanhhuong@gmail.com',1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22124069.jpg', SINGLE_BLOB) AS image))
+	 ,('092303008772', N'Nguyễn Hồ Thanh Thanh', N'Thành phố Cần Thơ', '2021-03-31', 'KS028', '0939339725', 'thanhthanh@gmail.com',1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22124072.jpg', SINGLE_BLOB) AS image))
+	 ,('092303008779', N'Nguyễn Hồ Thiên Thanh', N'Bến Tre', '2021-03-31', 'KS029', '0818221901', '21110645@student.hcmute.edu.vn', 1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22124028.jpg', SINGLE_BLOB) AS image))
+	 ,('092303008773', N'Hồ Hữu Hòa', N'Thành phố Cần Thơ', '2021-03-31', 'KS030', '0939339724', 'hoaho@gmail.com',1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22110329.jpg', SINGLE_BLOB) AS image))
+	 ,('092303008774', N'Hồ Hữu Hải', N'Thành phố Cần Thơ', '2021-03-31', 'KS026', '0939339723', 'haiho@gmail.com',1, 
+	 (SELECT * FROM OPENROWSET(BULK N'D:\\N3.2\\NNLTTT\\Clone0205\\LapTrinhTienTien\\DoAn_LTTT_Nhom13\\src\\Image\\22119003.jpg', SINGLE_BLOB) AS image))
+
 create table Tamtru
 (
 	ID integer identity(1,1) not null constraint Mtt_ID unique,
@@ -261,20 +297,18 @@ values ('HK01', 'KS01', N'Chủ hộ', 1),
 		('HK06', 'KS021', N'Chủ hộ', 1)
 create table DangNhap
 (
+	ID integer identity(1,1) not null constraint Dn_ID unique,
 	Quyen char(20),
 	TenDangNhap nvarchar(20) primary key,
 	MatKhau char(20),
+	Email char(50),
+	VerifyCode char(20),
 	TrangThai int
 )
-insert into DangNhap (Quyen, TenDangNhap, MatKhau, TrangThai)
-values ('admin', 'admin12345', '12345',1)
-	 ,('user', '083303008061','phamt123',1)
-	 ,('user','083303008072', 'kimh123',1)
-	 ,('user','083303008211', 'phuongn123',1)
-	 ,('user','083303008161', 'nhatt123', 1)
-	 ,('user','083303002561', 'hoangl123', 1)
-	 ,('user','083303003061','thuyd123', 0)	
-	 ,('user','083303008761', 'minhd123', 1)
+insert into DangNhap (Quyen, TenDangNhap, MatKhau, Email,VerifyCode,TrangThai)
+values ('admin', 'admin12345', '12345','21110665@student.hcmute.edu.vn','',1)
+insert into DangNhap (Quyen, TenDangNhap, MatKhau, Email,VerifyCode,TrangThai)
+values ('user', '092303008779', '26122003','21110645@student.hcmute.edu.vn','',1)
 create table GiayChungTu
 (
 	ID integer identity(1,1) not null constraint Mct_ID unique,
@@ -291,8 +325,6 @@ values ('083303003061', '2023-04-01', N'TP HCM', N'Benh tim', 1)
 insert into GiayChungTu(CCCD, NgayMat, NoiMat, NguyenNhan, TrangThai)
 values ('083303001234', '2023-10-01', N'Hà Nội', N'Benh ung thu', 1)
 
-update Tamvang set TrangThai = 0 where Cccd = 083303001234
-select * from Tamtru
 create table DanhGia 
 (	
 	CCCD nvarchar(20) references CongDan(CCCD),
@@ -305,5 +337,3 @@ create table DanhGia
 )
 
 insert into DanhGia values ('083303008072', N'OK', '4', '3', '5', '3', '2')
-
---select * from Thue
