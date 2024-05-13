@@ -12,8 +12,8 @@ import java.util.List;
  * @author TUAN
  */
 public interface IThongKeDAO {
-    public List<ThongKeModel> thongKeDKKSTheoThang();
-    public List<ThongKeModel> thongKeChungTuTheoThang();
-    public List<ThongKeModel> thongKeKetHonTheoThang();
-    public List<ThongKeModel> thongKeLyHonTheoThang();
+    public List<ThongKeModel> thongKeDKKSTheoThangTheoNam(String year);
+    public List<ThongKeModel> thongKeChungTuTheoThangTheoNam(String year);
+    public List<ThongKeModel> thongKeKetHonTheoThangTheoNam(String year);
+    public List<ThongKeModel> thongKeLyHonTheoThangTheoNam(String year);
 }

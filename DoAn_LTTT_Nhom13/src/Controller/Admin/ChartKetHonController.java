@@ -22,19 +22,10 @@ public class ChartKetHonController extends javax.swing.JPanel {
     IThongKeDAO thongKeDAO = new ThongKeDAOImpl();
     public ChartKetHonController() {
         initComponents();
-        chart.setTitle("Biểu đồ thống kê số lượng CNKH theo tháng");
         chart.addLegend("Kết Hôn", Color.decode("#0099F7"), Color.decode("#F11712"));
-        setDataKetHonTheoThang();
+        
     }
-   
-    public void setDataKetHonTheoThang(){
-        listThongKe = thongKeDAO.thongKeKetHonTheoThang();
-        for( int i = listThongKe.size() -1 ;i>=0;i--){
-            ThongKeModel thongKe = listThongKe.get(i);
-            chart.addData(new ModelChart(thongKe.getThang(), new double[]{thongKe.getSoLuongKetHon()}));
-        }
-        chart.start();
-    }
+
     
     
     
@@ -48,13 +39,59 @@ public class ChartKetHonController extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         panelShadow1 = new Chart.PanelShadow();
         chart = new Chart.CurveLineChart();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        cbx_nam = new Swing.Combobox();
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Biểu đồ thống kê khai sinh theo từng năm ");
 
         panelShadow1.setBackground(new java.awt.Color(34, 59, 69));
         panelShadow1.setColorGradient(new java.awt.Color(17, 38, 47));
 
         chart.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(34, 59, 69));
+        jPanel1.setPreferredSize(new java.awt.Dimension(905, 62));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Biểu đồ thống kê kết hôn theo từng năm ");
+
+        cbx_nam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        cbx_nam.setLabeText("");
+        cbx_nam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_namActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cbx_nam, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbx_nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout panelShadow1Layout = new javax.swing.GroupLayout(panelShadow1);
         panelShadow1.setLayout(panelShadow1Layout);
@@ -62,14 +99,18 @@ public class ChartKetHonController extends javax.swing.JPanel {
             panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelShadow1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                .addGroup(panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelShadow1Layout.setVerticalGroup(
             panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelShadow1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelShadow1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -85,9 +126,23 @@ public class ChartKetHonController extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbx_namActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_namActionPerformed
+        chart.clear();
+        listThongKe = thongKeDAO.thongKeKetHonTheoThangTheoNam(cbx_nam.getSelectedItem().toString());
+        for( int i = listThongKe.size() -1 ;i>=0;i--){
+            ThongKeModel thongKe = listThongKe.get(i);
+            chart.addData(new ModelChart(thongKe.getThang(), new double[]{thongKe.getSoLuongKetHon()}));
+        }
+        chart.start();
+    }//GEN-LAST:event_cbx_namActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Swing.Combobox cbx_nam;
     private Chart.CurveLineChart chart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private Chart.PanelShadow panelShadow1;
     // End of variables declaration//GEN-END:variables
 }
