@@ -2,6 +2,7 @@
 package InterfaceService;
 
 import Models.DangNhapModel;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IDangNhapService {
@@ -12,4 +13,10 @@ public interface IDangNhapService {
     boolean delete (String userName);
     boolean isUsernameExists(String username);
     boolean isPasswordExists(String username, String password);
+    String generateVerifyCode();
+    boolean checkDuplicateCode(String verifyCode);
+    boolean checkDuplicateEmail(String user);
+    boolean doneVerify(String tenDangNhap) throws SQLException, Exception;
+    boolean verifyCodeWithUser(String tenDangNhap, String code)throws SQLException, Exception;
+    
 }
