@@ -24,6 +24,8 @@ import ServiceImplement.KhaiSinhServiceImpl;
 import ServiceImplement.QuanHeServiceImpl;
 import ServiceImplement.TamTruServiceImpl;
 import ServiceImplement.TamVangServiceImpl;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -36,6 +38,12 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -49,9 +57,9 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     public ThongTinGiayChungTuController() {
         initComponents();
-        tbl_thongTinThue.fixTable(jScrollPane2);
+        tbl_thongTinChungTu.fixTable(jScrollPane2);
         listGiayChungTu = giayChungTuService.findAll();
-        model = (DefaultTableModel) tbl_thongTinThue.getModel();
+        model = (DefaultTableModel) tbl_thongTinChungTu.getModel();
         showTable();
         disableTextField();
 
@@ -76,7 +84,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btn_xoaDuLieu = new Swing.Button();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_thongTinThue = new Swing.TableDark();
+        tbl_thongTinChungTu = new Swing.TableDark();
         btn_luuSua = new Swing.Button();
         btn_luuThem = new Swing.Button();
         btn_loadData = new button.MyButton();
@@ -85,6 +93,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
         tf_ngayMat = new Swing.TextField();
         tf_nguyenNhan = new Swing.TextField();
         tf_maKhaiSinh = new Swing.TextField();
+        btn_xuatDanhSach = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -127,7 +136,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             }
         });
 
-        tbl_thongTinThue.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_thongTinChungTu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -143,16 +152,16 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbl_thongTinThue.getTableHeader().setReorderingAllowed(false);
-        tbl_thongTinThue.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_thongTinChungTu.getTableHeader().setReorderingAllowed(false);
+        tbl_thongTinChungTu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_thongTinThueMouseClicked(evt);
+                tbl_thongTinChungTuMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tbl_thongTinThue);
-        if (tbl_thongTinThue.getColumnModel().getColumnCount() > 0) {
-            tbl_thongTinThue.getColumnModel().getColumn(3).setPreferredWidth(50);
-            tbl_thongTinThue.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jScrollPane2.setViewportView(tbl_thongTinChungTu);
+        if (tbl_thongTinChungTu.getColumnModel().getColumnCount() > 0) {
+            tbl_thongTinChungTu.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tbl_thongTinChungTu.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
         btn_luuSua.setBackground(new java.awt.Color(18, 99, 63));
@@ -199,10 +208,22 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
         tf_maKhaiSinh.setLabelText("Mã khai sinh");
 
+        btn_xuatDanhSach.setBackground(new java.awt.Color(18, 99, 63));
+        btn_xuatDanhSach.setForeground(new java.awt.Color(255, 255, 255));
+        btn_xuatDanhSach.setText("Xuất danh sách");
+        btn_xuatDanhSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xuatDanhSachActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,11 +267,9 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70)
-                                .addComponent(tf_ngayMat, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tf_ngayMat, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,8 +292,10 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(tf_nguyenNhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_noiMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,25 +310,25 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
-        tbl_thongTinThue.clearSelection();
+        tbl_thongTinChungTu.clearSelection();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
 
-    private void tbl_thongTinThueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinThueMouseClicked
-        model = (DefaultTableModel) tbl_thongTinThue.getModel();
-        tf_maSoChungTu.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 0).toString());
-        tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 1).toString());
-        tf_ngayMat.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 5).toString());
-        tf_soCCCD.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 3).toString());
-        tf_hoTen.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 2).toString());
-        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 4).toString());
-        tf_noiMat.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 6).toString());
-        tf_nguyenNhan.setText(model.getValueAt(tbl_thongTinThue.getSelectedRow(), 7).toString());
-    }//GEN-LAST:event_tbl_thongTinThueMouseClicked
+    private void tbl_thongTinChungTuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinChungTuMouseClicked
+        model = (DefaultTableModel) tbl_thongTinChungTu.getModel();
+        tf_maSoChungTu.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 0).toString());
+        tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 1).toString());
+        tf_ngayMat.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 5).toString());
+        tf_soCCCD.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 3).toString());
+        tf_hoTen.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 2).toString());
+        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 4).toString());
+        tf_noiMat.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 6).toString());
+        tf_nguyenNhan.setText(model.getValueAt(tbl_thongTinChungTu.getSelectedRow(), 7).toString());
+    }//GEN-LAST:event_tbl_thongTinChungTuMouseClicked
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
-        int selectedRow = tbl_thongTinThue.getSelectedRow();
+        int selectedRow = tbl_thongTinChungTu.getSelectedRow();
 
-        if (tbl_thongTinThue.getRowCount() <= 0) {
+        if (tbl_thongTinChungTu.getRowCount() <= 0) {
             JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -322,7 +343,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             int confirm = JOptionPane.showConfirmDialog(myPanel, "Are you sure you want to delete this information?", "", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 try {
-                    String id = (String) tbl_thongTinThue.getValueAt(selectedRow, 0);
+                    String id = (String) tbl_thongTinChungTu.getValueAt(selectedRow, 0);
                     model.removeRow(selectedRow);
                     listGiayChungTu.remove(selectedRow);
                     if (new GiayChungTuServiceImpl().delete(id)) {
@@ -518,7 +539,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_loadDataActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        if (tbl_thongTinThue.getSelectedRow() < 0) {
+        if (tbl_thongTinChungTu.getSelectedRow() < 0) {
             JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -540,8 +561,8 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
         try {
-            int selectedRow = tbl_thongTinThue.getSelectedRow();
-            if (tbl_thongTinThue.getRowCount() <= 0) {
+            int selectedRow = tbl_thongTinChungTu.getSelectedRow();
+            if (tbl_thongTinChungTu.getRowCount() <= 0) {
                 JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
@@ -634,6 +655,73 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_xuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatDanhSachActionPerformed
+        if (tbl_thongTinChungTu.getRowCount() != 0) {
+            String filePath = "D:\\DanhSachChungTu.xlsx";
+            exportToExcel(filePath);
+        } else {
+            JOptionPane dialog = new JOptionPane("Bảng dữ liệu trống!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+    }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
+    
+    private void exportToExcel(String filePath) {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Danh sách chứng tử");
+
+        Cell cell = null;
+        XSSFRow roww = sheet.createRow(0);
+        cell = roww.createCell(4, CellType.STRING);
+        cell.setCellValue("DANH SÁCH CHỨNG TỬ");
+
+        // Tiêu đề cột
+        Row headerRow = sheet.createRow(2);
+        headerRow.createCell(0).setCellValue("STT");
+        headerRow.createCell(1).setCellValue("Mã Chứng Tử");
+        headerRow.createCell(2).setCellValue("Mã Khai Sinh");
+        headerRow.createCell(3).setCellValue("Họ Tên");
+        headerRow.createCell(4).setCellValue("Số CCCD");
+        headerRow.createCell(5).setCellValue("Ngày Sinh");
+        headerRow.createCell(6).setCellValue("Ngày Mất");
+        headerRow.createCell(7).setCellValue("Nơi Mất");
+        headerRow.createCell(8).setCellValue("Nguyên Nhân");
+
+        int sttCounter = 1;
+        // Dữ liệu
+        for (int i = 0; i < tbl_thongTinChungTu.getRowCount(); i++) {
+            Row row = sheet.createRow(i + 3);
+            row.createCell(0).setCellValue(sttCounter++);
+            row.createCell(1).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 0));
+            row.createCell(2).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 1));
+            row.createCell(3).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 2));
+            row.createCell(4).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 3));
+            
+
+            cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue(tbl_thongTinChungTu.getValueAt(i, 4).toString());
+            cell = row.createCell(6, CellType.STRING);
+            cell.setCellValue(tbl_thongTinChungTu.getValueAt(i, 5).toString());
+            row.createCell(7).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 6));
+            row.createCell(8).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 7));
+
+        }
+
+        // Tự động điều chỉnh độ rộng cột
+        for (int i = 0; i < tbl_thongTinChungTu.getColumnCount(); i++) {
+            sheet.autoSizeColumn(i);
+        }
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+            JOptionPane.showMessageDialog(null, "Xuất dữ liệu ra file Excel thành công");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
+        }
+    }
+    
     public void showResult() {
         listGiayChungTu = giayChungTuService.findAll();
         GiayChungTuModel giayChungTu = listGiayChungTu.get(listGiayChungTu.size() - 1);
@@ -752,9 +840,10 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
     private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
+    private Swing.Button btn_xuatDanhSach;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private Swing.TableDark tbl_thongTinThue;
+    private Swing.TableDark tbl_thongTinChungTu;
     private Swing.TextField tf_hoTen;
     private Swing.TextField tf_maKhaiSinh;
     private Swing.TextField tf_maSoChungTu;
