@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IQuanHeDAO {
     List<QuanHeModel> findAll();
-    QuanHeModel findOneByMaHK (String MaHK, String KhaiSinhNguoiThamGia);
+    QuanHeModel findOneByMaHK (String MaHK);
     boolean insert (QuanHeModel quanHe);
     boolean insertHK (ThongTinHoKhau quanHe);
     boolean update (QuanHeModel quanHe);

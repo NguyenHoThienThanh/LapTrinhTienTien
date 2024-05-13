@@ -48,20 +48,21 @@ public class QuanHeDAOImpl implements IQuanHeDAO {
     }
 
     @Override
-    public QuanHeModel findOneByMaHK(String MaHK, String KhaiSinhNguoiThamGia) {
+    public QuanHeModel findOneByMaHK(String MaHK) {
         String query = "SELECT * FROM QuanHe WHERE MaHK =? ";
         QuanHeModel quanHe = new QuanHeModel();
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, MaHK);
-            ps.setString(2, KhaiSinhNguoiThamGia);
+            //ps.setString(2, KhaiSinhNguoiThamGia);
             rs = ps.executeQuery();
             while (rs.next()) {
-                quanHe.setMaHK(rs.getString(1));
-                quanHe.setKhaiSinhNguoiThamGia(rs.getString(2));
-                quanHe.setQuanHeVoiChuHo(rs.getString(3));
-                quanHe.setTrangThai(rs.getInt(4));
+                quanHe.setID(rs.getString(1));
+                quanHe.setMaHK(rs.getString(2));
+                quanHe.setKhaiSinhNguoiThamGia(rs.getString(3));
+                quanHe.setQuanHeVoiChuHo(rs.getString(4));
+                quanHe.setTrangThai(rs.getInt(5));
             }
             conn.close();
         } catch (Exception e) {

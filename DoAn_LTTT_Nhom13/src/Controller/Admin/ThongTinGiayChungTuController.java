@@ -10,6 +10,7 @@ import InterfaceService.IGiayChungTuService;
 import Models.ChungNhanKetHonModel;
 import Models.CongDanModel;
 import Models.GiayChungTuModel;
+import Models.HoKhauModel;
 import Models.KhaiSinhModel;
 import Models.QuanHeModel;
 import Models.TamTruModel;
@@ -343,7 +344,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                     jMsgFail.setVisible(true);
                 }
             }
-            
+
             clear();
         }
     }//GEN-LAST:event_btn_xoaActionPerformed
@@ -365,12 +366,12 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             return;
         }
         GiayChungTuModel model = new GiayChungTuServiceImpl().findAllGCT(tf_soCCCD.getText().trim());
-        if(model.getMaCT() != null){
+        if (model.getMaCT() != null) {
             JOptionPane dialog = new JOptionPane("Công dân này đã có chứng tử!", JOptionPane.WARNING_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
         }
         GiayChungTuModel giayChungTu = new GiayChungTuModel();
         giayChungTu.setHoTen(tf_hoTen.getText());
@@ -412,55 +413,69 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-            
+
             TamTruModel tamTru = new TamTruServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
             int countTamTru = new TamTruServiceImpl().ifExists(giayChungTu.getCCCD());
-            if(countTamTru == 1){
+            if (countTamTru == 1) {
                 new TamTruServiceImpl().delete(tamTru.getMaTT());
             }
-            
             TamVangModel tamVang = new TamVangServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
             int countTamVang = new TamVangServiceImpl().ifExists(giayChungTu.getCCCD());
-            if(countTamVang == 1){
+            if (countTamVang == 1) {
                 new TamVangServiceImpl().delete(tamVang.getMaTV());
             }
-            
             ChungNhanKetHonModel ketHon = new ChungNhanKetHonDAOImpl().findOneCNKH_TrangThai(giayChungTu.getCCCD(), giayChungTu.getCCCD());
-            if(ketHon.getMaCnkh() != null){
+            if (ketHon.getMaCnkh() != null) {
                 new ChungNhanKetHonServiceImpl().delete(ketHon.getMaCnkh());
             }
-            
             CongDanModel congDan = new CongDanServiceImpl().findOne(giayChungTu.getCCCD());
-            if(congDan.getTrangThai() == 1){
+            if (congDan.getTrangThai() == 1) {
                 new CongDanServiceImpl().delete(giayChungTu.getCCCD());
             }
-            
             KhaiSinhModel khaiSinh = new KhaiSinhServiceImpl().findByCCCD(giayChungTu.getCCCD());
-            if(khaiSinh.getMaKS() != null){
+            if (khaiSinh.getMaKS() != null) {
                 new KhaiSinhServiceImpl().delete(khaiSinh.getMaKS());
             }
-            
             QuanHeModel quanHe = new QuanHeServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
-            if(quanHe.getMaHK() != null){
+            if (quanHe.getMaHK() != null) {
                 new QuanHeServiceImpl().deleteByMaHK(quanHe.getMaHK(), quanHe.getKhaiSinhNguoiThamGia());
             }
-            
-//            ThongTinHoKhau hoKhau = new HoKhauServiceImpl().findOneByCCCD(giayChungTu.getCCCD());
-//            if(hoKhau.getCCCDChuHo() == giayChungTu.getCCCD()){
-//                List<ThongTinHoKhau> list = new QuanHeServiceImpl().findAllByMaHK(hoKhau.getMaHoKhau());
-//                for(ThongTinHoKhau qh :list){
-//                    if(Integer.parseInt(qh.getQuanHeID()) > Integer.parseInt(hoKhau.getQuanHeID())){
-//                        QuanHeModel qhmodel = new QuanHeServiceImpl().findOneByMaHK(qh.getMaHoKhau(),qh.getKhaiSinhNguoiThamGia());
-//                        qhmodel.setQuanHeVoiChuHo("Chủ hộ");
-//                        new QuanHeServiceImpl().update(qhmodel);
-//                        break;
-//                    }       
-//                }
-//                QuanHeModel ml = new QuanHeServiceImpl().findOneByMaHK(hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhNguoiThamGia());
-//                ml.setTrangThai(0);
-//                new QuanHeServiceImpl().deleteByMaHK(hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhNguoiThamGia());   
-//                
-//            }
+            ThongTinHoKhau hoKhau = new HoKhauServiceImpl().findOneByCCCDChungTu(giayChungTu.getCCCD());
+            System.out.println(hoKhau.getCCCDChuHo()  + " " + giayChungTu.getCCCD() );
+            if (hoKhau.getCCCDChuHo().equals(giayChungTu.getCCCD())) {
+                List<ThongTinHoKhau> list = new QuanHeServiceImpl().findAllByMaHK(hoKhau.getMaHoKhau());
+                for (ThongTinHoKhau qh : list) {
+                    if(list.size() == 1){
+                        QuanHeModel qhmodel = new QuanHeServiceImpl().findOneByMaHKAndQuanHeID(qh.getMaHoKhau(), qh.getQuanHeID());
+                        if (qh.getTrangThai() == 1) {
+                            HoKhauModel hkModel = new HoKhauServiceImpl().findOneByMaHK(qh.getMaHoKhau());
+                            hkModel.setKhaiSinhChuHo(qh.getKhaiSinhNguoiThamGia());
+                            new HoKhauServiceImpl().update(hkModel);
+                            System.out.println(hkModel.getKhaiSinhChuHo());
+                            qhmodel.setQuanHeVoiChuHo("Chủ hộ");
+                            qhmodel.setKhaiSinhNguoiThamGia(qh.getKhaiSinhNguoiThamGia());
+                            new QuanHeServiceImpl().update(qhmodel);
+                            break;
+                        }else{
+                            new HoKhauServiceImpl().delete(hoKhau.getMaHoKhau());
+                        }
+                    }else
+                    if (Integer.parseInt(qh.getQuanHeID()) > Integer.parseInt(hoKhau.getQuanHeID())) {
+                        QuanHeModel qhmodel = new QuanHeServiceImpl().findOneByMaHKAndQuanHeID(qh.getMaHoKhau(), qh.getQuanHeID());
+                        if (qh.getTrangThai() == 1) {
+                            HoKhauModel hkModel = new HoKhauServiceImpl().findOneByMaHK(qh.getMaHoKhau());
+                            hkModel.setKhaiSinhChuHo(qh.getKhaiSinhNguoiThamGia());
+                            new HoKhauServiceImpl().update(hkModel);
+                            System.out.println(hkModel.getKhaiSinhChuHo());
+                            qhmodel.setQuanHeVoiChuHo("Chủ hộ");
+                            qhmodel.setKhaiSinhNguoiThamGia(qh.getKhaiSinhNguoiThamGia());
+                            new QuanHeServiceImpl().update(qhmodel);
+                            break;
+                        }
+                    }
+                    
+                }                
+            }
         } else {
             JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -520,7 +535,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             tf_noiMat.setEditable(true);
             tf_nguyenNhan.setEditable(true);
             tf_ngayMat.setEditable(true);
-            
+
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -602,7 +617,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        if (tf_hoTen.getText().equals("") || tf_soCCCD.getText().equals("") || tf_ngaySinh.getText().equals("")|| tf_maKhaiSinh.getText().trim().equals("")) {
+        if (tf_hoTen.getText().equals("") || tf_soCCCD.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_maKhaiSinh.getText().trim().equals("")) {
             JOptionPane dialog = new JOptionPane("Please enter identity number information and load the data!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -625,7 +640,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
         listGiayChungTu = giayChungTuService.findAll();
         GiayChungTuModel giayChungTu = listGiayChungTu.get(listGiayChungTu.size() - 1);
         model.fireTableDataChanged();
-        model.addRow(new Object[]{giayChungTu.getMaCT(),giayChungTu.getMaKS(), giayChungTu.getHoTen(), giayChungTu.getCCCD(), giayChungTu.getNgaySinh(), giayChungTu.getNgayMat(), giayChungTu.getNoiMat(), giayChungTu.getNguyenNhan()});
+        model.addRow(new Object[]{giayChungTu.getMaCT(), giayChungTu.getMaKS(), giayChungTu.getHoTen(), giayChungTu.getCCCD(), giayChungTu.getNgaySinh(), giayChungTu.getNgayMat(), giayChungTu.getNoiMat(), giayChungTu.getNguyenNhan()});
     }
 
     private void clear() {

@@ -14,11 +14,12 @@ import java.util.List;
  */
 public interface IQuanHeService {
     List<QuanHeModel> findAll();
-    QuanHeModel findOneByMaHK (String MaHK, String KhaiSinhNguoiThamGia);
+    QuanHeModel findOneByMaHK (String MaHK);
     boolean insert (QuanHeModel quanHe);
     boolean update (QuanHeModel quanHe);
     boolean delete (String MaHK);
     QuanHeModel findOneByCCCD(String CCCD);
     boolean deleteByMaHK(String MaHK, String KhaiSinhNguoiThamGia);
     List<ThongTinHoKhau> findAllByMaHK(String MaHK);
+    QuanHeModel findOneByMaHKAndQuanHeID(String MaHK, String QuanHeID);
 }

@@ -62,7 +62,6 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
         btn_themNguoiVaoHoKhau = new Swing.Button();
         btn_nhapMaHK = new Swing.Button();
         btn_luuThem = new Swing.Button();
-        jLabel2 = new javax.swing.JLabel();
         btn_timTheoMaHoKhau1 = new Swing.Button();
         btn_xoaDuLieu = new Swing.Button();
         btn_luuSua = new Swing.Button();
@@ -162,8 +161,6 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Nhập mã HK cần tìm");
-
         btn_timTheoMaHoKhau1.setBackground(new java.awt.Color(18, 99, 63));
         btn_timTheoMaHoKhau1.setForeground(new java.awt.Color(255, 255, 255));
         btn_timTheoMaHoKhau1.setText("Tìm theo mã hộ khẩu");
@@ -212,37 +209,35 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tf_diaChi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(tf_maHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(tf_maKhaiSinhNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(tf_hoTenNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(tf_quanHeChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tf_diaChi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(tf_maHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf_maKhaiSinhNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf_hoTenNguoiThan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf_quanHeChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_nhapMaHK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_nhapMaHK, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_timTheoMaHoKhau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(btn_themNguoiVaoHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_timTheoMaHoKhau1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btn_themNguoiVaoHoKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_suaThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
+                                .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
                                 .addComponent(btn_catKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
+                                .addGap(32, 32, 32)
                                 .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(319, 319, 319)
@@ -254,9 +249,7 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_hoTenChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_maKhaiSinhChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,7 +278,7 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
     private void btn_catKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_catKhauActionPerformed
         int selectedRow = tb_HK.getSelectedRow(); // Lấy chỉ số hàng được chọn trong bảng
         if (tb_HK.getRowCount() <= 0) {
-            JOptionPane dialog = new JOptionPane("Bảng rỗng!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -323,13 +316,8 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btn_catKhauActionPerformed
-    private void clear() {
-        tf_quanHeChuHo.setText("");
-        tf_maKhaiSinhNguoiThan.setText("");
-        tf_hoTenNguoiThan.setText("");
-    }
+    
     private void btn_themNguoiVaoHoKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themNguoiVaoHoKhauActionPerformed
-
         if(tf_maHoKhau.getText().equals("")){
             JOptionPane dialog = new JOptionPane("Hãy nhập mã hộ khẩu chủ hộ!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -347,12 +335,6 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
         ableTextFields();
         clear();
     }//GEN-LAST:event_btn_themNguoiVaoHoKhauActionPerformed
-    public void showResult() {
-        listHoKhau = hoKhauService.findAllHoKhauUser(tf_maHoKhau.getText());
-        ThongTinHoKhau hoKhau = listHoKhau.get(listHoKhau.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhChuHo(), hoKhau.getHoTenChuHo(), hoKhau.getKhaiSinhNguoiThamGia(), hoKhau.getHoTenNguoiThan(), hoKhau.getQuanHeVoiChuHo(), hoKhau.getDiaChi()});
-    }
     
     private void btn_nhapMaHKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nhapMaHKActionPerformed
         clearTable();
@@ -360,6 +342,252 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
         disableALLTextFields();
         tf_maHoKhau.setEditable(true);
     }//GEN-LAST:event_btn_nhapMaHKActionPerformed
+    
+    
+    private void tb_HKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_HKMouseClicked
+        model = (DefaultTableModel) tb_HK.getModel();
+        tf_maHoKhau.setText(model.getValueAt(tb_HK.getSelectedRow(), 0).toString());
+        tf_maKhaiSinhChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 1).toString());
+        tf_hoTenChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 2).toString());
+        tf_maKhaiSinhNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 3).toString());
+        tf_hoTenNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 4).toString());
+        tf_quanHeChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 5).toString());
+        tf_diaChi.setText(model.getValueAt(tb_HK.getSelectedRow(), 6).toString());
+    }//GEN-LAST:event_tb_HKMouseClicked
+
+    private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
+        ThongTinHoKhau hoKhau = new ThongTinHoKhau();
+        QuanHeModel quanHe = new QuanHeModel();
+        
+        quanHe.setMaHK(tf_maHoKhau.getText());
+        
+        hoKhau.setKhaiSinhChuHo(tf_maKhaiSinhChuHo.getText());
+        hoKhau.setHoTenChuHo(tf_hoTenChuHo.getText());
+        
+        quanHe.setKhaiSinhNguoiThamGia(tf_maKhaiSinhNguoiThan.getText());
+        
+        hoKhau.setHoTenNguoiThan(tf_hoTenNguoiThan.getText());
+        
+        quanHe.setQuanHeVoiChuHo(tf_quanHeChuHo.getText());
+        
+        hoKhau.setDiaChi(tf_diaChi.getText());        
+        
+        quanHe.setTrangThai(1);
+        
+        String maKhaiSinh = (tf_maKhaiSinhNguoiThan.getText().trim());
+        
+        if(tf_maHoKhau.getText().equals("")){
+            JOptionPane dialog = new JOptionPane("Hãy nhập mã hộ khẩu chủ hộ!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
+        if (tf_quanHeChuHo.getText().equals("") || tf_maKhaiSinhNguoiThan.getText().equals("")) {
+            JOptionPane dialog = new JOptionPane("Vui lòng điền đầy đủ Mã khai sinh người thân và Quan hệ với chủ hộ!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
+        if (!checkMaKhaiSinh(maKhaiSinh)){
+            JOptionPane dialog = new JOptionPane("Mã khai sinh không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+            return;
+        }
+        if (!checkQuanHeChuHo(tf_quanHeChuHo.getText().trim())) {
+            JOptionPane dialog = new JOptionPane("Quan hệ với chủ hộ không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        if (hoKhauService.ifExists(tf_maKhaiSinhNguoiThan.getText().trim()) == 1) {
+            JOptionPane dialog = new JOptionPane("Công dân này đã có hộ khẩu!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        if (hoKhauService.existsHoKhauOrNot(tf_maKhaiSinhNguoiThan.getText().trim()) == 1) {
+            JOptionPane dialog = new JOptionPane("Mỗi công dân chỉ có 1 hộ khẩu!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
+        int rowCount = tb_HK.getRowCount();
+        for (int i = 0; i < rowCount; i++) {
+            Object quanHeVoiChuHo = tb_HK.getValueAt(i, 5);
+            if (quanHeVoiChuHo != null && (quanHeVoiChuHo.toString().equals("Vợ") || quanHeVoiChuHo.toString().equals("Chồng") || quanHeVoiChuHo.toString().equals("Chủ hộ"))) {
+                if (quanHeVoiChuHo.toString().equals(tf_quanHeChuHo.getText())){
+                JOptionPane dialog = new JOptionPane("Quan hệ với chủ hộ đã tồn tại!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+                }
+            }
+        }
+        listHoKhau.add(hoKhau);
+        // Thêm dữ liệu vào bảng
+        
+        if (new QuanHeServiceImpl().insert(quanHe)) {
+                JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+            } else {
+                JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            }
+            showResult();
+            clearTextFields();
+    }//GEN-LAST:event_btn_luuThemActionPerformed
+
+    private void btn_timTheoMaHoKhau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timTheoMaHoKhau1ActionPerformed
+        clearTable();
+        HoKhauModel hoKhau = new HoKhauDAOImpl().findOneMaHK(tf_maHoKhau.getText());
+        CongDanModel congDan = new CongDanServiceImpl().findOneByMaKS(hoKhau.getKhaiSinhChuHo());
+                
+        String maHoKhau = tf_maHoKhau.getText().trim();
+        
+        if (tf_maHoKhau.getText().equals("")) {
+            JOptionPane dialog = new JOptionPane("Vui lòng điền mã hộ khẩu cần tìm!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
+        if (!checkMaHoKhau(maHoKhau)) {
+            JOptionPane dialog = new JOptionPane("Mã hộ khẩu không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+            return;
+        }
+        
+        if(congDan.getTrangThai() == 0){
+            JOptionPane dialog = new JOptionPane("Hộ khẩu không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            clearTextFields();
+            disableTextFields();
+            return;
+        }
+        
+        listHoKhau = hoKhauService.findAllHoKhauUser(maHoKhau);
+        showTable();
+        
+        tf_maKhaiSinhChuHo.setText(hoKhau.getKhaiSinhChuHo());
+        tf_hoTenChuHo.setText(hoKhau.getHoTen());
+        tf_diaChi.setText(hoKhau.getDiaChi());
+                
+        clearTextFieldsWithoutMaHK();
+        disableTextFields();
+    }//GEN-LAST:event_btn_timTheoMaHoKhau1ActionPerformed
+
+    private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
+        clearTextFields();
+        tb_HK.clearSelection();
+    }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
+
+    private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
+        try {
+            int selectedRow = tb_HK.getSelectedRow();
+            if (tb_HK.getRowCount() <= 0) {
+                JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            } else if (selectedRow < 0) {
+                JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần sửa thông tin!", JOptionPane.WARNING_MESSAGE);
+                JDialog jDialog = dialog.createDialog(null);
+                jDialog.setModal(true);
+                jDialog.setVisible(true);
+                return;
+            } else if (selectedRow >= 0) {
+                HoKhauModel hoKhau = hoKhauService.findOneByMaHK(tf_maHoKhau.getText());
+                hoKhau.setQuanHeChuHo(tf_quanHeChuHo.getText());
+                
+                if (!checkQuanHeChuHo(tf_quanHeChuHo.getText().trim())) {
+                    JOptionPane dialog = new JOptionPane("Quan hệ với chủ hộ không hợp lệ!", JOptionPane.WARNING_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+                
+                int rowCount = tb_HK.getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    Object quanHeVoiChuHo = tb_HK.getValueAt(i, 5);
+                    if (quanHeVoiChuHo != null && (quanHeVoiChuHo.toString().equals("Vợ") || quanHeVoiChuHo.toString().equals("Chồng") || quanHeVoiChuHo.toString().equals("Chủ hộ"))) {
+                        if (quanHeVoiChuHo.toString().equals(tf_quanHeChuHo.getText())){
+                        JOptionPane dialog = new JOptionPane("Quan hệ với chủ hộ đã tồn tại!", JOptionPane.WARNING_MESSAGE);
+                        JDialog jDialog = dialog.createDialog(null);
+                        jDialog.setModal(true);
+                        jDialog.setVisible(true);
+                        return;
+                        }
+                    }
+                }
+                
+                if (new HoKhauServiceImpl().update(hoKhau)) {
+                    JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    model.setValueAt(tf_quanHeChuHo.getText(), selectedRow, 5);
+                    model.fireTableDataChanged();
+                } else {
+                    JOptionPane dialog = new JOptionPane("Sửa thất bại!", JOptionPane.INFORMATION_MESSAGE);
+                    JDialog jDialog = dialog.createDialog(null);
+                    jDialog.setModal(true);
+                    jDialog.setVisible(true);
+                    return;
+                }
+            }
+        } catch (Exception e) {
+        }
+        clearTextFieldsWithoutMaHK();                        
+    }//GEN-LAST:event_btn_luuSuaActionPerformed
+
+    private void btn_suaThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaThongTinActionPerformed
+        if (tb_HK.getSelectedRow() < 0) {
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần sửa thông tin!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        } else {
+            tf_maHoKhau.setEditable(false);
+            tf_diaChi.setEditable(false);
+            tf_maKhaiSinhChuHo.setEditable(false);
+            tf_hoTenChuHo.setEditable(false);
+            tf_maKhaiSinhNguoiThan.setEditable(false);
+            tf_hoTenNguoiThan.setEditable(false);
+            tf_quanHeChuHo.setEditable(true);
+        }
+    }//GEN-LAST:event_btn_suaThongTinActionPerformed
+    
+    public void showResult() {
+        listHoKhau = hoKhauService.findAllHoKhauUser(tf_maHoKhau.getText());
+        ThongTinHoKhau hoKhau = listHoKhau.get(listHoKhau.size() - 1);
+        model.fireTableDataChanged();
+        model.addRow(new Object[]{hoKhau.getMaHoKhau(), hoKhau.getKhaiSinhChuHo(), hoKhau.getHoTenChuHo(), hoKhau.getKhaiSinhNguoiThamGia(), hoKhau.getHoTenNguoiThan(), hoKhau.getQuanHeVoiChuHo(), hoKhau.getDiaChi()});
+    }
+    
     private void ableTextFields(){
         tf_maKhaiSinhNguoiThan.setEditable(true);
         tf_quanHeChuHo.setEditable(true);
@@ -468,210 +696,11 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
 
         return true;
     }
-    
-    private void tb_HKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_HKMouseClicked
-        model = (DefaultTableModel) tb_HK.getModel();
-        tf_maHoKhau.setText(model.getValueAt(tb_HK.getSelectedRow(), 0).toString());
-        tf_maKhaiSinhChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 1).toString());
-        tf_hoTenChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 2).toString());
-        tf_maKhaiSinhNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 3).toString());
-        tf_hoTenNguoiThan.setText(model.getValueAt(tb_HK.getSelectedRow(), 4).toString());
-        tf_quanHeChuHo.setText(model.getValueAt(tb_HK.getSelectedRow(), 5).toString());
-        tf_diaChi.setText(model.getValueAt(tb_HK.getSelectedRow(), 6).toString());
-    }//GEN-LAST:event_tb_HKMouseClicked
-
-    private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
-        ThongTinHoKhau hoKhau = new ThongTinHoKhau();
-        QuanHeModel quanHe = new QuanHeModel();
-        
-        quanHe.setMaHK(tf_maHoKhau.getText());
-        
-        hoKhau.setKhaiSinhChuHo(tf_maKhaiSinhChuHo.getText());
-        hoKhau.setHoTenChuHo(tf_hoTenChuHo.getText());
-        
-        quanHe.setKhaiSinhNguoiThamGia(tf_maKhaiSinhNguoiThan.getText());
-        
-        hoKhau.setHoTenNguoiThan(tf_hoTenNguoiThan.getText());
-        
-        quanHe.setQuanHeVoiChuHo(tf_quanHeChuHo.getText());
-        
-        hoKhau.setDiaChi(tf_diaChi.getText());        
-        
-        quanHe.setTrangThai(1);
-        
-        String maKhaiSinh = (tf_maKhaiSinhNguoiThan.getText().trim());
-        
-        if(tf_maHoKhau.getText().equals("")){
-            JOptionPane dialog = new JOptionPane("Hãy nhập mã hộ khẩu chủ hộ!", JOptionPane.INFORMATION_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        
-        if (tf_quanHeChuHo.getText().equals("") || tf_maKhaiSinhNguoiThan.getText().equals("")) {
-            JOptionPane dialog = new JOptionPane("Vui lòng điền đầy đủ Mã khai sinh người thân và Quan hệ với chủ hộ!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        
-        if (!checkMaKhaiSinh(maKhaiSinh)){
-            JOptionPane dialog = new JOptionPane("Mã khai sinh không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-            return;
-        }
-        if (!checkQuanHeChuHo(tf_quanHeChuHo.getText().trim())) {
-            JOptionPane dialog = new JOptionPane("Quan hệ với chủ hộ không hợp lệ!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        if (hoKhauService.ifExists(tf_maKhaiSinhNguoiThan.getText().trim()) == 1) {
-            JOptionPane dialog = new JOptionPane("Công dân này đã có hộ khẩu!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        if (hoKhauService.existsHoKhauOrNot(tf_maKhaiSinhNguoiThan.getText().trim()) == 1) {
-            JOptionPane dialog = new JOptionPane("Mỗi công dân chỉ có 1 hộ khẩu!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        listHoKhau.add(hoKhau);
-        // Thêm dữ liệu vào bảng
-        
-        if (new QuanHeServiceImpl().insert(quanHe)) {
-                JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-            } else {
-                JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            }
-            showResult();
-            clearTextFields();
-    }//GEN-LAST:event_btn_luuThemActionPerformed
-
-    private void btn_timTheoMaHoKhau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timTheoMaHoKhau1ActionPerformed
-        clearTable();
-        HoKhauModel hoKhau = new HoKhauDAOImpl().findOneMaHK(tf_maHoKhau.getText());
-        CongDanModel congDan = new CongDanServiceImpl().findOneByMaKS(hoKhau.getKhaiSinhChuHo());
-                
-        String maHoKhau = tf_maHoKhau.getText().trim();
-        
-        if (tf_maHoKhau.getText().equals("")) {
-            JOptionPane dialog = new JOptionPane("Vui lòng điền mã hộ khẩu cần tìm!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        }
-        
-        if (!checkMaHoKhau(maHoKhau)) {
-            JOptionPane dialog = new JOptionPane("Mã hộ khẩu không hợp lệ!", JOptionPane.INFORMATION_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-            return;
-        }
-        
-        if(congDan.getTrangThai() == 0){
-            JOptionPane dialog = new JOptionPane("Hộ khẩu không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            clearTextFields();
-            disableTextFields();
-            return;
-        }
-        
-        listHoKhau = hoKhauService.findAllHoKhauUser(maHoKhau);
-        showTable();
-        
-        tf_maKhaiSinhChuHo.setText(hoKhau.getKhaiSinhChuHo());
-        tf_hoTenChuHo.setText(hoKhau.getHoTen());
-        tf_diaChi.setText(hoKhau.getDiaChi());
-                
-        clearTextFieldsWithoutMaHK();
-        disableTextFields();
-    }//GEN-LAST:event_btn_timTheoMaHoKhau1ActionPerformed
-
-    private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
-        clearTextFields();
-        tb_HK.clearSelection();
-    }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
-
-    private void btn_luuSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuSuaActionPerformed
-        try {
-            int selectedRow = tb_HK.getSelectedRow();
-            if (tb_HK.getRowCount() <= 0) {
-                JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            } else if (selectedRow < 0) {
-                JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần sửa thông tin!", JOptionPane.WARNING_MESSAGE);
-                JDialog jDialog = dialog.createDialog(null);
-                jDialog.setModal(true);
-                jDialog.setVisible(true);
-                return;
-            } else if (selectedRow >= 0) {
-                HoKhauModel hoKhau = hoKhauService.findOneByMaHK(tf_maHoKhau.getText());
-                hoKhau.setDiaChi(tf_diaChi.getText());
-
-                if (new HoKhauServiceImpl().update(hoKhau)) {
-                    JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    model.setValueAt(tf_quanHeChuHo.getText(), selectedRow, 5);
-                    model.setValueAt(tf_diaChi.getText(), selectedRow, 6);
-                    model.fireTableDataChanged();
-                } else {
-                    JOptionPane dialog = new JOptionPane("Sửa thất bại!", JOptionPane.INFORMATION_MESSAGE);
-                    JDialog jDialog = dialog.createDialog(null);
-                    jDialog.setModal(true);
-                    jDialog.setVisible(true);
-                    return;
-                }
-            }
-        } catch (Exception e) {
-        }
-        clear();
-        disableTextField();                            
-    }//GEN-LAST:event_btn_luuSuaActionPerformed
-
-    private void btn_suaThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaThongTinActionPerformed
-        if (tb_HK.getSelectedRow() < 0) {
-            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần sửa thông tin!", JOptionPane.WARNING_MESSAGE);
-            JDialog jDialog = dialog.createDialog(null);
-            jDialog.setModal(true);
-            jDialog.setVisible(true);
-            return;
-        } else {
-            tf_maHoKhau.setEditable(false);
-            tf_diaChi.setEditable(true);
-            tf_maKhaiSinhChuHo.setEditable(false);
-            tf_hoTenChuHo.setEditable(false);
-            tf_maKhaiSinhNguoiThan.setEditable(false);
-            tf_hoTenNguoiThan.setEditable(false);
-            tf_quanHeChuHo.setEditable(true);
-        }
-    }//GEN-LAST:event_btn_suaThongTinActionPerformed
-
+    private void clear() {
+        tf_quanHeChuHo.setText("");
+        tf_maKhaiSinhNguoiThan.setText("");
+        tf_hoTenNguoiThan.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Button btn_catKhau;
@@ -683,7 +712,6 @@ public class ThongTinChiTietHoKhauController extends javax.swing.JPanel {
     private Swing.Button btn_timTheoMaHoKhau1;
     private Swing.Button btn_xoaDuLieu;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private Swing.TableDark tb_HK;
     private Swing.TextField tf_diaChi;

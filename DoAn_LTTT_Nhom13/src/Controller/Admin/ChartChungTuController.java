@@ -22,19 +22,9 @@ public class ChartChungTuController extends javax.swing.JPanel {
     IThongKeDAO thongKeDAO = new ThongKeDAOImpl();
     public ChartChungTuController() {
         initComponents();
-        chart.setTitle("Chart Data");
         chart.addLegend("Chứng Tử", Color.decode("#e65c00"), Color.decode("#dc2430"));
-        setDataChungTuTheoThang();
     }
-   
-    public void setDataChungTuTheoThang(){
-        listThongKe = thongKeDAO.thongKeChungTuTheoThang();
-        for( int i = listThongKe.size() -1 ;i>=0;i--){
-            ThongKeModel thongKe = listThongKe.get(i);
-            chart.addData(new ModelChart(thongKe.getThang(), new double[]{thongKe.getSoLuongChungTu()}));
-        }
-        chart.start();
-    }
+
     
     
     
@@ -50,11 +40,52 @@ public class ChartChungTuController extends javax.swing.JPanel {
 
         panelShadow1 = new Chart.PanelShadow();
         chart = new Chart.CurveLineChart();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        cbx_nam = new Swing.Combobox();
 
         panelShadow1.setBackground(new java.awt.Color(34, 59, 69));
         panelShadow1.setColorGradient(new java.awt.Color(17, 38, 47));
 
         chart.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(34, 59, 69));
+        jPanel1.setPreferredSize(new java.awt.Dimension(905, 62));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Biểu đồ thống kê kết hôn theo từng năm ");
+
+        cbx_nam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        cbx_nam.setSelectedIndex(23);
+        cbx_nam.setLabeText("");
+        cbx_nam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_namActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cbx_nam, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbx_nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout panelShadow1Layout = new javax.swing.GroupLayout(panelShadow1);
         panelShadow1.setLayout(panelShadow1Layout);
@@ -62,14 +93,18 @@ public class ChartChungTuController extends javax.swing.JPanel {
             panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelShadow1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                .addGroup(panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelShadow1Layout.setVerticalGroup(
             panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelShadow1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelShadow1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -85,9 +120,22 @@ public class ChartChungTuController extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbx_namActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_namActionPerformed
+        chart.clear();
+        listThongKe = thongKeDAO.thongKeChungTuTheoThangTheoNam(cbx_nam.getSelectedItem().toString());
+        for( int i = listThongKe.size() -1 ;i>=0;i--){
+            ThongKeModel thongKe = listThongKe.get(i);
+            chart.addData(new ModelChart(thongKe.getThang(), new double[]{thongKe.getSoLuongChungTu()}));
+        }
+        chart.start();
+    }//GEN-LAST:event_cbx_namActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Swing.Combobox cbx_nam;
     private Chart.CurveLineChart chart;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private Chart.PanelShadow panelShadow1;
     // End of variables declaration//GEN-END:variables
 }

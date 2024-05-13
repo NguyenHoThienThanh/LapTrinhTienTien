@@ -46,7 +46,7 @@ public class DangNhapModel {
         this.VerifyCode = VerifyCode;
     }
 
-    
+ 
     public int getID() {
         return ID;
     }
@@ -85,5 +85,7 @@ public class DangNhapModel {
 
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
-    } 
+
+    }
+
 }

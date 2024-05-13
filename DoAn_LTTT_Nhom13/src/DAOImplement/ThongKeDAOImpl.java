@@ -24,43 +24,45 @@ public class ThongKeDAOImpl implements IThongKeDAO {
     ResultSet rs = null;
 
     @Override
-    public List<ThongKeModel> thongKeDKKSTheoThang() {
+    public List<ThongKeModel> thongKeDKKSTheoThangTheoNam(String year) {
         List<ThongKeModel> listThongKe = new ArrayList<>();
-        String query = "SELECT CASE DATEPART(month, NgaySinh) "
-                + "     WHEN 1 THEN 'January' "
-                + "     WHEN 2 THEN 'February' "
-                + "     WHEN 3 THEN 'March' "
-                + "	WHEN 4 THEN 'April' "
-                + "	WHEN 5 THEN 'May' "
-                + "	WHEN 6 THEN 'June' "
-                + "	WHEN 7 THEN 'July' "
-                + "	WHEN 8 THEN 'August' "
-                + "	WHEN 9 THEN 'September' "
-                + "	WHEN 10 THEN 'October' "
-                + "	WHEN 11 THEN 'November' "
-                + "	WHEN 12 THEN 'December' "
-                + "    ELSE 'Unknown' "
-                + "END AS Thang, COUNT(*) AS SoLuongDKKS "
-                + "FROM KhaiSinh "
-                + "GROUP BY DATEPART(month, NgaySinh) "
-                + "ORDER BY CASE DATEPART(month, NgaySinh)"
-                + "         WHEN 1 THEN 12 "
-                + "         WHEN 2 THEN 11 "
-                + "         WHEN 3 THEN 10 "
-                + "         WHEN 4 THEN 9 "
-                + "         WHEN 5 THEN 8 "
-                + "         WHEN 6 THEN 7 "
-                + "         WHEN 7 THEN 6 "
-                + "         WHEN 8 THEN 5 "
-                + "         WHEN 9 THEN 4 "
-                + "         WHEN 10 THEN 3 "
-                + "         WHEN 11 THEN 2 "
-                + "         WHEN 12 THEN 1 "
-                + "         ELSE 13  "
+        String query = "SELECT\n"
+                + "  CASE WHEN MONTH(NgaySinh) = 1 THEN 'January'\n"
+                + "       WHEN MONTH(NgaySinh) = 2 THEN 'February'\n"
+                + "       WHEN MONTH(NgaySinh) = 3 THEN 'March'\n"
+                + "       WHEN MONTH(NgaySinh) = 4 THEN 'April'\n"
+                + "       WHEN MONTH(NgaySinh) = 5 THEN 'May'\n"
+                + "       WHEN MONTH(NgaySinh) = 6 THEN 'June'\n"
+                + "       WHEN MONTH(NgaySinh) = 7 THEN 'July'\n"
+                + "       WHEN MONTH(NgaySinh) = 8 THEN 'August'\n"
+                + "       WHEN MONTH(NgaySinh) = 9 THEN 'September'\n"
+                + "       WHEN MONTH(NgaySinh) = 10 THEN 'October'\n"
+                + "       WHEN MONTH(NgaySinh) = 11 THEN 'November'\n"
+                + "       WHEN MONTH(NgaySinh) = 12 THEN 'December'\n"
+                + "       ELSE 'Unknown'\n"
+                + "  END AS Thang,\n"
+                + "  COUNT(*) AS SoLuongDKKS\n"
+                + "FROM KhaiSinh\n"
+                + "WHERE YEAR(NgaySinh) = ?\n"
+                + "GROUP BY MONTH(NgaySinh)\n"
+                + "ORDER BY CASE WHEN MONTH(NgaySinh) = 1 THEN 12\n"
+                + "       WHEN MONTH(NgaySinh) = 2 THEN 11\n"
+                + "       WHEN MONTH(NgaySinh) = 3 THEN 10\n"
+                + "       WHEN MONTH(NgaySinh) = 4 THEN 9\n"
+                + "       WHEN MONTH(NgaySinh) = 5 THEN 8\n"
+                + "       WHEN MONTH(NgaySinh) = 6 THEN 7\n"
+                + "       WHEN MONTH(NgaySinh) = 7 THEN 6\n"
+                + "       WHEN MONTH(NgaySinh) = 8 THEN 5\n"
+                + "       WHEN MONTH(NgaySinh) = 9 THEN 4\n"
+                + "       WHEN MONTH(NgaySinh) = 10 THEN 3\n"
+                + "       WHEN MONTH(NgaySinh) = 11 THEN 2\n"
+                + "       WHEN MONTH(NgaySinh) = 12 THEN 1\n"
+                + "       ELSE 'Unknown'\n"
                 + "END";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
+            ps.setString(1, year);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ThongKeModel thongKe = new ThongKeModel();
@@ -75,44 +77,53 @@ public class ThongKeDAOImpl implements IThongKeDAO {
         return listThongKe;
     }
 
+    public static void main(String[] args) {
+        List<ThongKeModel> model = new ThongKeDAOImpl().thongKeDKKSTheoThangTheoNam("2003");
+        for (ThongKeModel m : model) {
+            System.out.println(m.getThang() + " " + m.getSoLuongKhaiSinh());
+        }
+    }
+
     @Override
-    public List<ThongKeModel> thongKeChungTuTheoThang() {
+    public List<ThongKeModel> thongKeChungTuTheoThangTheoNam(String year) {
         List<ThongKeModel> listThongKe = new ArrayList<>();
-        String query = "SELECT CASE DATEPART(month, NgayMat) "
-                + "     WHEN 1 THEN 'January' "
-                + "     WHEN 2 THEN 'February' "
-                + "     WHEN 3 THEN 'March' "
-                + "	WHEN 4 THEN 'April' "
-                + "	WHEN 5 THEN 'May' "
-                + "	WHEN 6 THEN 'June' "
-                + "	WHEN 7 THEN 'July' "
-                + "	WHEN 8 THEN 'August' "
-                + "	WHEN 9 THEN 'September' "
-                + "	WHEN 10 THEN 'October' "
-                + "	WHEN 11 THEN 'November' "
-                + "	WHEN 12 THEN 'December' "
-                + "    ELSE 'Unknown' "
-                + "END AS Thang, COUNT(*) AS SoLuongChungTu "
-                + "FROM GiayChungTu "
-                + "GROUP BY DATEPART(month, NgayMat) "
-                + "ORDER BY CASE DATEPART(month, NgayMat)"
-                + "         WHEN 1 THEN 12 "
-                + "         WHEN 2 THEN 11 "
-                + "         WHEN 3 THEN 10 "
-                + "         WHEN 4 THEN 9 "
-                + "         WHEN 5 THEN 8 "
-                + "         WHEN 6 THEN 7 "
-                + "         WHEN 7 THEN 6 "
-                + "         WHEN 8 THEN 5 "
-                + "         WHEN 9 THEN 4 "
-                + "         WHEN 10 THEN 3 "
-                + "         WHEN 11 THEN 2 "
-                + "         WHEN 12 THEN 1 "
-                + "         ELSE 13  "
+        String query = "SELECT\n"
+                + "  CASE WHEN MONTH(NgayMat) = 1 THEN 'January'\n"
+                + "       WHEN MONTH(NgayMat) = 2 THEN 'February'\n"
+                + "       WHEN MONTH(NgayMat) = 3 THEN 'March'\n"
+                + "       WHEN MONTH(NgayMat) = 4 THEN 'April'\n"
+                + "       WHEN MONTH(NgayMat) = 5 THEN 'May'\n"
+                + "       WHEN MONTH(NgayMat) = 6 THEN 'June'\n"
+                + "       WHEN MONTH(NgayMat) = 7 THEN 'July'\n"
+                + "       WHEN MONTH(NgayMat) = 8 THEN 'August'\n"
+                + "       WHEN MONTH(NgayMat) = 9 THEN 'September'\n"
+                + "       WHEN MONTH(NgayMat) = 10 THEN 'October'\n"
+                + "       WHEN MONTH(NgayMat) = 11 THEN 'November'\n"
+                + "       WHEN MONTH(NgayMat) = 12 THEN 'December'\n"
+                + "       ELSE 'Unknown'\n"
+                + "  END AS Thang,\n"
+                + "  COUNT(*) AS SoLuongChungTu\n"
+                + "FROM GiayChungTu\n"
+                + "WHERE YEAR(NgayMat) = ?\n"
+                + "GROUP BY MONTH(NgayMat)\n"
+                + "ORDER BY CASE WHEN MONTH(NgayMat) = 1 THEN 12\n"
+                + "       WHEN MONTH(NgayMat) = 2 THEN 11\n"
+                + "       WHEN MONTH(NgayMat) = 3 THEN 10\n"
+                + "       WHEN MONTH(NgayMat) = 4 THEN 9\n"
+                + "       WHEN MONTH(NgayMat) = 5 THEN 8\n"
+                + "       WHEN MONTH(NgayMat) = 6 THEN 7\n"
+                + "       WHEN MONTH(NgayMat) = 7 THEN 6\n"
+                + "       WHEN MONTH(NgayMat) = 8 THEN 5\n"
+                + "       WHEN MONTH(NgayMat) = 9 THEN 4\n"
+                + "       WHEN MONTH(NgayMat) = 10 THEN 3\n"
+                + "       WHEN MONTH(NgayMat) = 11 THEN 2\n"
+                + "       WHEN MONTH(NgayMat) = 12 THEN 1\n"
+                + "       ELSE 'Unknown'\n"
                 + "END";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
+            ps.setString(1, year);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ThongKeModel thongKe = new ThongKeModel();
@@ -128,43 +139,45 @@ public class ThongKeDAOImpl implements IThongKeDAO {
     }
 
     @Override
-    public List<ThongKeModel> thongKeKetHonTheoThang() {
+    public List<ThongKeModel> thongKeKetHonTheoThangTheoNam(String year) {
         List<ThongKeModel> listThongKe = new ArrayList<>();
-        String query = "SELECT CASE DATEPART(month, Ngaydk) "
-                + "     WHEN 1 THEN 'January' "
-                + "     WHEN 2 THEN 'February' "
-                + "     WHEN 3 THEN 'March' "
-                + "	WHEN 4 THEN 'April' "
-                + "	WHEN 5 THEN 'May' "
-                + "	WHEN 6 THEN 'June' "
-                + "	WHEN 7 THEN 'July' "
-                + "	WHEN 8 THEN 'August' "
-                + "	WHEN 9 THEN 'September' "
-                + "	WHEN 10 THEN 'October' "
-                + "	WHEN 11 THEN 'November' "
-                + "	WHEN 12 THEN 'December' "
-                + "    ELSE 'Unknown' "
-                + "END AS Thang, COUNT(*) AS SoLuongKetHon "
-                + "FROM Cnkh "
-                + "GROUP BY DATEPART(month, Ngaydk) "
-                + "ORDER BY CASE DATEPART(month, Ngaydk) "
-                + "         WHEN 1 THEN 12 "
-                + "         WHEN 2 THEN 11 "
-                + "         WHEN 3 THEN 10 "
-                + "         WHEN 4 THEN 9 "
-                + "         WHEN 5 THEN 8 "
-                + "         WHEN 6 THEN 7 "
-                + "         WHEN 7 THEN 6 "
-                + "         WHEN 8 THEN 5 "
-                + "         WHEN 9 THEN 4 "
-                + "         WHEN 10 THEN 3 "
-                + "         WHEN 11 THEN 2 "
-                + "         WHEN 12 THEN 1 "
-                + "         ELSE 13  "
+        String query = "SELECT\n"
+                + "  CASE WHEN MONTH(Ngaydk) = 1 THEN 'January'\n"
+                + "       WHEN MONTH(Ngaydk) = 2 THEN 'February'\n"
+                + "       WHEN MONTH(Ngaydk) = 3 THEN 'March'\n"
+                + "       WHEN MONTH(Ngaydk) = 4 THEN 'April'\n"
+                + "       WHEN MONTH(Ngaydk) = 5 THEN 'May'\n"
+                + "       WHEN MONTH(Ngaydk) = 6 THEN 'June'\n"
+                + "       WHEN MONTH(Ngaydk) = 7 THEN 'July'\n"
+                + "       WHEN MONTH(Ngaydk) = 8 THEN 'August'\n"
+                + "       WHEN MONTH(Ngaydk) = 9 THEN 'September'\n"
+                + "       WHEN MONTH(Ngaydk) = 10 THEN 'October'\n"
+                + "       WHEN MONTH(Ngaydk) = 11 THEN 'November'\n"
+                + "       WHEN MONTH(Ngaydk) = 12 THEN 'December'\n"
+                + "       ELSE 'Unknown'\n"
+                + "  END AS Thang,\n"
+                + "  COUNT(*) AS SoLuongKetHon\n"
+                + "FROM Cnkh\n"
+                + "WHERE YEAR(Ngaydk) = ?\n"
+                + "GROUP BY MONTH(Ngaydk)\n"
+                + "ORDER BY CASE WHEN MONTH(Ngaydk) = 1 THEN 12\n"
+                + "       WHEN MONTH(Ngaydk) = 2 THEN 11\n"
+                + "       WHEN MONTH(Ngaydk) = 3 THEN 10\n"
+                + "       WHEN MONTH(Ngaydk) = 4 THEN 9\n"
+                + "       WHEN MONTH(Ngaydk) = 5 THEN 8\n"
+                + "       WHEN MONTH(Ngaydk) = 6 THEN 7\n"
+                + "       WHEN MONTH(Ngaydk) = 7 THEN 6\n"
+                + "       WHEN MONTH(Ngaydk) = 8 THEN 5\n"
+                + "       WHEN MONTH(Ngaydk) = 9 THEN 4\n"
+                + "       WHEN MONTH(Ngaydk) = 10 THEN 3\n"
+                + "       WHEN MONTH(Ngaydk) = 11 THEN 2\n"
+                + "       WHEN MONTH(Ngaydk) = 12 THEN 1\n"
+                + "       ELSE 'Unknown'\n"
                 + "END";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
+            ps.setString(1, year);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ThongKeModel thongKe = new ThongKeModel();
@@ -180,39 +193,40 @@ public class ThongKeDAOImpl implements IThongKeDAO {
     }
 
     @Override
-    public List<ThongKeModel> thongKeLyHonTheoThang() {
+    public List<ThongKeModel> thongKeLyHonTheoThangTheoNam(String year) {
         List<ThongKeModel> listThongKe = new ArrayList<>();
-        String query = "SELECT CASE DATEPART(month, Ngaydk) "
-                + "     WHEN 1 THEN 'January' "
-                + "     WHEN 2 THEN 'February' "
-                + "     WHEN 3 THEN 'March' "
-                + "	WHEN 4 THEN 'April' "
-                + "	WHEN 5 THEN 'May' "
-                + "	WHEN 6 THEN 'June' "
-                + "	WHEN 7 THEN 'July' "
-                + "	WHEN 8 THEN 'August' "
-                + "	WHEN 9 THEN 'September' "
-                + "	WHEN 10 THEN 'October' "
-                + "	WHEN 11 THEN 'November' "
-                + "	WHEN 12 THEN 'December' "
-                + "    ELSE 'Unknown' "
-                + "END AS Thang, COUNT(*) AS SoLuongLyHon "
-                + "FROM Lyhon "
-                + "GROUP BY DATEPART(month, Ngaydk) "
-                + "ORDER BY CASE DATEPART(month, Ngaydk)"
-                + "         WHEN 1 THEN 12 "
-                + "         WHEN 2 THEN 11 "
-                + "         WHEN 3 THEN 10 "
-                + "         WHEN 4 THEN 9 "
-                + "         WHEN 5 THEN 8 "
-                + "         WHEN 6 THEN 7 "
-                + "         WHEN 7 THEN 6 "
-                + "         WHEN 8 THEN 5 "
-                + "         WHEN 9 THEN 4 "
-                + "         WHEN 10 THEN 3 "
-                + "         WHEN 11 THEN 2 "
-                + "         WHEN 12 THEN 1 "
-                + "         ELSE 13  "
+        String query = "SELECT\n"
+                + "  CASE WHEN MONTH(Ngaydk) = 1 THEN 'January'\n"
+                + "       WHEN MONTH(Ngaydk) = 2 THEN 'February'\n"
+                + "       WHEN MONTH(Ngaydk) = 3 THEN 'March'\n"
+                + "       WHEN MONTH(Ngaydk) = 4 THEN 'April'\n"
+                + "       WHEN MONTH(Ngaydk) = 5 THEN 'May'\n"
+                + "       WHEN MONTH(Ngaydk) = 6 THEN 'June'\n"
+                + "       WHEN MONTH(Ngaydk) = 7 THEN 'July'\n"
+                + "       WHEN MONTH(Ngaydk) = 8 THEN 'August'\n"
+                + "       WHEN MONTH(Ngaydk) = 9 THEN 'September'\n"
+                + "       WHEN MONTH(Ngaydk) = 10 THEN 'October'\n"
+                + "       WHEN MONTH(Ngaydk) = 11 THEN 'November'\n"
+                + "       WHEN MONTH(Ngaydk) = 12 THEN 'December'\n"
+                + "       ELSE 'Unknown'\n"
+                + "  END AS Thang,\n"
+                + "  COUNT(*) AS SoLuongLyHon\n"
+                + "FROM Lyhon\n"
+                + "WHERE YEAR(Ngaydk) = ?\n"
+                + "GROUP BY MONTH(Ngaydk)\n"
+                + "ORDER BY CASE WHEN MONTH(Ngaydk) = 1 THEN 12\n"
+                + "       WHEN MONTH(Ngaydk) = 2 THEN 11\n"
+                + "       WHEN MONTH(Ngaydk) = 3 THEN 10\n"
+                + "       WHEN MONTH(Ngaydk) = 4 THEN 9\n"
+                + "       WHEN MONTH(Ngaydk) = 5 THEN 8\n"
+                + "       WHEN MONTH(Ngaydk) = 6 THEN 7\n"
+                + "       WHEN MONTH(Ngaydk) = 7 THEN 6\n"
+                + "       WHEN MONTH(Ngaydk) = 8 THEN 5\n"
+                + "       WHEN MONTH(Ngaydk) = 9 THEN 4\n"
+                + "       WHEN MONTH(Ngaydk) = 10 THEN 3\n"
+                + "       WHEN MONTH(Ngaydk) = 11 THEN 2\n"
+                + "       WHEN MONTH(Ngaydk) = 12 THEN 1\n"
+                + "       ELSE 'Unknown'\n"
                 + "END";
         try {
             conn = DBConnection.getConnection();
@@ -230,6 +244,5 @@ public class ThongKeDAOImpl implements IThongKeDAO {
         }
         return listThongKe;
     }
-    
 
 }
