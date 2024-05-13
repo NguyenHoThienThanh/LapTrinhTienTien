@@ -20,4 +20,6 @@ public interface IKhaiSinhService {
     KhaiSinhModel findByCCCD(String CCCD);
     List<KhaiSinhModel> findAllChuaDuyet();
     KhaiSinhModel findOneChuaDuyet(String maKS);
+    public List<KhaiSinhModel> filterByGender(String gender) ;
+    public List<KhaiSinhModel> filterByHomeTown(String hometown);
 }

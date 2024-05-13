@@ -255,9 +255,9 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public List<CongDanModel> filterByHomeTown(String hometown) {
-        String query = " select KhaiSinh.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, QueQuan, NoiSinh, NcCccd, NgcCccd, SDT, Email  from CongDan\n"
+        String query = " select CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, QueQuan, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai from CongDan\n"
                 + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
-                + "  where KhaiSinh.QueQuan = ? and CongDan.TrangThai = 1\n"
+                + "  where KhaiSinh.NoiSinh = ? and CongDan.TrangThai = 1\n"
                 + "  order by ID ASC";
         List<CongDanModel> listCongDan = new ArrayList<>();
         try {

@@ -169,4 +169,81 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
         return khaiSinh;
         
     }
+    @Override
+    public List<KhaiSinhModel> filterByGender(String gender) {
+        String query = " select CongDan.MaKS, HoTen, GioiTinh, NgaySinh, DanToc, QuocTich, NoiSinh, QueQuan, KhaiSinh.Cha, Me,  NguoiKhaiSinh, QuanHe, NgayDk, NoiDk, KhaiSinh.TrangThai from CongDan\n"
+                + "                inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
+                + "                where KhaiSinh.GioiTinh = ? and KhaiSinh.TrangThai = 1\n"
+                + "                order by ID ASC";
+        List<KhaiSinhModel> listKhaiSinh = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, gender);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                KhaiSinhModel khaiSinh = new KhaiSinhModel();
+                khaiSinh.setMaKS(rs.getString(1));
+                khaiSinh.setHoTenKS(rs.getString(2));
+                khaiSinh.setGioiTinh(rs.getString(3));
+                khaiSinh.setNgaySinh(rs.getDate(4));
+                khaiSinh.setDanToc(rs.getString(5));
+                khaiSinh.setQuocTich(rs.getString(6));
+                khaiSinh.setNoiSinh(rs.getString(7));
+                khaiSinh.setQueQuan(rs.getString(8));
+                khaiSinh.setCha(rs.getString(9));
+                khaiSinh.setMe(rs.getString(10));
+                khaiSinh.setNguoiKhaiSinh(rs.getString(11));
+                khaiSinh.setQuanHe(rs.getString(12));
+                khaiSinh.setNgayDk(rs.getDate(13));
+                khaiSinh.setNoiDk(rs.getString(14));
+                khaiSinh.setTrangThai(rs.getInt(15));
+
+                listKhaiSinh.add(khaiSinh);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listKhaiSinh;
+    }
+    
+    @Override
+    public List<KhaiSinhModel> filterByHomeTown(String hometown) {
+        String query = " select CongDan.MaKS, HoTen, GioiTinh, NgaySinh, DanToc, QuocTich, NoiSinh, QueQuan, KhaiSinh.Cha, Me,  NguoiKhaiSinh, QuanHe, NgayDk, NoiDk, KhaiSinh.TrangThai from CongDan\n"
+                + "                inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
+                + "                where KhaiSinh.QueQuan= ? and KhaiSinh.TrangThai = 1\n"
+                + "                order by ID ASC";
+        List<KhaiSinhModel> listKhaiSinh = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, hometown);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                KhaiSinhModel khaiSinh = new KhaiSinhModel();
+                khaiSinh.setMaKS(rs.getString(1));
+                khaiSinh.setHoTenKS(rs.getString(2));
+                khaiSinh.setGioiTinh(rs.getString(3));
+                khaiSinh.setNgaySinh(rs.getDate(4));
+                khaiSinh.setDanToc(rs.getString(5));
+                khaiSinh.setQuocTich(rs.getString(6));
+                khaiSinh.setNoiSinh(rs.getString(7));
+                khaiSinh.setQueQuan(rs.getString(8));
+                khaiSinh.setCha(rs.getString(9));
+                khaiSinh.setMe(rs.getString(10));
+                khaiSinh.setNguoiKhaiSinh(rs.getString(11));
+                khaiSinh.setQuanHe(rs.getString(12));
+                khaiSinh.setNgayDk(rs.getDate(13));
+                khaiSinh.setNoiDk(rs.getString(14));
+                khaiSinh.setTrangThai(rs.getInt(15));
+
+                listKhaiSinh.add(khaiSinh);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listKhaiSinh;
+    }
 }
