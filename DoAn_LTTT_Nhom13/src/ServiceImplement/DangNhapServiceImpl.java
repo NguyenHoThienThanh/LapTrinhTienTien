@@ -8,6 +8,7 @@ import DAOImplement.DangNhapDAOImpl;
 import InterfaceDAO.IDangNhapDAO;
 import InterfaceService.IDangNhapService;
 import Models.DangNhapModel;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -69,11 +70,36 @@ public class DangNhapServiceImpl implements IDangNhapService {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         IDangNhapDAO dn = new DangNhapDAOImpl();
-        DangNhapModel model = dn.findOne("083203011806");
-        System.out.println(model.getMatKhau());
-        System.out.println(model.getTenDangNhap());
+        DangNhapModel model = new DangNhapModel();
+        System.out.println(String.valueOf(dn.doneVerify("083203011806")));
+        
+    }
+
+    @Override
+    public String generateVerifyCode() {
+        return dangNhapDAO.generateVerifyCode();
+    }
+
+    @Override
+    public boolean checkDuplicateCode(String verifyCode) {
+        return dangNhapDAO.checkDuplicateCode(verifyCode);
+    }
+
+    @Override
+    public boolean checkDuplicateEmail(String user) {
+        return dangNhapDAO.checkDuplicateEmail(user);
+    }
+
+    @Override
+    public boolean doneVerify(String tenDangNhap) throws SQLException, Exception {
+        return dangNhapDAO.doneVerify(tenDangNhap);
+    }
+
+    @Override
+    public boolean verifyCodeWithUser(String tenDangNhap, String code) throws SQLException, Exception {
+        return dangNhapDAO.verifyCodeWithUser(tenDangNhap, code);
     }
 
 }
