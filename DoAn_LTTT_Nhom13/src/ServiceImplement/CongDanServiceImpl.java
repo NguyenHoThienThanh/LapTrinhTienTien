@@ -159,9 +159,9 @@ public class CongDanServiceImpl implements ICongDanService {
 
     public static void main(String[] args) {
         ICongDanDAO dn = new CongDanDAOImpl();
-        CongDanModel model = dn.findOneWithoutAdd("083303008061");
+        CongDanModel model = dn.findOneWithoutAdd("092303008771");
         boolean rs = new CongDanServiceImpl().checkCCCDExist("083303008061");
-        System.out.println(model.getHoTen() + " "+rs);
+        System.out.println(model.getHoTen() + " " + rs);
     }
 
     @Override
@@ -212,6 +212,41 @@ public class CongDanServiceImpl implements ICongDanService {
             e.printStackTrace();
         }
         return ttcn;
+    }
 
+    @Override
+    public List<CongDanModel> filterByGender(String gender) {
+        String query = "  select CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai  from CongDan\n"
+                + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
+                + "  where KhaiSinh.GioiTinh = ? and CongDan.TrangThai = 1\n"
+                + "  order by ID ASC";
+        List<CongDanModel> listCongDan = new ArrayList<>();
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, gender);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                CongDanModel congDan = new CongDanModel();
+                
+                congDan.setMaKS(rs.getString(1));
+                congDan.setCCCD(rs.getString(2));
+                congDan.setHoTen(rs.getString(3));
+                congDan.setNgaySinh(rs.getDate(4));
+                congDan.setGioiTinh(rs.getString(5));
+                congDan.setNoiSinh(rs.getString(6));
+                congDan.setNcCccd(rs.getString(7));
+                congDan.setNgcCccd(rs.getDate(8));
+                congDan.setSDT(rs.getString(9));
+                congDan.setEmail(rs.getString(10));
+                congDan.setTrangThai(rs.getInt(11));
+
+                listCongDan.add(congDan);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listCongDan;
     }
 }

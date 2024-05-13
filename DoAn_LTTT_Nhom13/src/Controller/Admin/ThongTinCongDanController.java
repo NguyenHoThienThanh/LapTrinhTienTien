@@ -7,6 +7,8 @@ import Models.KhaiSinhModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.KhaiSinhServiceImpl;
 import Swing.TextField;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,6 +21,12 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ThongTinCongDanController extends javax.swing.JPanel {
 
@@ -46,6 +54,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tf_hoTen = new Swing.TextField();
         tf_gioiTinh = new Swing.TextField();
         tf_noiCapCCCD = new Swing.TextField();
@@ -66,6 +75,10 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         btn_luuThem = new Swing.Button();
         btn_loadData = new button.MyButton();
         btn_them = new Swing.Button();
+        cbx_filter = new Swing.Combobox();
+        rd_nu = new javax.swing.JRadioButton();
+        rd_nam = new javax.swing.JRadioButton();
+        btn_xuatDanhSach = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -183,6 +196,39 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             }
         });
 
+        cbx_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả", "Giới tính", "Nơi sinh", "Nơi cấp CCCD" }));
+        cbx_filter.setLabeText("");
+        cbx_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_filterActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rd_nu);
+        rd_nu.setText("Nữ");
+        rd_nu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd_nuActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rd_nam);
+        rd_nam.setText("Nam");
+        rd_nam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rd_namActionPerformed(evt);
+            }
+        });
+
+        btn_xuatDanhSach.setBackground(new java.awt.Color(18, 99, 63));
+        btn_xuatDanhSach.setForeground(new java.awt.Color(255, 255, 255));
+        btn_xuatDanhSach.setText("Xuất danh sách");
+        btn_xuatDanhSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xuatDanhSachActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,9 +236,6 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(289, 289, 289)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -217,27 +260,42 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                                 .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(733, 733, 733)
-                        .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
-                .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                        .addGap(25, 25, 25)
+                        .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_luuThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
+                        .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_luuSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rd_nu)
+                        .addGap(28, 28, 28)
+                        .addComponent(rd_nam)
+                        .addGap(60, 60, 60)
+                        .addComponent(cbx_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(289, 289, 289)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(733, 733, 733)
+                                .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(btn_loadData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +318,13 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbx_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rd_nu)
+                    .addComponent(rd_nam)
+                    .addComponent(btn_xuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -270,7 +334,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -612,10 +676,122 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btn_themActionPerformed
+
+    private void cbx_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_filterActionPerformed
+        if (cbx_filter.getSelectedIndex() == 0) {
+            clearRadio();
+            model.setRowCount(0);
+            showTable();
+        }
+
+
+    }//GEN-LAST:event_cbx_filterActionPerformed
+
+    private void rd_nuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_nuActionPerformed
+        if (cbx_filter.getSelectedIndex() == 1) {
+            if (rd_nu.isSelected()) {
+                model.setRowCount(0);
+                List<CongDanModel> list = new CongDanServiceImpl().filterByGender("Nữ");
+                model.fireTableDataChanged();
+                for (CongDanModel congDan : list) {
+                    model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+
+                }
+
+            }
+        }
+
+    }//GEN-LAST:event_rd_nuActionPerformed
+
+    private void rd_namActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rd_namActionPerformed
+        if (cbx_filter.getSelectedIndex() == 1) {
+            if (rd_nam.isSelected()) {
+                model.setRowCount(0);
+                List<CongDanModel> list = new CongDanServiceImpl().filterByGender("Nam");
+                model.fireTableDataChanged();
+                for (CongDanModel congDan : list) {
+                    model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+                }
+            }
+        }
+    }//GEN-LAST:event_rd_namActionPerformed
+
+    private void btn_xuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatDanhSachActionPerformed
+        if(tbl_thongTinCongDan.getRowCount()!=0){
+            String filePath = "D:\\DanhSachCongDan.xlsx";
+        exportToExcel(filePath);
+        }else{
+            JOptionPane dialog = new JOptionPane("Bảng dữ liệu trống!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
+        
+    }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
+    private void exportToExcel(String filePath) {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Danh sách công dân");
+        
+        Cell cell =null;
+        // Tiêu đề cột
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("STT");
+        headerRow.createCell(1).setCellValue("Mã Khai Sinh");
+        headerRow.createCell(2).setCellValue("Số CCCD");
+        headerRow.createCell(3).setCellValue("Họ Tên");
+        headerRow.createCell(4).setCellValue("Ngày Sinh");
+        headerRow.createCell(5).setCellValue("Giới Tính");
+        headerRow.createCell(6).setCellValue("Nơi Sinh");
+        headerRow.createCell(7).setCellValue("Nơi Cấp CCCD");
+        headerRow.createCell(8).setCellValue("Ngày Cấp CCCD");
+        headerRow.createCell(9).setCellValue("Số Điện Thoại");
+        headerRow.createCell(10).setCellValue("Email");
+
+        int sttCounter = 1;
+        // Dữ liệu
+        for (int i = 0; i < tbl_thongTinCongDan.getRowCount(); i++) {
+            Row row = sheet.createRow(i + 1);
+            row.createCell(0).setCellValue(sttCounter++);
+            row.createCell(1).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 0));
+            row.createCell(2).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 1));
+            row.createCell(3).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 2));
+            
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue( tbl_thongTinCongDan.getValueAt(i, 3).toString());
+            
+            row.createCell(5).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 4));
+            row.createCell(6).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 5));
+            row.createCell(7).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 6));
+            
+            cell = row.createCell(8, CellType.STRING);
+            cell.setCellValue( tbl_thongTinCongDan.getValueAt(i, 7).toString());
+            
+            row.createCell(9).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 8));
+            row.createCell(10).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 9));
+
+        }
+
+        // Tự động điều chỉnh độ rộng cột
+        for (int i = 0; i < tbl_thongTinCongDan.getColumnCount(); i++) {
+            sheet.autoSizeColumn(i);
+        }
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+            JOptionPane.showMessageDialog(null, "Xuất dữ liệu ra file Excel thành công");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
+        }
+    }
+
     public void showResult() {
         CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
         model.fireTableDataChanged();
         model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+    }
+
+    private void clearRadio() {
+        buttonGroup1.clearSelection();
     }
 
     private void clear() {
@@ -694,7 +870,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             return false;
         }
     }
-    
+
     public static boolean isDateValid_1(String ngayStr) {
 
         if (!ngayStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
@@ -776,8 +952,13 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private Swing.Button btn_them;
     private Swing.Button btn_xoa;
     private Swing.Button btn_xoaDuLieu;
+    private Swing.Button btn_xuatDanhSach;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private Swing.Combobox cbx_filter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton rd_nam;
+    private javax.swing.JRadioButton rd_nu;
     private Swing.TableDark tbl_thongTinCongDan;
     private Swing.TextField tf_email;
     private Swing.TextField tf_gioiTinh;
