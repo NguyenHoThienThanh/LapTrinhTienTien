@@ -726,15 +726,13 @@ public class Login_RegisterController extends javax.swing.JFrame {
                 action = false;
             }
             List<DangNhapModel> list = dangNhapService.findAll();
-            DangNhapModel dn = dangNhapService.findOne(tf_registerusername.getText());
             CongDanModel cd = congDanService.findOneWithoutAdd(tf_registerusername.getText());
-            JOptionPane.showMessageDialog(rootPane, tf_registeremail.getText() + " " + cd.getEmail());
             if(!tf_registeremail.getText().trim().equals(cd.getEmail())){
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập email đã đăng ký trong công dân", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if ((action && list.isEmpty()) || (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == false && dn.getTenDangNhap().equals(cd.getCCCD()))) {
+            if ((action && list.isEmpty()) || (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == false && tf_registerusername.getText().equals(cd.getCCCD()))) {
                 model.setQuyen("user");
                 model.setTenDangNhap(tf_registerusername.getText().trim());
                 model.setMatKhau(tf_registerpassword.getText().trim());
@@ -747,7 +745,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!!! Vui lòng nhập tên khác", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE);
             }
-            else if(action && !cd.getCCCD().equals(dn.getTenDangNhap())){
+            else if(action && !cd.getCCCD().equals(tf_registerusername.getText())){
                 JOptionPane.showMessageDialog(null, "Không thể tạo tài khoản mà chưa có công dân", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE); 
             }
