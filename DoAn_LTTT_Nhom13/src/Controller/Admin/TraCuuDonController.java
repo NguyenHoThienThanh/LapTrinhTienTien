@@ -32,8 +32,13 @@ import ServiceImplement.TamTruServiceImpl;
 import ServiceImplement.TamVangServiceImpl;
 import ServiceImplement.ThueServiceImpl;
 import java.awt.Color;
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
@@ -85,7 +90,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
     public TraCuuDonController() {
         initComponents();
-        tabbedPaneCustom1.setEnabledAt(2, false);
         tabbedPaneCustom1.setEnabledAt(1, false);
     }
 
@@ -116,12 +120,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         tbl_hokhau = new Swing.TableDark();
         jLabel7 = new javax.swing.JLabel();
-        panelThue = new javax.swing.JPanel();
-        tf_masothue = new Swing.TextField();
-        tf_hotenthue = new Swing.TextField();
-        tf_coquanthue = new Swing.TextField();
-        tf_ngaythaydoithongtin = new Swing.TextField();
-        jLabel8 = new javax.swing.JLabel();
         btn_timkiem = new button.MyButton();
         panelGCNKH = new javax.swing.JPanel();
         tf_ngaysinhchong = new Swing.TextField();
@@ -219,6 +217,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tf_email = new Swing.TextField();
         btn_backFromTTCDToDon = new button.MyButton();
         jLabel13 = new javax.swing.JLabel();
+        pic_imgavatar = new Views.OtherForm.swing.PictureBox();
         panelLH = new javax.swing.JPanel();
         tf_malyhon = new Swing.TextField();
         tf_macnkhlh = new Swing.TextField();
@@ -499,59 +498,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
         tabbedPaneCustom1.addTab("Hộ khẩu", panelHoKhau);
 
-        panelThue.setBackground(new java.awt.Color(255, 255, 255));
-        panelThue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 110, 71), 2));
-
-        tf_masothue.setLabelText("Mã số thuế");
-
-        tf_hotenthue.setLabelText("Họ tên");
-
-        tf_coquanthue.setLabelText("Cơ quan thuế");
-
-        tf_ngaythaydoithongtin.setLabelText("Ngày thay đổi thông tin gần nhất");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(21, 110, 71));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("THÔNG TIN THUẾ");
-
-        javax.swing.GroupLayout panelThueLayout = new javax.swing.GroupLayout(panelThue);
-        panelThue.setLayout(panelThueLayout);
-        panelThueLayout.setHorizontalGroup(
-            panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelThueLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tf_coquanthue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_masothue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tf_hotenthue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_ngaythaydoithongtin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(68, 68, 68))
-            .addGroup(panelThueLayout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelThueLayout.setVerticalGroup(
-            panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelThueLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel8)
-                .addGap(43, 43, 43)
-                .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_masothue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_hotenthue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_coquanthue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_ngaythaydoithongtin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        tabbedPaneCustom1.addTab("Thuế", panelThue);
-
         btn_timkiem.setBackground(new java.awt.Color(21, 110, 71));
         btn_timkiem.setForeground(new java.awt.Color(255, 255, 255));
         btn_timkiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/magnify-custom.png"))); // NOI18N
@@ -596,7 +542,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                     .addComponent(btn_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tabbedPaneCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(panelDon, "card2");
@@ -772,7 +718,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         add(panelGCNKH, "card3");
@@ -914,7 +860,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         add(panelTT, "card4");
@@ -1149,7 +1095,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelKSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_cccdme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_cccdcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         add(panelKS, "card6");
@@ -1296,7 +1242,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 115, Short.MAX_VALUE))
+                .addGap(0, 116, Short.MAX_VALUE))
         );
 
         add(panelTV, "card7");
@@ -1358,18 +1304,10 @@ public class TraCuuDonController extends javax.swing.JPanel {
                         .addComponent(btn_backFromTTCDToDon, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(138, 138, 138)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 133, Short.MAX_VALUE))
                     .addGroup(panelTTCDLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelTTCDLayout.createSequentialGroup()
-                                .addComponent(tf_ngaysinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(tf_noisinhcd, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                .addGap(39, 39, 39)
-                                .addComponent(tf_quoctichcd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(tf_dantoccd, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelTTCDLayout.createSequentialGroup()
                                 .addComponent(tf_quequancd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
@@ -1378,12 +1316,25 @@ public class TraCuuDonController extends javax.swing.JPanel {
                                 .addComponent(tf_sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
                                 .addComponent(tf_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelTTCDLayout.createSequentialGroup()
-                                .addComponent(tf_hotencd, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84)
-                                .addComponent(tf_gioitinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(tf_cccdcd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTTCDLayout.createSequentialGroup()
+                                .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(pic_imgavatar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_ngaysinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelTTCDLayout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addComponent(tf_noisinhcd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(tf_quoctichcd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelTTCDLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tf_hotencd, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(tf_gioitinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(29, 29, 29)
+                                .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_cccdcd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tf_dantoccd, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))))))
                 .addGap(105, 105, 105))
         );
         panelTTCDLayout.setVerticalGroup(
@@ -1393,12 +1344,17 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_backFromTTCDToDon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addGap(57, 57, 57)
-                .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_hotencd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_gioitinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_cccdcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelTTCDLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_hotencd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_gioitinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_cccdcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelTTCDLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(pic_imgavatar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_ngaysinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_noisinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1412,7 +1368,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         add(panelTTCD, "card8");
@@ -1551,230 +1507,11 @@ public class TraCuuDonController extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         add(panelLH, "card9");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_donkethonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donkethonActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelGCNKH.setVisible(true);
-
-        listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
-        model = (DefaultTableModel) tbl_cnkh.getModel();
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-
-        for (DonChungNhanKetHon dcnkh : listDonChungNhanKetHon) {
-            model.addRow(new Object[]{dcnkh.getMaCnkh(), dcnkh.getCCCDVo(), dcnkh.getHoTenVo(), dcnkh.getNgaySinhVo(), dcnkh.getDanTocVo(), dcnkh.getQuocTichVo(), dcnkh.getNoiCuTruVo(),
-                dcnkh.getCCCDChong(), dcnkh.getHoTenChong(), dcnkh.getNgaySinhChong(), dcnkh.getDanTocChong(), dcnkh.getQuocTichChong(), dcnkh.getNoiCuTruChong(), dcnkh.getNgaydk(), dcnkh.getNoidk()});
-        }
-
-        tf_macnkh.setEditable(false);
-        tf_giaytotuythanvo.setEditable(false);
-        tf_hotenvo.setEditable(false);
-        tf_ngaysinhvo.setEditable(false);
-        tf_quoctichvo.setEditable(false);
-        tf_dantocvo.setEditable(false);
-        tf_noicutrucuavo.setEditable(false);
-        tf_giaytotuythanchong.setEditable(false);
-        tf_hotenchong.setEditable(false);
-        tf_ngaysinhchong.setEditable(false);
-        tf_dantocchong.setEditable(false);
-        tf_quoctichchong.setEditable(false);
-        tf_noicutrucuachong.setEditable(false);
-        tf_ngaydangky.setEditable(false);
-        tf_noidangky.setEditable(false);
-
-    }//GEN-LAST:event_btn_donkethonActionPerformed
-
-    private void btn_donkhaisinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donkhaisinhActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelKS.setVisible(true);
-
-        khaiSinhModel = khaiSinhService.findByCCCD(tf_timkiem.getText().trim());
-
-        tf_hotenks.setText(khaiSinhModel.getHoTenKS());
-        tf_maks.setText(khaiSinhModel.getMaKS());
-        tf_gioitinh.setText(khaiSinhModel.getGioiTinh());
-        tf_ngaysinhks.setText(String.valueOf(khaiSinhModel.getNgaySinh()));
-        tf_noisinh.setText(khaiSinhModel.getNoiSinh());
-        tf_quoctich.setText(khaiSinhModel.getQuocTich());
-        tf_dantoc.setText(khaiSinhModel.getDanToc());
-        tf_quequan.setText(khaiSinhModel.getQueQuan());
-        tf_cccdcha.setText(khaiSinhModel.getCha());
-        tf_cccdme.setText(khaiSinhModel.getMe());
-        tf_ngaydangkyks.setText(String.valueOf(khaiSinhModel.getNgayDk()));
-        tf_cccdnguoikhaisinh.setText(khaiSinhModel.getNguoiKhaiSinh());
-        tf_quanhe.setText(khaiSinhModel.getQuanHe());
-        tf_noidangkyks.setText(khaiSinhModel.getNoiDk());
-
-        tf_hotenks.setEditable(false);
-        tf_maks.setEditable(false);
-        tf_gioitinh.setEditable(false);
-        tf_ngaysinhks.setEditable(false);
-        tf_noisinh.setEditable(false);
-        tf_quoctich.setEditable(false);
-        tf_dantoc.setEditable(false);
-        tf_quequan.setEditable(false);
-        tf_cccdcha.setEditable(false);
-        tf_cccdme.setEditable(false);
-        tf_ngaydangkyks.setEditable(false);
-        tf_cccdnguoikhaisinh.setEditable(false);
-        tf_quanhe.setEditable(false);
-        tf_noidangkyks.setEditable(false);
-
-    }//GEN-LAST:event_btn_donkhaisinhActionPerformed
-
-    private void btn_dontamtruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dontamtruActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelTT.setVisible(true);
-
-        DefaultTableModel model;
-
-        listDonTamTru = tamTruService.findAllTT(tf_timkiem.getText().trim());
-        model = (DefaultTableModel) tbl_tamtru.getModel();
-
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-        for (DonTamTru dtt : listDonTamTru) {
-            model.addRow(new Object[]{dtt.getMaTT(), dtt.getNgayDk(), dtt.getNoiDangKy(), dtt.getHoTen(), dtt.getNgaySinh(), dtt.getCCCD(),
-                dtt.getNoiCap(), dtt.getNgayCap(), dtt.getNgayDen(), dtt.getNgayDi(), dtt.getLiDo()});
-        }
-
-        tf_matamtru.setEditable(false);
-        tf_ngaydangkyTT.setEditable(false);
-        tf_noidangkyTT.setEditable(false);
-        tf_ngaysinh.setEditable(false);
-        tf_hoten.setEditable(false);
-        tf_cccd.setEditable(false);
-        tf_noicap.setEditable(false);
-        tf_ngaycap.setEditable(false);
-        tf_ngayden.setEditable(false);
-        tf_ngaydi.setEditable(false);
-        tf_lydo.setEditable(false);
-    }//GEN-LAST:event_btn_dontamtruActionPerformed
-
-    private void btn_dontamvangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dontamvangActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelTV.setVisible(true);
-
-        listDonTamVang = tamVangService.findAllTV(tf_timkiem.getText().trim());
-        model = (DefaultTableModel) tbl_tamvang.getModel();
-
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-        for (DonTamVang dtv : listDonTamVang) {
-            model.addRow(new Object[]{dtv.getMaTV(), dtv.getNgayDangKy(), dtv.getNoiChuyenDi(), dtv.getNoiChuyenDen(), dtv.getHoTen(), dtv.getNgaySinh(),
-                dtv.getCCCD(), dtv.getNoiCapCCCD(), dtv.getNgayDi(), dtv.getNgayVe(), dtv.getLyDo()});
-        }
-
-        tf_matamvang.setEditable(false);
-        tf_ngaydangkytv.setEditable(false);
-        tf_noichuyendi.setEditable(false);
-        tf_noichuyenden.setEditable(false);
-        tf_hotentv.setEditable(false);
-        tf_ngaysinhtv.setEditable(false);
-        tf_cccdtv.setEditable(false);
-        tf_noicaptv.setEditable(false);
-        tf_ngayve.setEditable(false);
-        tf_ngayditv.setEditable(false);
-        tf_lydotv.setEditable(false);
-    }//GEN-LAST:event_btn_dontamvangActionPerformed
-
-    private void btn_thongtincongdanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongtincongdanActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelTTCD.setVisible(true);
-
-        thongTinCaNhan = congDanService.findTTCN(tf_timkiem.getText().trim());
-
-        tf_hotencd.setText(thongTinCaNhan.getHoTen());
-        tf_gioitinhcd.setText(thongTinCaNhan.getGioiTinh());
-        tf_cccdcd.setText(thongTinCaNhan.getCCCD());
-        tf_ngaysinhcd.setText(String.valueOf(thongTinCaNhan.getNgaySinh()));
-        tf_noisinhcd.setText(thongTinCaNhan.getNoiSinh());
-        tf_quoctichcd.setText(thongTinCaNhan.getQuocTich());
-        tf_dantoccd.setText(thongTinCaNhan.getDanToc());
-        tf_quequancd.setText(thongTinCaNhan.getQueQuan());
-        tf_diachi.setText(thongTinCaNhan.getDiaChi());
-        tf_sodienthoai.setText(thongTinCaNhan.getSdt());
-        tf_email.setText(thongTinCaNhan.getEmail());
-
-        tf_hotencd.setEditable(false);
-        tf_gioitinhcd.setEditable(false);
-        tf_cccdcd.setEditable(false);
-        tf_ngaysinhcd.setEditable(false);
-        tf_noisinhcd.setEditable(false);
-        tf_quoctichcd.setEditable(false);
-        tf_dantoccd.setEditable(false);
-        tf_quequancd.setEditable(false);
-        tf_diachi.setEditable(false);
-        tf_sodienthoai.setEditable(false);
-        tf_email.setEditable(false);
-    }//GEN-LAST:event_btn_thongtincongdanActionPerformed
-
-    private void btn_donlyhonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donlyhonActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelLH.setVisible(true);
-
-        listLyHon = lyHonService.findAllLH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
-        model = (DefaultTableModel) tbl_lyhon.getModel();
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-
-        for (LyHonModel lh : listLyHon) {
-            model.addRow(new Object[]{lh.getMaLh(), lh.getMaCnkh(), lh.getHoTenNguoiNopDon(), lh.getCCCDNguoiNopDon(), lh.getHoTenVo(), lh.getCCCDVO(),
-                lh.getHoTenChong(), lh.getCCCDChong(), lh.getNoidk(), lh.getNgaydk(), lh.getLydo()});
-        }
-
-        tf_malyhon.setEditable(false);
-        tf_macnkhlh.setEditable(false);
-        tf_hotennguoinopdon.setEditable(false);
-        tf_cccdnguoinopdon.setEditable(false);
-        tf_hotenvolh.setEditable(false);
-        tf_cccdvo.setEditable(false);
-        tf_hotenchonglh.setEditable(false);
-        tf_cccdchong.setEditable(false);
-        tf_noidangkylh.setEditable(false);
-        tf_ngaydangkylh.setEditable(false);
-        tf_lydolh.setEditable(false);
-
-    }//GEN-LAST:event_btn_donlyhonActionPerformed
-
-    private void btn_giaychungtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_giaychungtuActionPerformed
-        // TODO add your handling code here:
-        panelDon.setVisible(false);
-        panelGCT.setVisible(true);
-
-        giayChungTuModel = chungTuService.findAllGCT(tf_timkiem.getText().trim());
-
-        tf_machungtu.setText(giayChungTuModel.getMaCT());
-        tf_cccdgct.setText(giayChungTuModel.getCCCD());
-        tf_hotengct.setText(giayChungTuModel.getHoTen());
-        tf_ngaysinhgct.setText(String.valueOf(giayChungTuModel.getNgaySinh()));
-        tf_ngaymat.setText(String.valueOf(giayChungTuModel.getNgayMat()));
-        tf_noimat.setText(giayChungTuModel.getNoiMat());
-        tf_lydogct.setText(giayChungTuModel.getNguyenNhan());
-
-        tf_machungtu.setEditable(false);
-        tf_cccdgct.setEditable(false);
-        tf_hotengct.setEditable(false);
-        tf_ngaysinhgct.setEditable(false);
-        tf_ngaymat.setEditable(false);
-        tf_noimat.setEditable(false);
-        tf_lydogct.setEditable(false);
-    }//GEN-LAST:event_btn_giaychungtuActionPerformed
 
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         // TODO add your handling code here:
@@ -1796,22 +1533,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btn_timkiemActionPerformed
 
-    private void loadThue(String search1, String search2) {
-        search1 = tf_timkiem.getText().trim();
-        search2 = tf_timkiem.getText().trim();
-        thue = thueService.findOneByCCCD(search1, search2);
-
-        tf_masothue.setText(thue.getMasothue());
-        tf_hotenthue.setText(thue.getHoten());
-        tf_coquanthue.setText(thue.getCoquanthue());
-        tf_ngaythaydoithongtin.setText(String.valueOf(thue.getNgaythaydoithongtingannhat()));
-
-        tf_masothue.setEditable(false);
-        tf_hotenthue.setEditable(false);
-        tf_coquanthue.setEditable(false);
-        tf_ngaythaydoithongtin.setEditable(false);
-
-    }
 
     private void loadHoKhau(String search) {
         search = tf_timkiem.getText().trim();
@@ -1979,9 +1700,240 @@ public class TraCuuDonController extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_quoctichActionPerformed
 
+    private void btn_donkethonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donkethonActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelGCNKH.setVisible(true);
+
+        listDonChungNhanKetHon = chungNhanKetHonService.findAllCNKH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
+        model = (DefaultTableModel) tbl_cnkh.getModel();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        for (DonChungNhanKetHon dcnkh : listDonChungNhanKetHon) {
+            model.addRow(new Object[]{dcnkh.getMaCnkh(), dcnkh.getCCCDVo(), dcnkh.getHoTenVo(), dcnkh.getNgaySinhVo(), dcnkh.getDanTocVo(), dcnkh.getQuocTichVo(), dcnkh.getNoiCuTruVo(),
+                dcnkh.getCCCDChong(), dcnkh.getHoTenChong(), dcnkh.getNgaySinhChong(), dcnkh.getDanTocChong(), dcnkh.getQuocTichChong(), dcnkh.getNoiCuTruChong(), dcnkh.getNgaydk(), dcnkh.getNoidk()});
+        }
+
+        tf_macnkh.setEditable(false);
+        tf_giaytotuythanvo.setEditable(false);
+        tf_hotenvo.setEditable(false);
+        tf_ngaysinhvo.setEditable(false);
+        tf_quoctichvo.setEditable(false);
+        tf_dantocvo.setEditable(false);
+        tf_noicutrucuavo.setEditable(false);
+        tf_giaytotuythanchong.setEditable(false);
+        tf_hotenchong.setEditable(false);
+        tf_ngaysinhchong.setEditable(false);
+        tf_dantocchong.setEditable(false);
+        tf_quoctichchong.setEditable(false);
+        tf_noicutrucuachong.setEditable(false);
+        tf_ngaydangky.setEditable(false);
+        tf_noidangky.setEditable(false);
+    }//GEN-LAST:event_btn_donkethonActionPerformed
+
+    private void btn_giaychungtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_giaychungtuActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelGCT.setVisible(true);
+
+        giayChungTuModel = chungTuService.findAllGCT(tf_timkiem.getText().trim());
+
+        tf_machungtu.setText(giayChungTuModel.getMaCT());
+        tf_cccdgct.setText(giayChungTuModel.getCCCD());
+        tf_hotengct.setText(giayChungTuModel.getHoTen());
+        tf_ngaysinhgct.setText(String.valueOf(giayChungTuModel.getNgaySinh()));
+        tf_ngaymat.setText(String.valueOf(giayChungTuModel.getNgayMat()));
+        tf_noimat.setText(giayChungTuModel.getNoiMat());
+        tf_lydogct.setText(giayChungTuModel.getNguyenNhan());
+
+        tf_machungtu.setEditable(false);
+        tf_cccdgct.setEditable(false);
+        tf_hotengct.setEditable(false);
+        tf_ngaysinhgct.setEditable(false);
+        tf_ngaymat.setEditable(false);
+        tf_noimat.setEditable(false);
+        tf_lydogct.setEditable(false);
+    }//GEN-LAST:event_btn_giaychungtuActionPerformed
+
+    private void btn_donlyhonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donlyhonActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelLH.setVisible(true);
+
+        listLyHon = lyHonService.findAllLH(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
+        model = (DefaultTableModel) tbl_lyhon.getModel();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        for (LyHonModel lh : listLyHon) {
+            model.addRow(new Object[]{lh.getMaLh(), lh.getMaCnkh(), lh.getHoTenNguoiNopDon(), lh.getCCCDNguoiNopDon(), lh.getHoTenVo(), lh.getCCCDVO(),
+                lh.getHoTenChong(), lh.getCCCDChong(), lh.getNoidk(), lh.getNgaydk(), lh.getLydo()});
+        }
+
+        tf_malyhon.setEditable(false);
+        tf_macnkhlh.setEditable(false);
+        tf_hotennguoinopdon.setEditable(false);
+        tf_cccdnguoinopdon.setEditable(false);
+        tf_hotenvolh.setEditable(false);
+        tf_cccdvo.setEditable(false);
+        tf_hotenchonglh.setEditable(false);
+        tf_cccdchong.setEditable(false);
+        tf_noidangkylh.setEditable(false);
+        tf_ngaydangkylh.setEditable(false);
+        tf_lydolh.setEditable(false);
+    }//GEN-LAST:event_btn_donlyhonActionPerformed
+
+    private void btn_thongtincongdanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongtincongdanActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelTTCD.setVisible(true);
+
+        thongTinCaNhan = congDanService.findTTCN(tf_timkiem.getText().trim());
+
+        tf_hotencd.setText(thongTinCaNhan.getHoTen());
+        tf_gioitinhcd.setText(thongTinCaNhan.getGioiTinh());
+        tf_cccdcd.setText(thongTinCaNhan.getCCCD());
+        tf_ngaysinhcd.setText(String.valueOf(thongTinCaNhan.getNgaySinh()));
+        tf_noisinhcd.setText(thongTinCaNhan.getNoiSinh());
+        tf_quoctichcd.setText(thongTinCaNhan.getQuocTich());
+        tf_dantoccd.setText(thongTinCaNhan.getDanToc());
+        tf_quequancd.setText(thongTinCaNhan.getQueQuan());
+        tf_diachi.setText(thongTinCaNhan.getDiaChi());
+        tf_sodienthoai.setText(thongTinCaNhan.getSdt());
+        tf_email.setText(thongTinCaNhan.getEmail());
+        
+        byte[] imageData = thongTinCaNhan.getHinhAnh();
+        Image image = null;
+        try {
+            image = ImageIO.read(new ByteArrayInputStream(imageData));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (image != null) {
+        ImageIcon icon = new ImageIcon(image);
+            pic_imgavatar.setImage(icon);
+            pic_imgavatar.repaint(); // Cập nhật lại JLabel để hiển thị hình ảnh mới
+        } else {
+            // Đặt hình ảnh mặc định hoặc thông báo lỗi nếu hình ảnh không thể đọc được
+            pic_imgavatar.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
+        }
+        
+        tf_hotencd.setEditable(false);
+        tf_gioitinhcd.setEditable(false);
+        tf_cccdcd.setEditable(false);
+        tf_ngaysinhcd.setEditable(false);
+        tf_noisinhcd.setEditable(false);
+        tf_quoctichcd.setEditable(false);
+        tf_dantoccd.setEditable(false);
+        tf_quequancd.setEditable(false);
+        tf_diachi.setEditable(false);
+        tf_sodienthoai.setEditable(false);
+        tf_email.setEditable(false);
+    }//GEN-LAST:event_btn_thongtincongdanActionPerformed
+
+    private void btn_dontamvangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dontamvangActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelTV.setVisible(true);
+
+        listDonTamVang = tamVangService.findAllTV(tf_timkiem.getText().trim());
+        model = (DefaultTableModel) tbl_tamvang.getModel();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        for (DonTamVang dtv : listDonTamVang) {
+            model.addRow(new Object[]{dtv.getMaTV(), dtv.getNgayDangKy(), dtv.getNoiChuyenDi(), dtv.getNoiChuyenDen(), dtv.getHoTen(), dtv.getNgaySinh(),
+                dtv.getCCCD(), dtv.getNoiCapCCCD(), dtv.getNgayDi(), dtv.getNgayVe(), dtv.getLyDo()});
+        }
+
+        tf_matamvang.setEditable(false);
+        tf_ngaydangkytv.setEditable(false);
+        tf_noichuyendi.setEditable(false);
+        tf_noichuyenden.setEditable(false);
+        tf_hotentv.setEditable(false);
+        tf_ngaysinhtv.setEditable(false);
+        tf_cccdtv.setEditable(false);
+        tf_noicaptv.setEditable(false);
+        tf_ngayve.setEditable(false);
+        tf_ngayditv.setEditable(false);
+        tf_lydotv.setEditable(false);
+    }//GEN-LAST:event_btn_dontamvangActionPerformed
+
+    private void btn_dontamtruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dontamtruActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelTT.setVisible(true);
+
+        DefaultTableModel model;
+
+        listDonTamTru = tamTruService.findAllTT(tf_timkiem.getText().trim());
+        model = (DefaultTableModel) tbl_tamtru.getModel();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        for (DonTamTru dtt : listDonTamTru) {
+            model.addRow(new Object[]{dtt.getMaTT(), dtt.getNgayDk(), dtt.getNoiDangKy(), dtt.getHoTen(), dtt.getNgaySinh(), dtt.getCCCD(),
+                dtt.getNoiCap(), dtt.getNgayCap(), dtt.getNgayDen(), dtt.getNgayDi(), dtt.getLiDo()});
+        }
+
+        tf_matamtru.setEditable(false);
+        tf_ngaydangkyTT.setEditable(false);
+        tf_noidangkyTT.setEditable(false);
+        tf_ngaysinh.setEditable(false);
+        tf_hoten.setEditable(false);
+        tf_cccd.setEditable(false);
+        tf_noicap.setEditable(false);
+        tf_ngaycap.setEditable(false);
+        tf_ngayden.setEditable(false);
+        tf_ngaydi.setEditable(false);
+        tf_lydo.setEditable(false);
+    }//GEN-LAST:event_btn_dontamtruActionPerformed
+
+    private void btn_donkhaisinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_donkhaisinhActionPerformed
+        // TODO add your handling code here:
+        panelDon.setVisible(false);
+        panelKS.setVisible(true);
+
+        khaiSinhModel = khaiSinhService.findByCCCD(tf_timkiem.getText().trim());
+
+        tf_hotenks.setText(khaiSinhModel.getHoTenKS());
+        tf_maks.setText(khaiSinhModel.getMaKS());
+        tf_gioitinh.setText(khaiSinhModel.getGioiTinh());
+        tf_ngaysinhks.setText(String.valueOf(khaiSinhModel.getNgaySinh()));
+        tf_noisinh.setText(khaiSinhModel.getNoiSinh());
+        tf_quoctich.setText(khaiSinhModel.getQuocTich());
+        tf_dantoc.setText(khaiSinhModel.getDanToc());
+        tf_quequan.setText(khaiSinhModel.getQueQuan());
+        tf_cccdcha.setText(khaiSinhModel.getCha());
+        tf_cccdme.setText(khaiSinhModel.getMe());
+        tf_ngaydangkyks.setText(String.valueOf(khaiSinhModel.getNgayDk()));
+        tf_cccdnguoikhaisinh.setText(khaiSinhModel.getNguoiKhaiSinh());
+        tf_quanhe.setText(khaiSinhModel.getQuanHe());
+        tf_noidangkyks.setText(khaiSinhModel.getNoiDk());
+
+        tf_hotenks.setEditable(false);
+        tf_maks.setEditable(false);
+        tf_gioitinh.setEditable(false);
+        tf_ngaysinhks.setEditable(false);
+        tf_noisinh.setEditable(false);
+        tf_quoctich.setEditable(false);
+        tf_dantoc.setEditable(false);
+        tf_quequan.setEditable(false);
+        tf_cccdcha.setEditable(false);
+        tf_cccdme.setEditable(false);
+        tf_ngaydangkyks.setEditable(false);
+        tf_cccdnguoikhaisinh.setEditable(false);
+        tf_quanhe.setEditable(false);
+        tf_noidangkyks.setEditable(false);
+    }//GEN-LAST:event_btn_donkhaisinhActionPerformed
+
     private void setEnabledButton() {
         tabbedPaneCustom1.setEnabledAt(1, false);
-        tabbedPaneCustom1.setEnabledAt(2, false);
 
         thongTinCaNhan = congDanService.findTTCN(tf_timkiem.getText().trim());
         if (thongTinCaNhan.getCCCD() == null) {
@@ -2117,13 +2069,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
             btn_giaychungtu.setColorClick(new Color(156, 247, 218));
             btn_giaychungtu.setColorOver(new Color(188, 247, 228));
         }
-        thue = thueService.findOneByCCCD(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
-        if (thue.getHoten() == null) {
-            tabbedPaneCustom1.setEnabledAt(2, false);
-        } else if (thue.getHoten() != null) {
-            tabbedPaneCustom1.setEnabledAt(2, true);
-            loadThue(tf_timkiem.getText().trim(), tf_timkiem.getText().trim());
-        }
+       
         tthk = hoKhauService.findOneByCCCD(tf_timkiem.getText().trim());
         listHoKhau = hoKhauService.findAllHoKhau(tf_timkiem.getText().trim());
         if (tthk.getCCCDNguoiDangNhap() == null) {
@@ -2164,7 +2110,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2180,8 +2125,8 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private javax.swing.JPanel panelTT;
     private javax.swing.JPanel panelTTCD;
     private javax.swing.JPanel panelTV;
-    private javax.swing.JPanel panelThue;
     private javax.swing.JPanel panelXemDon;
+    private Views.OtherForm.swing.PictureBox pic_imgavatar;
     private Swing.TabbedPaneCustom tabbedPaneCustom1;
     private Swing.TableDark tbl_cnkh;
     private Swing.TableDark tbl_hokhau;
@@ -2200,7 +2145,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_cccdthanhvien;
     private Swing.TextField tf_cccdtv;
     private Swing.TextField tf_cccdvo;
-    private Swing.TextField tf_coquanthue;
     private Swing.TextField tf_dantoc;
     private Swing.TextField tf_dantoccd;
     private Swing.TextField tf_dantocchong;
@@ -2221,7 +2165,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_hotenks;
     private Swing.TextField tf_hotennguoinopdon;
     private Swing.TextField tf_hotenthanhvien;
-    private Swing.TextField tf_hotenthue;
     private Swing.TextField tf_hotentv;
     private Swing.TextField tf_hotenvo;
     private Swing.TextField tf_hotenvolh;
@@ -2235,7 +2178,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_mahokhau;
     private Swing.TextField tf_maks;
     private Swing.TextField tf_malyhon;
-    private Swing.TextField tf_masothue;
     private Swing.TextField tf_matamtru;
     private Swing.TextField tf_matamvang;
     private Swing.TextField tf_ngaycap;
@@ -2255,7 +2197,6 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private Swing.TextField tf_ngaysinhks;
     private Swing.TextField tf_ngaysinhtv;
     private Swing.TextField tf_ngaysinhvo;
-    private Swing.TextField tf_ngaythaydoithongtin;
     private Swing.TextField tf_ngayve;
     private Swing.TextField tf_noicap;
     private Swing.TextField tf_noicaptv;

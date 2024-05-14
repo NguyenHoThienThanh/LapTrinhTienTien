@@ -12,6 +12,10 @@ import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DangNhapServiceImpl;
 import ServiceImplement.DanhGiaServiceImpl;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
@@ -20,8 +24,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.UIManager;
 
 public class HomeControllerAdmin extends javax.swing.JFrame {
 
@@ -46,9 +54,8 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         menu2.setMenuEvent(new MenuEvent() {
             @Override
             public void selected(int index, int subIndex) {
-                showForm(new TrangChuController());
                 if (index == 0) {
-                    showForm(new TrangChuController());
+                    showForm(panel1);
                 } else if (index == 1 && subIndex == 1) {
                     showForm(new ThongTinCongDanController());
                 } else if (index == 1 && subIndex == 2) {
@@ -115,48 +122,71 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
     }
 
     private void showChangePasswordDialog() {
-        // Tạo hộp thoại đổi mật khẩu
-        JPasswordField currentPasswordField = new JPasswordField();
-        JPasswordField newPasswordField = new JPasswordField();
-        JPasswordField confirmPasswordField = new JPasswordField();
+        JPasswordField currentPasswordField = new JPasswordField(15);
+        JPasswordField newPasswordField = new JPasswordField(15);
+        JPasswordField confirmPasswordField = new JPasswordField(15);
 
-        Object[] message = {
-            "Mật khẩu cũ:", currentPasswordField,
-            "Mật khẩu mới:", newPasswordField,
-            "Xác nhận mật khẩu mới:", confirmPasswordField
-        };
+        JLabel currentPasswordLabel = new JLabel("Mật khẩu cũ:");
+        JLabel newPasswordLabel = new JLabel("Mật khẩu mới:");
+        JLabel confirmPasswordLabel = new JLabel("Xác nhận mật khẩu mới:");
 
-        int option = JOptionPane.showConfirmDialog(null, message, "Đổi mật khẩu", JOptionPane.OK_CANCEL_OPTION);
+        // Tạo panel chứa các thành phần giao diện
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(currentPasswordLabel, gbc);
+
+        gbc.gridx = 1;
+        panel.add(currentPasswordField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(newPasswordLabel, gbc);
+
+        gbc.gridx = 1;
+        panel.add(newPasswordField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(confirmPasswordLabel, gbc);
+
+        gbc.gridx = 1;
+        panel.add(confirmPasswordField, gbc);
+
+        // Đặt kích thước tối thiểu cho hộp thoại
+        UIManager.put("OptionPane.minimumSize", new Dimension(400, 200));
+
+        // Hiển thị hộp thoại
+        int option = JOptionPane.showConfirmDialog(null, panel, "Đổi mật khẩu",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         // Xử lý sự kiện khi người dùng nhấn nút "OK"
         if (option == JOptionPane.OK_OPTION) {
-            String currentPassword = new String(currentPasswordField.getPassword());
-            String newPassword = new String(newPasswordField.getPassword());
-            String confirmPassword = new String(confirmPasswordField.getPassword());
+            String currentPassword = new String(currentPasswordField.getPassword()).trim();
+            String newPassword = new String(newPasswordField.getPassword()).trim();
+            String confirmPassword = new String(confirmPasswordField.getPassword()).trim();
 
-            if (!isCurrentPasswordMatched(currentPassword.trim())) {
-                JOptionPane.showMessageDialog(null, "Mật khẩu cũ Không chính xác!");
+            if (!isCurrentPasswordMatched(currentPassword)) {
+                JOptionPane.showMessageDialog(null, "Mật khẩu cũ không chính xác!");
                 return;
             }
-            // Kiểm tra tính hợp lệ của dữ liệu nhập vào
             if (isPasswordCurrent(newPassword, currentPassword)) {
                 JOptionPane.showMessageDialog(null, "Mật khẩu cũ không thể giống mật khẩu mới!");
                 return;
             }
-
             if (!isValidPassword(newPassword)) {
                 JOptionPane.showMessageDialog(null, "Mật khẩu mới không hợp lệ!");
                 return;
             }
-
             if (!isPasswordConfirmed(newPassword, confirmPassword)) {
                 JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu mới không khớp!");
                 return;
             }
-
-            // Tiến hành đổi mật khẩu trong cơ sở dữ liệu
             boolean changed = changePassword(currentPassword, newPassword);
-
             if (changed) {
                 JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
             } else {
@@ -197,11 +227,6 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

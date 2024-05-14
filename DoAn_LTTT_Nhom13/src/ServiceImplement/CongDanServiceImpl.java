@@ -56,7 +56,7 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public ThongTinCaNhan findTTCN(String CCCD) {
-        String query = "SELECT CongDan.HoTen, KhaiSinh.GioiTinh, KhaiSinh.NgaySinh, KhaiSinh.NoiSinh, KhaiSinh.DanToc, KhaiSinh.QuocTich, KhaiSinh.QueQuan, CongDan.CCCD, HoKhau.DiaChi, CongDan.SDT, CongDan.Email, CongDan.HinhAnh FROM KhaiSinh JOIN CongDan ON KhaiSinh.MaKS = CongDan.MaKS JOIN QuanHe ON KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia JOIN HoKhau ON QuanHe.MaHK = HoKhau.MaHK WHERE QuanHe.TrangThai = 1 AND CongDan.CCCD = '?'";
+        String query = "SELECT CongDan.HoTen, KhaiSinh.GioiTinh, KhaiSinh.NgaySinh, KhaiSinh.NoiSinh, KhaiSinh.DanToc, KhaiSinh.QuocTich, KhaiSinh.QueQuan, CongDan.CCCD, HoKhau.DiaChi, CongDan.SDT, CongDan.Email, CongDan.HinhAnh FROM KhaiSinh JOIN CongDan ON KhaiSinh.MaKS = CongDan.MaKS JOIN QuanHe ON KhaiSinh.MaKS = QuanHe.KhaiSinhNguoiThamGia JOIN HoKhau ON QuanHe.MaHK = HoKhau.MaHK WHERE QuanHe.TrangThai = 1 AND CongDan.CCCD = ?";
         ThongTinCaNhan ttcn = new ThongTinCaNhan();
         try {
             conn = DBConnection.getConnection();

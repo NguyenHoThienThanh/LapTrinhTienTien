@@ -19,51 +19,53 @@ import javax.swing.border.EmptyBorder;
  *
  * @author TUAN
  */
-public class MenuItems extends JButton{
+public class MenuItems extends JButton {
+
     private int index;
     private boolean subMenuAble;
     private int subMenuIndex;
     private int length;
-    
+
     private RippleEffect rippleEffect;
     private BufferedImage shadow;
     private int shadowWidth;
     private int shadowSize = 10;
     private float animate;
+    private ImageIcon icon;
 
-    public MenuItems(String name, int index, boolean subMenuAble) {
+    public MenuItems(String name, int index, boolean subMenuAble, ImageIcon icon) {
         super(name);
         this.index = index;
         this.subMenuAble = subMenuAble;
+        this.icon = icon;
         setContentAreaFilled(false);
-        setForeground(new Color(230,230,230));
+        setForeground(new Color(230, 230, 230));
         setHorizontalAlignment(SwingConstants.LEFT);
         setBorder(new EmptyBorder(9, 10, 9, 10));
         rippleEffect = new RippleEffect(this);
-        rippleEffect.setRippleColor(new Color(220,220,220));
+        rippleEffect.setRippleColor(new Color(220, 220, 220));
     }
-    
-    public void initSubMenu(int subMenuIndex, int length){
+
+    public void initSubMenu(int subMenuIndex, int length) {
         this.subMenuIndex = subMenuIndex;
         this.length = length;
-        setBorder(new EmptyBorder(9,33,9,10));
-        setBackground(new Color(18,99, 63));
+        setBorder(new EmptyBorder(9, 33, 9, 10));
+        setBackground(new Color(18, 99, 63));
         setOpaque(true);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    Graphics2D g2 = (Graphics2D) g.create();
-    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         if (length != 0) {
             g2.setColor(new Color(43, 141, 98));
             if (subMenuIndex == 1) {
-                
                 g2.drawLine(18, 0, 18, getHeight());
                 g2.drawLine(18, getHeight() / 2, 26, getHeight() / 2);
             } else if (subMenuIndex == length - 1) {
-                
+
                 g2.drawLine(18, 0, 18, getHeight() / 2);
                 g2.drawLine(18, getHeight() / 2, 26, getHeight() / 2);
             } else {
@@ -85,8 +87,6 @@ public class MenuItems extends JButton{
         g2.dispose();
         rippleEffect.reder(g, new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
     }
-    
-    
 
     public int getIndex() {
         return index;
@@ -127,8 +127,13 @@ public class MenuItems extends JButton{
     public void setAnimate(float animate) {
         this.animate = animate;
     }
-    
-    
-    
-    
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
+    }
+
 }

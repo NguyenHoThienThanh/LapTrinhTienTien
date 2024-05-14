@@ -29,6 +29,38 @@ public class Menu extends JComponent {
         {"Thống Kê", "Khai Sinh", "Chứng Tử", "Kết Hôn", "Ly Hôn"},
         {"Đánh Giá"}
     };
+    
+    private ImageIcon[] mainMenuIcons = new ImageIcon[]{
+        new ImageIcon(getClass().getResource("/Image/home-circle-outline-custom.png")),
+        new ImageIcon(getClass().getResource("/Image/account-circle-outline-custom.png")),
+        new ImageIcon(getClass().getResource("/Image/book-open-page-variant-outline-custom.png")),
+        new ImageIcon(getClass().getResource("/Image/finance-custom.png")),
+        new ImageIcon(getClass().getResource("/Image/star-circle-outline-custom.png"))
+    };
+    
+     private ImageIcon[][] subMenuIcons = new ImageIcon[][]{
+        {},
+        {
+            new ImageIcon(getClass().getResource("/Image/card-account-details-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/baby-carriage-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/coffin-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/home-city-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/home-edit-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/home-import-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/home-export-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/notebook-heart-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/heart-minus-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/shield-account-variant-outline-custom.png"))
+        },
+        {},
+        {
+            new ImageIcon(getClass().getResource("/Image/baby-bottle-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/robot-dead-outline-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/home-heart-custom.png")),
+            new ImageIcon(getClass().getResource("/Image/heart-remove-outline-custom.png"))
+        },
+        {}
+    };
 
     public Menu() {
         init();
@@ -41,20 +73,19 @@ public class Menu extends JComponent {
     public void setMenuEvent(MenuEvent menuEvent) {
         this.menuEvent = menuEvent;
     }
-
+    
     private void init() {
         layout = new MigLayout("wrap 1, fillx, gapy 0,inset 2", "fill");
         setLayout(layout);
         setOpaque(true);
         for (int i = 0; i < menuItems.length; i++) {
-            addMenu(menuItems[i][0], i);
-
+            addMenu(menuItems[i][0], i, mainMenuIcons[i]);
         }
     }
 
-    private void addMenu(String menuName, int index) {
+    private void addMenu(String menuName, int index, ImageIcon icon) {
         int length = menuItems[index].length;
-        MenuItems item = new MenuItems(menuName, index, length > 1);
+        MenuItems item = new MenuItems(menuName, index, length > 1, icon);
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -84,7 +115,7 @@ public class Menu extends JComponent {
         panel.setName(index + "");
         panel.setOpaque(false);
         for (int i = 1; i < length; i++) {
-            MenuItems subItems = new MenuItems(menuItems[index][i], i, false);
+            MenuItems subItems = new MenuItems(menuItems[index][i], i, false, subMenuIcons[index][i - 1]);
             subItems.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
