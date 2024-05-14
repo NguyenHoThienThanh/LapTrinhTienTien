@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Controller.User;
 
 import Controller.Admin.Login_RegisterController;
@@ -21,15 +17,10 @@ import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;     
 
-/**
- *
- * @author Acer
- */
+
 public class TamVangControllerUser extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TamTruControllerUser
-     */
+    
     DefaultTableModel model;
     List<DonTamVangUser> listTamVang;
     ITamVangService tamVangService = new TamVangServiceImpl();
@@ -206,14 +197,6 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_xoaDuLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,6 +249,14 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                                 .addComponent(jDateNgayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118)
+                .addComponent(btn_xoaDuLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,13 +312,13 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(tf_lyDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_xoaDuLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -338,9 +329,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
     private void parseAndSetDate(JDateChooser dateChooser, String dateString, String errorMessage) {
@@ -365,7 +354,6 @@ public class TamVangControllerUser extends javax.swing.JPanel {
 //            JOptionPane.showMessageDialog(TamVangControllerUser.this,"Nhập lại ngày.","Form exist",JOptionPane.WARNING_MESSAGE);
             return;
         }else {
-            // Assuming you have UI components that correspond to each model property
             String MaTV = "";
             String HoTen = tf_hoTen.getText();
             String GioiTinh = tf_gioiTinh.getText();
@@ -382,15 +370,11 @@ public class TamVangControllerUser extends javax.swing.JPanel {
             String NoiChuyenDen = tf_noichuyenden.getText();
             String NoiChuyenDi = tf_noichuyendi.getText();
             int TrangThai = 2;
-            // Create a new instance of DonTamTruUser with all properties
             DonTamVangUser model = new DonTamVangUser(MaTV, HoTen, GioiTinh, NgaySinh, NgayDk, CCCD, NoiCap, NgayCap, Sdt, Email, NoiChuyenDen, NoiChuyenDi, NgayDi, NgayDen, LiDo, TrangThai);
 
-            // Call the service to insert the new DonTamTruUser into the database
             boolean success = tamVangService.insertUser(model);
-            // Display the result to the user
             if(success) {
                 JOptionPane.showMessageDialog(null, "Thêm mới thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                // Additional actions (e.g., clearing form, updating a list, etc.)
             }
             showTable();
         }
@@ -413,7 +397,6 @@ public class TamVangControllerUser extends javax.swing.JPanel {
         String noiChuyenDen = model.getNcden();
         String noiChuyenDi = model.getNcdi();
         
-        // Loop through the list and compare entries
         for (DonTamVangUser tamVang : listTamVang) {
             if (tamVang.getHoTen().equals(hoTen) &&
                 tamVang.getGioiTinh().equals(gioiTinh) &&
@@ -428,12 +411,10 @@ public class TamVangControllerUser extends javax.swing.JPanel {
                 tamVang.getNgayDi().equals(ngayDi) &&
                 tamVang.getNoiChuyenDen().equals(noiChuyenDen) &&
                 tamVang.getNoiChuyenDi().equals(noiChuyenDi)){
-                System.out.println("co trung");
-                return true; // Duplicate found
+                return true;
             }
         }
-        System.out.println("khong trung");
-        return false; // No duplicates found
+        return false; 
     }
     private boolean isFormEmpty() {
         if (tf_lyDo.getText().trim().isEmpty() ||

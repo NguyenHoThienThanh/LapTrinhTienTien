@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Controller.Admin;
 
 import InterfaceService.ICongDanService;
@@ -389,7 +385,7 @@ public class TamTruController extends javax.swing.JPanel {
             tf_ngaySinh.setText(ngaySinh);
 
         } catch (Exception e) {
-            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Thông tin công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -575,7 +571,7 @@ public class TamTruController extends javax.swing.JPanel {
             return;
         }
         if (tbl_thongTinTamTru.getSelectedRow() < 0) {
-            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần sửa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -600,13 +596,13 @@ public class TamTruController extends javax.swing.JPanel {
             }
             int selectedRow = tbl_thongTinTamTru.getSelectedRow();
             if (tbl_thongTinTamTru.getRowCount() <= 0) {
-                JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
             } else if (selectedRow < 0) {
-                JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
@@ -659,7 +655,7 @@ public class TamTruController extends javax.swing.JPanel {
                 String dateStrNgayDen = sdf.format(utilDate);
                 String dateStrNgayDangKy = sdf.format(uDNgayDangKy);
                 if (new TamTruServiceImpl().update(tamTru)) {
-                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -670,7 +666,7 @@ public class TamTruController extends javax.swing.JPanel {
                     model.setValueAt(dateStrNgayDangKy, selectedRow, 1);
                     model.fireTableDataChanged();
                 } else {
-                    JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Sửa thất bại!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -678,7 +674,7 @@ public class TamTruController extends javax.swing.JPanel {
                 }
             }
         } catch (ParseException ex) {
-            JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Sửa thất bại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -697,13 +693,13 @@ public class TamTruController extends javax.swing.JPanel {
             jDialog.setModal(true);
             jDialog.setVisible(true);
         }else if (selectedRow < 0) {
-            JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần xóa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
         } else if (selectedRow >= 0) {
             JPanel myPanel = new JPanel();
-            int confirm = JOptionPane.showConfirmDialog(myPanel, "Are you sure you want to delete this information?", "", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(myPanel, "Bạn có chắc chắn muốn xóa?", "", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
 
                 try {
@@ -711,19 +707,19 @@ public class TamTruController extends javax.swing.JPanel {
                     model.removeRow(selectedRow);
                     listTamTru.remove(selectedRow);
                     if (new TamTruServiceImpl().delete(tf_maTamTru.getText().trim())) {
-                        JOptionPane msg = new JOptionPane("Information deleted successfully!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane msg = new JOptionPane("Xóa thành công!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsg = msg.createDialog(null);
                         jMsg.setModal(true);
                         jMsg.setVisible(true);
                     } else {
-                        JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane msgFail = new JOptionPane("Xóa thất bại!", JOptionPane.ERROR_MESSAGE);
                         JDialog jMsgFail = msgFail.createDialog(null);
                         jMsgFail.setModal(true);
                         jMsgFail.setVisible(true);
                     }
 
                 } catch (Exception e) {
-                    JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane msgFail = new JOptionPane("Xóa thất bại!", JOptionPane.ERROR_MESSAGE);
                     JDialog jMsgFail = msgFail.createDialog(null);
                     jMsgFail.setModal(true);
                     jMsgFail.setVisible(true);

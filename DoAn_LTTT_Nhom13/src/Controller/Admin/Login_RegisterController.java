@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Controller.Admin;
 
 import Controller.User.HomeControllerUser;
@@ -22,10 +18,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-/**
- *
- * @author Admin
- */
+
 public class Login_RegisterController extends javax.swing.JFrame {
 
     private static String userName, passWord;
@@ -592,12 +585,12 @@ public class Login_RegisterController extends javax.swing.JFrame {
             AppContext.password = String.valueOf(tf_password.getPassword());
             boolean action = true;
             if (AppContext.userName.equals("")) {
-                tf_username.setHelperText("Please input user name");
+                tf_username.setHelperText("Hãy nhập username!");
                 tf_username.grabFocus();
                 action = false;
             }
             if (AppContext.password.equals("")) {
-                tf_password.setHelperText("Please input password");
+                tf_password.setHelperText("Hãy nhập password!");
                 if (action) {
                     tf_password.grabFocus();
                 }
@@ -689,12 +682,12 @@ public class Login_RegisterController extends javax.swing.JFrame {
 
             // Kiểm tra xem các trường dữ liệu có trống không
             if (registerusername.equals("")) {
-                tf_registerusername.setHelperText("Please input username");
+                tf_registerusername.setHelperText("Hãy nhập username");
                 tf_registerusername.grabFocus();
                 action = false;
             }
             if (registerpassword.equals("")) {
-                tf_registerpassword.setHelperText("Please input password");
+                tf_registerpassword.setHelperText("Hãy nhập password");
                 if (action) {
                     tf_registerpassword.grabFocus();
                 }
@@ -702,7 +695,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
             }
 
             if (registerconfirmpassword.equals("")) {
-                tf_registerconfirmpassword.setHelperText("Please confirm password");
+                tf_registerconfirmpassword.setHelperText("Hãy nhập confirm password");
                 if (action) {
                     tf_registerconfirmpassword.grabFocus();
                 }
@@ -711,19 +704,19 @@ public class Login_RegisterController extends javax.swing.JFrame {
 
             // Kiểm tra xem username có đủ độ dài không
             if (action && (registerusername.length() != 12)) {
-                tf_registerusername.setHelperText("Username must be CCCD and have 12 characters");
+                tf_registerusername.setHelperText("Username phải là CCCD và có 12 ký tự số!");
                 tf_registerusername.grabFocus();
                 action = false;
             }
 
             // Kiểm tra xem password và confirm password có giống nhau không
             if (action && !registerpassword.equals(registerconfirmpassword)) {
-                tf_registerconfirmpassword.setHelperText("Password and confirm password must match");
+                tf_registerconfirmpassword.setHelperText("Password và confirm password phải giống nhau!");
                 tf_registerconfirmpassword.grabFocus();
                 action = false;
             }
             if (action && dangNhapService.checkDuplicateEmail(registerEmail)) {
-                tf_registeremail.setHelperText("Email already exists");
+                tf_registeremail.setHelperText("Email đã tồn tại!");
                 tf_registeremail.grabFocus();
                 action = false;
             }

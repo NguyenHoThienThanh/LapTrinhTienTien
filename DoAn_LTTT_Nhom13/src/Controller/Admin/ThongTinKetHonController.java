@@ -393,13 +393,13 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
             jDialog.setModal(true);
             jDialog.setVisible(true);
         } else if (selectedRow < 0) {
-            JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
         } else if (selectedRow >= 0) {
             JPanel myPanel = new JPanel();
-            int confirm = JOptionPane.showConfirmDialog(myPanel, "Are you sure you want to delete this information?", "", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(myPanel, "Bạn có chắc chắn muốn xóa không?", "", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
 
                 try {
@@ -407,19 +407,19 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
                     model.removeRow(selectedRow);
                     //listKetHon.remove(selectedRow);
                     if (new ChungNhanKetHonServiceImpl().delete(id)) {
-                        JOptionPane msg = new JOptionPane("Information deleted successfully!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane msg = new JOptionPane("Xóa thành công!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsg = msg.createDialog(null);
                         jMsg.setModal(true);
                         jMsg.setVisible(true);
                     } else {
-                        JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane msgFail = new JOptionPane("Xóa thất bại!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsgFail = msgFail.createDialog(null);
                         jMsgFail.setModal(true);
                         jMsgFail.setVisible(true);
                     }
 
                 } catch (Exception e) {
-                    JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane msgFail = new JOptionPane("Xóa thất bại!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jMsgFail = msgFail.createDialog(null);
                     jMsgFail.setModal(true);
                     jMsgFail.setVisible(true);
@@ -571,7 +571,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
 
         if (tbl_thongTinKetHon.getSelectedRow() < 0) {
-            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -601,13 +601,13 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
             int selectedRow = tbl_thongTinKetHon.getSelectedRow();
 
             if (tbl_thongTinKetHon.getRowCount() <= 0) {
-                JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
             } else if (selectedRow < 0) {
-                JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
@@ -732,7 +732,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
 
                 String ngayDangKy = sdf.format(sql);
                 if (new ChungNhanKetHonServiceImpl().update(ketHon)) {
-                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -805,7 +805,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Thông tin công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -832,7 +832,7 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Thông tin công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);

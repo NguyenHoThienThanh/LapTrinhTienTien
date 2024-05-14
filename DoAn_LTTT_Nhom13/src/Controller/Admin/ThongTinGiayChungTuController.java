@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Controller.Admin;
 
 import DAOImplement.ChungNhanKetHonDAOImpl;
@@ -45,10 +41,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author TUAN
- */
 public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     DefaultTableModel model;
@@ -329,37 +321,37 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
         int selectedRow = tbl_thongTinChungTu.getSelectedRow();
 
         if (tbl_thongTinChungTu.getRowCount() <= 0) {
-            JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
         } else if (selectedRow < 0) {
-            JOptionPane dialog = new JOptionPane("Please Choose One Row!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
         } else if (selectedRow >= 0) {
             JPanel myPanel = new JPanel();
-            int confirm = JOptionPane.showConfirmDialog(myPanel, "Are you sure you want to delete this information?", "", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(myPanel, "Bạn có chắc chắn muốn xóa?", "", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 try {
                     String id = (String) tbl_thongTinChungTu.getValueAt(selectedRow, 0);
                     model.removeRow(selectedRow);
                     listGiayChungTu.remove(selectedRow);
                     if (new GiayChungTuServiceImpl().delete(id)) {
-                        JOptionPane msg = new JOptionPane("Information deleted successfully!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane msg = new JOptionPane("Xóa thành công!", JOptionPane.INFORMATION_MESSAGE);
                         JDialog jMsg = msg.createDialog(null);
                         jMsg.setModal(true);
                         jMsg.setVisible(true);
                     } else {
-                        JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane msgFail = new JOptionPane("Xóa thất bại!", JOptionPane.ERROR_MESSAGE);
                         JDialog jMsgFail = msgFail.createDialog(null);
                         jMsgFail.setModal(true);
                         jMsgFail.setVisible(true);
                     }
 
                 } catch (Exception e) {
-                    JOptionPane msgFail = new JOptionPane("Information deleted failed!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane msgFail = new JOptionPane("Xóa thất bại!", JOptionPane.ERROR_MESSAGE);
                     JDialog jMsgFail = msgFail.createDialog(null);
                     jMsgFail.setModal(true);
                     jMsgFail.setVisible(true);
@@ -485,7 +477,6 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                             HoKhauModel hkModel = new HoKhauServiceImpl().findOneByMaHK(qh.getMaHoKhau());
                             hkModel.setKhaiSinhChuHo(qh.getKhaiSinhNguoiThamGia());
                             new HoKhauServiceImpl().update(hkModel);
-                            System.out.println(hkModel.getKhaiSinhChuHo());
                             qhmodel.setQuanHeVoiChuHo("Chủ hộ");
                             qhmodel.setKhaiSinhNguoiThamGia(qh.getKhaiSinhNguoiThamGia());
                             new QuanHeServiceImpl().update(qhmodel);
@@ -530,7 +521,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            JOptionPane dialog = new JOptionPane("Information not available!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Thông tin công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -540,7 +531,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         if (tbl_thongTinChungTu.getSelectedRow() < 0) {
-            JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
@@ -563,13 +554,13 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
         try {
             int selectedRow = tbl_thongTinChungTu.getSelectedRow();
             if (tbl_thongTinChungTu.getRowCount() <= 0) {
-                JOptionPane dialog = new JOptionPane("Empty Table!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane dialog = new JOptionPane("Bảng không có dữ liệu!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
             } else if (selectedRow < 0) {
-                JOptionPane dialog = new JOptionPane("Please choose one row!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane dialog = new JOptionPane("Hãy chọn một hàng!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
@@ -613,7 +604,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String ngayMat = dateFormat.format(tf_ngayMat.getText());
                 if (new GiayChungTuServiceImpl().update(giayChungTu)) {
-                    JOptionPane dialog = new JOptionPane("Update success!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -622,7 +613,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                     model.setValueAt(tf_nguyenNhan.getText(), selectedRow, 7);
                     model.fireTableDataChanged();
                 } else {
-                    JOptionPane dialog = new JOptionPane("Update fail!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane dialog = new JOptionPane("Sửa thất bại!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
@@ -637,7 +628,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         if (tf_hoTen.getText().equals("") || tf_soCCCD.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_maKhaiSinh.getText().trim().equals("")) {
-            JOptionPane dialog = new JOptionPane("Please enter identity number information and load the data!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Vui lòng nhập thông tin mã giấy khai sinh và tải dữ liệu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);

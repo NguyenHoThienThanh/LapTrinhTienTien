@@ -432,14 +432,6 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
             }
         }
 
-        // Kiểm tra địa chỉ có chứa các từ cấu trúc không hợp lệ
-        String[] invalidStructures = {"street", "road", "avenue", "lane", "building", "city", "town"};
-        for (String invalidStructure : invalidStructures) {
-            if (address.toLowerCase().contains(invalidStructure)) {
-                return false;
-            }
-        }
-
         return true;
 }
 

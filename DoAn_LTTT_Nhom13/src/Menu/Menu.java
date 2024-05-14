@@ -38,7 +38,7 @@ public class Menu extends JComponent {
         new ImageIcon(getClass().getResource("/Image/star-circle-outline-custom.png"))
     };
     
-     private ImageIcon[][] subMenuIcons = new ImageIcon[][]{
+    private ImageIcon[][] subMenuIcons = new ImageIcon[][]{
         {},
         {
             new ImageIcon(getClass().getResource("/Image/card-account-details-outline-custom.png")),

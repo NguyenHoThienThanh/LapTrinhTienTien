@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Controller.User;
 
 import Controller.Admin.Login_RegisterController;
@@ -20,15 +16,10 @@ import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-/**
- *
- * @author Acer
- */
+
 public class TamTruControllerUser extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TamTruControllerUser
-     */
+    
     DefaultTableModel model;
     List<DonTamTruUser> listTamTru;
     ITamTruServiceUser tamTruService = new TamTruServiceImplUser();
@@ -48,7 +39,6 @@ public class TamTruControllerUser extends javax.swing.JPanel {
         model.setRowCount(0);
         listTamTru = tamTruService.findAllTT(Login_RegisterController.AppContext.userName);
         for (DonTamTruUser tamTru : listTamTru) {
-            System.out.println(tamTru.getGioiTinh());
             model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgayDk(), tamTru.getNgayDen(), tamTru.getNgayDi(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getGioiTinh(), tamTru.getCCCD(), tamTru.getNoiCap(), tamTru.getNgayCap(), tamTru.getLiDo(), tamTru.getSdt(), tamTru.getEmail(), tamTru.getNoiDangKy()});
         }
     }
@@ -306,8 +296,8 @@ public class TamTruControllerUser extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateNgayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_soDienThoai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_noidangky, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
