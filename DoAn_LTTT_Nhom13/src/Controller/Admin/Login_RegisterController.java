@@ -727,7 +727,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
             }
             List<DangNhapModel> list = dangNhapService.findAll();
             CongDanModel cd = congDanService.findOneWithoutAdd(tf_registerusername.getText());
-            if(!tf_registeremail.getText().trim().equals(cd.getEmail())){
+            if (!tf_registeremail.getText().trim().equals(cd.getEmail())) {
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập email đã đăng ký trong công dân", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE);
                 return;
@@ -744,10 +744,9 @@ public class Login_RegisterController extends javax.swing.JFrame {
             } else if (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == true) {
                 JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!!! Vui lòng nhập tên khác", "Cảnh báo",
                         JOptionPane.WARNING_MESSAGE);
-            }
-            else if(action && !cd.getCCCD().equals(tf_registerusername.getText())){
+            } else if (action && !cd.getCCCD().equals(tf_registerusername.getText())) {
                 JOptionPane.showMessageDialog(null, "Không thể tạo tài khoản mà chưa có công dân", "Cảnh báo",
-                        JOptionPane.WARNING_MESSAGE); 
+                        JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_btn_signupActionPerformed
@@ -788,9 +787,6 @@ public class Login_RegisterController extends javax.swing.JFrame {
         try {
             if (dangNhapModel.getEmail() != null) {
                 sendForgotPass(dangNhapModel);
-                signIn = false;
-                animatorForgot.start();
-                
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Sai email", "Cảnh báo",
@@ -801,9 +797,12 @@ public class Login_RegisterController extends javax.swing.JFrame {
 
     private void sendForgotPass(DangNhapModel model) {
         ModelMessage ms = new ServiceMail().sendMain(model.getEmail(), model.getMatKhau());
+        JOptionPane.showMessageDialog(null, "Đã gửi password về email", "Thông báo",
+                JOptionPane.INFORMATION_MESSAGE);
+        signIn = false;
+        animatorForgot.start();
         if (ms.isSuccess()) {
-            JOptionPane.showMessageDialog(null, "Đã gửi password về email", "Thông báo",
-                        JOptionPane.INFORMATION_MESSAGE);
+            
         } else {
             JOptionPane.showMessageDialog(Login_RegisterController.this, "Có lỗi xảy ra khi gửi email:\n" + ms.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
