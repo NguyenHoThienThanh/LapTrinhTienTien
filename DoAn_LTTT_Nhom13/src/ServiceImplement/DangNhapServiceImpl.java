@@ -70,7 +70,7 @@ public class DangNhapServiceImpl implements IDangNhapService {
     @Override
     public boolean isPasswordExists(String username, String password) {
         DangNhapModel user = dangNhapDAO.findOne(username);
-        if (user != null && user.getTenDangNhap().trim() != null && user.getMatKhau() != null && user.getMatKhau().trim().equals(password)) {
+        if (user.getTenDangNhap() != null && user.getMatKhau() != null && user.getMatKhau().trim().equals(password)) {
             return true;
         } else {
             return false;

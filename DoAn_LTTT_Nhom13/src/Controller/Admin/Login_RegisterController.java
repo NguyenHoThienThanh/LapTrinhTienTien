@@ -596,19 +596,16 @@ public class Login_RegisterController extends javax.swing.JFrame {
             AppContext.password = String.valueOf(tf_password.getPassword());
             boolean action = true;
             if (AppContext.userName.equals("")) {
-                tf_username.setHelperText("Please input user name");
+                tf_username.setHelperText("Vui lòng nhập đầy đủ CCCD");
                 tf_username.grabFocus();
                 action = false;
             }
             if (AppContext.password.equals("")) {
-                tf_password.setHelperText("Please input password");
+                tf_password.setHelperText("Vui lòng nhập đầy đủ password");
                 if (action) {
                     tf_password.grabFocus();
                 }
                 action = false;
-            } else if (model.getTrangThai() == 0) {
-                JOptionPane.showMessageDialog(null, "Công dân này đã mất");
-                return;
             }
             if (action && dangNhapService.isPasswordExists(tf_username.getText(), String.valueOf(tf_password.getPassword()).trim()) && model.getQuyen().contains("admin")) {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công", "Thông báo",
@@ -626,14 +623,15 @@ public class Login_RegisterController extends javax.swing.JFrame {
                 homeController.setVisible(true);
                 this.dispose();
                 enableLogin(false);
+            } else if (action && dangNhapService.isPasswordExists(tf_username.getText(), String.valueOf(tf_password.getPassword()).trim()) && model.getTrangThai() == 0) {
+                JOptionPane.showMessageDialog(null, "Công dân này đã mất");
+                clearLogin();
             } else if (action && !dangNhapService.isPasswordExists(tf_username.getText(), String.valueOf(tf_password.getPassword()).trim())) {
                 JOptionPane.showMessageDialog(null, "Sai username hoặc password", "Thông báo",
                         JOptionPane.INFORMATION_MESSAGE);
+                clearLogin();
             }
-            else if (model.getTrangThai() == 0) {
-                JOptionPane.showMessageDialog(null, "Công dân này đã mất");
-                return;
-            }
+
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 
@@ -690,6 +688,7 @@ public class Login_RegisterController extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean check = true;
         DangNhapModel model = new DangNhapModel();
+        CongDanModel cd = congDanService.findOneWithoutAdd(tf_registerusername.getText());
         if (!animatorRegister.isRunning()) {
             String registerusername = tf_registerusername.getText().trim();
             String registerpassword = String.valueOf(tf_registerpassword.getPassword()).trim();
@@ -700,66 +699,68 @@ public class Login_RegisterController extends javax.swing.JFrame {
 
             // Kiểm tra xem các trường dữ liệu có trống không
             if (registerusername.equals("")) {
-                tf_registerusername.setHelperText("Please input username");
+                tf_registerusername.setHelperText("Hãy nhập CCCD cần tạo");
+                tf_registerusername.grabFocus();
+                action = false;
+            } else if (!registerusername.equals("") && registerusername.length() != 12) {
+                tf_registerusername.setHelperText("CCCD cần phải có đủ 12 kí tự");
+                tf_registerusername.grabFocus();
+                action = false;
+            } else if(cd.getCCCD() == null){
+                tf_registerusername.setHelperText("Không thể tạo tài khoản vì chưa phải là công dân");
                 tf_registerusername.grabFocus();
                 action = false;
             }
+
             if (registerpassword.equals("")) {
-                tf_registerpassword.setHelperText("Please input password");
-                if (action) {
-                    tf_registerpassword.grabFocus();
-                }
+                tf_registerpassword.setHelperText("Hãy nhập password");
+                tf_registerpassword.grabFocus();
                 action = false;
+            } else {
+                action = true;
+                tf_registerpassword.setHelperText("");
             }
 
             if (registerconfirmpassword.equals("")) {
-                tf_registerconfirmpassword.setHelperText("Please confirm password");
-                if (action) {
-                    tf_registerconfirmpassword.grabFocus();
-                }
-                action = false;
-            }
-
-            // Kiểm tra xem username có đủ độ dài không
-            if (action && (registerusername.length() != 12)) {
-                tf_registerusername.setHelperText("Username must be CCCD and have 12 characters");
-                tf_registerusername.grabFocus();
-                action = false;
-            }
-
-            // Kiểm tra xem password và confirm password có giống nhau không
-            if (action && !registerpassword.equals(registerconfirmpassword)) {
-                tf_registerconfirmpassword.setHelperText("Password and confirm password must match");
+                tf_registerconfirmpassword.setHelperText("Hãy nhập xác nhận mật khẩu");
                 tf_registerconfirmpassword.grabFocus();
                 action = false;
+            } else if (!registerpassword.equals(registerconfirmpassword)) {
+                tf_registerconfirmpassword.setHelperText("Mật khẩu và xác nhận mật khẩu phải giống nhau");
+                tf_registerconfirmpassword.grabFocus();
+                action = false;
+            } else {
+                action = true;
+                tf_registerconfirmpassword.setHelperText("");
             }
-            if (action && dangNhapService.checkDuplicateEmail(registerEmail)) {
-                tf_registeremail.setHelperText("Email already exists");
+
+            if (dangNhapService.checkDuplicateEmail(registerEmail)) {
+                tf_registeremail.setHelperText("Email đã tồn tại! Vui lòng nhập email khác");
                 tf_registeremail.grabFocus();
                 action = false;
+            } else if (!tf_registeremail.getText().trim().equals(cd.getEmail())) {
+                tf_registeremail.setHelperText("Hãy nhập email đã đăng ký trong công dân");
+                tf_registeremail.grabFocus();
+                action = false;
+            } else {
+                action = true;
+                tf_registeremail.setHelperText("");
             }
-            List<DangNhapModel> list = dangNhapService.findAll();
-            CongDanModel cd = congDanService.findOneWithoutAdd(tf_registerusername.getText());
-            if (!tf_registeremail.getText().trim().equals(cd.getEmail())) {
-                JOptionPane.showMessageDialog(null, "Vui lòng nhập email đã đăng ký trong công dân", "Cảnh báo",
-                        JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            if ((action && list.isEmpty()) || (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == false && tf_registerusername.getText().equals(cd.getCCCD()))) {
-                model.setQuyen("user");
-                model.setTenDangNhap(tf_registerusername.getText().trim());
-                model.setMatKhau(tf_registerpassword.getText().trim());
-                model.setVerifyCode(dangNhapService.generateVerifyCode().trim());
-                model.setEmail(cd.getEmail());
-                model.setTrangThai(1);
-                dangNhapService.insert(model);
-                sendMail(model);
-            } else if (action && dangNhapService.isUsernameExists(tf_registerusername.getText()) == true) {
-                JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!!! Vui lòng nhập tên khác", "Cảnh báo",
-                        JOptionPane.WARNING_MESSAGE);
-            } else if (action && !cd.getCCCD().equals(tf_registerusername.getText())) {
-                JOptionPane.showMessageDialog(null, "Không thể tạo tài khoản vì chưa phải là công dân", "Cảnh báo",
-                        JOptionPane.WARNING_MESSAGE);
+            if (action) {
+                List<DangNhapModel> list = dangNhapService.findAll();
+                if (list.isEmpty() || (dangNhapService.isUsernameExists(tf_registerusername.getText()) == false && tf_registerusername.getText().equals(cd.getCCCD()))) {
+                    model.setQuyen("user");
+                    model.setTenDangNhap(tf_registerusername.getText().trim());
+                    model.setMatKhau(tf_registerpassword.getText().trim());
+                    model.setVerifyCode(dangNhapService.generateVerifyCode().trim());
+                    model.setEmail(cd.getEmail());
+                    model.setTrangThai(1);
+                    dangNhapService.insert(model);
+                    sendMail(model);
+                } else if (dangNhapService.isUsernameExists(tf_registerusername.getText()) == true) {
+                    JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại!!! Vui lòng nhập tên khác", "Cảnh báo",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_btn_signupActionPerformed
@@ -837,7 +838,6 @@ public class Login_RegisterController extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(Login_RegisterController.this, "Có lỗi xảy ra khi gửi email:\n" + ms.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public static void main(String args[]) {
