@@ -818,16 +818,18 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             row.createCell(10).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 9));
             row.createCell(11).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 10));
             row.createCell(12).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 11));
-            row.createCell(13).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 12));
+            cell = row.createCell(13, CellType.STRING);
+            cell.setCellValue(tbl_thongTinKhaiSinh.getValueAt(i, 12).toString());
             cell = row.createCell(14, CellType.STRING);
             cell.setCellValue(tbl_thongTinKhaiSinh.getValueAt(i, 13).toString());
-            row.createCell(15).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 14));
 
         }
 
         // Tự động điều chỉnh độ rộng cột
         for (int i = 0; i < tbl_thongTinKhaiSinh.getColumnCount(); i++) {
             sheet.autoSizeColumn(i);
+            sheet.setColumnWidth(5, 3000);
+            sheet.setColumnWidth(14, 5000);
         }
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
             workbook.write(fileOut);

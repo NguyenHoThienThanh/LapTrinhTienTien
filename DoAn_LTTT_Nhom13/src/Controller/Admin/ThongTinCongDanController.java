@@ -28,6 +28,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -57,6 +58,12 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }
 
     private void showTable() {
+        tbl_thongTinCongDan.setColumnAlignment(0, JLabel.CENTER);
+        tbl_thongTinCongDan.setCellAlignment(0, JLabel.CENTER);
+        tbl_thongTinCongDan.setColumnAlignment(1, JLabel.CENTER);
+        tbl_thongTinCongDan.setCellAlignment(1, JLabel.CENTER);
+        tbl_thongTinCongDan.setColumnAlignment(5, JLabel.CENTER);
+        tbl_thongTinCongDan.setCellAlignment(5, JLabel.CENTER);
         for (CongDanModel congDan : listCongDan) {
             model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
         }
@@ -164,6 +171,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tbl_thongTinCongDan.getTableHeader().setReorderingAllowed(false);
         tbl_thongTinCongDan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_thongTinCongDanMouseClicked(evt);
@@ -171,8 +179,23 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbl_thongTinCongDan);
         if (tbl_thongTinCongDan.getColumnModel().getColumnCount() > 0) {
-            tbl_thongTinCongDan.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tbl_thongTinCongDan.getColumnModel().getColumn(0).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tbl_thongTinCongDan.getColumnModel().getColumn(1).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tbl_thongTinCongDan.getColumnModel().getColumn(2).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(2).setPreferredWidth(90);
+            tbl_thongTinCongDan.getColumnModel().getColumn(3).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(3).setPreferredWidth(90);
+            tbl_thongTinCongDan.getColumnModel().getColumn(4).setResizable(false);
             tbl_thongTinCongDan.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tbl_thongTinCongDan.getColumnModel().getColumn(5).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(6).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(7).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(8).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(9).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(10).setResizable(false);
+            tbl_thongTinCongDan.getColumnModel().getColumn(11).setResizable(false);
         }
 
         btn_luuSua.setBackground(new java.awt.Color(18, 99, 63));
@@ -398,7 +421,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 8).toString());
         tf_soDienThoai.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 9).toString());
         tf_email.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 10).toString());
-        
+
         byte[] imageData = (byte[]) model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 11);
         Image image = null;
         try {
@@ -407,7 +430,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             e.printStackTrace();
         }
         if (image != null) {
-        ImageIcon icon = new ImageIcon(image);
+            ImageIcon icon = new ImageIcon(image);
 
             // Đặt ImageIcon vào JLabel
             picHinhAnh.setImage(icon);
@@ -597,7 +620,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     e.printStackTrace();
                 }
                 if (image != null) {
-                ImageIcon icon = new ImageIcon(image);
+                    ImageIcon icon = new ImageIcon(image);
                     picHinhAnh.setImage(icon);
                     picHinhAnh.repaint();
                 } else {
@@ -714,7 +737,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     }
                 } catch (Exception e) {
                 }
-                congDan.setHinhAnh(hinhAnh); 
+                congDan.setHinhAnh(hinhAnh);
                 congDan.setCCCD(tf_soCCCD.getText());
                 if (new CongDanServiceImpl().update(congDan)) {
                     JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
@@ -747,7 +770,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_noiSinh.getText().equals("")) {
+        if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gioiTinh.getText().equals("") || tf_ngaySinh.getText().equals("") || tf_noiSinh.getText().equals("")) {
             JOptionPane dialog = new JOptionPane("Vui lòng nhập mã giấy khai sinh và tải dữ liệu!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -848,8 +871,7 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
                 picHinhAnh.setBackground(Color.WHITE);
                 picHinhAnh.repaint();
                 picHinhAnh.setBackground(Color.WHITE);
-            }
-            catch(Exception e){
+            } catch (Exception e) {
 
             }
         }
@@ -903,6 +925,7 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
         // Tự động điều chỉnh độ rộng cột
         for (int i = 0; i < tbl_thongTinCongDan.getColumnCount(); i++) {
             sheet.autoSizeColumn(i);
+            sheet.setColumnWidth(5, 3000);
         }
         try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
             workbook.write(fileOut);
