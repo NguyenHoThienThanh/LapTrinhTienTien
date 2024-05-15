@@ -58,7 +58,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
     private void showTable() {
         for (CongDanModel congDan : listCongDan) {
-            model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
+            model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
         }
     }
 
@@ -153,11 +153,11 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Khai Sinh", "Số CCCD", "Họ Tên", "Ngày Sinh", "Giới Tính", "Nơi Sinh", "Nơi Cấp CCCD", "Ngày Cấp CCCD", "Số Điện Thoại", "Email", "Hình Ảnh"
+                "STT", "Mã Khai Sinh", "Số CCCD", "Họ Tên", "Ngày Sinh", "Giới Tính", "Nơi Sinh", "Nơi Cấp CCCD", "Ngày Cấp CCCD", "Số Điện Thoại", "Email", "Hình Ảnh"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -800,7 +800,7 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
                 List<CongDanModel> list = new CongDanServiceImpl().filterByGender("Nữ");
                 model.fireTableDataChanged();
                 for (CongDanModel congDan : list) {
-                    model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
 
                 }
 
@@ -816,7 +816,7 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
                 List<CongDanModel> list = new CongDanServiceImpl().filterByGender("Nam");
                 model.fireTableDataChanged();
                 for (CongDanModel congDan : list) {
-                    model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
                 }
             }
         }
@@ -880,23 +880,23 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
         // Dữ liệu
         for (int i = 0; i < tbl_thongTinCongDan.getRowCount(); i++) {
             Row row = sheet.createRow(i + 3);
-            row.createCell(0).setCellValue(sttCounter++);
-            row.createCell(1).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 0));
-            row.createCell(2).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 1));
-            row.createCell(3).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 2));
+            row.createCell(0).setCellValue((Integer) tbl_thongTinCongDan.getValueAt(i, 0));
+            row.createCell(1).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 1));
+            row.createCell(2).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 2));
+            row.createCell(3).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 3));
 
             cell = row.createCell(4, CellType.STRING);
-            cell.setCellValue(tbl_thongTinCongDan.getValueAt(i, 3).toString());
+            cell.setCellValue(tbl_thongTinCongDan.getValueAt(i, 4).toString());
 
-            row.createCell(5).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 4));
-            row.createCell(6).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 5));
-            row.createCell(7).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 6));
+            row.createCell(5).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 5));
+            row.createCell(6).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 6));
+            row.createCell(7).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 7));
 
             cell = row.createCell(8, CellType.STRING);
-            cell.setCellValue(tbl_thongTinCongDan.getValueAt(i, 7).toString());
+            cell.setCellValue(tbl_thongTinCongDan.getValueAt(i, 8).toString());
 
-            row.createCell(9).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 8));
-            row.createCell(10).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 9));
+            row.createCell(9).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 9));
+            row.createCell(10).setCellValue((String) tbl_thongTinCongDan.getValueAt(i, 10));
 
         }
 
@@ -915,7 +915,7 @@ if (tf_maKhaiSinh.getText().equals("") || tf_hoTen.getText().equals("") || tf_gi
     public void showResult() {
         CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
         model.fireTableDataChanged();
-        model.addRow(new Object[]{congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
+        model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
     }
 
     private void clearRadio() {

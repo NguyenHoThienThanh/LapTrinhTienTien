@@ -27,6 +27,7 @@ public class CongDanModel {
     private String QueQuan;
     private String DiaChi;
     private byte[] HinhAnh;
+    private int ID;
 
     // Constructor
     public CongDanModel() {
@@ -66,6 +67,26 @@ public class CongDanModel {
                 this.HinhAnh = null;
             }
         }
+    }
+
+    public CongDanModel(String CCCD, String HoTen, String NcCccd, Date NgcCccd, String MaKS, String SDT, String Email, int TrangThai, Date NgaySinh, String GioiTinh, String NoiSinh, String QuocTich, String DanToc, String QueQuan, String DiaChi, byte[] HinhAnh, int ID) {
+        this.CCCD = CCCD;
+        this.HoTen = HoTen;
+        this.NcCccd = NcCccd;
+        this.NgcCccd = NgcCccd;
+        this.MaKS = MaKS;
+        this.SDT = SDT;
+        this.Email = Email;
+        this.TrangThai = TrangThai;
+        this.NgaySinh = NgaySinh;
+        this.GioiTinh = GioiTinh;
+        this.NoiSinh = NoiSinh;
+        this.QuocTich = QuocTich;
+        this.DanToc = DanToc;
+        this.QueQuan = QueQuan;
+        this.DiaChi = DiaChi;
+        this.HinhAnh = HinhAnh;
+        this.ID = ID;
     }
 
     public String getCCCD() {
@@ -196,4 +217,11 @@ public class CongDanModel {
         this.HinhAnh = HinhAnh;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }    
 }

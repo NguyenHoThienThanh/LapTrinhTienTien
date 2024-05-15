@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAOImplement;
 
 import InterfaceDAO.DBConnection;
@@ -11,10 +7,7 @@ import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 
-/**
- *
- * @author Admin
- */
+
 public class CongDanDAOImpl implements ICongDanDAO {
 
     Connection conn = null;
@@ -23,7 +16,8 @@ public class CongDanDAOImpl implements ICongDanDAO {
 
     @Override
     public List<CongDanModel> findAll() {
-        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai, cd.HinhAnh FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS";
+        String query = "SELECT cd.CCCD, cd.HoTen, ks.NgaySinh, ks.GioiTinh, ks.NoiSinh, cd.NcCccd, cd.NgcCccd, cd.MaKS, cd.SDT, cd.Email, cd.TrangThai, cd.HinhAnh, cd.ID FROM KhaiSinh ks INNER JOIN CongDan cd ON ks.MaKS = cd.MaKS ORDER BY \n" +
+"    cd.ID";
         List<CongDanModel> listCongDan = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -43,6 +37,7 @@ public class CongDanDAOImpl implements ICongDanDAO {
                 congDan.setEmail(rs.getString(10));
                 congDan.setTrangThai(rs.getInt(11));
                 congDan.setHinhAnh(rs.getBytes(12));
+                congDan.setID(rs.getInt(13));
                 listCongDan.add(congDan);
             }
             conn.close();
