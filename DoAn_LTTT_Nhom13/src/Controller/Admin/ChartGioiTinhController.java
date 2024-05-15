@@ -30,10 +30,7 @@ public class ChartGioiTinhController extends javax.swing.JPanel {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String query = "SELECT GioiTinh, COUNT(*) AS SoLuong\n"
-                + "FROM CongDan\n"
-                + "INNER JOIN KhaiSinh ON CongDan.MaKS = KhaiSinh.MaKS\n"
-                + "GROUP BY GioiTinh";
+        String query = "SELECT GioiTinh, COUNT(*) AS SoLuong FROM KhaiSinh GROUP BY GioiTinh";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

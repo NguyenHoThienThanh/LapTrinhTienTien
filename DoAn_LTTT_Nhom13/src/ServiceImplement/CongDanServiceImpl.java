@@ -169,17 +169,17 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public List<ThongTinCaNhan> getNgaySinh() {
-        String query = " select NgaySinh from CongDan inner join KhaiSinh on CongDan.MaKS = KhaiSinh.MaKS";
+        String query = "select NgaySinh from KhaiSinh";
         List<ThongTinCaNhan> listTTCN = new ArrayList<>();
         try {
-            ThongTinCaNhan ttcn = new ThongTinCaNhan();
+            
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
+                ThongTinCaNhan ttcn = new ThongTinCaNhan();
                 ttcn.setNgaySinh(rs.getDate("NgaySinh"));
                 listTTCN.add(ttcn);
-
             }
             conn.close();
         } catch (Exception e) {

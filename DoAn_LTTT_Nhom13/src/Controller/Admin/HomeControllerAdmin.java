@@ -3,14 +3,17 @@ package Controller.Admin;
 import InterfaceService.ICongDanService;
 import InterfaceService.IDangNhapService;
 import InterfaceService.IDanhGiaService;
+import InterfaceService.IKhaiSinhService;
 import Menu.MenuEvent;
 import Models.CongDanModel;
 import Models.DangNhapModel;
 import Models.DanhGiaModel;
+import Models.KhaiSinhModel;
 import Models.ThongTinCaNhan;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DangNhapServiceImpl;
 import ServiceImplement.DanhGiaServiceImpl;
+import ServiceImplement.KhaiSinhServiceImpl;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -37,7 +40,8 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
 
     IDanhGiaService danhGiaService = new DanhGiaServiceImpl();
     ICongDanService congDanService = new CongDanServiceImpl();
-    
+    IKhaiSinhService khaiSinhService = new KhaiSinhServiceImpl();
+
     IDangNhapService dangNhapService = new DangNhapServiceImpl();
     DangNhapModel dn = dangNhapService.findOne(currentUser);
 
@@ -193,7 +197,7 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private boolean isValidPassword(String newPassword) {
         // Kiểm tra tính hợp lệ của mật khẩu mới
         return newPassword.length() >= 6;
@@ -749,26 +753,35 @@ public class HomeControllerAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_changepasswordActionPerformed
 
     private void totalCongDan() {
-        List<CongDanModel> list;
-        list = congDanService.findAll();
+        List<KhaiSinhModel> list;
+        list = khaiSinhService.findAll();
         lbl_totalCongDan.setText(String.valueOf(list.size()));
     }
 
     private void avgAge() {
         double sum = 0;
-        int sum1 = 0;
-        List<ThongTinCaNhan> list;
-        list = congDanService.getNgaySinh();
+        int eligibleCount = 0;
+        List<ThongTinCaNhan> list = congDanService.getNgaySinh();
+
+        if (list.isEmpty()) {
+            lbl_averageAge.setText("0");
+            lbl_checkAge.setText("0");
+            return;
+        }
+
         for (ThongTinCaNhan ttcn : list) {
-            LocalDate ngaySinh = convertToLocalDate(ttcn.getNgaySinh());
-            sum += tinhTuoi(ngaySinh);
-            if (tinhTuoi(ngaySinh) >= 18) {
-                sum1++;
+            Date ngaySinhDate = ttcn.getNgaySinh();
+            LocalDate ngaySinh = convertToLocalDate(ngaySinhDate);
+            int tuoi = tinhTuoi(ngaySinh);
+            sum += tuoi;
+            if (tuoi >= 18 && tuoi < 60) {
+                eligibleCount++;
             }
         }
+
         int avgAge = (int) Math.round(sum / list.size()); // Làm tròn kết quả về số nguyên
         lbl_averageAge.setText(String.valueOf(avgAge));
-        lbl_checkAge.setText(String.valueOf(sum1));
+        lbl_checkAge.setText(String.valueOf(eligibleCount));
     }
 
     public int tinhTuoi(LocalDate ngaySinh) {
