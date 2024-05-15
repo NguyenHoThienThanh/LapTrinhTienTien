@@ -89,7 +89,6 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService {
                 dcnkh.setMaCnkh(rs.getString("MaCnkh"));
                 dcnkh.setNgaydk(rs.getDate("Ngaydk"));
                 dcnkh.setNoidk(rs.getString("Noidk"));
-
                 listDonChungNhanKetHon.add(dcnkh);
             }
             conn.close();

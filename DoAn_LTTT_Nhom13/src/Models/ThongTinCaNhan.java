@@ -49,8 +49,6 @@ public class ThongTinCaNhan {
         this.HinhAnh = HinhAnh;
     }
 
-
-
     public ThongTinCaNhan() {
     }
 
