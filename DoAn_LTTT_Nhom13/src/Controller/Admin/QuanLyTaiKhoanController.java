@@ -158,6 +158,11 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tbl_thongTinTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_thongTinTaiKhoanMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_thongTinTaiKhoan);
 
         btn_xuatDanhSach1.setBackground(new java.awt.Color(18, 99, 63));
@@ -188,7 +193,6 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_xuatDanhSach1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,7 +205,8 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
                                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_xoaDuLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_xuatDanhSach1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -407,6 +412,13 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_btn_xuatDanhSach1ActionPerformed
+
+    private void tbl_thongTinTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinTaiKhoanMouseClicked
+        model = (DefaultTableModel) tbl_thongTinTaiKhoan.getModel();
+        tf_soCCCD.setText(model.getValueAt(tbl_thongTinTaiKhoan.getSelectedRow(), 1).toString());
+        tf_matKhau.setText(model.getValueAt(tbl_thongTinTaiKhoan.getSelectedRow(), 2).toString());
+        
+    }//GEN-LAST:event_tbl_thongTinTaiKhoanMouseClicked
     private void exportToExcel(String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Danh sách tài khoản công dân");
