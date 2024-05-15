@@ -303,6 +303,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
     private void btn_xoaDuLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaDuLieuActionPerformed
         clear();
         tbl_thongTinChungTu.clearSelection();
+        disableTextField();
     }//GEN-LAST:event_btn_xoaDuLieuActionPerformed
 
     private void tbl_thongTinChungTuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinChungTuMouseClicked
@@ -454,7 +455,8 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 new QuanHeServiceImpl().deleteByMaHK(quanHe.getMaHK(), quanHe.getKhaiSinhNguoiThamGia());
             }
             ThongTinHoKhau hoKhau = new HoKhauServiceImpl().findOneByCCCDChungTu(giayChungTu.getCCCD());
-            if (hoKhau.getCCCDChuHo().equals(giayChungTu.getCCCD())) {
+            
+            if (hoKhau.getCCCDChuHo()!=null && hoKhau.getCCCDChuHo().equals(giayChungTu.getCCCD())) {
                 List<ThongTinHoKhau> list = new QuanHeServiceImpl().findAllByMaHK(hoKhau.getMaHoKhau());
                 for (ThongTinHoKhau qh : list) {
                     if(list.size() == 1){
@@ -519,7 +521,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 tf_ngaySinh.setText(dateFormat.format(congDan.getNgaySinh()));
             }
-
+            tf_maKhaiSinh.setEditable(true);
         } catch (Exception e) {
             JOptionPane dialog = new JOptionPane("Thông tin công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -600,9 +602,9 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 } catch (ParseException ex) {
                     return;
                 }
-
+                Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayMat.getText());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String ngayMat = dateFormat.format(tf_ngayMat.getText());
+                String ngayMat = dateFormat.format(utilDate);
                 if (new GiayChungTuServiceImpl().update(giayChungTu)) {
                     JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
@@ -621,6 +623,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         clear();
         disableTextField();

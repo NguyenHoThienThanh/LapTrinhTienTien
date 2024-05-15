@@ -443,7 +443,7 @@
           <StringArray count="3">
             <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
             <StringItem index="1" value="Gi&#x1edb;i t&#xed;nh"/>
-            <StringItem index="2" value="Qu&#xea; qu&#xe1;n"/>
+            <StringItem index="2" value="N&#x1a1;i sinh"/>
           </StringArray>
         </Property>
         <Property name="labeText" type="java.lang.String" value=""/>

@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DAOImplement.LyHonDAOImpl;
 import InterfaceService.ILyHonService;
 import Models.ChungNhanKetHonModel;
 import Models.DonChungNhanKetHon;
@@ -406,6 +407,14 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
+        LyHonModel lyhon = new LyHonDAOImpl().findOneByMaCNKH(tf_macnkh.getText().trim());
+        if(lyhon.getMaLh() != null){
+            JOptionPane dialog = new JOptionPane("Hai công dân này đã ly hôn!", JOptionPane.WARNING_MESSAGE);
+            JDialog jDialog = dialog.createDialog(null);
+            jDialog.setModal(true);
+            jDialog.setVisible(true);
+            return;
+        }
         LyHonModel lyHon = new LyHonModel();
         ChungNhanKetHonModel ketHon = new ChungNhanKetHonServiceImpl().findOneByMaKH(tf_macnkh.getText().trim());
         ketHon.setTrangThai(0);
@@ -465,10 +474,11 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         } else {
-            tf_macnkh.setEditable(true);
+            tf_macnkh.setEditable(false);
             tf_noidk.setEditable(true);
             tf_lydo.setEditable(true);
             tf_ngaydk.setEditable(true);
+            
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -490,7 +500,6 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
                 return;
             } else if (selectedRow >= 0) {
                 LyHonModel lyHon = lyHonService.findOneByMaLH(tf_malh.getText());
-                lyHon.setMaCnkh(tf_macnkh.getText());
 
                 if (isDateValid(tf_ngaydk.getText().trim())) {
                     Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngaydk.getText());
@@ -532,6 +541,7 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
             return;
         }
         clear();
+        disableTextField();
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
@@ -546,30 +556,38 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
     private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
         try {
             DonChungNhanKetHon lyHon = new LyHonServiceImpl().findOneByMaKH(tf_macnkh.getText().trim());
-            if (lyHon != null) {
-//                DonChungNhanKetHon lyHon = new DonChungNhanKetHon();
-//                lyHon = lyHonService.findOneByMaKH(tf_macnkh.getText().trim());
+            LyHonModel lyhon = new LyHonDAOImpl().findOneByMaCNKH(tf_macnkh.getText().trim());
+            if (lyhon.getMaLh() != null) {
+                clear();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                tf_lydo.setText(lyhon.getLydo());
+                String ngaydk = dateFormat.format(lyhon.getNgaydk());
+                tf_ngaydk.setText(ngaydk);
+                tf_noidk.setText(lyhon.getNoidk());
+                tf_cccdchong.setText(lyHon.getCCCDChong());
+                tf_cccdvo.setText(lyHon.getCCCDVo());
+                tf_macnkh.setText(lyhon.getMaCnkh());
+                tf_hotenvo.setText(lyHon.getHoTenVo());
+                tf_hotenchong.setText(lyHon.getHoTenChong());
+                tf_malh.setText(lyhon.getMaLh());
+                tf_CCCDNguoiNopDon.setText(lyhon.getCCCDNguoiNopDon());
+                if(lyhon.getCCCDNguoiNopDon().equals(lyHon.getCCCDChong())){
+                    tf_HoTenNguoiNopDon.setText(lyHon.getHoTenChong());
+                }else 
+                tf_HoTenNguoiNopDon.setText(lyHon.getHoTenVo());
+                
+            } else {
+                clear();
                 tf_cccdchong.setText(lyHon.getCCCDChong());
                 tf_cccdvo.setText(lyHon.getCCCDVo());
                 tf_macnkh.setText(lyHon.getMaCnkh());
                 tf_hotenvo.setText(lyHon.getHoTenVo());
                 tf_hotenchong.setText(lyHon.getHoTenChong());
-                
-            } else {
-                ILyHonService lyHonService = new LyHonServiceImpl();
-//                DonChungNhanKetHon lyHon = new DonChungNhanKetHon();
-//                lyHon = lyHonService.findOneByMaKH(tf_macnkh.getText().trim());
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                tf_cccdchong.setText("");
-                tf_cccdvo.setText("");
-                tf_macnkh.setText("");
-                tf_hotenvo.setText("");
-                tf_hotenchong.setText("");
 
             }
 
         } catch (Exception e) {
-            JOptionPane dialog = new JOptionPane("Thông tin công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane dialog = new JOptionPane("Thông tin kết hôn không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);

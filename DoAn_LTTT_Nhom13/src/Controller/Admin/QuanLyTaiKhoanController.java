@@ -1,12 +1,15 @@
 package Controller.Admin;
 
 import InterfaceService.IDangNhapService;
+import Models.CongDanModel;
 import Models.DangNhapModel;
+import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DangNhapServiceImpl;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -38,13 +41,22 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
     }
 
     private void showTable() {
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        JTableHeader header = tbl_thongTinTaiKhoan.getTableHeader();
-        header.setDefaultRenderer(centerRenderer);
+//        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+//        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+//        JTableHeader header = tbl_thongTinTaiKhoan.getTableHeader();
+//        header.setDefaultRenderer(centerRenderer);
         for (int columnIndex = 0; columnIndex < model.getColumnCount(); columnIndex++) {
-            tbl_thongTinTaiKhoan.getColumnModel().getColumn(columnIndex).setCellRenderer(centerRenderer);
+//            tbl_thongTinTaiKhoan.getColumnModel().getColumn(columnIndex).setCellRenderer(centerRenderer);
+            tbl_thongTinTaiKhoan.setColumnAlignment(columnIndex, JLabel.CENTER);
+            tbl_thongTinTaiKhoan.setCellAlignment(columnIndex, JLabel.CENTER);
         }
+
+//        tbl_thongTinTaiKhoan.setColumnAlignment(0, JLabel.CENTER);
+//        tbl_thongTinTaiKhoan.setCellAlignment(0, JLabel.CENTER);
+//        tbl_thongTinTaiKhoan.setColumnAlignment(1, JLabel.CENTER);
+//        tbl_thongTinTaiKhoan.setCellAlignment(1, JLabel.CENTER);
+//        tbl_thongTinTaiKhoan.setColumnAlignment(4, JLabel.RIGHT);
+//        tbl_thongTinTaiKhoan.setCellAlignment(4, JLabel.RIGHT);
         for (DangNhapModel dangnhap : listDangNhap) {
             model.addRow(new Object[]{dangnhap.getID(), dangnhap.getTenDangNhap(), dangnhap.getMatKhau().trim()});
         }
@@ -302,20 +314,21 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         }
-        DangNhapModel DN = dangNhapService.findOne(tf_soCCCD.getText());
-        if(DN.getTenDangNhap()==null){
+        CongDanModel DN = new CongDanServiceImpl().findOneWithoutAdd(tf_soCCCD.getText());
+        if (DN.getCCCD() == null) {
             JOptionPane dialog = new JOptionPane("Công dân không tồn tại!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
             return;
         }
+
         dangNhap.setTenDangNhap(tf_soCCCD.getText());
         dangNhap.setMatKhau(tf_matKhau.getText().trim());
         dangNhap.setQuyen("user");
         dangNhap.setTrangThai(1);
         listDangNhap.add(dangNhap);
-        
+
         if (new DangNhapServiceImpl().insert(dangNhap)) {
             JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -342,6 +355,7 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
             return;
         } else {
             tf_matKhau.setEditable(true);
+            tf_soCCCD.setEditable(false);
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -361,7 +375,7 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
             jDialog.setVisible(true);
             return;
         } else if (selectedRow >= 0) {
-            dangNhap = dangNhapService.findOne(tf_soCCCD.getText());            
+            dangNhap = dangNhapService.findOne(tf_soCCCD.getText());
             if (new DangNhapServiceImpl().update(dangNhap)) {
                 JOptionPane dialog = new JOptionPane("Sửa thành công!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -382,16 +396,20 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuSuaActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        clear();
-        tf_soCCCD.setEditable(true);
+        //clear();
+        //tf_soCCCD.setEditable(true);
         tf_matKhau.setEditable(true);
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
         try {
+            CongDanModel model = new CongDanServiceImpl().findOneWithoutAdd(tf_soCCCD.getText().trim());
+
             dangNhap = dangNhapService.findOne(tf_soCCCD.getText().trim());
-            tf_soCCCD.setText(dangNhap.getTenDangNhap());
-            tf_matKhau.setText(dangNhap.getMatKhau().trim());
+            if (dangNhap.getMatKhau() != null) {
+                tf_matKhau.setText(dangNhap.getMatKhau().trim());
+            }
+
         } catch (Exception e) {
             JOptionPane dialog = new JOptionPane("Công dân không tồn tại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -417,7 +435,7 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
         model = (DefaultTableModel) tbl_thongTinTaiKhoan.getModel();
         tf_soCCCD.setText(model.getValueAt(tbl_thongTinTaiKhoan.getSelectedRow(), 1).toString());
         tf_matKhau.setText(model.getValueAt(tbl_thongTinTaiKhoan.getSelectedRow(), 2).toString());
-        
+
     }//GEN-LAST:event_tbl_thongTinTaiKhoanMouseClicked
     private void exportToExcel(String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -432,14 +450,14 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
         headerRow.createCell(0).setCellValue("STT");
         headerRow.createCell(1).setCellValue("Tên đăng nhập");
         headerRow.createCell(2).setCellValue("Mật khẩu");
-       
+
         int sttCounter = 1;
         // Dữ liệu
         for (int i = 0; i < tbl_thongTinTaiKhoan.getRowCount(); i++) {
             Row row = sheet.createRow(i + 3);
             row.createCell(0).setCellValue((Integer) tbl_thongTinTaiKhoan.getValueAt(i, 0));
             row.createCell(1).setCellValue((String) tbl_thongTinTaiKhoan.getValueAt(i, 1));
-            row.createCell(2).setCellValue((String) tbl_thongTinTaiKhoan.getValueAt(i, 2));            
+            row.createCell(2).setCellValue((String) tbl_thongTinTaiKhoan.getValueAt(i, 2));
         }
 
         // Tự động điều chỉnh độ rộng cột
@@ -453,6 +471,7 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
         }
     }
+
     public void showResult() {
         dangNhap = listDangNhap.get(listDangNhap.size() - 1);
         model.fireTableDataChanged();
@@ -462,10 +481,11 @@ public class QuanLyTaiKhoanController extends javax.swing.JPanel {
     private void clear() {
         tf_soCCCD.setText("");
         tf_matKhau.setText("");
-        }
+    }
 
     private void disableTextField() {
-        tf_matKhau.setEditable(false);       
+        tf_matKhau.setEditable(false);
+
     }
 
     private static boolean isValidCCCD(String cccd) {

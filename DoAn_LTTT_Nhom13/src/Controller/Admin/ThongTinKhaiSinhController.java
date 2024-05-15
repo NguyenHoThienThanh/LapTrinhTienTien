@@ -453,7 +453,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
 
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
 
-        if (tbl_thongTinKhaiSinh.getSelectedRow() >= 0) {
+        try {
             if (tf_noiDangKy.getText().equals("") || tf_quocTich.getText().equals("") || tf_hoTen.getText().equals("") || tf_CCCDNguoiDangKy.getText().equals("") || tf_quanHe.getText().equals("") || tf_queQuan.getText().equals("") || tf_CCCDCha.getText().equals("") || tf_CCCDMe.getText().equals("") || tf_danToc.getText().equals("") || tf_ngayDangKy.getText().equals("") || tf_noiSinh.getText().equals("")) {
                 JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -484,7 +484,7 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 return;
             }
 
-            KhaiSinhModel khaiSinh = khaiSinhService.findOneChuaDuyet(tf_maKhaiSinh.getText().trim());
+            KhaiSinhModel khaiSinh = new KhaiSinhModel();
             khaiSinh.setMaKS(tf_maKhaiSinh.getText().trim());
             khaiSinh.setQuocTich(tf_quocTich.getText().trim());
             khaiSinh.setHoTenKS(tf_hoTen.getText());
@@ -543,10 +543,6 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             listKhaiSinh.add(khaiSinh);
 
             if (new KhaiSinhDAOImpl().update(khaiSinh)) {
-                if (listChuaDuyet.contains(khaiSinh)) {
-                    listChuaDuyet.remove(khaiSinh);
-                }
-                model.removeRow(tbl_thongTinKhaiSinh.getSelectedRow());
                 JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
@@ -559,7 +555,12 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
                 return;
             }
 
+        } catch(Exception e){
+                e.printStackTrace();
         }
+        showResult();
+        clear();
+        disableTextField();
 
 
     }//GEN-LAST:event_btn_luuThemActionPerformed
@@ -815,11 +816,12 @@ public class ThongTinKhaiSinhController extends javax.swing.JPanel {
             row.createCell(8).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 7));
             row.createCell(9).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 8));
             row.createCell(10).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 9));
-            row.createCell(12).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 10));
-            row.createCell(13).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 11));
+            row.createCell(11).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 10));
+            row.createCell(12).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 11));
+            row.createCell(13).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 12));
             cell = row.createCell(14, CellType.STRING);
-            cell.setCellValue(tbl_thongTinKhaiSinh.getValueAt(i, 12).toString());
-            row.createCell(15).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 13));
+            cell.setCellValue(tbl_thongTinKhaiSinh.getValueAt(i, 13).toString());
+            row.createCell(15).setCellValue((String) tbl_thongTinKhaiSinh.getValueAt(i, 14));
 
         }
 

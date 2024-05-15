@@ -166,7 +166,7 @@ public class HoKhauDAOImpl implements IHoKhauDAO {
 
     @Override
     public boolean delete(String MaHK) {
-        String query = "DELETE HoKhau WHERE MaHK = ?";
+        String query = "UPDATE HoKhau set TrangThai =0 WHERE MaHK = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);

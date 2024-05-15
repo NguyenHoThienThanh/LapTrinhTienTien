@@ -108,7 +108,7 @@ Connection conn = null;
     
     @Override
     public DonChungNhanKetHon findOneByMaKH(String MaKH) {
-        String query = "SELECT Cnkh.MaCnkh, Cnkh.CccdVo, Vo.HoTen AS HoTenVo, Cnkh.CccdChong, Chong.HoTen AS HoTenChong FROM Cnkh JOIN CongDan AS Vo ON Cnkh.CccdVo = Vo.CCCD JOIN CongDan AS Chong ON Cnkh.CccdChong = Chong.CCCD WHERE MaCnkh=? and Cnkh.TrangThai=1";
+        String query = "SELECT Cnkh.MaCnkh, Cnkh.CccdVo, Vo.HoTen AS HoTenVo, Cnkh.CccdChong, Chong.HoTen AS HoTenChong FROM Cnkh JOIN CongDan AS Vo ON Cnkh.CccdVo = Vo.CCCD JOIN CongDan AS Chong ON Cnkh.CccdChong = Chong.CCCD WHERE MaCnkh=?";
         DonChungNhanKetHon cnkh = new DonChungNhanKetHon();
         try {
             conn = DBConnection.getConnection();

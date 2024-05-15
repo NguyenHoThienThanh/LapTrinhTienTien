@@ -219,7 +219,7 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public List<CongDanModel> filterByGender(String gender) {
-        String query = "  select CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai  from CongDan\n"
+        String query = "  select CongDan.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai  from CongDan\n"
                 + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
                 + "  where KhaiSinh.GioiTinh = ? and CongDan.TrangThai = 1\n"
                 + "  order by ID ASC";
@@ -231,18 +231,18 @@ public class CongDanServiceImpl implements ICongDanService {
             rs = ps.executeQuery();
             while (rs.next()) {
                 CongDanModel congDan = new CongDanModel();
-
-                congDan.setMaKS(rs.getString(1));
-                congDan.setCCCD(rs.getString(2));
-                congDan.setHoTen(rs.getString(3));
-                congDan.setNgaySinh(rs.getDate(4));
-                congDan.setGioiTinh(rs.getString(5));
-                congDan.setNoiSinh(rs.getString(6));
-                congDan.setNcCccd(rs.getString(7));
-                congDan.setNgcCccd(rs.getDate(8));
-                congDan.setSDT(rs.getString(9));
-                congDan.setEmail(rs.getString(10));
-                congDan.setTrangThai(rs.getInt(11));
+                congDan.setID(rs.getInt(1));
+                congDan.setMaKS(rs.getString(2));
+                congDan.setCCCD(rs.getString(3));
+                congDan.setHoTen(rs.getString(4));
+                congDan.setNgaySinh(rs.getDate(5));
+                congDan.setGioiTinh(rs.getString(6));
+                congDan.setNoiSinh(rs.getString(7));
+                congDan.setNcCccd(rs.getString(8));
+                congDan.setNgcCccd(rs.getDate(9));
+                congDan.setSDT(rs.getString(10));
+                congDan.setEmail(rs.getString(11));
+                congDan.setTrangThai(rs.getInt(12));
 
                 listCongDan.add(congDan);
             }
@@ -255,7 +255,7 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public List<CongDanModel> filterByHomeTown(String hometown) {
-        String query = " select CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, QueQuan, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai from CongDan\n"
+        String query = " select CongDan.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, QueQuan, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai from CongDan\n"
                 + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
                 + "  where KhaiSinh.NoiSinh = ? and CongDan.TrangThai = 1\n"
                 + "  order by ID ASC";
@@ -267,12 +267,12 @@ public class CongDanServiceImpl implements ICongDanService {
             rs = ps.executeQuery();
             while (rs.next()) {
                 CongDanModel congDan = new CongDanModel();
-                congDan.setMaKS(rs.getString(1));
-                congDan.setCCCD(rs.getString(2));
-                congDan.setHoTen(rs.getString(3));
-                congDan.setNgaySinh(rs.getDate(4));
-                congDan.setGioiTinh(rs.getString(5));
-                congDan.setQueQuan(rs.getString(6));
+                congDan.setID(rs.getInt(1));
+                congDan.setMaKS(rs.getString(2));
+                congDan.setCCCD(rs.getString(3));
+                congDan.setHoTen(rs.getString(4));
+                congDan.setNgaySinh(rs.getDate(5));
+                congDan.setGioiTinh(rs.getString(6));
                 congDan.setNoiSinh(rs.getString(7));
                 congDan.setNcCccd(rs.getString(8));
                 congDan.setNgcCccd(rs.getDate(9));

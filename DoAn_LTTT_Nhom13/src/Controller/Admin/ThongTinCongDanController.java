@@ -211,7 +211,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             }
         });
 
-        cbx_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả", "Giới tính", "Quê quán" }));
+        cbx_filter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả", "Giới tính", "Nơi sinh" }));
         cbx_filter.setLabeText("");
         cbx_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,18 +388,18 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 
     private void tbl_thongTinCongDanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_thongTinCongDanMouseClicked
         model = (DefaultTableModel) tbl_thongTinCongDan.getModel();
-        tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 0).toString());
-        tf_soCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 1).toString());
-        tf_hoTen.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 2).toString());
-        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 3).toString());
-        tf_gioiTinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 4).toString());
-        tf_noiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 5).toString());
-        tf_noiCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 6).toString());
-        tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 7).toString());
-        tf_soDienThoai.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 8).toString());
-        tf_email.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 9).toString());
+        tf_maKhaiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 1).toString());
+        tf_soCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 2).toString());
+        tf_hoTen.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 3).toString());
+        tf_ngaySinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 4).toString());
+        tf_gioiTinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 5).toString());
+        tf_noiSinh.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 6).toString());
+        tf_noiCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 7).toString());
+        tf_ngayCapCCCD.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 8).toString());
+        tf_soDienThoai.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 9).toString());
+        tf_email.setText(model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 10).toString());
         
-        byte[] imageData = (byte[]) model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 10);
+        byte[] imageData = (byte[]) model.getValueAt(tbl_thongTinCongDan.getSelectedRow(), 11);
         Image image = null;
         try {
             image = ImageIO.read(new ByteArrayInputStream(imageData));
@@ -438,7 +438,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             if (confirm == JOptionPane.YES_OPTION) {
 
                 try {
-                    String id = (String) tbl_thongTinCongDan.getValueAt(selectedRow, 1);
+                    String id = (String) tbl_thongTinCongDan.getValueAt(selectedRow, 2);
                     model.removeRow(selectedRow);
                     //listCongDan.remove(selectedRow);
                     if (new CongDanServiceImpl().delete(id)) {
@@ -466,7 +466,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
-        if (tf_maKhaiSinh.getText().equals("") || tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_noiCapCCCD.getText().equals("") || tf_ngayCapCCCD.getText().equals("") || tf_soDienThoai.getText().equals("") || tf_email.getText().equals("")) {
+        if (tf_maKhaiSinh.getText().equals("") || tf_soCCCD.getText().equals("") || tf_hoTen.getText().equals("") || tf_noiCapCCCD.getText().equals("") || tf_ngayCapCCCD.getText().equals("") || tf_soDienThoai.getText().equals("") || tf_email.getText().equals("") || picHinhAnh.getImage() == null) {
             JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
