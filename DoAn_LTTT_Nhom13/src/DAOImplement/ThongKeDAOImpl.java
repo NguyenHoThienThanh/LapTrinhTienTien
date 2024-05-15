@@ -231,6 +231,7 @@ public class ThongKeDAOImpl implements IThongKeDAO {
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
+            ps.setString(1, year);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ThongKeModel thongKe = new ThongKeModel();
