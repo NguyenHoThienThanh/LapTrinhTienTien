@@ -122,7 +122,6 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         btn_sua1 = new Swing.Button();
         tf_matKhau = new Swing.PasswordField();
         picHinhAnh = new Swing.PictureBox();
-        btn_chooseFile = new button.MyButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(920, 540));
@@ -165,6 +164,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("THÔNG TIN TÀI KHOẢN");
 
+        tf_diaChi.setEditable(false);
         tf_diaChi.setLabelText("Địa chỉ");
 
         tf_quocTich.setEditable(false);
@@ -194,15 +194,6 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
 
         tf_matKhau.setEditable(false);
         tf_matKhau.setLabelText("Mật khẩu");
-
-        btn_chooseFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/icons8-upload-10.png"))); // NOI18N
-        btn_chooseFile.setPreferredSize(new java.awt.Dimension(40, 40));
-        btn_chooseFile.setRadius(50);
-        btn_chooseFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_chooseFileActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -243,10 +234,9 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
                                                 .addGap(339, 339, 339)
                                                 .addComponent(jLabel2))
                                             .addGroup(layout.createSequentialGroup()
+                                                .addGap(33, 33, 33)
                                                 .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(22, 22, 22)
+                                                .addGap(35, 35, 35)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(tf_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,8 +266,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tf_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_matKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_chooseFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_matKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,7 +291,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
                             .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(tf_diaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(btn_sua1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -407,38 +396,10 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
     private void btn_sua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sua1ActionPerformed
         String email = tf_email.getText();
         String soDienThoai = tf_soDienThoai.getText();
-        String diaChi = tf_diaChi.getText();
-
-        byte[] hinhAnh = null;
-            try {
-                Icon icon = picHinhAnh.getImage();
-                if (icon instanceof ImageIcon) {
-                    hinhAnh = ImageUtils.imageToByteArray((ImageIcon) icon);
-                }
-            } catch (Exception e) {
-        }
         
-        updateCongDanInfo(email, soDienThoai, diaChi, hinhAnh);
+        updateCongDanInfo(email, soDienThoai);
     }//GEN-LAST:event_btn_sua1ActionPerformed
-
-    private void btn_chooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chooseFileActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            try {
-                BufferedImage b = ImageIO.read(selectedFile);
-                ImageIcon icon = new ImageIcon(b.getScaledInstance(-1, -1, BufferedImage.SCALE_SMOOTH));
-                picHinhAnh.setImage(icon);
-                picHinhAnh.setBackground(Color.WHITE);
-                picHinhAnh.repaint();
-                picHinhAnh.setBackground(Color.WHITE);
-            } catch (Exception e) {
-
-            }
-        }
-    }//GEN-LAST:event_btn_chooseFileActionPerformed
-    private void updateCongDanInfo(String email, String soDienThoai, String diaChi, byte[] HinhAnh) {
+    private void updateCongDanInfo(String email, String soDienThoai) {
 
         // Kiểm tra số điện thoại và email hợp lệ trước khi cập nhật
         if (!isValidPhoneNumber(soDienThoai)) {
@@ -449,18 +410,12 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         if (!isValidEmail(email)) {
             JOptionPane.showMessageDialog(null, "Email không được để trống, Email phải chứa ký tự '@', Phần tên miền của email (sau '@') phải chứa dấu chấm!");
             return;
-        }
         
-        if (!isValidAddress(diaChi)) {
-        JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống, Địa chỉ không được chứa ký tự đặc biệt");
-        return;
     }
         
         // Cập nhật thông tin mới
         cd.setEmail(email);
         cd.setSDT(soDienThoai);
-        cd.setDiaChi(diaChi);
-        cd.setHinhAnh(HinhAnh);
         // Gọi phương thức cập nhật thông tin trong service
         boolean updated = congDanService.update(cd);
 
@@ -518,7 +473,6 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private button.MyButton btn_chooseFile;
     private Swing.Button btn_doiMatKhau;
     private Swing.Button btn_sua1;
     private javax.swing.JLabel jLabel1;
