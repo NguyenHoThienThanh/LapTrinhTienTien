@@ -223,5 +223,12 @@ public class CongDanModel {
 
     public void setID(int ID) {
         this.ID = ID;
-    }    
+    }  
+
+    @Override
+    public String toString() {
+        return "CongDanModel{" + "CCCD=" + CCCD + ", HoTen=" + HoTen + ", NcCccd=" + NcCccd + ", NgcCccd=" + NgcCccd + ", MaKS=" + MaKS + ", SDT=" + SDT + ", Email=" + Email + ", TrangThai=" + TrangThai + ", NgaySinh=" + NgaySinh + ", GioiTinh=" + GioiTinh + ", NoiSinh=" + NoiSinh + ", QuocTich=" + QuocTich + ", DanToc=" + DanToc + ", QueQuan=" + QueQuan + ", DiaChi=" + DiaChi + ", HinhAnh=" + HinhAnh + ", ID=" + ID + '}';
+    }
+
+    
 }

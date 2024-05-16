@@ -25,20 +25,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
+
     String currentUser = Login_RegisterController.AppContext.userName;
     ICongDanService congDanService = new CongDanServiceImpl();
-        
+
     CongDanModel cd = congDanService.findOne(currentUser);
-        
+
     IDangNhapService dangNhapService = new DangNhapServiceImpl();
     DangNhapModel dn = dangNhapService.findOne(currentUser);
-    
+
     public ThongTinCongDanControllerUser() {
         initComponents();
-        CongDanModel cd = congDanService.findOne(currentUser);
+        //CongDanModel cd = congDanService.findOne(currentUser);
         CongDanModel congDan = new CongDanDAOImpl().findOneWithoutAdd(currentUser);
-        
-        if(cd.getCCCD() != null){            
+        if (cd.getCCCD() != null) {
             tf_tenDangNhap.setText(dn.getTenDangNhap());
             tf_matKhau.setText(dn.getMatKhau().trim());
             tf_soCCCD.setText(cd.getCCCD());
@@ -55,31 +55,24 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
             tf_quocTich.setText(cd.getQuocTich());
             tf_diaChi.setText(cd.getDiaChi());
 
-            byte[] imageData = (byte[]) congDan.getHinhAnh();
-                Image image = null;
-                try {
-                    image = ImageIO.read(new ByteArrayInputStream(imageData));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (image != null) {
-                    ImageIcon icon = new ImageIcon(image);
-                    picHinhAnh.setImage(icon);
-                    picHinhAnh.repaint();
-                } else {
-                    picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
-                }
+            byte[] imageData = cd.getHinhAnh();
+            
+            Image image = null;
+            try {
+                image = ImageIO.read(new ByteArrayInputStream(imageData));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (image != null) {
-            ImageIcon icon = new ImageIcon(image);
-                // Đặt ImageIcon vào JLabel
+                ImageIcon icon = new ImageIcon(image);
                 picHinhAnh.setImage(icon);
                 picHinhAnh.repaint(); // Cập nhật lại JLabel để hiển thị hình ảnh mới
             } else {
                 // Đặt hình ảnh mặc định hoặc thông báo lỗi nếu hình ảnh không thể đọc được
                 picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
-                }    
             }
-        else {
+        } else {
+            
             tf_tenDangNhap.setText(dn.getTenDangNhap());
             tf_matKhau.setText(dn.getMatKhau().trim());
             tf_soCCCD.setText(congDan.getCCCD().trim());
@@ -95,6 +88,23 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
             tf_queQuan.setText(congDan.getQueQuan());
             tf_quocTich.setText(congDan.getQuocTich());
             tf_diaChi.setText("");
+            
+            byte[] imageData = congDan.getHinhAnh();
+            
+            Image image = null;
+            try {
+                image = ImageIO.read(new ByteArrayInputStream(imageData));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (image != null) {
+                ImageIcon icon = new ImageIcon(image);
+                picHinhAnh.setImage(icon);
+                picHinhAnh.repaint(); // Cập nhật lại JLabel để hiển thị hình ảnh mới
+            } else {
+                // Đặt hình ảnh mặc định hoặc thông báo lỗi nếu hình ảnh không thể đọc được
+                picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
+            }
         }
     }
 
@@ -309,55 +319,55 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_doiMatKhauActionPerformed
 
     private void showChangePasswordDialog() {
-    // Tạo hộp thoại đổi mật khẩu
-    JPasswordField currentPasswordField = new JPasswordField();
-    JPasswordField newPasswordField = new JPasswordField();
-    JPasswordField confirmPasswordField = new JPasswordField();
+        // Tạo hộp thoại đổi mật khẩu
+        JPasswordField currentPasswordField = new JPasswordField();
+        JPasswordField newPasswordField = new JPasswordField();
+        JPasswordField confirmPasswordField = new JPasswordField();
 
-    Object[] message = {
-        "Mật khẩu cũ:", currentPasswordField,
-        "Mật khẩu mới:", newPasswordField,
-        "Xác nhận mật khẩu mới:", confirmPasswordField
-    };
+        Object[] message = {
+            "Mật khẩu cũ:", currentPasswordField,
+            "Mật khẩu mới:", newPasswordField,
+            "Xác nhận mật khẩu mới:", confirmPasswordField
+        };
 
-    int option = JOptionPane.showConfirmDialog(null, message, "Đổi mật khẩu", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(null, message, "Đổi mật khẩu", JOptionPane.OK_CANCEL_OPTION);
 
-    // Xử lý sự kiện khi người dùng nhấn nút "OK"
-    if (option == JOptionPane.OK_OPTION) {
-        String currentPassword = new String(currentPasswordField.getPassword());
-        String newPassword = new String(newPasswordField.getPassword());
-        String confirmPassword = new String(confirmPasswordField.getPassword());
+        // Xử lý sự kiện khi người dùng nhấn nút "OK"
+        if (option == JOptionPane.OK_OPTION) {
+            String currentPassword = new String(currentPasswordField.getPassword());
+            String newPassword = new String(newPasswordField.getPassword());
+            String confirmPassword = new String(confirmPasswordField.getPassword());
 
-        if (!isCurrentPasswordMatched(currentPassword.trim())) {
-            JOptionPane.showMessageDialog(null, "Mật khẩu cũ Không chính xác!");
-            return;
-        }
-        // Kiểm tra tính hợp lệ của dữ liệu nhập vào
-        if (isPasswordCurrent(newPassword, currentPassword)) {
-            JOptionPane.showMessageDialog(null, "Mật khẩu cũ không thể giống mật khẩu mới!");
-            return;
-        }
+            if (!isCurrentPasswordMatched(currentPassword.trim())) {
+                JOptionPane.showMessageDialog(null, "Mật khẩu cũ Không chính xác!");
+                return;
+            }
+            // Kiểm tra tính hợp lệ của dữ liệu nhập vào
+            if (isPasswordCurrent(newPassword, currentPassword)) {
+                JOptionPane.showMessageDialog(null, "Mật khẩu cũ không thể giống mật khẩu mới!");
+                return;
+            }
 
-        if (!isValidPassword(newPassword)) {
-            JOptionPane.showMessageDialog(null, "Mật khẩu mới không hợp lệ!");
-            return;
-        }
+            if (!isValidPassword(newPassword)) {
+                JOptionPane.showMessageDialog(null, "Mật khẩu mới không hợp lệ!");
+                return;
+            }
 
-        if (!isPasswordConfirmed(newPassword, confirmPassword)) {
-            JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu mới không khớp!");
-            return;
-        }
+            if (!isPasswordConfirmed(newPassword, confirmPassword)) {
+                JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu mới không khớp!");
+                return;
+            }
 
-        // Tiến hành đổi mật khẩu trong cơ sở dữ liệu
-        boolean changed = changePassword(currentPassword, newPassword);
+            // Tiến hành đổi mật khẩu trong cơ sở dữ liệu
+            boolean changed = changePassword(currentPassword, newPassword);
 
-        if (changed) {
-            JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại!");
+            if (changed) {
+                JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Đổi mật khẩu thất bại!");
+            }
         }
     }
-}
 
     private boolean isValidPassword(String newPassword) {
         // Kiểm tra tính hợp lệ của mật khẩu mới
@@ -396,7 +406,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
     private void btn_sua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sua1ActionPerformed
         String email = tf_email.getText();
         String soDienThoai = tf_soDienThoai.getText();
-        
+
         updateCongDanInfo(email, soDienThoai);
     }//GEN-LAST:event_btn_sua1ActionPerformed
     private void updateCongDanInfo(String email, String soDienThoai) {
@@ -410,9 +420,9 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         if (!isValidEmail(email)) {
             JOptionPane.showMessageDialog(null, "Email không được để trống, Email phải chứa ký tự '@', Phần tên miền của email (sau '@') phải chứa dấu chấm!");
             return;
-        
-    }
-        
+
+        }
+
         // Cập nhật thông tin mới
         cd.setEmail(email);
         cd.setSDT(soDienThoai);
@@ -425,9 +435,10 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         } else {
             // Thông báo cập nhật thất bại
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra. Không thể cập nhật thông tin!");
-            
+
         }
-}
+    }
+
     public static boolean isValidPhoneNumber(String phoneNumber) {
         // Kiểm tra định dạng số điện thoại
         // Ví dụ: Số điện thoại gồm 10 chữ số và bắt đầu bằng số 0
@@ -436,7 +447,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
-    
+
     public static boolean isValidEmail(String email) {
         // Kiểm tra định dạng email
         // Ví dụ: abc@example.com
@@ -445,7 +456,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-    
+
     public static boolean isValidAddress(String address) {
         // Kiểm tra địa chỉ không được để trống
         System.out.println(address);
@@ -460,7 +471,6 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
 //                return false;
 //            }
 //        }
-
         // Kiểm tra địa chỉ có chứa ký tự Unicode không hợp lệ
         String invalidUnicodeCharacters = "";
         for (char ch : invalidUnicodeCharacters.toCharArray()) {
@@ -470,7 +480,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         }
 
         return true;
-}
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Button btn_doiMatKhau;
