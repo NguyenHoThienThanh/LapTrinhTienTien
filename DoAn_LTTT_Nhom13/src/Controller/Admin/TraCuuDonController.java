@@ -217,7 +217,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         tf_email = new Swing.TextField();
         btn_backFromTTCDToDon = new button.MyButton();
         jLabel13 = new javax.swing.JLabel();
-        pic_imgavatar = new Views.OtherForm.swing.PictureBox();
+        pic_imgavatar = new Swing.PictureBox();
         panelLH = new javax.swing.JPanel();
         tf_malyhon = new Swing.TextField();
         tf_macnkhlh = new Swing.TextField();
@@ -1325,9 +1325,11 @@ public class TraCuuDonController extends javax.swing.JPanel {
                         .addGap(39, 39, 39)
                         .addComponent(tf_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTTCDLayout.createSequentialGroup()
-                        .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pic_imgavatar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_ngaysinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_ngaysinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelTTCDLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(pic_imgavatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelTTCDLayout.createSequentialGroup()
                                 .addGap(42, 42, 42)
@@ -1365,9 +1367,9 @@ public class TraCuuDonController extends javax.swing.JPanel {
                             .addComponent(tf_gioitinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_cccdcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelTTCDLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(pic_imgavatar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(28, 28, 28)
+                        .addComponent(pic_imgavatar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addGroup(panelTTCDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_ngaysinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_noisinhcd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2157,7 +2159,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
     private javax.swing.JPanel panelTTCD;
     private javax.swing.JPanel panelTV;
     private javax.swing.JPanel panelXemDon;
-    private Views.OtherForm.swing.PictureBox pic_imgavatar;
+    private Swing.PictureBox pic_imgavatar;
     private Swing.TabbedPaneCustom tabbedPaneCustom1;
     private Swing.TableDark tbl_cnkh;
     private Swing.TableDark tbl_hokhau;
