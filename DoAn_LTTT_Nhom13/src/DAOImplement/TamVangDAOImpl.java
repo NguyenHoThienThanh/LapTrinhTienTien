@@ -107,7 +107,28 @@ public class TamVangDAOImpl implements ITamVangDAO {
         }
         return true;
     }
+    public boolean insertUser(DonTamVangUser tamVang) {
+        String query = "INSERT INTO Tamvang (CCCD, Ngaydk, Ncden, Ncdi , Ngaydi, Ngayve, Lydo, TrangThai) VALUES(?,?,?,?,?,?,?,?)";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, tamVang.getCCCD());
+            ps.setDate(2, new java.sql.Date(tamVang.getNgayDk().getTime()));
+            ps.setString(3, tamVang.getNoiChuyenDen());
+            ps.setString(4, tamVang.getNoiChuyenDi());
+            ps.setDate(5, new java.sql.Date(tamVang.getNgayDi().getTime()));
+            ps.setDate(6, new java.sql.Date(tamVang.getNgayVe().getTime()));
+            ps.setString(7, tamVang.getLydo());
+            ps.setInt(8, 2);
+            ps.executeUpdate();
 
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public boolean update(TamVangModel tamVang) {
         String query = "UPDATE Tamvang SET CCCD =?, Ngaydk =?, Ncdi=?, Ncden=?, Ngaydi=?, Ngayve=?, Lydo=?, TrangThai=? WHERE MaTV = ?";
@@ -139,28 +160,6 @@ public class TamVangDAOImpl implements ITamVangDAO {
             ps = conn.prepareStatement(query);
             ps.setString(1, MaTV);
             ps.executeUpdate();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean insertUser(DonTamVangUser tamVang) {
-        String query = "INSERT INTO Tamvang (CCCD, Ngaydk, Ncdi, Ncden, Ngaydi, Ngayve, Lydo, TrangThai) VALUES(?,?,?,?,?,?,?,?)";
-        try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, tamVang.getCCCD());
-            ps.setDate(2, new java.sql.Date(tamVang.getNgayDk().getTime()));
-            ps.setString(3, tamVang.getNoiChuyenDi());
-            ps.setString(4, tamVang.getNoiChuyenDen());
-            ps.setDate(5, new java.sql.Date(tamVang.getNgayDi().getTime()));
-            ps.setDate(6, new java.sql.Date(tamVang.getNgayVe().getTime()));
-            ps.setString(7, tamVang.getLydo());
-            ps.setInt(8,1);
-            ps.executeUpdate();
-            conn.close();
         } catch (Exception e) {
             return false;
         }

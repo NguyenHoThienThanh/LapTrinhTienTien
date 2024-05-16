@@ -436,7 +436,7 @@ public class TamVangController extends javax.swing.JPanel {
                 } catch (ParseException ex) {
                     return;
                 }
-
+                
                 try {
                     if (isDateValidPresent(tf_ngayCapCCCD.getText().trim())) {
                         Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayCapCCCD.getText().trim());
@@ -533,18 +533,10 @@ public class TamVangController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     public void showResult() {
-//        listTamVang = tamVangService.findAll();
-//        TamVangModel tamVang = listTamVang.get(listTamVang.size() - 1);
-//        model.fireTableDataChanged();
-//        model.addRow(new Object[]{tamVang.getMaTV(), tamVang.getNgaydk(), tamVang.getNcdi(), tamVang.getNcden(), tamVang.getHoTen(), tamVang.getNgaySinh(), tamVang.getCCCD(), tamVang.getNgayCapCCCD(), tamVang.getNoiCapCCCD(), tamVang.getNgaydi(), tamVang.getNgayve(), tamVang.getLydo()});
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-
         listTamVang = tamVangService.findAll();
-        for (TamVangModel tamVang : listTamVang) {
-            model.addRow(new Object[]{tamVang.getMaTV(), tamVang.getNgaydk(), tamVang.getNcdi(), tamVang.getNcden(), tamVang.getHoTen(), tamVang.getNgaySinh(), tamVang.getCCCD(), tamVang.getNgayCapCCCD(), tamVang.getNoiCapCCCD(), tamVang.getNgaydi(), tamVang.getNgayve(), tamVang.getLydo()});
-        }
+        TamVangModel tamVang = listTamVang.get(listTamVang.size() - 1);
+        model.fireTableDataChanged();
+        model.addRow(new Object[]{tamVang.getMaTV(), tamVang.getNgaydk(), tamVang.getNcdi(), tamVang.getNcden(), tamVang.getHoTen(), tamVang.getNgaySinh(), tamVang.getCCCD(), tamVang.getNgayCapCCCD(), tamVang.getNoiCapCCCD(), tamVang.getNgaydi(), tamVang.getNgayve(), tamVang.getLydo()});
     }
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         if (cbx_loaiDon.getSelectedIndex() == 1) {
@@ -663,7 +655,7 @@ public class TamVangController extends javax.swing.JPanel {
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-        } else if (selectedRow < 0) {
+        }else if (selectedRow < 0) {
             JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần xóa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -765,8 +757,8 @@ public class TamVangController extends javax.swing.JPanel {
             row.createCell(0).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 0));
             cell = row.createCell(1, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 1).toString());
-
-            row.createCell(2).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 2));
+            
+            row.createCell(2).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 2)); 
             row.createCell(3).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 3));
             row.createCell(4).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 4));
 
@@ -774,15 +766,15 @@ public class TamVangController extends javax.swing.JPanel {
             cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 5).toString());
 
             row.createCell(6).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 6));
-
+            
             cell = row.createCell(7, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 7).toString());
-
+            
             row.createCell(8).setCellValue((String) tbl_thongTinTamVang.getValueAt(i, 8));
-
+            
             cell = row.createCell(9, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 9).toString());
-
+            
             cell = row.createCell(10, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamVang.getValueAt(i, 10).toString());
 
@@ -801,7 +793,6 @@ public class TamVangController extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
         }
     }
-
     private void clear() {
         tf_soCCCD.setText("");
         tf_hoTen.setText("");

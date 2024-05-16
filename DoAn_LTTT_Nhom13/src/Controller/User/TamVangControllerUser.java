@@ -171,7 +171,7 @@ public class TamVangControllerUser extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Tạm Vắng", "Họ tên", "Giới tính", "CCCD", "Nơi CCCD", "Lý do", "SĐT", "Email", "Nơi chuyển đến", "Nơi chuyển đi", "Ngày đăng ký", "Ngày về", "Ngày đi", "Ngày sinh", "Ngày cấp"
+                "Mã Tạm Vắng", "Họ tên", "Giới tính", "Ngày sinh", "Ngày đk", "Cccd", "Nơi cấp", "Ngày cấp", "Sđt", "Email", "Nơi chuyển đi", "Nơi chuyển đến", "Ngày đi", "Ngày về", "Lý do"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -365,12 +365,12 @@ public class TamVangControllerUser extends javax.swing.JPanel {
             String Sdt = tf_soDienThoai.getText();
             String Email = tf_email.getText();
             String LiDo = tf_lyDo.getText();
-            Date NgayDen = jDateNgayVe.getDate();
+            Date NgayVe = jDateNgayVe.getDate();
             Date NgayDi = jDateNgayDi.getDate(); 
             String NoiChuyenDen = tf_noichuyenden.getText();
             String NoiChuyenDi = tf_noichuyendi.getText();
             int TrangThai = 2;
-            DonTamVangUser model = new DonTamVangUser(MaTV, HoTen, GioiTinh, NgaySinh, NgayDk, CCCD, NoiCap, NgayCap, Sdt, Email, NoiChuyenDen, NoiChuyenDi, NgayDi, NgayDen, LiDo, TrangThai);
+            DonTamVangUser model = new DonTamVangUser(MaTV, HoTen, GioiTinh, NgaySinh, NgayDk, CCCD, NoiCap, NgayCap, Sdt, Email, NoiChuyenDen, NoiChuyenDi, NgayDi, NgayVe, LiDo, TrangThai);
 
             boolean success = tamVangService.insertUser(model);
             if(success) {
