@@ -22,4 +22,5 @@ public interface IKhaiSinhService {
     KhaiSinhModel findOneChuaDuyet(String maKS);
     public List<KhaiSinhModel> filterByGender(String gender) ;
     public List<KhaiSinhModel> filterByHomeTown(String hometown);
+    List<String> listYear();
 }

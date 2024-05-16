@@ -13,17 +13,19 @@ import Models.LyHonModel;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
+
 /**
  *
  * @author Admin
  */
-public class LyHonServiceImpl implements ILyHonService{
+public class LyHonServiceImpl implements ILyHonService {
 
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     ILyHonDAO lyHonDAO = new LyHonDAOImpl();
+
     @Override
     public List<LyHonModel> findAll() {
         return lyHonDAO.findAll();
@@ -51,7 +53,7 @@ public class LyHonServiceImpl implements ILyHonService{
         lh.setLydo(lyHon.getLydo());
         return lyHonDAO.update(lh);
     }
-    
+
     @Override
     public boolean delete(String MaLH) {
         return lyHonDAO.delete(MaLH);
@@ -59,7 +61,7 @@ public class LyHonServiceImpl implements ILyHonService{
 
     @Override
     public List<LyHonModel> findAllLH(String CCCDVo, String CCCDChong) {
-         String query = "select Lyhon.MaLh as Malyhon, Lyhon.MaCnkh as Makethon, HotenVo, P.CccdVo as CCCDVo, HotenChong, Q.CccdChong as CCCDChong, Lyhon.Noidk as Noidangky, Lyhon.Ngaydk as Ngaydangky, Lydo, CccdNguoiNopDon, Hotennguoinopdon, Lyhon.TrangThai from LyHon join Cnkh on Lyhon.MaCnkh = Cnkh.MaCnkh join (select HoTen as HotenChong, CccdChong from Cnkh join CongDan on Cnkh.CccdChong = CongDan.CCCD)Q on Cnkh.CccdChong = Q.CccdChong join (select HoTen as HotenVo, CccdVo from Cnkh join CongDan on Cnkh.CccdVo = CongDan.CCCD)P on Cnkh.CccdVo = P.CccdVo join (select Malh, Hoten as Hotennguoinopdon from CongDan join Lyhon on CongDan.CCCD = Lyhon.CccdNguoiNopDon) T on T.MaLh = Lyhon.MaLh where LyHon.TrangThai = 1 and (P.CccdVo = ?or Q.CccdChong = ?)";
+        String query = "select Lyhon.MaLh as Malyhon, Lyhon.MaCnkh as Makethon, HotenVo, P.CccdVo as CCCDVo, HotenChong, Q.CccdChong as CCCDChong, Lyhon.Noidk as Noidangky, Lyhon.Ngaydk as Ngaydangky, Lydo, CccdNguoiNopDon, Hotennguoinopdon, Lyhon.TrangThai from LyHon join Cnkh on Lyhon.MaCnkh = Cnkh.MaCnkh join (select HoTen as HotenChong, CccdChong from Cnkh join CongDan on Cnkh.CccdChong = CongDan.CCCD)Q on Cnkh.CccdChong = Q.CccdChong join (select HoTen as HotenVo, CccdVo from Cnkh join CongDan on Cnkh.CccdVo = CongDan.CCCD)P on Cnkh.CccdVo = P.CccdVo join (select Malh, Hoten as Hotennguoinopdon from CongDan join Lyhon on CongDan.CCCD = Lyhon.CccdNguoiNopDon) T on T.MaLh = Lyhon.MaLh where LyHon.TrangThai = 1 and (P.CccdVo = ?or Q.CccdChong = ?)";
         List<LyHonModel> listLyHon = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -79,7 +81,7 @@ public class LyHonServiceImpl implements ILyHonService{
                 lh.setCCCDChong(rs.getString("CCCDChong"));
                 lh.setNoidk(rs.getString("Noidangky"));
                 lh.setNgaydk(rs.getDate("Ngaydangky"));
-                lh.setLydo(rs.getString("Lydo"));  
+                lh.setLydo(rs.getString("Lydo"));
                 listLyHon.add(lh);
             }
             conn.close();
@@ -94,5 +96,28 @@ public class LyHonServiceImpl implements ILyHonService{
     public DonChungNhanKetHon findOneByMaKH(String MaKH) {
         return lyHonDAO.findOneByMaKH(MaKH);
     }
-    
+
+    @Override
+    public List<String> listYear() {
+        List<String> year = new ArrayList<>();
+        String query = "  SELECT DISTINCT SUBSTRING(CONVERT(varchar, NgayDk, 23), 1, 4) AS nam\n"
+                + "FROM Lyhon\n"
+                + "ORDER BY nam DESC";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String a;
+                a = rs.getString(1);
+                year.add(a);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return year;
+    }
+
 }

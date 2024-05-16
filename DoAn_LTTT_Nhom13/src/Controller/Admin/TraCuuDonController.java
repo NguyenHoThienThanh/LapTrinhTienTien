@@ -1586,7 +1586,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         listHoKhau = hoKhauService.findAllHoKhau(search);
 
         tbl_hokhau.fixTable(jScrollPane5);
-        model = (DefaultTableModel) tbl_hokhau.getModel();
+//        model = (DefaultTableModel) tbl_hokhau.getModel();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }

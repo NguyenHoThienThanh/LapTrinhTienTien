@@ -7,10 +7,14 @@ package Controller.Admin;
 import Chart.ModelChart;
 import DAOImplement.ThongKeDAOImpl;
 import InterfaceDAO.IThongKeDAO;
+import InterfaceService.IChungNhanKetHonService;
 import Models.ThongKeModel;
+import ServiceImplement.ChungNhanKetHonServiceImpl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -20,11 +24,15 @@ public class ChartKetHonController extends javax.swing.JPanel {
 
     List<ThongKeModel> listThongKe = new ArrayList<>();
     IThongKeDAO thongKeDAO = new ThongKeDAOImpl();
+    IChungNhanKetHonService cnkh = new ChungNhanKetHonServiceImpl();
     public ChartKetHonController() {
         initComponents();
         chart.addLegend("Kết Hôn", Color.decode("#0099F7"), Color.decode("#F11712"));
+        loadYear();
         
     }
+    
+    
 
     
     
@@ -136,7 +144,6 @@ public class ChartKetHonController extends javax.swing.JPanel {
         chart.start();
     }//GEN-LAST:event_cbx_namActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Combobox cbx_nam;
     private Chart.CurveLineChart chart;
@@ -145,4 +152,14 @@ public class ChartKetHonController extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private Chart.PanelShadow panelShadow1;
     // End of variables declaration//GEN-END:variables
+
+    private void loadYear() {
+        List<String> year = cnkh.listYear();
+        String [] model = new String [year.size()];
+        for(int i = 0; i < year.size(); i++){
+            model[i] = year.get(i);
+        }
+        ComboBoxModel<String> cbb = new DefaultComboBoxModel<>(model);
+        cbx_nam.setModel(cbb);
+    }
 }

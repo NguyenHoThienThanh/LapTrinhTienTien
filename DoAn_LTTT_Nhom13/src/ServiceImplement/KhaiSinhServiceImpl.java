@@ -20,11 +20,12 @@ import java.util.List;
  *
  * @author Admin
  */
-public class KhaiSinhServiceImpl implements IKhaiSinhService{
+public class KhaiSinhServiceImpl implements IKhaiSinhService {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     IKhaiSinhDAO khaiSinhDAO = new KhaiSinhDAOImpl();
 
     @Override
@@ -71,12 +72,12 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
     public KhaiSinhModel findByCCCD(String CCCD) {
         KhaiSinhModel khaiSinh = new KhaiSinhModel();
         String query = "select * from KhaiSinh join CongDan on KhaiSinh.MaKS = CongDan.MaKS Where CongDan.CCCD = ?";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, CCCD);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 khaiSinh.setMaKS(rs.getString("MaKS"));
                 khaiSinh.setHoTenKS(rs.getString("HoTenKS"));
                 khaiSinh.setGioiTinh(rs.getString("GioiTinh"));
@@ -93,12 +94,12 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
                 khaiSinh.setNoiDk(rs.getString("NoiDk"));
             }
             conn.close();
-        }catch(Exception ex){
-            
-        } 
+        } catch (Exception ex) {
+
+        }
         return khaiSinh;
     }
-    
+
     @Override
     public List<KhaiSinhModel> findAllChuaDuyet() {
         String query = "select * from KhaiSinh where TrangThai = 2 order by ID ASC";
@@ -107,7 +108,7 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 KhaiSinhModel khaiSinh = new KhaiSinhModel();
                 khaiSinh.setID(rs.getInt(1));
                 khaiSinh.setMaKS(rs.getString(2));
@@ -128,23 +129,22 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
                 listKhaiSinh.add(khaiSinh);
             }
             conn.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return listKhaiSinh;
     }
-    
-    
+
     @Override
     public KhaiSinhModel findOneChuaDuyet(String maKS) {
         KhaiSinhModel khaiSinh = new KhaiSinhModel();
         String query = "select * from KhaiSinh where MaKS=? and TrangThai = 2 ";
-        try{
+        try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, maKS);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 khaiSinh.setID(rs.getInt(1));
                 khaiSinh.setMaKS(rs.getString(2));
                 khaiSinh.setHoTenKS(rs.getString(3));
@@ -163,12 +163,13 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
                 khaiSinh.setTrangThai(rs.getInt(16));
             }
             conn.close();
-        }catch(Exception ex){
-           
-        } 
+        } catch (Exception ex) {
+
+        }
         return khaiSinh;
-        
+
     }
+
     @Override
     public List<KhaiSinhModel> filterByGender(String gender) {
         String query = " select CongDan.MaKS, HoTen, GioiTinh, NgaySinh, DanToc, QuocTich, NoiSinh, QueQuan, KhaiSinh.Cha, Me,  NguoiKhaiSinh, QuanHe, NgayDk, NoiDk, KhaiSinh.TrangThai from CongDan\n"
@@ -207,7 +208,7 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
         }
         return listKhaiSinh;
     }
-    
+
     @Override
     public List<KhaiSinhModel> filterByHomeTown(String hometown) {
         String query = " select CongDan.MaKS, HoTen, GioiTinh, NgaySinh, DanToc, QuocTich, NoiSinh, QueQuan, KhaiSinh.Cha, Me,  NguoiKhaiSinh, QuanHe, NgayDk, NoiDk, KhaiSinh.TrangThai from CongDan\n"
@@ -245,5 +246,28 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService{
             e.printStackTrace();
         }
         return listKhaiSinh;
+    }
+
+    @Override
+    public List<String> listYear() {
+        List<String> year = new ArrayList<>();
+        String query = "   SELECT DISTINCT SUBSTRING(CONVERT(varchar, NgaySinh, 23), 1, 4) AS nam\n"
+                + "FROM KhaiSinh\n"
+                + "ORDER BY nam DESC;";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String a;
+                a = rs.getString(1);
+                year.add(a);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return year;
     }
 }

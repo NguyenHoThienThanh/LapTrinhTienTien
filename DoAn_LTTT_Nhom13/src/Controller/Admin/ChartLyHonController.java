@@ -7,10 +7,14 @@ package Controller.Admin;
 import Chart.ModelChart;
 import DAOImplement.ThongKeDAOImpl;
 import InterfaceDAO.IThongKeDAO;
+import InterfaceService.ILyHonService;
 import Models.ThongKeModel;
+import ServiceImplement.LyHonServiceImpl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -20,9 +24,11 @@ public class ChartLyHonController extends javax.swing.JPanel {
 
     List<ThongKeModel> listThongKe = new ArrayList<>();
     IThongKeDAO thongKeDAO = new ThongKeDAOImpl();
+    ILyHonService lh = new LyHonServiceImpl();
     public ChartLyHonController() {
         initComponents();
         chart.addLegend("Ly Hôn", Color.decode("#e65c00"), Color.decode("#F9D423"));
+        loadYear();
     }
 
     
@@ -129,6 +135,15 @@ public class ChartLyHonController extends javax.swing.JPanel {
         chart.start();
     }//GEN-LAST:event_cbx_namActionPerformed
 
+    private void loadYear() {
+        List<String> year = lh.listYear();
+        String [] model = new String [year.size()];
+        for(int i = 0; i < year.size(); i++){
+            model[i] = year.get(i);
+        }
+        ComboBoxModel<String> cbb = new DefaultComboBoxModel<>(model);
+        cbx_nam.setModel(cbb);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Combobox cbx_nam;

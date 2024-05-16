@@ -9,24 +9,30 @@ import DAOImplement.KhaiSinhDAOImpl;
 import DAOImplement.ThongKeDAOImpl;
 import InterfaceDAO.IKhaiSinhDAO;
 import InterfaceDAO.IThongKeDAO;
+import InterfaceService.IKhaiSinhService;
 import Models.ThongKeModel;
+import ServiceImplement.KhaiSinhServiceImpl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author TUAN
  */
 public class ChartKhaiSinhController extends javax.swing.JPanel {
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
     List<ThongKeModel> listThongKe = new ArrayList<>();
     IThongKeDAO thongKeDAO = new ThongKeDAOImpl();
 
+    IKhaiSinhService ks = new KhaiSinhServiceImpl();
     public ChartKhaiSinhController() {
         initComponents();
         chart.addLegend("Khai Sinh", Color.decode("#7b4397"), Color.decode("#dc2430"));
         //setDataDKKSTheoThang();
+        loadYear();
     }
 
     public void setDataDKKSTheoThang() {
@@ -138,6 +144,16 @@ public class ChartKhaiSinhController extends javax.swing.JPanel {
         chart.start();
     }//GEN-LAST:event_cbx_namActionPerformed
 
+
+    private void loadYear() {
+        List<String> year = ks.listYear();
+        String [] model = new String [year.size()];
+        for(int i = 0; i < year.size(); i++){
+            model[i] = year.get(i);
+        }
+        ComboBoxModel<String> cbb = new DefaultComboBoxModel<>(model);
+        cbx_nam.setModel(cbb);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Swing.Combobox cbx_nam;

@@ -20,4 +20,5 @@ public interface ILyHonService {
     boolean delete(String MaLH);
     List<LyHonModel> findAllLH(String CCCDVo, String CCCDChong);
     DonChungNhanKetHon findOneByMaKH(String MaKH);
+    List<String> listYear();
 }

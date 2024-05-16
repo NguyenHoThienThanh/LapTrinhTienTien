@@ -23,4 +23,5 @@ public interface IChungNhanKetHonService {
     ChungNhanKetHonModel findOneChuaDuyet(String Giaytotuythanvo, String Giaytotuythanchong) ;
     List<ChungNhanKetHonModel> findAllKetHon() ;
     int ifExists(String CCCDChong, String CCCCDVo);
+    List<String> listYear();
 }

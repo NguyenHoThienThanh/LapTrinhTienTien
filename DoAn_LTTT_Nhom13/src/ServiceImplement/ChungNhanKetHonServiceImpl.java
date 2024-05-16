@@ -228,6 +228,27 @@ public class ChungNhanKetHonServiceImpl implements IChungNhanKetHonService {
             return -1;
         }
     }
-    
 
+    @Override
+    public List<String> listYear() {
+        List<String> year = new ArrayList<>();
+        String query = "  SELECT DISTINCT SUBSTRING(CONVERT(varchar, Ngaydk, 23), 1, 4) AS nam\n"
+                + "FROM Cnkh\n"
+                + "ORDER BY nam DESC;";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String a;
+                a = rs.getString(1);
+                year.add(a);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return year;
+    }
 }
