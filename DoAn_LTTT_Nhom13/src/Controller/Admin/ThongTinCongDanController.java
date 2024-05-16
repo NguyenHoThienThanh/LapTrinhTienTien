@@ -10,6 +10,7 @@ import ServiceImplement.KhaiSinhServiceImpl;
 import Swing.TextField;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -268,6 +269,11 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         });
 
         tf_queQuan.setLabelText("Nơi sinh");
+        tf_queQuan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tf_queQuanKeyPressed(evt);
+            }
+        });
 
         btn_chooseFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/icons8-upload-10.png"))); // NOI18N
         btn_chooseFile.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -747,12 +753,12 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
                     jDialog.setVisible(true);
-                    model.setValueAt(tf_hoTen.getText(), selectedRow, 2);
-                    model.setValueAt(tf_noiCapCCCD.getText(), selectedRow, 6);
-                    model.setValueAt(dateStr, selectedRow, 7);
-                    model.setValueAt(tf_soDienThoai.getText(), selectedRow, 8);
-                    model.setValueAt(tf_email.getText(), selectedRow, 9);
-                    model.setValueAt(congDan.getHinhAnh(), selectedRow, 10);
+                    model.setValueAt(tf_hoTen.getText(), selectedRow, 3);
+                    model.setValueAt(tf_noiCapCCCD.getText(), selectedRow, 7);
+                    model.setValueAt(dateStr, selectedRow, 8);
+                    model.setValueAt(tf_soDienThoai.getText(), selectedRow, 9);
+                    model.setValueAt(tf_email.getText(), selectedRow, 10);
+                    model.setValueAt(congDan.getHinhAnh(), selectedRow, 11);
                     model.fireTableDataChanged();
                 } else {
                     JOptionPane dialog = new JOptionPane("Sửa thất bại!", JOptionPane.INFORMATION_MESSAGE);
@@ -826,7 +832,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 List<CongDanModel> list = new CongDanServiceImpl().filterByGender("Nữ");
                 model.fireTableDataChanged();
                 for (CongDanModel congDan : list) {
-                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
 
                 }
 
@@ -842,7 +848,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 List<CongDanModel> list = new CongDanServiceImpl().filterByGender("Nam");
                 model.fireTableDataChanged();
                 for (CongDanModel congDan : list) {
-                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail()});
+                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
                 }
             }
         }
@@ -879,6 +885,19 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btn_chooseFileActionPerformed
+
+    private void tf_queQuanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_queQuanKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            model.setRowCount(0);
+                List<CongDanModel> list = new CongDanServiceImpl().filterByHomeTown(tf_queQuan.getText().trim());
+                model.fireTableDataChanged();
+                for (CongDanModel congDan : list) {
+                    model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
+                } 
+        }
+    }//GEN-LAST:event_tf_queQuanKeyPressed
+    
+
     private void exportToExcel(String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Danh sách công dân");
@@ -942,15 +961,15 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
 //        CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
 //        model.fireTableDataChanged();
 //        model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
-           while (model.getRowCount() > 0) {
+        while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
 
         listCongDan = congDanService.findAll();
         for (CongDanModel congDan : listCongDan) {
-        model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
+            model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
         }
-    
+
     }
 
     private void clearRadio() {

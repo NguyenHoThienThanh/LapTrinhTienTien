@@ -219,7 +219,7 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public List<CongDanModel> filterByGender(String gender) {
-        String query = "  select CongDan.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai  from CongDan\n"
+        String query = "  select CongDan.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai, CongDan.HinhAnh   from CongDan\n"
                 + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
                 + "  where KhaiSinh.GioiTinh = ? and CongDan.TrangThai = 1\n"
                 + "  order by ID ASC";
@@ -243,6 +243,7 @@ public class CongDanServiceImpl implements ICongDanService {
                 congDan.setSDT(rs.getString(10));
                 congDan.setEmail(rs.getString(11));
                 congDan.setTrangThai(rs.getInt(12));
+                congDan.setHinhAnh(rs.getBytes(13));
 
                 listCongDan.add(congDan);
             }
@@ -255,7 +256,7 @@ public class CongDanServiceImpl implements ICongDanService {
 
     @Override
     public List<CongDanModel> filterByHomeTown(String hometown) {
-        String query = " select CongDan.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, QueQuan, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai from CongDan\n"
+        String query = " select CongDan.ID, CongDan.MaKS, CCCD, HoTen, NgaySinh, GioiTinh, NoiSinh, NcCccd, NgcCccd, SDT, Email, CongDan.TrangThai, CongDan.HinhAnh from CongDan\n"
                 + "  inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
                 + "  where KhaiSinh.NoiSinh = ? and CongDan.TrangThai = 1\n"
                 + "  order by ID ASC";
@@ -279,6 +280,7 @@ public class CongDanServiceImpl implements ICongDanService {
                 congDan.setSDT(rs.getString(10));
                 congDan.setEmail(rs.getString(11));
                 congDan.setTrangThai(rs.getInt(12));
+                congDan.setHinhAnh(rs.getBytes(13));
 
                 listCongDan.add(congDan);
             }

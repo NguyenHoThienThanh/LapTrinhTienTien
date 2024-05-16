@@ -493,6 +493,9 @@
       <Properties>
         <Property name="labelText" type="java.lang.String" value="N&#x1a1;i sinh"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tf_queQuanKeyPressed"/>
+      </Events>
     </Component>
     <Component class="button.MyButton" name="btn_chooseFile">
       <Properties>
