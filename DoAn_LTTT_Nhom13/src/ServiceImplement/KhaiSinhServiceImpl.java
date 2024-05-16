@@ -251,8 +251,13 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService {
     @Override
     public List<String> listYear() {
         List<String> year = new ArrayList<>();
-        String query = "   SELECT DISTINCT SUBSTRING(CONVERT(varchar, NgaySinh, 23), 1, 4) AS nam\n"
-                + "FROM KhaiSinh\n"
+        String query = "SELECT nam, COUNT(*) AS so_lan_xuat_hien\n"
+                + "FROM (\n"
+                + "    SELECT SUBSTRING(CONVERT(varchar, NgaySinh, 23), 1, 4) AS nam\n"
+                + "    FROM KhaiSinh\n"
+                + ") AS nam_table\n"
+                + "GROUP BY nam\n"
+                + "HAVING COUNT(*) >= 2\n"
                 + "ORDER BY nam DESC;";
         try {
             conn = DBConnection.getConnection();
