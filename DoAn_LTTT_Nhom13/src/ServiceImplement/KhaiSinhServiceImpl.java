@@ -173,9 +173,9 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService {
     @Override
     public List<KhaiSinhModel> filterByGender(String gender) {
         String query = " select CongDan.MaKS, HoTen, GioiTinh, NgaySinh, DanToc, QuocTich, NoiSinh, QueQuan, KhaiSinh.Cha, Me,  NguoiKhaiSinh, QuanHe, NgayDk, NoiDk, KhaiSinh.TrangThai from CongDan\n"
-                + "                inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
-                + "                where KhaiSinh.GioiTinh = ? and KhaiSinh.TrangThai = 1\n"
-                + "                order by ID ASC";
+                + "                             inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
+                + "                           where KhaiSinh.GioiTinh = ? and KhaiSinh.TrangThai = 1\n"
+                + "                             order by KhaiSinh.ID ASC";
         List<KhaiSinhModel> listKhaiSinh = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
@@ -214,7 +214,7 @@ public class KhaiSinhServiceImpl implements IKhaiSinhService {
         String query = " select CongDan.MaKS, HoTen, GioiTinh, NgaySinh, DanToc, QuocTich, NoiSinh, QueQuan, KhaiSinh.Cha, Me,  NguoiKhaiSinh, QuanHe, NgayDk, NoiDk, KhaiSinh.TrangThai from CongDan\n"
                 + "                inner join KhaiSinh on KhaiSinh.MaKS  = CongDan.MaKS\n"
                 + "                where KhaiSinh.QueQuan= ? and KhaiSinh.TrangThai = 1\n"
-                + "                order by ID ASC";
+                + "                order by KhaiSinh.ID ASC";
         List<KhaiSinhModel> listKhaiSinh = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
