@@ -1,6 +1,7 @@
 package Controller.User;
 
 import Controller.Admin.Login_RegisterController;
+import DAO.ImageUtils;
 import DAOImplement.CongDanDAOImpl;
 import InterfaceService.ICongDanService;
 import InterfaceService.IDangNhapService;
@@ -8,8 +9,18 @@ import Models.CongDanModel;
 import Models.DangNhapModel;
 import ServiceImplement.CongDanServiceImpl;
 import ServiceImplement.DangNhapServiceImpl;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
@@ -43,8 +54,31 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
             tf_queQuan.setText(cd.getQueQuan());
             tf_quocTich.setText(cd.getQuocTich());
             tf_diaChi.setText(cd.getDiaChi());
-        
-        }
+
+            byte[] imageData = (byte[]) congDan.getHinhAnh();
+                Image image = null;
+                try {
+                    image = ImageIO.read(new ByteArrayInputStream(imageData));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (image != null) {
+                    ImageIcon icon = new ImageIcon(image);
+                    picHinhAnh.setImage(icon);
+                    picHinhAnh.repaint();
+                } else {
+                    picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
+                }
+            if (image != null) {
+            ImageIcon icon = new ImageIcon(image);
+                // Đặt ImageIcon vào JLabel
+                picHinhAnh.setImage(icon);
+                picHinhAnh.repaint(); // Cập nhật lại JLabel để hiển thị hình ảnh mới
+            } else {
+                // Đặt hình ảnh mặc định hoặc thông báo lỗi nếu hình ảnh không thể đọc được
+                picHinhAnh.setImage(new ImageIcon(getClass().getResource("/Views/OtherForm/Image/error.png")));
+                }    
+            }
         else {
             tf_tenDangNhap.setText(dn.getTenDangNhap());
             tf_matKhau.setText(dn.getMatKhau().trim());
@@ -87,6 +121,8 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         tf_tenDangNhap = new Swing.TextField();
         btn_sua1 = new Swing.Button();
         tf_matKhau = new Swing.PasswordField();
+        picHinhAnh = new Swing.PictureBox();
+        btn_chooseFile = new button.MyButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(920, 540));
@@ -159,6 +195,15 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         tf_matKhau.setEditable(false);
         tf_matKhau.setLabelText("Mật khẩu");
 
+        btn_chooseFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo/icons8-upload-10.png"))); // NOI18N
+        btn_chooseFile.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn_chooseFile.setRadius(50);
+        btn_chooseFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_chooseFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,48 +218,53 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tf_diaChi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tf_quocTich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tf_soCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(tf_danToc, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(78, 78, 78)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tf_quocTich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(tf_soCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(tf_hoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(tf_danToc, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(64, 64, 64)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(tf_noiSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(tf_queQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(78, 78, 78))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(339, 339, 339)
+                                                .addComponent(jLabel2))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(22, 22, 22)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(tf_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(tf_matKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(201, 201, 201)
+                                                        .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(329, 329, 329)
+                                                .addComponent(jLabel1)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(tf_soDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(tf_gioiTinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(15, 15, 15))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(358, 358, 358)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_matKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,10 +273,14 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_matKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_matKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_chooseFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -354,11 +408,38 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         String email = tf_email.getText();
         String soDienThoai = tf_soDienThoai.getText();
         String diaChi = tf_diaChi.getText();
+
+        byte[] hinhAnh = null;
+            try {
+                Icon icon = picHinhAnh.getImage();
+                if (icon instanceof ImageIcon) {
+                    hinhAnh = ImageUtils.imageToByteArray((ImageIcon) icon);
+                }
+            } catch (Exception e) {
+        }
         
-        updateCongDanInfo(email, soDienThoai, diaChi);
+        updateCongDanInfo(email, soDienThoai, diaChi, hinhAnh);
     }//GEN-LAST:event_btn_sua1ActionPerformed
-    private void updateCongDanInfo(String email, String soDienThoai, String diaChi) {
-        
+
+    private void btn_chooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chooseFileActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                BufferedImage b = ImageIO.read(selectedFile);
+                ImageIcon icon = new ImageIcon(b.getScaledInstance(-1, -1, BufferedImage.SCALE_SMOOTH));
+                picHinhAnh.setImage(icon);
+                picHinhAnh.setBackground(Color.WHITE);
+                picHinhAnh.repaint();
+                picHinhAnh.setBackground(Color.WHITE);
+            } catch (Exception e) {
+
+            }
+        }
+    }//GEN-LAST:event_btn_chooseFileActionPerformed
+    private void updateCongDanInfo(String email, String soDienThoai, String diaChi, byte[] HinhAnh) {
+
         // Kiểm tra số điện thoại và email hợp lệ trước khi cập nhật
         if (!isValidPhoneNumber(soDienThoai)) {
             JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống, Số điện thoại phải gồm 10 chữ số, Số điện thoại phải bắt đầu bằng số 0, Số điện thoại chỉ được chứa chữ số và không được âm!");
@@ -379,7 +460,7 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
         cd.setEmail(email);
         cd.setSDT(soDienThoai);
         cd.setDiaChi(diaChi);
-
+        cd.setHinhAnh(HinhAnh);
         // Gọi phương thức cập nhật thông tin trong service
         boolean updated = congDanService.update(cd);
 
@@ -412,17 +493,18 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
     
     public static boolean isValidAddress(String address) {
         // Kiểm tra địa chỉ không được để trống
+        System.out.println(address);
         if (address.isEmpty()) {
             return false;
         }
 
-        // Kiểm tra địa chỉ có chứa ký tự đặc biệt hay không
-        String specialCharacters = "!@#$%^&*()+=-[]{}|\\;:'\",.<>/?";
-        for (char ch : specialCharacters.toCharArray()) {
-            if (address.contains(String.valueOf(ch))) {
-                return false;
-            }
-        }
+//        // Kiểm tra địa chỉ có chứa ký tự đặc biệt hay không
+//        String specialCharacters = "!@#$%^&*()+=-[]{}|\\;:'\",.<>/?";
+//        for (char ch : specialCharacters.toCharArray()) {
+//            if (address.contains(String.valueOf(ch))) {
+//                return false;
+//            }
+//        }
 
         // Kiểm tra địa chỉ có chứa ký tự Unicode không hợp lệ
         String invalidUnicodeCharacters = "";
@@ -436,10 +518,12 @@ public class ThongTinCongDanControllerUser extends javax.swing.JPanel {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private button.MyButton btn_chooseFile;
     private Swing.Button btn_doiMatKhau;
     private Swing.Button btn_sua1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private Swing.PictureBox picHinhAnh;
     private Swing.TextField tf_danToc;
     private Swing.TextField tf_diaChi;
     private Swing.TextField tf_email;

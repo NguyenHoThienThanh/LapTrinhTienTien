@@ -140,13 +140,14 @@
                           </Group>
                           <Component id="btn_chooseFile" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="picHinhAnh" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tf_noiCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tf_ngayCapCCCD" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -493,12 +494,6 @@
         <Property name="labelText" type="java.lang.String" value="N&#x1a1;i sinh"/>
       </Properties>
     </Component>
-    <Container class="Views.OtherForm.swing.PictureBox" name="picHinhAnh">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
-      </Layout>
-    </Container>
     <Component class="button.MyButton" name="btn_chooseFile">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -513,5 +508,11 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_chooseFileActionPerformed"/>
       </Events>
     </Component>
+    <Container class="Swing.PictureBox" name="picHinhAnh">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+    </Container>
   </SubComponents>
 </Form>

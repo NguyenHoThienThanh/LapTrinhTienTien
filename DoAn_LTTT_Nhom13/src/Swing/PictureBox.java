@@ -1,4 +1,4 @@
-package Views.OtherForm.swing;
+package Swing;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,12 +7,18 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
+import javax.swing.border.Border;
 
 public class PictureBox extends JLayeredPane {
-
+    public PictureBox() {
+        // Initialize your border here
+        Border border = BorderFactory.createLineBorder(java.awt.Color.GREEN, 1); // Black border with a thickness of 2
+        setBorder(border);
+    }
     public Icon getImage() {
         return image;
     }

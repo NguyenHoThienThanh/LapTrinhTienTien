@@ -99,8 +99,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
         rd_nam = new javax.swing.JRadioButton();
         btn_xuatDanhSach = new Swing.Button();
         tf_queQuan = new Swing.TextField();
-        picHinhAnh = new Views.OtherForm.swing.PictureBox();
         btn_chooseFile = new button.MyButton();
+        picHinhAnh = new Swing.PictureBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -372,11 +372,12 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                                 .addComponent(tf_soCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_ngaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_maKhaiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btn_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(picHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_noiCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_ngayCapCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -642,6 +643,8 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
                 tf_noiCapCCCD.setText("");
                 tf_ngayCapCCCD.setText("");
                 picHinhAnh.setImage(null);
+                picHinhAnh.setBackground(Color.WHITE);
+                picHinhAnh.repaint();
             }
 
         } catch (Exception e) {
@@ -1118,7 +1121,7 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     private Swing.Combobox cbx_filter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private Views.OtherForm.swing.PictureBox picHinhAnh;
+    private Swing.PictureBox picHinhAnh;
     private javax.swing.JRadioButton rd_nam;
     private javax.swing.JRadioButton rd_nu;
     private Swing.TableDark tbl_thongTinCongDan;

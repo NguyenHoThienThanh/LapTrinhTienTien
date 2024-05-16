@@ -26,11 +26,11 @@ public class GiayChungTuDAOImpl implements IGiayChungTuDAO {
 
     @Override
     public List<GiayChungTuModel> findAll() {
-        String query = "select GiayChungTu.ID, MaCT, CongDan.HoTen, CongDan.CCCD, KhaiSinh.NgaySinh, NgayMat, NoiMat, NguyenNhan, GiayChungTu.TrangThai, KhaiSinh.MaKS from GiayChungTu "
-                + "inner join CongDan on GiayChungTu.CCCD = CongDan.CCCD "
-                + "inner join KhaiSinh on KhaiSinh.HoTenKS = CongDan.HoTen "
-                + "and GiayChungTu.TrangThai = 1  "
-                + "order by GiayChungTu.ID ASC";
+        String query = "select GiayChungTu.ID, MaCT, CongDan.HoTen, CongDan.CCCD, KhaiSinh.NgaySinh, NgayMat, NoiMat, NguyenNhan, GiayChungTu.TrangThai, KhaiSinh.MaKS from GiayChungTu\n" +
+"                inner join CongDan on GiayChungTu.CCCD = CongDan.CCCD\n" +
+"                inner join KhaiSinh on KhaiSinh.MaKS = CongDan.MaKS\n" +
+"                and GiayChungTu.TrangThai = 1\n" +
+"                order by GiayChungTu.ID ASC";
         List<GiayChungTuModel> listGiayChungTu = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
