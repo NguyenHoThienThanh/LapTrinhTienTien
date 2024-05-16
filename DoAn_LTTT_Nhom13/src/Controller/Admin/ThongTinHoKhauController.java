@@ -26,7 +26,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 public class ThongTinHoKhauController extends javax.swing.JPanel {
 
     DefaultTableModel model;
@@ -361,7 +360,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             hoKhau.setQuanHeChuHo("Chủ hộ");
             hoKhau.setTrangThai(1);
             listHoKhau.add(hoKhau);
-            
+
             if (new HoKhauServiceImpl().insert(hoKhau)) {
                 HoKhauModel hk = new HoKhauModel();
                 hk = new HoKhauServiceImpl().findOneHKByMaKS(hoKhau.getKhaiSinhChuHo());
@@ -371,14 +370,12 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
                 quanHe.setMaHK(hk.getMaHK());
                 quanHe.setTrangThai(1);
                 new QuanHeServiceImpl().insert(quanHe);
-                    
-                
+
                 JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
-                
-                
+
             } else {
                 JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
@@ -526,7 +523,7 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
-    
+
     private void exportToExcel(String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Danh sách hộ khẩu");
@@ -569,11 +566,20 @@ public class ThongTinHoKhauController extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
         }
     }
+
     public void showResult() {
+//        listHoKhau = hoKhauService.findAllHK();
+//        HoKhauModel hoKhau = listHoKhau.get(listHoKhau.size() - 1);
+//        model.fireTableDataChanged();
+//        model.addRow(new Object[]{hoKhau.getMaHK(), hoKhau.getKhaiSinhChuHo(), hoKhau.getSoCCCD(), hoKhau.getHoTen(), hoKhau.getDiaChi()});
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
         listHoKhau = hoKhauService.findAllHK();
-        HoKhauModel hoKhau = listHoKhau.get(listHoKhau.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{hoKhau.getMaHK(), hoKhau.getKhaiSinhChuHo(), hoKhau.getSoCCCD(), hoKhau.getHoTen(), hoKhau.getDiaChi()});
+        for (HoKhauModel hoKhau : listHoKhau) {
+            model.addRow(new Object[]{hoKhau.getMaHK(), hoKhau.getKhaiSinhChuHo(), hoKhau.getSoCCCD(), hoKhau.getHoTen(), hoKhau.getDiaChi()});
+
+        }
     }
 
     private void clear() {

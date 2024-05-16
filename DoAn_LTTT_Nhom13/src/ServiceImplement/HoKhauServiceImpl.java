@@ -96,7 +96,16 @@ public class HoKhauServiceImpl implements IHoKhauService {
 
     @Override
     public List<ThongTinHoKhau> findAllHoKhau(String CCCD) {
-        String query = "select CCCD as CCCDNguoiThan, HoTen as HoTenNguoiThan, SDT, NgaySinh, QuanHeVoiChuHo, MaHK from CongDan join (select MaKS, HoTenKS, GioiTinh, NgaySinh, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from KhaiSinh join (select T.MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi from QuanHe join (select MaHK, DiaChi, KhaiSinhChuHo from HoKhau where MaHK in (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and CCCD = ?)) T on QuanHe.MaHK = T.MaHK) Q on Q.KhaiSinhNguoiThamGia = KhaiSinh.MaKS) C on C.KhaiSinhNguoiThamGia = CongDan.MaKS";
+        String query = "  select CCCD as CCCDNguoiThan, HoTenKS as HoTenNguoiThan, SDT, NgaySinh, QuanHeVoiChuHo, MaHK \n" +
+"  from CongDan right outer join (\n" +
+"  select MaKS, HoTenKS, GioiTinh, NgaySinh, MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi \n" +
+"  from KhaiSinh join \n" +
+"  (select T.MaHK, KhaiSinhNguoiThamGia, QuanHeVoiChuHo, DiaChi \n" +
+"  from QuanHe join \n" +
+"  (select MaHK, DiaChi, KhaiSinhChuHo \n" +
+"  from HoKhau where MaHK in \n" +
+"  (SELECT MaHK FROM QuanHe join CongDan on QuanHe.KhaiSinhNguoiThamGia = CongDan.MaKS WHERE QuanHe.TrangThai = 1 and CCCD = ?)) T \n" +
+"  on QuanHe.MaHK = T.MaHK) Q on Q.KhaiSinhNguoiThamGia = KhaiSinh.MaKS) C on C.KhaiSinhNguoiThamGia = CongDan.MaKS";
         List<ThongTinHoKhau> listThongTinHoKhau = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();

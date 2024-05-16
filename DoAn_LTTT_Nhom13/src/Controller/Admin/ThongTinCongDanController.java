@@ -939,9 +939,18 @@ public class ThongTinCongDanController extends javax.swing.JPanel {
     }
 
     public void showResult() {
-        CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
-        model.fireTableDataChanged();
+//        CongDanModel congDan = listCongDan.get(listCongDan.size() - 1);
+//        model.fireTableDataChanged();
+//        model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
+           while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        listCongDan = congDanService.findAll();
+        for (CongDanModel congDan : listCongDan) {
         model.addRow(new Object[]{congDan.getID(), congDan.getMaKS(), congDan.getCCCD(), congDan.getHoTen(), congDan.getNgaySinh(), congDan.getGioiTinh(), congDan.getNoiSinh(), congDan.getNcCccd(), congDan.getNgcCccd(), congDan.getSDT(), congDan.getEmail(), congDan.getHinhAnh()});
+        }
+    
     }
 
     private void clearRadio() {

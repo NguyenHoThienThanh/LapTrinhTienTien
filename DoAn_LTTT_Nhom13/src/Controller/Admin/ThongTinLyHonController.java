@@ -329,7 +329,7 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
         tf_hotenchong.setText(model.getValueAt(tbl_thongTinLyHon.getSelectedRow(), 7).toString());
         tf_ngaydk.setText(model.getValueAt(tbl_thongTinLyHon.getSelectedRow(), 8).toString());
         tf_noidk.setText(model.getValueAt(tbl_thongTinLyHon.getSelectedRow(), 9).toString());
-        tf_lydo.setText(model.getValueAt(tbl_thongTinLyHon.getSelectedRow(), 10).toString());                                                                            
+        tf_lydo.setText(model.getValueAt(tbl_thongTinLyHon.getSelectedRow(), 10).toString());
     }//GEN-LAST:event_tbl_thongTinLyHonMouseClicked
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
@@ -380,13 +380,12 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_luuThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuThemActionPerformed
-        if (tf_HoTenNguoiNopDon.getText().equals("") ||
-            tf_macnkh.getText().equals("") || tf_hotenchong.getText().equals("") ||
-            tf_lydo.getText().equals("") || tf_hotenvo.getText().equals("") ||
-            tf_cccdchong.getText().equals("") || tf_CCCDNguoiNopDon.getText().equals("") ||
-            tf_cccdvo.getText().equals("") || tf_ngaydk.getText().equals("") ||
-            tf_noidk.getText().equals(""))
-        {
+        if (tf_HoTenNguoiNopDon.getText().equals("")
+                || tf_macnkh.getText().equals("") || tf_hotenchong.getText().equals("")
+                || tf_lydo.getText().equals("") || tf_hotenvo.getText().equals("")
+                || tf_cccdchong.getText().equals("") || tf_CCCDNguoiNopDon.getText().equals("")
+                || tf_cccdvo.getText().equals("") || tf_ngaydk.getText().equals("")
+                || tf_noidk.getText().equals("")) {
             JOptionPane dialog = new JOptionPane("Hãy nhập đầy đủ thông tin!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -408,7 +407,7 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
             return;
         }
         LyHonModel lyhon = new LyHonDAOImpl().findOneByMaCNKH(tf_macnkh.getText().trim());
-        if(lyhon.getMaLh() != null){
+        if (lyhon.getMaLh() != null) {
             JOptionPane dialog = new JOptionPane("Hai công dân này đã ly hôn!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -447,13 +446,13 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
         lyHon.setLydo(tf_lydo.getText());
         lyHon.setTrangThai(1);
         listLyHon.add(lyHon);
-        
+
         if (new LyHonServiceImpl().insert(lyHon)) {
             JOptionPane dialog = new JOptionPane("Thêm thông tin thành công!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-            
+
         } else {
             JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
@@ -478,7 +477,7 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
             tf_noidk.setEditable(true);
             tf_lydo.setEditable(true);
             tf_ngaydk.setEditable(true);
-            
+
         }
 
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -571,11 +570,12 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
                 tf_hotenchong.setText(lyHon.getHoTenChong());
                 tf_malh.setText(lyhon.getMaLh());
                 tf_CCCDNguoiNopDon.setText(lyhon.getCCCDNguoiNopDon());
-                if(lyhon.getCCCDNguoiNopDon().equals(lyHon.getCCCDChong())){
+                if (lyhon.getCCCDNguoiNopDon().equals(lyHon.getCCCDChong())) {
                     tf_HoTenNguoiNopDon.setText(lyHon.getHoTenChong());
-                }else 
-                tf_HoTenNguoiNopDon.setText(lyHon.getHoTenVo());
-                
+                } else {
+                    tf_HoTenNguoiNopDon.setText(lyHon.getHoTenVo());
+                }
+
             } else {
                 clear();
                 tf_cccdchong.setText(lyHon.getCCCDChong());
@@ -632,22 +632,22 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
         // Dữ liệu
         for (int i = 0; i < tbl_thongTinLyHon.getRowCount(); i++) {
             Row row = sheet.createRow(i + 3);
-            row.createCell(0).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 0));           
-            row.createCell(1).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 1)); 
+            row.createCell(0).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 0));
+            row.createCell(1).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 1));
             row.createCell(2).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 2));
 
-            row.createCell(3).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 3));           
-            row.createCell(4).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 4)); 
+            row.createCell(3).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 3));
+            row.createCell(4).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 4));
             row.createCell(5).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 5));
             row.createCell(6).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 6));
             row.createCell(7).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 7));
 
             cell = row.createCell(8, CellType.STRING);
             cell.setCellValue(tbl_thongTinLyHon.getValueAt(i, 8).toString());
-            
+
             cell = row.createCell(9, CellType.STRING);
             cell.setCellValue(tbl_thongTinLyHon.getValueAt(i, 9).toString());
-            
+
             row.createCell(10).setCellValue((String) tbl_thongTinLyHon.getValueAt(i, 10));
         }
 
@@ -662,12 +662,23 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
         }
     }
+
     public void showResult() {
-        listLyHon = new LyHonServiceImpl().findAll();
-        LyHonModel lyHon = listLyHon.get(listLyHon.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{lyHon.getMaLh(), lyHon.getMaCnkh(), lyHon.getCCCDNguoiNopDon(), lyHon.getHoTenNguoiNopDon(), lyHon.getCCCDVO(), lyHon.getHoTenVo(), lyHon.getCCCDChong(), lyHon.getHoTenChong(), lyHon.getNgaydk(), lyHon.getNoidk(), lyHon.getLydo(), lyHon.getTrangThai()});
+//        listLyHon = new LyHonServiceImpl().findAll();
+//        LyHonModel lyHon = listLyHon.get(listLyHon.size() - 1);
+//        model.fireTableDataChanged();
+//        model.addRow(new Object[]{lyHon.getMaLh(), lyHon.getMaCnkh(), lyHon.getCCCDNguoiNopDon(), lyHon.getHoTenNguoiNopDon(), lyHon.getCCCDVO(), lyHon.getHoTenVo(), lyHon.getCCCDChong(), lyHon.getHoTenChong(), lyHon.getNgaydk(), lyHon.getNoidk(), lyHon.getLydo(), lyHon.getTrangThai()});
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
         }
+
+        listLyHon = new LyHonServiceImpl().findAll();
+        for (LyHonModel lyHon : listLyHon) {
+            model.addRow(new Object[]{lyHon.getMaLh(), lyHon.getMaCnkh(), lyHon.getCCCDNguoiNopDon(), lyHon.getHoTenNguoiNopDon(), lyHon.getCCCDVO(), lyHon.getHoTenVo(), lyHon.getCCCDChong(), lyHon.getHoTenChong(), lyHon.getNgaydk(), lyHon.getNoidk(), lyHon.getLydo(), lyHon.getTrangThai()});
+        }
+
+    }
 
     private void clear() {
         tf_malh.setText("");
@@ -705,7 +716,6 @@ public class ThongTinLyHonController extends javax.swing.JPanel {
         return cccd.charAt(0) == '0';
     }
 
-    
     public static boolean isDateValid_1(String ngayStr) {
 
         if (!ngayStr.matches("\\d{4}-\\d{2}-\\d{2}")) {

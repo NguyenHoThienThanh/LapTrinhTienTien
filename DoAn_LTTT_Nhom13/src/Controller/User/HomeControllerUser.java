@@ -91,6 +91,7 @@ public class HomeControllerUser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
         setResizable(false);
 
         scrollPaneWin111.setBackground(new java.awt.Color(255, 255, 255));

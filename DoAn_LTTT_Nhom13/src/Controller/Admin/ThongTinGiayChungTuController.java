@@ -455,11 +455,11 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                 new QuanHeServiceImpl().deleteByMaHK(quanHe.getMaHK(), quanHe.getKhaiSinhNguoiThamGia());
             }
             ThongTinHoKhau hoKhau = new HoKhauServiceImpl().findOneByCCCDChungTu(giayChungTu.getCCCD());
-            
-            if (hoKhau.getCCCDChuHo()!=null && hoKhau.getCCCDChuHo().equals(giayChungTu.getCCCD())) {
+
+            if (hoKhau.getCCCDChuHo() != null && hoKhau.getCCCDChuHo().equals(giayChungTu.getCCCD())) {
                 List<ThongTinHoKhau> list = new QuanHeServiceImpl().findAllByMaHK(hoKhau.getMaHoKhau());
                 for (ThongTinHoKhau qh : list) {
-                    if(list.size() == 1){
+                    if (list.size() == 1) {
                         QuanHeModel qhmodel = new QuanHeServiceImpl().findOneByMaHKAndQuanHeID(qh.getMaHoKhau(), qh.getQuanHeID());
                         if (qh.getTrangThai() == 1) {
                             HoKhauModel hkModel = new HoKhauServiceImpl().findOneByMaHK(qh.getMaHoKhau());
@@ -469,11 +469,10 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                             qhmodel.setKhaiSinhNguoiThamGia(qh.getKhaiSinhNguoiThamGia());
                             new QuanHeServiceImpl().update(qhmodel);
                             break;
-                        }else{
+                        } else {
                             new HoKhauServiceImpl().delete(hoKhau.getMaHoKhau());
                         }
-                    }else
-                    if (Integer.parseInt(qh.getQuanHeID()) > Integer.parseInt(hoKhau.getQuanHeID())) {
+                    } else if (Integer.parseInt(qh.getQuanHeID()) > Integer.parseInt(hoKhau.getQuanHeID())) {
                         QuanHeModel qhmodel = new QuanHeServiceImpl().findOneByMaHKAndQuanHeID(qh.getMaHoKhau(), qh.getQuanHeID());
                         if (qh.getTrangThai() == 1) {
                             HoKhauModel hkModel = new HoKhauServiceImpl().findOneByMaHK(qh.getMaHoKhau());
@@ -485,8 +484,8 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
                             break;
                         }
                     }
-                    
-                }                
+
+                }
             }
         } else {
             JOptionPane dialog = new JOptionPane("Thêm thông tin thất bại!", JOptionPane.INFORMATION_MESSAGE);
@@ -662,7 +661,7 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_btn_xuatDanhSachActionPerformed
-    
+
     private void exportToExcel(String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Danh sách chứng tử");
@@ -693,7 +692,6 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             row.createCell(2).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 1));
             row.createCell(3).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 2));
             row.createCell(4).setCellValue((String) tbl_thongTinChungTu.getValueAt(i, 3));
-            
 
             cell = row.createCell(5, CellType.STRING);
             cell.setCellValue(tbl_thongTinChungTu.getValueAt(i, 4).toString());
@@ -715,12 +713,22 @@ public class ThongTinGiayChungTuController extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
         }
     }
-    
+
     public void showResult() {
+//        listGiayChungTu = giayChungTuService.findAll();
+//        GiayChungTuModel giayChungTu = listGiayChungTu.get(listGiayChungTu.size() - 1);
+//        model.fireTableDataChanged();
+//        model.addRow(new Object[]{giayChungTu.getMaCT(), giayChungTu.getMaKS(), giayChungTu.getHoTen(), giayChungTu.getCCCD(), giayChungTu.getNgaySinh(), giayChungTu.getNgayMat(), giayChungTu.getNoiMat(), giayChungTu.getNguyenNhan()});
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
         listGiayChungTu = giayChungTuService.findAll();
-        GiayChungTuModel giayChungTu = listGiayChungTu.get(listGiayChungTu.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{giayChungTu.getMaCT(), giayChungTu.getMaKS(), giayChungTu.getHoTen(), giayChungTu.getCCCD(), giayChungTu.getNgaySinh(), giayChungTu.getNgayMat(), giayChungTu.getNoiMat(), giayChungTu.getNguyenNhan()});
+        for (GiayChungTuModel giayChungTu : listGiayChungTu) {
+            model.addRow(new Object[]{giayChungTu.getMaCT(), giayChungTu.getMaKS(), giayChungTu.getHoTen(), giayChungTu.getCCCD(), giayChungTu.getNgaySinh(), giayChungTu.getNgayMat(), giayChungTu.getNoiMat(), giayChungTu.getNguyenNhan()});
+
+        }
+
     }
 
     private void clear() {

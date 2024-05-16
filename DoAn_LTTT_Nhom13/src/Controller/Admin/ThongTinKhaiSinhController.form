@@ -186,6 +186,9 @@
       <Properties>
         <Property name="labelText" type="java.lang.String" value="S&#x1ed1; CCCD ng&#x1b0;&#x1edd;i &#x111;&#x103;ng k&#xfd;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_CCCDNguoiDangKyActionPerformed"/>
+      </Events>
     </Component>
     <Component class="Swing.TextField" name="tf_quocTich">
       <Properties>

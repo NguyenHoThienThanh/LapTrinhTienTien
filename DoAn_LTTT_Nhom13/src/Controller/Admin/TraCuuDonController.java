@@ -1592,7 +1592,7 @@ public class TraCuuDonController extends javax.swing.JPanel {
         }
 
         for (ThongTinHoKhau tthk : listHoKhau) {
-            model.addRow(new Object[]{tthk.getCCCDNguoiThan(), tthk.getHoTenNguoiThan(), tthk.getNgaySinh(), tthk.getQuanHeVoiChuHo()});
+            model.addRow(new Object[]{tthk.getCCCDNguoiThan() == null ? "Chưa có CCCD" : tthk.getCCCDNguoiThan(), tthk.getHoTenNguoiThan(), tthk.getNgaySinh(), tthk.getQuanHeVoiChuHo()});
         }
     }
     private void tf_giaytotuythanchongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_giaytotuythanchongActionPerformed

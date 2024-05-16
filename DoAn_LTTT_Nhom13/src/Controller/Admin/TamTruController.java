@@ -428,7 +428,7 @@ public class TamTruController extends javax.swing.JPanel {
                 } catch (ParseException ex) {
                     return;
                 }
-                
+
                 try {
                     if (isDateValidPresent(tf_ngayDen.getText().trim())) {
                         Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDen.getText().trim());
@@ -480,7 +480,7 @@ public class TamTruController extends javax.swing.JPanel {
                 } catch (ParseException ex) {
                     return;
                 }
-                
+
                 try {
                     if (isDateValidPresent(tf_ngayDi.getText().trim())) {
                         Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(tf_ngayDi.getText().trim());
@@ -506,7 +506,6 @@ public class TamTruController extends javax.swing.JPanel {
 //                } catch (ParseException ex) {
 //                    Logger.getLogger(TamTruController.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-
                 tamTru.setLydo(tf_lyDo.getText());
                 tamTru.setSDT(tf_soDienThoai.getText());
                 tamTru.setEmail(tf_email.getText());
@@ -514,7 +513,7 @@ public class TamTruController extends javax.swing.JPanel {
                 listTamTru.add(tamTru);
 
                 if (new TamTruServiceImpl().update(tamTru)) {
-                    if(listChuaDuyet.contains(tamTru)){
+                    if (listChuaDuyet.contains(tamTru)) {
                         listChuaDuyet.remove(tamTru);
                     }
                     model.removeRow(tbl_thongTinTamTru.getSelectedRow());
@@ -529,21 +528,21 @@ public class TamTruController extends javax.swing.JPanel {
                     jDialog.setVisible(true);
                     return;
                 }
-                
-            }else if(tbl_thongTinTamTru.getSelectedRowCount() < 0 ){
-                    JOptionPane dialog = new JOptionPane("Không có đơn chưa duyệt!", JOptionPane.INFORMATION_MESSAGE);
+
+            } else if (tbl_thongTinTamTru.getSelectedRowCount() < 0) {
+                JOptionPane dialog = new JOptionPane("Không có đơn chưa duyệt!", JOptionPane.INFORMATION_MESSAGE);
                 JDialog jDialog = dialog.createDialog(null);
                 jDialog.setModal(true);
                 jDialog.setVisible(true);
                 return;
-                    }
+            }
             if (cbx_loaiDon.getSelectedIndex() == 0) {
                 showResult();
                 clear();
                 disableTextField();
             } else {
                 //listChuaDuyet.remove(khaiSinh);
-                
+
                 //showTableChuaDuyet();
             }
 
@@ -552,10 +551,19 @@ public class TamTruController extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_luuThemActionPerformed
 
     public void showResult() {
+//        listTamTru = tamTruService.findAll();
+//        TamTruModel tamTru = listTamTru.get(listTamTru.size() - 1);
+//        model.fireTableDataChanged();
+//        model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgaydk(), tamTru.getNoidk(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getCCCD(), tamTru.getNgcCccd(), tamTru.getNcCccd(), tamTru.getNgaydi(), tamTru.getNgayden(), tamTru.getLydo(), tamTru.getSDT(), tamTru.getEmail()});
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
         listTamTru = tamTruService.findAll();
-        TamTruModel tamTru = listTamTru.get(listTamTru.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgaydk(), tamTru.getNoidk(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getCCCD(), tamTru.getNgcCccd(), tamTru.getNcCccd(), tamTru.getNgaydi(), tamTru.getNgayden(), tamTru.getLydo(), tamTru.getSDT(), tamTru.getEmail()});
+        for (TamTruModel tamTru : listTamTru) {
+            model.addRow(new Object[]{tamTru.getMaTT(), tamTru.getNgaydk(), tamTru.getNoidk(), tamTru.getHoTen(), tamTru.getNgaySinh(), tamTru.getCCCD(), tamTru.getNgcCccd(), tamTru.getNcCccd(), tamTru.getNgaydi(), tamTru.getNgayden(), tamTru.getLydo(), tamTru.getSDT(), tamTru.getEmail()});
+        }
+
     }
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         if (cbx_loaiDon.getSelectedIndex() == 1) {
@@ -687,7 +695,7 @@ public class TamTruController extends javax.swing.JPanel {
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
             jDialog.setVisible(true);
-        }else if (selectedRow < 0) {
+        } else if (selectedRow < 0) {
             JOptionPane dialog = new JOptionPane("Hãy chọn một hàng cần xóa!", JOptionPane.WARNING_MESSAGE);
             JDialog jDialog = dialog.createDialog(null);
             jDialog.setModal(true);
@@ -800,16 +808,15 @@ public class TamTruController extends javax.swing.JPanel {
             cell.setCellValue(tbl_thongTinTamTru.getValueAt(i, 4).toString());
             row.createCell(6).setCellValue((String) tbl_thongTinTamTru.getValueAt(i, 5));
 
-           
             cell = row.createCell(7, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamTru.getValueAt(i, 6).toString());
             row.createCell(8).setCellValue((String) tbl_thongTinTamTru.getValueAt(i, 7));
-            
+
             cell = row.createCell(9, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamTru.getValueAt(i, 8).toString());
             cell = row.createCell(10, CellType.STRING);
             cell.setCellValue(tbl_thongTinTamTru.getValueAt(i, 9).toString());
-            
+
             row.createCell(11).setCellValue((String) tbl_thongTinTamTru.getValueAt(i, 10));
             row.createCell(12).setCellValue((String) tbl_thongTinTamTru.getValueAt(i, 11));
             row.createCell(13).setCellValue((String) tbl_thongTinTamTru.getValueAt(i, 12));
@@ -827,6 +834,7 @@ public class TamTruController extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Lỗi khi xuất dữ liệu ra file Excel");
         }
     }
+
     private void clear() {
         tf_soCCCD.setText("");
         tf_hoTen.setText("");

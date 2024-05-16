@@ -761,7 +761,8 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
                     jDialog.setVisible(true);
                     return;
                 }
-                if (!ttcn.getGioiTinh().equals("Nữ") || !ttcn.getGioiTinh().equals("Nu")) {
+                if (!ttcn.getGioiTinh().equals("Nữ")) {
+                    System.out.println(ttcn.getGioiTinh());
                     JOptionPane dialog = new JOptionPane("Vui lòng nhập CCCD của vợ!", JOptionPane.WARNING_MESSAGE);
                     JDialog jDialog = dialog.createDialog(null);
                     jDialog.setModal(true);
@@ -899,10 +900,19 @@ public class ThongTinKetHonController extends javax.swing.JPanel {
     }
 
     public void showResult() {
+//        listKetHon = ketHonService.findAllKetHon();
+//        ChungNhanKetHonModel ketHon = listKetHon.get(listKetHon.size() - 1);
+//        model.fireTableDataChanged();
+//        model.addRow(new Object[]{ketHon.getMaCnkh(), ketHon.getCCCDVo(), ketHon.getHoTenVo(), ketHon.getNgaySinhVo(), ketHon.getDanTocVo(), ketHon.getQuocTichVo(), ketHon.getNoiCuTruVo(), ketHon.getCCCDChong(), ketHon.getHoTenChong(), ketHon.getNgaySinhChong(), ketHon.getDanTocChong(), ketHon.getQuocTichChong(), ketHon.getNoiCuTruChong(), ketHon.getNgaydk(), ketHon.getNoidk()});
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
         listKetHon = ketHonService.findAllKetHon();
-        ChungNhanKetHonModel ketHon = listKetHon.get(listKetHon.size() - 1);
-        model.fireTableDataChanged();
-        model.addRow(new Object[]{ketHon.getMaCnkh(), ketHon.getCCCDVo(), ketHon.getHoTenVo(), ketHon.getNgaySinhVo(), ketHon.getDanTocVo(), ketHon.getQuocTichVo(), ketHon.getNoiCuTruVo(), ketHon.getCCCDChong(), ketHon.getHoTenChong(), ketHon.getNgaySinhChong(), ketHon.getDanTocChong(), ketHon.getQuocTichChong(), ketHon.getNoiCuTruChong(), ketHon.getNgaydk(), ketHon.getNoidk()});
+        for (ChungNhanKetHonModel ketHon : listKetHon) {
+            model.addRow(new Object[]{ketHon.getMaCnkh(), ketHon.getCCCDVo(), ketHon.getHoTenVo(), ketHon.getNgaySinhVo(), ketHon.getDanTocVo(), ketHon.getQuocTichVo(), ketHon.getNoiCuTruVo(), ketHon.getCCCDChong(), ketHon.getHoTenChong(), ketHon.getNgaySinhChong(), ketHon.getDanTocChong(), ketHon.getQuocTichChong(), ketHon.getNoiCuTruChong(), ketHon.getNgaydk(), ketHon.getNoidk()});
+        }
+
     }
 
     private void clear() {
